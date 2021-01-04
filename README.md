@@ -9,15 +9,14 @@ Collin Didier
 [LinkedIn](https://www.linkedin.com/in/collin-didier/) |
 
 ## Description
-A full stack web app dedicated to making financial planning easy and accessible to
-everyone regardless of their comfort with technology.
+A full stack web app designed to making financial planning easy, accessible, and comprehensive.
 
-The site will integrate a set of micro tools and widgets designed to analyze and report on a various aspects of user's personal financial situation. The combined effect of the various tools will be to create a comprehensive, macro view of  personal finance that empowers the user to make informed decisions about their money.
+The site will integrate a set of micro tools and widgets designed to analyze and report on a various aspects of user's personal financial situation. The combined effect of the various tools will be to create an integrated, macro view of  personal finance that empowers the user to make informed decisions about their money.
 
 ## Planned Widgets
 
 1. Budget
-2. Cash Flow 
+2. Cash Flow Statement w/ pagination
 3. Budget Summary
 4. Cash Flow Summary
 5. Tax Estimator w/ budget integration
@@ -43,6 +42,7 @@ The user can make edits as needed to personalize their budget, cash flow, etc.
 2. Users can easily make edits to their budget & cash flow. 
 3. Users will interact with intuitive, user-friendly widgets that need no explanation.
 4. Users can view powerful analytics and snapshots of their financial situation
+5. Widgets will use the same pool of user's data to report on various aspects of personal finance over time, increasing the usefullness and degree of their integration.
 
 ## ERD
 #### ERD - Budget Only
