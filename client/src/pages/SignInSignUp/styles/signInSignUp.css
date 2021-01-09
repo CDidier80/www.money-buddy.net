@@ -1,0 +1,52 @@
+.sign-in-sign-up-page {
+  width: 100%;
+  min-height: 100vh;
+  background-image: linear-gradient(0deg, #22c1c3, #fdbb2d);
+  font-family: Lato, sans-serif;
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+}
+
+.form-wrapper {
+  -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 200ms both;
+  animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 500ms both;
+}
+
+.submitButton {
+  width: 100%;
+  padding: 8px 8px 8px 8px;
+  margin: 10px 0 15px 0;
+  /* color: #fdbb2d;
+  background-color: #076996; */
+  color: rgb(1, 28, 24);
+  background: linear-gradient(
+    90deg, 
+    #138b8d, 
+    #ddbc74 30%, 
+    #fdbb2d 85%
+    );
+
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 100;
+  line-height: 1.75;
+  text-transform: uppercase;
+  letter-spacing: 0.02857em;
+  -webkit-writing-mode: horizontal-tb !important;
+  text-indent: 0px;
+  text-shadow: none;
+  text-align: center;
+  box-shadow: 
+    0px 3px 1px -2px rgba(0,0,0,0.2), 
+    0px 2px 2px 0px  rgba(0,0,0,0.14), 
+    0px 1px 5px 0px rgba(0,0,0,0.12);
+
+  transition: background-image 3s ease;
+}
+
+.submitButton:hover {
+    color: #fdbb2d;
+    background-image: linear-gradient(90deg, #138b8d 60%, #fdbb2d);
+}

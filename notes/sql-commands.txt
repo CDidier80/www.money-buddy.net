@@ -1,0 +1,21 @@
+
+// initialize sequelize project (creates config file)
+npx sequelize-cli init
+
+// create database (uses name of database found in config file)
+npx sequelize-cli db:create                
+
+// create models                                                                                                                           
+npx sequelize-cli model:generate --name users --attributes email:string,password:string
+npx sequelize-cli model:generate --name budgets --attributes userId:integer
+npx sequelize-cli model:generate --name categories --attributes budgetId:integer,name:string
+npx sequelize-cli model:generate --name incomes --attributes budgetId:integer,source:string,amount:integer
+npx sequelize-cli model:generate --name expenses --attributes categoryId:integer,expense:string,amount:integer
+
+// migrate models
+npx sequelize-cli db:migrate 
+
+
+// to undo migrations
+
+npx sequelize-cli db:migrate:undo:all
