@@ -1,0 +1,2 @@
+new default incomes break after 10
+category names must not be unique
