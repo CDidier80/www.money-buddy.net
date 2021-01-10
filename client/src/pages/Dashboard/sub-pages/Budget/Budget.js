@@ -55,7 +55,7 @@ const Budget = (props) => {
     // reloads in which local state changes require recalc of totals, names
     useEffect(() => {
         if(budgetLoaded) {
-            console.log("Budget.js useEffect reload triggered")
+            // console.log("Budget.js useEffect reload triggered")
             const catState =  initNamesTotals(newCategories)
             const incomeState =  initIncomeTotals(newIncomes)
             setCategoryNames(catState[0])
