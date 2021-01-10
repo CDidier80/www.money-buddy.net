@@ -8,16 +8,6 @@ const unconditionalStyles = {
         fontSize: "18px",
         fontFamily: "Lato, sans-serif",
         color: "#22c1c3",
-        // textShadow: `
-        //     0 0 1px #fdbb2d; 
-        // `
-    },
-    title: {
-        flex: '1 1 100%',
-    },
-    tableContainer: {
-        maxWidth: "890px",
-        margin: "auto"
     },
     button: {
         fontSize: "9px",
