@@ -22,7 +22,6 @@ module.exports = {
       name: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true,
       },
       createdAt: {
         field: 'created_at',
@@ -41,4 +40,4 @@ module.exports = {
   down: async (queryInterface, Sequelize) => {
     await queryInterface.dropTable('categories');
   }
-};
+}
