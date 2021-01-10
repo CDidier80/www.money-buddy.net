@@ -7,7 +7,6 @@ export const formatToCurrency = (number) => {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0,
         })
-        console.log("formatted cell:", formattedCell)
         return formattedCell
         
     } catch (error) {
