@@ -96,7 +96,7 @@ const AccountPage = (props) => {
     
 
     return (
-        <MoneyBuddyTheme>
+        // <MoneyBuddyTheme>
                 <div className="account-page" className={classes.paper}>
                     <Typography 
                         className={classes.header}
@@ -181,7 +181,7 @@ const AccountPage = (props) => {
                         />
                     )}
                 </div>
-        </MoneyBuddyTheme>
+        // </MoneyBuddyTheme>
     )
 }
 
