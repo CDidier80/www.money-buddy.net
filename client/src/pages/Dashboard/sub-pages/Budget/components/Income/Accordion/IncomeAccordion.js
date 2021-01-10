@@ -17,7 +17,7 @@ import {
 
 
 const IncomeAccordion = (props) => {
-    console.log('INCOME ACCORDION PROPS: ', props)
+    // console.log('INCOME ACCORDION PROPS: ', props)
     {/*  PROPS */}
     
     const { 
@@ -34,7 +34,7 @@ const IncomeAccordion = (props) => {
     
     const [showIncomeDeleteIcons, toggleIncomeDeleteIcons] = useState(false)
     const [lengthOfIncomes, setLengthOfIncomes] = useState(newIncomes.length)
-
+    const [fourColumns, setFourColumns] = useState(false)
 
 
     {/* FUNCTIONS */}
@@ -90,23 +90,18 @@ const IncomeAccordion = (props) => {
     const handleDeleteIncomeIcons = (e) => {
         e.preventDefault()
         toggleIncomeDeleteIcons(!showIncomeDeleteIcons)
+        setFourColumns(!fourColumns)
     }
     
-    const {fromBudget} =  props
 
-
-    const fromIncomeAccordion = {
+    const incomeTableProps = {
+        fourColumns,
+        setFourColumns,
         showIncomeDeleteIcons,
         toggleIncomeDeleteIcons
     }
 
-    const incomeTableProps = {
-        fromBudget, 
-        fromIncomeAccordion
-    }
-
-
-
+    
     return (
         <Accordion className={classes.accordion}>
 
@@ -143,12 +138,10 @@ const IncomeAccordion = (props) => {
                 </ButtonGroup>
             </AccordionDetails>
 
-            <AccordionDetails>
-                <IncomeTable 
-                    {...props}
-                    {...incomeTableProps}
-                />
-            </AccordionDetails>
+            <IncomeTable 
+                {...props}
+                fromIncomeAccordion={{...incomeTableProps}}
+            />
         </Accordion>
     )
 }
