@@ -5,8 +5,6 @@ const IncomeSourceCell = (props) => {
 
     {/*  PROPS  */}
 
-    const { defaultValue, arrayIndex } = props
-
     const { 
         setNewIncomes, 
         newIncomes, 
@@ -16,18 +14,24 @@ const IncomeSourceCell = (props) => {
         updateBudget
     } = props.fromBudget
 
+    const { arrayIndex } = props.fromIncomeTable
+
+    const {
+        defaultValue
+    } = props.fromIncomeRow
+
 
     {/*  STATE  */}
 
     const [ newText, updateText ] = useState(defaultValue)
 
 
-    
     {/* FUNCTIONS */}
 
     useEffect(() => {
-        updateText(props.defaultValue)
-    }, [props.defaultValue])
+        updateText(defaultValue)
+        // console.log("Source Cell detected change in useEffect")
+    }, [defaultValue])
 
 
     const handleSubmit = (e) => {
