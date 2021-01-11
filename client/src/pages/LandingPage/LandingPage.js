@@ -6,17 +6,13 @@ import "./styles/landingPage.css"
 
 const LandingPage = (props) => {
 
-    const {setAuth, setUserInfo} = props
 
-    const navbarProps = {
-        setAuth,
-        setUserInfo
-    }
+    console.log(props)
 
     return (
         <div className="landingPage">
             <LandingNavBar 
-                {...navbarProps}
+                {...props}
             />
             <main className="main">
                 <div className="shapes-container">
