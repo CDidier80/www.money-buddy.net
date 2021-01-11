@@ -54,12 +54,10 @@ const IncomeTable = (props) => {
                     className={classes.table} 
                     size="small" 
                 >
-
-
                     <TableBody>
-                    <IncomeHeaders 
-                        {...props}
-                    />
+                        <IncomeHeaders 
+                            {...props}
+                        />
                         {newIncomes.map((income, index) => {
                             const { source, amount } = income
                             let arrayIndex = index
