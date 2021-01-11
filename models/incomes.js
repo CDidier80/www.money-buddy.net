@@ -10,16 +10,32 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'budget_id',
         as: 'budget',
         constraints: true,
+      }),
+      Income.belongsTo(models.Month, {
+        foreignKey: 'month_id',
+        as: 'months',
+        constraints: true,
       })
     }
   };
   Income.init({
     budgetId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,   // changed to true in case income is owned by Month instead for cashflow
       field: 'budget_id',
       onDelete: 'cascade',
       constraints: true,
+      references: {
+        model: 'budgets',
+        key: 'id'
+      }
+    },
+    monthId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,   // changed to true in case income is owned by Month instead for cashflow
+      field: 'month_id',
+      onDelete: 'cascade',
+      // constraints: true,
       references: {
         model: 'budgets',
         key: 'id'
