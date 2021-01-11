@@ -24,7 +24,6 @@ const useStyles = makeStyles({
 
 const IncomeHeaders = (props) => {
 
-    const {fourColumns} = props.fromIncomeAccordion
     const classes = useStyles()
 
     return (
