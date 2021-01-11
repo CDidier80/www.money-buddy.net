@@ -17,11 +17,9 @@ Router.put('/email', UpdateEmail)
 Router.get('/read/:user_id', ReadUser)
 
 // Update
-
-
 // Delete
 // cascade will delete all associated projects and the user's profile
-Router.delete('/delete/:user_id', DeleteUser)
+Router.delete('/delete', DeleteUser)
 
 
 // check session
