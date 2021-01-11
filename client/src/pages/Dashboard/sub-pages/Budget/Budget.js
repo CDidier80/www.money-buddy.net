@@ -85,8 +85,6 @@ const Budget = (props) => {
     }
 
 
-
-
     const saveBudget = async (e) => {
         try {
             e.preventDefault()
@@ -102,11 +100,6 @@ const Budget = (props) => {
             failedBudgetSaveSnackbar()
             console.log("budget update failed: ", error)
         }
-    }
-
-
-    const handleRerender = (e) => {
-        updateBudget(tick + 1)
     }
 
 
