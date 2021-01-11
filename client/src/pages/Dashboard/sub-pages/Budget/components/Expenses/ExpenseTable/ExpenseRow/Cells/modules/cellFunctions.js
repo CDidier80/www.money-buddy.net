@@ -1,11 +1,16 @@
 export const formatToCurrency = (number) => {
-    let formattedCell = number.toLocaleString('en-US', { 
-        style: 'currency', 
-        currency: 'USD',
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 0,
-    })
-    return formattedCell
+    try {
+        let formattedCell = number.toLocaleString('en-US', { 
+            style: 'currency', 
+            currency: 'USD',
+            minimumFractionDigits: 0,
+            maximumFractionDigits: 0,
+        })
+        return formattedCell
+        
+    } catch (error) {
+        throw(error)
+    }
 }
 
 

@@ -10,7 +10,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'budget_id',
         as: 'budget',
         constraints: true,
-      }), 
+      }),
+      Category.belongsTo(models.Month, {
+        foreignKey: 'month_id',
+        as: 'months',
+        constraints: true,
+      }),  
       Category.hasMany(models.Expense, {
         foreignKey: 'category_id',
         as: 'category_of_expense',
@@ -24,6 +29,17 @@ module.exports = (sequelize, DataTypes) => {
       field: 'budget_id',
       onDelete: 'cascade',
       constraints: true,
+      references: {
+        model: 'budgets',
+        key: 'id'
+      }
+    },
+    monthId: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      field: 'month_id',
+      onDelete: 'cascade',
+      // constraints: true,
       references: {
         model: 'budgets',
         key: 'id'

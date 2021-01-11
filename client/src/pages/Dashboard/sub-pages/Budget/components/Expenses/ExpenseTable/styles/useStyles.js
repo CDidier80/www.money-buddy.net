@@ -15,13 +15,4 @@ export const useStyles = makeStyles({
         color: "#e6a824",
         fontWeight: "900"
     },
-    iconButton: {
-        marginRight: "11px",
-        "&:hover" : {
-            backgroundColor: "#ffcece65"
-        }
-    },
-    deleteIcon: {
-        color: "red",
-    }
 })

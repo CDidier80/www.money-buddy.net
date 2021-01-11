@@ -1,7 +1,16 @@
 import React, { useState } from 'react';
 import { DeleteUser} from "../../../../../Services/UserService"
 
-const DeletePopup = ({setDeleteTriggered}) => {
+const DeletePopup = (props) => {
+
+    const {userId, history, setDeleteTriggered} = props
+
+    const deleteAccount = async (e) => {
+        e.preventDefault()
+        console.log(userId)
+        await DeleteUser({userId})
+        history.push("/")
+    }
 
     return (
         <div className="customBackdrop" onClick={(e) => setDeleteTriggered(false)} >
@@ -9,6 +18,7 @@ const DeletePopup = ({setDeleteTriggered}) => {
                 <p className="warning">Warning: This action is irreversible.</p>
                 <div className="button-container">
                     <button 
+                        onClick={(e)=>deleteAccount(e)}
                         className="submitButton delete-account-button"
                     >
                         Delete Account

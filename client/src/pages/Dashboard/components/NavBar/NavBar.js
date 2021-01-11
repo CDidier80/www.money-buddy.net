@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { IconButton } from '@material-ui/core';
 import blueGrey from '@material-ui/core/colors/blueGrey';
-// import { logs, firstLogs } from "./logs"
 
 const NavBar = (props) => {
 

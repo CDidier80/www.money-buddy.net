@@ -1,27 +1,39 @@
 import { TableCell } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
-import { filterNumbers } from "./modules/cellFunctions"
+import { filterNumbers, formatToCurrency } from "./modules/cellFunctions"
 
 const ExpenseNumberCell = (props) => {
 
     {/*  PROPS */}
 
-    const { tick, updateBudget } = props.budgetTicker
-
     const { 
-        categoryIndex, 
-        expenseIndex, 
-        category, 
+        defaultValue,
         isAnnual, 
-        categoryHooks,
-    } = props
+    } = props.fromExpenseRow
 
     const { 
-        newCategories, 
+        newCategories,
         setNewCategories, 
-        userMadeChanges, 
-        toggleChanges 
-    } = categoryHooks
+        toggleChanges,
+        userMadeChanges,
+        updateBudget, 
+        tick
+    } = props.fromBudget
+
+    const { 
+        categoryIndex,
+        category
+    } = props.fromExpenseAccordion
+
+    const {
+        expense,
+        amount, 
+        monthly,
+        expenseIndex,
+        incomingDeletion, 
+        setIncomingDeletion,
+        handleDeleteExpense
+    } = props.fromExpenseTable
 
 
     {/*  STATE  */}
@@ -34,47 +46,51 @@ const ExpenseNumberCell = (props) => {
     {/*  FUNCTIONS */}
 
     useEffect(() => {
-        updateText(props.defaultValue)
-    }, [props.defaultValue])
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        return
-    }
+        const currency = formatToCurrency(defaultValue)
+        updateRawNumber(defaultValue)
+        updateText(currency)
+    }, [defaultValue])
 
 
     const updateNewCategories = (value) => {
         let numValue = parseInt(value)
         numValue = isAnnual ? numValue : Math.round(numValue * 12)
-        let categoriesArrayCopy = newCategories
-        let categoryCopy = category
+        let categoriesArrayCopy = [...newCategories]
+        let categoryCopy = {...category}
         categoryCopy["expenses"][expenseIndex]['amount'] = numValue
         categoriesArrayCopy[categoryIndex] = categoryCopy
+        console.log("categoriesArrayCopy", categoriesArrayCopy)
         setNewCategories(categoriesArrayCopy)
     }
 
 
-    const updateAllState = (value) => {
-        updateText(value)
-        updateNewCategories(value)
+    const submit = (e) => {
+        // console.log(e.target)
+        e.preventDefault()
+        document.activeElement.blur()
+        // setCellHistory([...cellHistory, rawNumber])
+        updateNewCategories(rawNumber)
+        updateText(formatToCurrency(rawNumber))
         if (!userMadeChanges) {
             toggleChanges(true)
         }
         updateBudget(tick + 1)
-    } 
+        setFocus(false)
+        return false
+    }
+
 
     return (
         <TableCell>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => submit(e)}>
                 <input 
                     name="text-input"
                     type="text" 
                     value={focused ? rawNumber : newText } 
                     className="editable-cell expense"
+                    onSelect={(e) => setFocus(true)}
                     onChange={(e) => filterNumbers(e, updateRawNumber)}
-                    onSelect={() => setFocus(true)}
-                    onBlur={() => setFocus(false)}
+                    onBlur={(e) => submit(e)}
                 >
                 </input>
             </form>

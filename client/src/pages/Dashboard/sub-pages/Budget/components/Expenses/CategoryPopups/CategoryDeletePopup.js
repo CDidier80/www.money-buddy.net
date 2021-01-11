@@ -53,21 +53,32 @@ const Transition = forwardRef(function Transition(props, ref) {
 })
 
 
+
+
+
+
 const CategoryDeletePopup = (props) => {
-    const classes = useStyles()
-    const { 
-        toggleCategoryDeletePopup,
-        name,
-        categoryIndex
-    } = props
+
+        const classes = useStyles()
+
     const { 
         setNewCategories, 
         newCategories, 
         toggleChanges, 
-        userMadeChanges 
-    } = props.categoryHooks
+        userMadeChanges,
+        updateBudget,
+        tick
+    } = props.fromBudget
 
-    const {tick, updateBudget} = props.budgetTicker
+    const { 
+        category,
+        categoryIndex
+    } = props.fromExpenseAccordion
+
+    const {name} = category
+
+    const {toggleCategoryDeletePopup} = props.fromCategoryAccordion
+
 
     const [open, setOpen] = useState(true)
 

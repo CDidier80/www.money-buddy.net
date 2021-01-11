@@ -1,7 +1,7 @@
-import { createMuiTheme, MuiThemeProvider } from '@material-ui/core/'
+import { createMuiTheme } from '@material-ui/core/'
 import React, { useState } from 'react'
 
-const theme = createMuiTheme({
+export const theme = createMuiTheme({
     palette: {
         primary: {
             main: '#22c1c3',
@@ -55,6 +55,3 @@ const theme = createMuiTheme({
         }
 })
 
-const MoneyBuddyTheme = (props) => <MuiThemeProvider theme={theme}></ MuiThemeProvider>
-
-export default MoneyBuddyTheme

@@ -55,7 +55,7 @@ const Budget = (props) => {
     // reloads in which local state changes require recalc of totals, names
     useEffect(() => {
         if(budgetLoaded) {
-            console.log("Budget.js useEffect reload triggered")
+            // console.log("Budget.js useEffect reload triggered")
             const catState =  initNamesTotals(newCategories)
             const incomeState =  initIncomeTotals(newIncomes)
             setCategoryNames(catState[0])
@@ -85,8 +85,6 @@ const Budget = (props) => {
     }
 
 
-
-
     const saveBudget = async (e) => {
         try {
             e.preventDefault()
@@ -105,11 +103,6 @@ const Budget = (props) => {
     }
 
 
-    const handleRerender = (e) => {
-        updateBudget(tick + 1)
-    }
-
-
     {/*  PROPS OBJECTS  */}
 
     const incomeAccordionProps = {
@@ -121,27 +114,21 @@ const Budget = (props) => {
         tick
     }
 
-    const categoryHooks = {
+
+    const expenseAccordionProps = {
         newCategories,
         setNewCategories, 
-    }
-
-
-    const budgetTicker = {
+        toggleChanges,
+        userMadeChanges,
         updateBudget, 
         tick
     }
 
+
     const userChanges = {
-        userMadeChanges, 
         toggleChanges,
-        trackUserChanges: () => {
-            if (!this.userMadeChanges) {
-            this.toggleChanges(true)
-        }},
+        userMadeChanges,
     }
-
-
 
 
     return ( !budgetLoaded ? <div></div> :
@@ -182,12 +169,8 @@ const Budget = (props) => {
                 fromBudget={incomeAccordionProps}
             />
             <ExpenseAccordion 
-                categoryHooks={categoryHooks}
-                budgetTicker={budgetTicker}
-                userChanges={userChanges}
+                fromBudget={{...expenseAccordionProps}}
             />
-            { userMadeChanges && <button onClick={(e) => saveBudget(e)}>Save Budget</button>}
-            <button onClick={(e) => handleRerender(e)}>RERENDER</button>
         </div>
     )
 }

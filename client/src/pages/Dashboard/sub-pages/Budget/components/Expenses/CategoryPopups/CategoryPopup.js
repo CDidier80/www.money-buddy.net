@@ -86,7 +86,8 @@ const CategoryPopup = (props) => {
         newCategories, 
         toggleChanges, 
         userMadeChanges 
-    } = props.categoryHooks
+    } = props.fromBudget
+
     const [open, setOpen] = useState(true)
     const [text, setText] = useState("")
 

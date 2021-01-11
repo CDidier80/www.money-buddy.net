@@ -8,6 +8,8 @@ Collin Didier
 [GitHub](https://github.com/CDidier80) |
 [LinkedIn](https://www.linkedin.com/in/collin-didier/) |
 
+![budget snapshot][https://i.ibb.co/XtSGZcr/08-E081-DB-05-CC-4327-95-CC-0-B7-B198-C3-AE6.jpg]
+
 ## Description
 A full stack web app designed to making financial planning easy, accessible, and comprehensive.
 
@@ -64,16 +66,6 @@ The user can make edits as needed to personalize their budget, cash flow, etc.
 <!-- ## Wireframe
 ![wireframe](./img/homepage.png) -->
 
-
-## Screenshots
-
-
 ## Trello link
 https://trello.com/b/lDwcI9L2/personal-finance
-
-## Credits
-
-## Future updates
-
-
 

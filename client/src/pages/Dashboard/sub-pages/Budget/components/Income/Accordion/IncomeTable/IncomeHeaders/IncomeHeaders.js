@@ -14,6 +14,11 @@ const useStyles = makeStyles({
         color: "#22c1c3",
         fontWeight: "bold"
     },
+    emptyCell: {
+        maxWidth: "36px",
+        minWidth: "36px", 
+        padding: "0px"
+    }
 })
 
 
@@ -22,11 +27,11 @@ const IncomeHeaders = (props) => {
     const classes = useStyles()
 
     return (
-        <TableHead>
+        // <TableHead>
             <TableRow>
-                {props.showIncomeDeleteIcons &&
-                    <TableCell></TableCell>
-                }
+                <TableCell 
+                    className={classes.emptyCell}>
+                </TableCell>
                 <TableCell 
                     className={classes.columnHeader}
                 >
@@ -45,8 +50,8 @@ const IncomeHeaders = (props) => {
                         Annual
                 </TableCell>
             </TableRow>
-        </TableHead>
     )
 }
 
+{/* </TableHead> */}
 export default IncomeHeaders

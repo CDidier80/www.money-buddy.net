@@ -1,2 +1,4 @@
 new default incomes break after 10
 category names must not be unique
+
+money buddy theme needs to go back into account page

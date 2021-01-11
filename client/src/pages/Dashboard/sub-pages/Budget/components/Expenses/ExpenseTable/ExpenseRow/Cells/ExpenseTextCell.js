@@ -7,44 +7,40 @@ const ExpenseTextCell = (props) => {
     
     {/*  PROPS  */}
 
-    const { tick, updateBudget } = props.budgetTicker
+    const { 
+        newCategories,
+        setNewCategories, 
+        toggleChanges,
+        userMadeChanges,
+        updateBudget, 
+        tick
+    } = props.fromBudget
+
+    const { category } = props.fromExpenseAccordion
+
+    const { expenseIndex, } = props.fromExpenseTable
 
     const { 
         defaultValue, 
         categoryIndex, 
-        expenseIndex, 
-        category 
-    } = props
-
-    const { 
-        newCategories, 
-        setNewCategories, 
-        userMadeChanges, 
-        toggleChanges 
-    } = props.categoryHooks
+    } = props.fromExpenseRow
 
 
     {/*  STATE  */}
 
-    const [ newText, updateText ] = useState(defaultValue)
-
+    const [ newText, updateText ] = useState("")
+    const [ focused, setFocus ] = useState(false)
 
     {/* FUNCTIONS */}
 
     useEffect(() => {
-        updateText(props.defaultValue)
-    }, [props.defaultValue])
-
-    
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        return
-    }
+        updateText(defaultValue)
+    }, [defaultValue])
 
 
     const updateNewCategories = (value) => {
-        let categoriesArrayCopy = newCategories
-        let categoryCopy = category
+        let categoriesArrayCopy = [...newCategories]
+        let categoryCopy = {...category}
         categoryCopy["expenses"][expenseIndex]['expense'] = value
         categoriesArrayCopy[categoryIndex] = categoryCopy
         setNewCategories(categoriesArrayCopy)
@@ -55,22 +51,32 @@ const ExpenseTextCell = (props) => {
     const handleText = (e) => {
         const { value } = e.target
         updateText(value)
-        updateNewCategories(value)
+    }
+
+    const submit = (e) => {
+        e.preventDefault()
+        document.activeElement.blur()
+        updateNewCategories(newText)
         if (!userMadeChanges) {
             toggleChanges(true)
         }
+        updateBudget(tick + 1)
+        setFocus(false)
+        return false
     }
 
 
     return (
         <TableCell>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => submit(e)}>
                 <input 
                     name="text-input"
                     type="text" 
                     value={newText} 
                     className="editable-cell expense"
+                    onSelect={(e) => setFocus(true)}
                     onChange={(e) => handleText(e)}
+                    onBlur={(e) => submit(e)}
                 >
                 </input>
             </form>

@@ -7,12 +7,6 @@ const IncomeNumberCell = (props) => {
     {/*  PROPS  */}
 
     const { 
-        arrayIndex, 
-        isAnnual, 
-        defaultValue
-    } = props
-
-    const { 
         userMadeChanges, 
         toggleChanges, 
         newIncomes, 
@@ -20,6 +14,15 @@ const IncomeNumberCell = (props) => {
         updateBudget,
         tick
     } = props.fromBudget
+
+    const { 
+        arrayIndex, 
+    } = props.fromIncomeTable
+
+    const { 
+        isAnnual, 
+        defaultValue
+    } = props.fromIncomeRow
 
 
     {/*  STATE  */}
@@ -32,7 +35,7 @@ const IncomeNumberCell = (props) => {
     {/* useEffect */}
 
     useEffect(() => {
-        console.log("defauleValue: ", defaultValue)
+        // console.log("defauleValue: ", defaultValue)
         const currency = formatToCurrency(defaultValue)
         updateRawNumber(defaultValue)
         updateText(currency)
@@ -54,7 +57,7 @@ const IncomeNumberCell = (props) => {
 
 
     const submit = (e) => {
-        console.log(e.target)
+        // console.log(e.target)
         e.preventDefault()
         document.activeElement.blur()
         // setCellHistory([...cellHistory, rawNumber])

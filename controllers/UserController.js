@@ -1,7 +1,7 @@
 require('dotenv').config()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { User } = require('../models')
+const  { User }  = require("../models")
 const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.UserControllerLog 
 const errorLog = ControllerLoggers.UserControllerErrorLog
@@ -9,11 +9,10 @@ const saltRounds = parseInt(process.env.SALT_ROUNDS)
 
 // const { Op, literal, fn, col  } = require('sequelize')
 
-
+console.log(User)
 const CreateUser = async (req, res) => {
     log(CreateUser, req)
     try {
-        // check if an email already exists
         const userExists = await User.findOne({
             where: { email: req.body.email },
             raw: true
@@ -36,12 +35,15 @@ const CreateUser = async (req, res) => {
 const LogInUser = async (req, res) => {
     try {
         let { email } = req.body
+        console.log("email:", email)
         const user = await User.findOne({
             where: {
                 email: email
             }
         })
+
         if (user && await bcrypt.compare(req.body.password, user.password)) {
+            console.log("reached")
             const payload = {
                 _id: user._id,
                 email: user.email,
@@ -50,7 +52,7 @@ const LogInUser = async (req, res) => {
             let token = jwt.sign(payload, secretKey)
             return res.send({ user, token })
         }  
-        res.status(401).send({ msg: 'Unauthorized' })
+        res.status(401).send({status: 401})
     } catch (error) {
         errorLog(LogInUser, error)
     }
@@ -105,10 +107,12 @@ const UpdateEmail = async (req, res) => {
 }
 
 const DeleteUser = async (req, res) => {
+    console.log(req)
+
     log(DeleteUser, req)
+    console.log("req.data", req.data)
     try {
-        let userId = req.params.user_id
-        console.log(userId)
+        let userId = req.body.userId
         await User.destroy({
             where: {
                 id: userId

@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { UpdatePassword, UpdateEmail } from "../../../../Services/UserService"
-import { TextField, Typography } from '@material-ui/core/';
+import { TextField, Typography, MuiThemeProvider } from '@material-ui/core/';
 import DeletePopup from './components/DeletePopup';
 import useStyles from "./styles/useStyles"
 import "./styles/accountPage.css"
-import MoneyBuddyTheme from "./styles/MoneyBuddyTheme"
+import {theme} from "./styles/MoneyBuddyTheme"
 import { withSnackbar, useSnackbar  } from 'notistack'
 
 const AccountPage = (props) => {
@@ -96,7 +96,7 @@ const AccountPage = (props) => {
     
 
     return (
-        <MoneyBuddyTheme>
+        <MuiThemeProvider theme={theme}>
                 <div className="account-page" className={classes.paper}>
                     <Typography 
                         className={classes.header}
@@ -177,11 +177,13 @@ const AccountPage = (props) => {
                     </Typography>
                     {deleteTriggered && (
                         <DeletePopup 
+                            {...props}
+                            userId={user_id}
                             setDeleteTriggered={setDeleteTriggered} 
                         />
                     )}
                 </div>
-        </MoneyBuddyTheme>
+            </MuiThemeProvider>
     )
 }
 

@@ -58,10 +58,10 @@ const Form = (props) => {
                 setUserInfo, 
                 setAuth, 
                 email, 
-                password
+                password,
+                history: props.history
             }
             await signin(args)
-            props.history.push('/dashboard')
         }
     }
 
