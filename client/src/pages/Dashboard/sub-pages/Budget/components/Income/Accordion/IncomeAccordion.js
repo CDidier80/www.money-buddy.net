@@ -11,7 +11,6 @@ import {
     Accordion,
     AccordionDetails,
     AccordionSummary,
-    AccordionActions
 } from '@material-ui/core';
 
 
@@ -101,12 +100,13 @@ const IncomeAccordion = (props) => {
         toggleIncomeDeleteIcons
     }
 
+    const expandIconStyle = {color:"#22c1c3", paddingTop: "31px"}
     
     return (
         <Accordion className={classes.accordion}>
 
             <AccordionSummary
-                expandIcon={<ExpandMoreIcon />}
+                expandIcon={<ExpandMoreIcon style={expandIconStyle}/>}
                 aria-controls="panel1a-content"
                 id="panel1a-header"
             >
