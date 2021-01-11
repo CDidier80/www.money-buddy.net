@@ -17,6 +17,7 @@ export const LogInUser = async (body, params) =>  {
     try {
         log(LogInUser, body, params)
         const response = await ApiClient.post(`users/login`, body)
+        console.log("service response", response)
         localStorage.setItem('token', response.data.token)
         return response
     } catch (error) {
@@ -30,7 +31,7 @@ export const ReadUser = async (body,  params) =>  {
         const response = await ApiClient.get(`users/update${params}`, body)
         return response.data
     } catch (error) {
-        errorLog.log(ReadUser, error)
+        errorLog(ReadUser, error)
     }
 }
 
@@ -40,7 +41,7 @@ export const UpdatePassword= async (body, params) =>  {
         const response = await ApiClient.put(`users/password`, body)
         return response
     } catch (error) {
-        errorLog.log(UpdatePassword, error)
+        errorLog(UpdatePassword, error)
     }
 }
 
@@ -50,17 +51,19 @@ export const UpdateEmail = async (body, params) =>  {
         const response = await ApiClient.put(`users/email`, body)
         return response
     } catch (error) {
-        errorLog.log(UpdateEmail, error)
+        errorLog(UpdateEmail, error)
     }
 }
 
 export const DeleteUser = async (body, params) => {
     try {
+        console.log("body:", body)
         log(DeleteUser, body, params)
-        const response = await ApiClient.delete(`users/delete/${body}`)
-        return response.data
+        // axios delete requests must send the body as a value to a "data" key
+        const response = await ApiClient.delete("users/delete", {data:body})
+        return response
     } catch (error) {
-        errorLog.log(DeleteUser,error)
+        errorLog(DeleteUser,error)
     }
 }
 
@@ -70,16 +73,8 @@ export const CheckSessionService = async (body, params) => {
         const res = await ApiClient.get('users/session')
         return res.data
     } catch (error) {
-        errorLog.log(CheckSessionService, error)
+        errorLog(CheckSessionService, error)
     }
 }
 
-// module.exports = {
-//     LogInUser, 
-//     CreateUser, 
-//     ReadUser, 
-//     UpdateUser,
-//     DeleteUser, 
-//     CheckSessionService
-// }
 
