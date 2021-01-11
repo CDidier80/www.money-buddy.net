@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, memo } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { ReadEntireBudget, UpdateEntireBudget } from "../../Services/BudgetService"
@@ -6,14 +5,15 @@ import NavBar from "./components/NavBar/NavBar"
 import "./components/NavBar/styles/navbar.css"
 import SideBar from "./components/Sidebar/SideBar"
 import Budget from "./sub-pages/Budget/Budget"
-import CashFlow from "./sub-pages/CashFlow/CashFlow"
+import Cashflow from "./sub-pages/Cashflow/Cashflow"
 import AccountPage from "./sub-pages/AccountPage/AccountPage"
+import LoadingScreen from "./components/LoadingScreen/LoadingScreen"
 import "./styles/dashboard.css"
 
 
 
 const MemoizedBudgetRoute = memo((props) => {
-
+    
     return (
         <Route 
             component={ () => ( 
@@ -28,9 +28,22 @@ const MemoizedBudgetRoute = memo((props) => {
     return (prevProps.ticker !== nextProps.ticker)
 })
 
+const MemoizedCashflowRoute = memo((props) => {
+    
+    return (
+        <Route 
+            component={ () => ( 
+                <Cashflow {...props}/> 
+        )} 
+    />
+    )
+},(prevProps, nextProps) => {
+    return (prevProps.ticker !== nextProps.ticker)
+})
+
 
 const Dashboard = (props) => {
-
+    console.log(props)
     const {userInfo} = props
     const {id} = userInfo
     const [userId, setUserId] = useState(id)
@@ -66,7 +79,7 @@ const Dashboard = (props) => {
     useEffect(() => {
 
         if(budgetId) {
-            console.log("Dashboard.js useEffect 2 detected all state loaded")
+            // console.log("Dashboard.js useEffect 2 detected all state loaded")
             setLoaded(true)
         }
         // console.log("END OF DASHBOARD useEffect #2: budgetId, incomes, categories: ")
@@ -82,7 +95,6 @@ const Dashboard = (props) => {
         setCategories(c)
     }
 
-
     const budgetHooks = {
         incomes,
         setIncomes,
@@ -91,12 +103,16 @@ const Dashboard = (props) => {
         sendBudgetToDB,
         budgetId
     }
+
+    const cashflowProps = {
+        budgetHooks,
+        
+    }
     // console.log("Dashboard narrow: ", narrow)
 
 
-        return( !loaded ? <div></div> :
+        return( !loaded ? <LoadingScreen /> :
 
-    
             <div className="dashboard">
                 <NavBar 
                     {...props}
@@ -121,11 +137,9 @@ const Dashboard = (props) => {
                                 budgetHooks={budgetHooks}
                                 ticker={ticker}
                             />
-                            <Route 
+                            <MemoizedCashflowRoute 
                                 path="/dashboard/cashflow" 
-                                component={ (props) => ( 
-                                    <CashFlow {...props} /> 
-                                    )} 
+                                fromDashboard={{...cashflowProps}}
                             />
                             <Route 
                                 path="/dashboard/account" 
