@@ -23,21 +23,15 @@ const IncomeSourceCell = (props) => {
 
     {/*  STATE  */}
 
-    const [ newText, updateText ] = useState(defaultValue)
+    const [ newText, updateText ] = useState("")
+    const [ focused, setFocus ] = useState(false)
 
 
     {/* FUNCTIONS */}
 
     useEffect(() => {
         updateText(defaultValue)
-        // console.log("Source Cell detected change in useEffect")
     }, [defaultValue])
-
-
-    const handleSubmit = (e) => {
-        e.preventDefault()
-        return
-    }
 
 
     const updateNewIncomes = (value) => {
@@ -46,29 +40,37 @@ const IncomeSourceCell = (props) => {
         incomeObject.source = value
         replacementArray[arrayIndex] = incomeObject
         setNewIncomes(replacementArray)
-        updateBudget(tick + 1)
     }
 
 
     const handleText = (e) => {
         const { value } = e.target
         updateText(value)
-        updateNewIncomes(value)
+    }
+
+    const submit = (e) => {
+        e.preventDefault()
+        document.activeElement.blur()
+        updateNewIncomes(newText)
         if (!userMadeChanges) {
             toggleChanges(true)
         }
+        updateBudget(tick + 1)
+        setFocus(false)
+        return false
     }
-
 
     return (
         <TableCell>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <form onSubmit={(e) => submit(e)}>
                 <input 
                     name="text-input"
                     type="text" 
                     value={newText} 
-                    className="editable-cell income"
+                    className="editable-cell expense"
+                    onSelect={(e) => setFocus(true)}
                     onChange={(e) => handleText(e)}
+                    onBlur={(e) => submit(e)}
                 >
                 </input>
             </form>
