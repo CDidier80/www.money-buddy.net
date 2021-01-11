@@ -21,7 +21,6 @@ const CategoryAccordion = (props) => {
     const [showCategoryDeletePopup, toggleCategoryDeletePopup ]= useState(false)
     const [showExpenseDeleteIcons, toggleExpenseDeleteIcons] = useState(false)
 
-    console.log(showExpenseDeleteIcons)
     {/* FUNCTIONS */}
 
     useEffect(() => {
