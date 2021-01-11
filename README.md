@@ -4,9 +4,9 @@ Date: January 2, 2021
 
 By: Collin Didier
 
-Collin Didier
+
 [GitHub](https://github.com/CDidier80) |
-[LinkedIn](https://www.linkedin.com/in/collin-didier/) |
+[LinkedIn](https://www.linkedin.com/in/collin-didier/) 
 
 ![budget snapshot](https://i.ibb.co/XtSGZcr/08-E081-DB-05-CC-4327-95-CC-0-B7-B198-C3-AE6.jpg)
 
@@ -31,7 +31,7 @@ The site will integrate a set of micro tools and widgets designed to analyze and
 
 ## Implemented Widgets
 
-1. Budget w/ Income/Expense Tables
+1. Budget with Income/Expense Tables
 2. Budget Summary Chart
 3. Distribution of Spending Chart
 
