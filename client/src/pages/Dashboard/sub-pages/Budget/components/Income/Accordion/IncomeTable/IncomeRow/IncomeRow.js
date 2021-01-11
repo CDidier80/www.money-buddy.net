@@ -3,38 +3,13 @@ import IncomeNumberCell from "./Cells/IncomeNumberCell"
 import IncomeSourceCell from "./Cells/IncomeSourceCell"
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import UndoIcon from '@material-ui/icons/Undo';
+import { useStyles } from "./styles/useStyles"
 import { 
-    makeStyles, 
     IconButton,
     TableCell, 
     TableRow,
     Fade
-} from '@material-ui/core';
-
-
-const useStyles = makeStyles({
-    row: {
-        height: "38px",
-        maxHeight: "38px"
-    },
-    iconCell: {
-        maxWidth: "36px",
-        padding: "0px"
-    },
-    iconButton: {
-        marginRight: "11px",
-        "&:hover" : {
-            backgroundColor: "#ffcece65"
-        }
-    },
-    deleteIcon: {
-        color: "red",
-        fontSize: "13px"
-    },
-    undoIcon: {
-        color: "lightgray",
-    }
-})
+} from '@material-ui/core'
 
 
 const IncomeRow = (props) => {
@@ -78,14 +53,6 @@ const IncomeRow = (props) => {
     {/*  useEffect */}
 
     useEffect(() => {
-        // console.log("useEffect reached in income row")
-        // console.log('index:', arrayIndex)
-        // console.log("source:", source)
-        // console.log("incoming deletion", incomingDeletion)
-
-        // const deletion = (incomingDeletion >= 0)
-        // console.log(deletion)
-
         if(incomingDeletion){
             setCellAmountHistory([amount])
             if (arrayIndex === newIncomes.length-1){
@@ -94,8 +61,6 @@ const IncomeRow = (props) => {
             }
             return
         }
-
-
         const lengthOfStack = cellAmountHistory.length
         const lastHistoryIndex = lengthOfStack - 1
         const lastHistoryValue = lastHistoryIndex >= 0 ? cellAmountHistory[lastHistoryIndex] : null
@@ -129,9 +94,6 @@ const IncomeRow = (props) => {
         } else {
             setIconShouldShow(false)
         }
-        // console.log("showIncomeDeleteIcons", showIncomeDeleteIcons)
-        // console.log("showUndoIcon", showUndoIcon)
-        // console.log("iconShouldShow", iconShouldShow)
     }, [showIncomeDeleteIcons, showUndoIcon])
 
 
@@ -200,6 +162,7 @@ const IncomeRow = (props) => {
         updateBudget(tick + 1)
     }
 
+
     const propsForSource = {
         defaultValue: source
     }
@@ -219,47 +182,40 @@ const IncomeRow = (props) => {
         <TableRow
             className={classes.row}
         >
-            {/* {(!iconShouldShow && fourColumns) &&
-                <TableCell 
-                    size="small" 
-                    className={classes.iconCell}
-                >
-                </TableCell>
-            } */}
-                <TableCell 
-                    size="small" 
-                    className={classes.iconCell}
-                    style={{width: "30px"}}
-                >
-                    {iconShouldShow && (
-                        <Fade in={iconShouldShow}>
-                            {showIncomeDeleteIcons ? 
-                                <IconButton
-                                    className={classes.iconButton}
-                                    onClick={(e) => handleDeleteIncome(e)}
-                                    id={arrayIndex}
-                                >
-                                    <HighlightOffIcon 
-                                        className={classes.deleteIcon} 
-                                        fontSize="small"
-                                    />
-                                </IconButton>
+            <TableCell 
+                size="small" 
+                className={classes.iconCell}
+                style={{width: "30px"}}
+            >
+                {iconShouldShow && (
+                    <Fade in={iconShouldShow}>
+                        {showIncomeDeleteIcons ? 
+                            <IconButton
+                                className={classes.iconButton}
+                                onClick={(e) => handleDeleteIncome(e)}
+                                id={arrayIndex}
+                            >
+                                <HighlightOffIcon 
+                                    className={classes.deleteIcon} 
+                                    fontSize="small"
+                                />
+                            </IconButton>
 
-                                :
+                            :
 
-                                <IconButton
-                                    className={classes.iconButton}
-                                    onClick={(e) => restoreLastValue(e)}
-                                    id={arrayIndex}
-                                >
-                                    <UndoIcon 
-                                        className={classes.undoIcon} 
-                                        fontSize="small"
-                                    />
-                                </IconButton>
-                            }
-                        </Fade>
-                    )}
+                            <IconButton
+                                className={classes.iconButton}
+                                onClick={(e) => restoreLastValue(e)}
+                                id={arrayIndex}
+                            >
+                                <UndoIcon 
+                                    className={classes.undoIcon} 
+                                    fontSize="small"
+                                />
+                            </IconButton>
+                        }
+                    </Fade>
+                )}
             </TableCell>
 
             <IncomeSourceCell 
