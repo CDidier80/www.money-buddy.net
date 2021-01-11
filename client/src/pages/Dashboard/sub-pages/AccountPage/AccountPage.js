@@ -177,6 +177,8 @@ const AccountPage = (props) => {
                     </Typography>
                     {deleteTriggered && (
                         <DeletePopup 
+                            {...props}
+                            userId={user_id}
                             setDeleteTriggered={setDeleteTriggered} 
                         />
                     )}
