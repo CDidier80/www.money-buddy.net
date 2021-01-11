@@ -11,23 +11,9 @@ Collin Didier
 ![budget snapshot](https://i.ibb.co/XtSGZcr/08-E081-DB-05-CC-4327-95-CC-0-B7-B198-C3-AE6.jpg)
 
 ## Description
-A full stack web app designed to making financial planning easy, accessible, and comprehensive.
+A full stack web app designed to making financial planning easy, accessible, and comprehensive. 
 
 The site will integrate a set of micro tools and widgets designed to analyze and report on a various aspects of user's personal financial situation. The combined effect of the various tools will be to create an integrated, macro view of  personal finance that empowers the user to make informed decisions about their money.
-
-## Planned Widgets
-
-1. Budget
-2. Cash Flow Statement w/ pagination
-3. Budget Summary
-4. Cash Flow Summary
-5. Tax Estimator w/ budget integration
-6. Holiday/Gift sub-budget
-7. Investment Calculator - ability to save 
-8. Investments Timeline
-9. Net-worth timeline
-10. Investment calculator -- add selectable, common investment types
-11. Stock Market Tracker via 3rd-party API
 
 ## Technologies used
    <div width="39%" align="right">
@@ -42,12 +28,38 @@ The site will integrate a set of micro tools and widgets designed to analyze and
   </div>
 </div>
 
+
+## Implemented Widgets
+
+1. Budget w/ Income/Expense Tables
+2. Budget Summary Chart
+3. Distribution of Spending Chart
+
+
+## Planned Widgets
+
+1. Cash Flow Statement w/ pagination
+2. Cash Flow Summary
+3. Tax Estimator w/ budget integration
+4. Holiday/Gift sub-budget
+5. Investment Calculator - ability to save 
+6. Investments Timeline
+7. Net-worth timeline
+8. Investment calculator -- add selectable, common investment types
+9. Stock Market Tracker via 3rd-party API
+
+
+## Security
+
+User account details are protected by hashing. On-site navigation is secured by JSON web tokens.
+
+
 ## How to get started
-Visit "web address" and create an account/sign-in with your email and password.
-New users are directed to their dashboard
-The default dashboard page is the budget, auto-populated by common
-default expenses. 
-The user can make edits as needed to personalize their budget, cash flow, etc.
+
+Visit "web address" to create an account/sign-in with your email and password.
+New users are directed to their dashboard, where they can begin making changes to their
+default budget and cash flow statements. All changes can be saved for future use.
+
 
 ## User Stories
 1. Users can create, sign-in, sign-out, edit and delete their account.
