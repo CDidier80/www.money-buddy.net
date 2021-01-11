@@ -121,27 +121,21 @@ const Budget = (props) => {
         tick
     }
 
-    const categoryHooks = {
+
+    const expenseAccordionProps = {
         newCategories,
         setNewCategories, 
-    }
-
-
-    const budgetTicker = {
+        toggleChanges,
+        userMadeChanges,
         updateBudget, 
         tick
     }
 
+
     const userChanges = {
-        userMadeChanges, 
         toggleChanges,
-        trackUserChanges: () => {
-            if (!this.userMadeChanges) {
-            this.toggleChanges(true)
-        }},
+        userMadeChanges,
     }
-
-
 
 
     return ( !budgetLoaded ? <div></div> :
@@ -182,12 +176,8 @@ const Budget = (props) => {
                 fromBudget={incomeAccordionProps}
             />
             <ExpenseAccordion 
-                categoryHooks={categoryHooks}
-                budgetTicker={budgetTicker}
-                userChanges={userChanges}
+                fromBudget={{...expenseAccordionProps}}
             />
-            { userMadeChanges && <button onClick={(e) => saveBudget(e)}>Save Budget</button>}
-            <button onClick={(e) => handleRerender(e)}>RERENDER</button>
         </div>
     )
 }
