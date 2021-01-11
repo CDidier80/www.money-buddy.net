@@ -14,7 +14,7 @@ export const signup = async ({setUserInfo, setAuth, password, reenteredPassword,
         }
 
         const response = await initializeAccount(email, password)
-        console.log("response:", response)
+        // console.log("response:", response.status)
         const {data: user, status} = response
         if (status === 200) {
             setUserInfo(user)
@@ -27,18 +27,21 @@ export const signup = async ({setUserInfo, setAuth, password, reenteredPassword,
 }
 
 
-export const signin = async ({setUserInfo, setAuth, email, password}) => {
+export const signin = async ({setUserInfo, setAuth, email, password, history}) => {
     try {
         const response = await LogInUser({ email, password })
-        const {data, status} = response
-        if (status === 200) {
-            setUserInfo(data.user)
+        console.log(response.status)
+        if (response.status === 200) {
+            console.log("reached")
+            setUserInfo(response.data.user)
             setAuth(true)
+            history.push('/dashboard')
+        } else {
+            return
         }
-        // console.log("it worked")
-        // console.log(response)
     } catch (error) {
-        console.log(error)
+        // console.log(error)
+        return
     }
 }
 
