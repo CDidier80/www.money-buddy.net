@@ -1,10 +1,4 @@
-import { makeStyles } from '@material-ui/core'
-
-export const useStyles = makeStyles({
-    row: {
-        height: "38px",
-        maxHeight: "38px"
-    },
+export const unconditionalStyles = {
     iconCell: {
         maxWidth: "36px",
         padding: "0px"
@@ -22,4 +16,4 @@ export const useStyles = makeStyles({
     undoIcon: {
         color: "lightgray",
     }
-})
+}

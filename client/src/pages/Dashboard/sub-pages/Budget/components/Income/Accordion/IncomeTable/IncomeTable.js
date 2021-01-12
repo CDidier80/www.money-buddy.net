@@ -61,6 +61,7 @@ const IncomeTable = (props) => {
                         {newIncomes.map((income, index) => {
                             const { source, amount } = income
                             let arrayIndex = index
+                            const rowColor = (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
                             const monthly = Math.round(amount / 12)
                             const propsForRows = {
                                 source,
@@ -69,6 +70,7 @@ const IncomeTable = (props) => {
                                 arrayIndex,
                                 incomingDeletion, 
                                 setIncomingDeletion,
+                                rowColor
                             }
                             return (
                                 <IncomeRow 

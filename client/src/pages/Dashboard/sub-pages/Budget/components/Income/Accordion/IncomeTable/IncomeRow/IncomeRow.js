@@ -3,12 +3,13 @@ import IncomeNumberCell from "./Cells/IncomeNumberCell"
 import IncomeSourceCell from "./Cells/IncomeSourceCell"
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import UndoIcon from '@material-ui/icons/Undo';
-import { useStyles } from "./styles/useStyles"
+import { unconditionalStyles } from "./styles/useStyles"
 import { 
     IconButton,
     TableCell, 
     TableRow,
-    Fade
+    Fade,
+    makeStyles
 } from '@material-ui/core'
 
 
@@ -16,7 +17,6 @@ const IncomeRow = (props) => {
 
     {/*  PROPS */}
     
-
     const {
         showIncomeDeleteIcons, 
         setFourColumns,
@@ -37,6 +37,7 @@ const IncomeRow = (props) => {
         arrayIndex,
         incomingDeletion,
         setIncomingDeletion,
+        rowColor
     } = props.fromIncomeTable
 
 
@@ -100,6 +101,16 @@ const IncomeRow = (props) => {
 
     {/*  FUNCTIONS */}
 
+
+    const useStyles = makeStyles({
+        ...unconditionalStyles,
+        row : {
+            height: "38px",
+            maxHeight: "38px",
+            backgroundColor: rowColor
+        },
+    })
+    
     const classes = useStyles()
 
 
@@ -177,7 +188,7 @@ const IncomeRow = (props) => {
         isAnnual: true
     }
 
-
+    console.log(props)
     return (
         <TableRow
             className={classes.row}
