@@ -53,3 +53,13 @@ span.money {
 .sign-out-link:hover {
     color: #ffcc5d;
 }
+
+
+.account-icon {
+    
+}
+
+.account-icon:hover{
+    transition: color .2s ease-in-out;
+    color: #ffcc5d;
+}
