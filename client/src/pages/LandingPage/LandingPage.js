@@ -2,6 +2,9 @@ import React from "react";
 import LandingNavBar from "./components/LandingNavBar"
 import { CheckSessionService } from "../../Services/UserService";
 import "./styles/landingPage.css"
+import "./styles/hero.css"
+import "./styles/shapes.css"
+import "./styles/navbar.css"
 
 
 const LandingPage = (props) => {
@@ -47,7 +50,7 @@ const LandingPage = (props) => {
                     <div className="left-ring"></div>
                     <div className="right-ring"></div>
                     <div className="circle"></div>
-                    <div className="weirdThingy"></div> 
+                    <div className="top-blob"></div> 
                     <div className="giant-dollar-wrapper">
                         <h1 className="giant-dollar">$</h1>
                     </div>
@@ -63,12 +66,12 @@ const LandingPage = (props) => {
                     </div>
                     
                 </div>
-                <div className="heroWrapper">
+                <div className="hero-wrapper">
                     <div className="row">
                         <div className="column">
-                            <h1 className="a-new-way">
+                            <h1 className="title">
                                 Money Buddy
-                                <span className="span"> for personal finance </span>
+                                <span className="sub-title"> for personal finance </span>
                             </h1>
                             <p className="paragraph">
                                 A collection of powerful micro-tools that put you in command of your money.
