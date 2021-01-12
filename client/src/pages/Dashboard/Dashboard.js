@@ -126,12 +126,6 @@ const Dashboard = (props) => {
                     <SideBar {...props} narrow={narrow} /> 
                     <div className={ narrow ? "sub-page expanded" : "sub-page"}> 
                         <Switch> 
-                            {/* <Route 
-                                exact path="/dashboard/" 
-                                component={ () => ( 
-                                    <Budget budgetHooks={budgetHooks} /> 
-                                )} 
-                            /> */}
                             <MemoizedBudgetRoute 
                                 exact path="/dashboard/" 
                                 budgetHooks={budgetHooks}
@@ -157,6 +151,31 @@ const Dashboard = (props) => {
 }
 
 export default withRouter(Dashboard)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
