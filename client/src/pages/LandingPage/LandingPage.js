@@ -6,8 +6,36 @@ import "./styles/landingPage.css"
 
 const LandingPage = (props) => {
 
+    const floatyContainer = {
+        position: "absolute", 
+        width: "100vw",
+        height: "50vh",
+        bottom: "0", 
+        left: "0",
+        overflow: "hidden",
+        backgroundColor: "black"
+    }
 
-    console.log(props)
+    const floatyStyles={
+        fontSize: "25px", 
+        fontFamily: "sans-serif", 
+        fontWeight: "bold", 
+        animation: "move 30s infinite alternate ease-in-out",
+        textShadow:` 
+        0 1px 0 #cccccc, 
+        0 2px 0 #cccccc, 
+        0 3px 0 #cccccc;`
+    }
+
+    const possibleColors = [
+        "#22c1c3", 
+        "#fdbb2d", 
+        "#c746ce",
+        "#48ce46",
+        // "#428bff"
+    ]
+
+    const goFloats = [null, null, null, null]
 
     return (
         <div className="landingPage">
@@ -20,6 +48,20 @@ const LandingPage = (props) => {
                     <div className="right-ring"></div>
                     <div className="circle"></div>
                     <div className="weirdThingy"></div> 
+                    <div className="giant-dollar-wrapper">
+                        <h1 className="giant-dollar">$</h1>
+                    </div>
+                    <div styles={floatyContainer}>
+                        {/* {goFloats.map((elem, index, arr) => {
+                            const color = possibleColors[Math.floor(Math.random() * 4)]
+                            const styles={
+                                ...floatyStyles,
+                                color: color,
+                            }
+                            return <p key={3000 + index} style={styles}>$</p>
+                        })} */}
+                    </div>
+                    
                 </div>
                 <div className="heroWrapper">
                     <div className="row">
@@ -29,7 +71,7 @@ const LandingPage = (props) => {
                                 <span className="span"> for personal finance </span>
                             </h1>
                             <p className="paragraph">
-                                A collection of powerful micro-tools that put you in command of your money like never before.
+                                A collection of powerful micro-tools that put you in command of your money.
                             </p>
                         </div>
                     </div>
