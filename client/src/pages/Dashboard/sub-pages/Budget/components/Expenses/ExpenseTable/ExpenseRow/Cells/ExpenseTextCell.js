@@ -18,7 +18,7 @@ const ExpenseTextCell = (props) => {
 
     const { category } = props.fromExpenseAccordion
 
-    const { expenseIndex, } = props.fromExpenseTable
+    const { expenseIndex, rowColor} = props.fromExpenseTable
 
     const { 
         defaultValue, 
@@ -65,11 +65,15 @@ const ExpenseTextCell = (props) => {
         return false
     }
 
+    const backgroundColor = {backgroundColor:rowColor}
+
 
     return (
         <TableCell>
-            <form onSubmit={(e) => submit(e)}>
+            <form onSubmit={(e) => submit(e)}
+            style={backgroundColor}>
                 <input 
+                style={backgroundColor}
                     name="text-input"
                     type="text" 
                     value={newText} 

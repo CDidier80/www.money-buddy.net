@@ -26,13 +26,8 @@ const ExpenseNumberCell = (props) => {
     } = props.fromExpenseAccordion
 
     const {
-        expense,
-        amount, 
-        monthly,
         expenseIndex,
-        incomingDeletion, 
-        setIncomingDeletion,
-        handleDeleteExpense
+        rowColor
     } = props.fromExpenseTable
 
 
@@ -79,11 +74,15 @@ const ExpenseNumberCell = (props) => {
         return false
     }
 
+    const backgroundColor = {backgroundColor:rowColor}
 
     return (
         <TableCell>
-            <form onSubmit={(e) => submit(e)}>
+            <form onSubmit={(e) => submit(e)}
+            style={backgroundColor}
+            >
                 <input 
+                    style={backgroundColor}
                     name="text-input"
                     type="text" 
                     value={focused ? rawNumber : newText } 
