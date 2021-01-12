@@ -1,6 +1,3 @@
-
-
-
 const initNamesTotals = (cats) => {
     // console.log("CATEGORIES RECEIVED FROM PROPS (initNameTotals()):", cats)
     let categoryNames = []
@@ -26,8 +23,6 @@ const initNamesTotals = (cats) => {
     ]
     return states
 }
-
-
 
 
 const initIncomeTotals = (incomes) => {
