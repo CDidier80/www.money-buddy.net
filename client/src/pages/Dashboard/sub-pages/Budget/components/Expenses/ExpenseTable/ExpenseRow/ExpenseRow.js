@@ -3,7 +3,6 @@ import ExpenseNumberCell from "./Cells/ExpenseNumberCell"
 import ExpenseTextCell  from "./Cells/ExpenseTextCell"
 import DeleteExpenseIcon from './components/DeleteExpenseIcon'
 import UndoIcon from "./components/UndoIcon"
-import { useStyles } from "./styles/useStyles"
 import { 
     makeStyles, 
     IconButton,
@@ -35,6 +34,7 @@ const ExpenseRow = (props) => {
         monthly,
         incomingDeletion, 
         setIncomingDeletion,
+        rowColor
     } = props.fromExpenseTable
 
 
@@ -98,6 +98,32 @@ const ExpenseRow = (props) => {
 
 
     {/*  FUNCTIONS */}
+
+    const useStyles = makeStyles({
+        row: {
+            height: "38px",
+            maxHeight: "38px",
+            backgroundColor: rowColor
+            
+        },
+        iconCell: {
+            maxWidth: "36px",
+            padding: "0px"
+        },
+        iconButton: {
+            marginRight: "11px",
+            "&:hover" : {
+                backgroundColor: "#ffcece65"
+            }
+        },
+        deleteIcon: {
+            color: "red",
+            fontSize: "13px"
+        },
+        undoIcon: {
+            color: "lightgray",
+        }
+    })
 
     const classes = useStyles()
 
