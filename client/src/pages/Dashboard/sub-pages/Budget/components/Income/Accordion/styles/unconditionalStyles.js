@@ -2,7 +2,8 @@ const unconditionalStyles = {
     accordion: {
         marginBottom: "20px",
         borderRadius: "3px",
-        minHeight: "15vh"
+        minHeight: "15vh",
+        // backgroundColor: "rgb(245, 255, 255)"
     },
     heading: {
         fontWeight: "700",
@@ -11,8 +12,6 @@ const unconditionalStyles = {
         fontSize: "30px",
         fontFamily: "Lato, sans-serif",
         color: "#22c1c3",
-
-
     },
     button: {
         fontSize: "9px",
