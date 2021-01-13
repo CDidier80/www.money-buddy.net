@@ -33,7 +33,6 @@ const IncomeAccordion = (props) => {
     
     const [showIncomeDeleteIcons, toggleIncomeDeleteIcons] = useState(false)
     const [lengthOfIncomes, setLengthOfIncomes] = useState(newIncomes.length)
-    const [fourColumns, setFourColumns] = useState(false)
 
 
     {/* FUNCTIONS */}
@@ -89,13 +88,10 @@ const IncomeAccordion = (props) => {
     const handleDeleteIncomeIcons = (e) => {
         e.preventDefault()
         toggleIncomeDeleteIcons(!showIncomeDeleteIcons)
-        setFourColumns(!fourColumns)
     }
     
 
     const incomeTableProps = {
-        fourColumns,
-        setFourColumns,
         showIncomeDeleteIcons,
         toggleIncomeDeleteIcons
     }
