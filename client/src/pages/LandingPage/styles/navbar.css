@@ -15,6 +15,20 @@
     box-sizing: border-box;
 }
 
+.mobile-navbar {
+    display: flex;
+    max-height: 45px;
+    -webkit-transition: all .3s ease 0s;
+    transition: all .3s ease 0s;
+    padding: 0;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+    z-index: 1030;
+    align-items: center;
+    box-sizing: border-box;
+    margin-top: 15vh;
+}
+
 .container {
     box-sizing: border-box;
     width: 100%;
@@ -28,6 +42,13 @@
     align-items: center;
     justify-content: flex-end;
 }
+
+.container.mobile {
+    max-height: 45px;
+    margin: 0 auto;
+}
+
+
 
 .linkbar {
     right: 0;
@@ -46,6 +67,10 @@
     box-sizing: border-box;
 }
 
+/* .linkbar.mobile {
+    display: inline-block;
+} */
+
 .unordered-links {
     display: flex;
     flex-wrap: wrap;
@@ -62,8 +87,22 @@
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     padding-inline-start: 40px;
-    -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 500ms both;
+    -webkit-animation: 
+        fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 500ms both,
+        slide .2s 
+                        
+    ;
     animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 500ms both;
+}
+
+
+.unordered-links.mobile {
+    margin: auto;
+    padding: 0;
+    -webkit-animation: 
+    fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 500ms both,
+    slide .2s ;
+    animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 200ms both;
 }
 
 .navlink {
@@ -74,14 +113,14 @@
     color: #ffeae5;
     padding-left: 1.25rem!important;
     padding-right: 1.25rem!important;
-    transition: color .3s ease-in-out,background-color .3s ease-in-out,opacity .3s ease-in-out;
+    transition: color .3s ease-in-out,background-color .3s ease-in-out,opacity .3s ease-in-out, ;
     text-decoration: none;
     letter-spacing: 1px;
     padding: 1rem;
     font-family: Lato,sans-serif;
     font-weight: 700;
     text-shadow: 
-    0 1px 1px #265455;
+        0 1px 1px #265455;
     transition: font-size .2s ease;
     font-size: 1.4rem;
 }
@@ -95,4 +134,76 @@
 
 
 
+@media (max-width: 770px) {
+    .navbar {
+        display: none;
+    }
+    .mobile-navbar {
+        display: flex;
+    }
+
+    .navlink.mobile {
+        color: #ffd61e;
+    }
+
+    .navlink.mobile:hover {
+        color: #03eba5;
+    }
+
+}
+
+@media (min-width: 770px) {
+
+    .mobile-navbar {
+        display: none;
+    }
+}
+
+
+@media (max-width: 465px) {
+
+    .navlink {
+        font-size: 21px;
+    }
+}
+
+@media (max-width: 320px) {
+
+    .navlink {
+        font-size: 18px;
+        /* padding: 0; */
+        padding-right: 0;
+    }
+}
+
+
+
+
+
+@media (max-width: 600px) and (max-height: 765px) {
+
+    .mobile-navbar {
+        position: absolute;
+        margin: auto;
+        left: 0; right: 0;
+        bottom: 15vh;
+}
+
+}
+
+
+
+
+
+
+
+
+@keyframes slide {
+    0% {
+        offset-distance: 0%;
+    }
+    100% {
+        offset-distance: 100%;
+    }
+}
 
