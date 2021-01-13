@@ -1,23 +1,17 @@
-import { makeStyles } from '@material-ui/core/'
+// import { makeStyles } from '@material-ui/core/'
+// import useMediaQuery from '@material-ui/core/useMediaQuery';
+import theme from "./theme"
 
 
-const formFont = {
+
+export const formFont = {
     fontFamily: "Lato,sans-serif",
     textRendering: "optimizeLegibility!important",
     WebkitFontSmoothing: "antialiased!important"
 }
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        height: '70%',
-        maxHeight: "830px",
-        width: '50%',
-        minWidth: "300px",
-        maxWidth: "410px",
-        margin: "0 auto",
-        paddingTop: "10vh",
-        ...formFont,
-    },
+export const staticStyles = {
+
     header: {
         color: "black",
         ...formFont
@@ -57,6 +51,5 @@ const useStyles = makeStyles((theme) => ({
         cursor: "Pointer",
         ...formFont
     }
-}))
+}
 
-export default useStyles
