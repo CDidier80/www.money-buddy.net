@@ -2,7 +2,8 @@ import React from 'react'
 import { TextField } from '@material-ui/core/'
 
 
-const TextFieldForm = ({role}) => {
+const TextFieldForm = (props) => {
+    const {role} = props
     return (
         <TextField 
             fullWidth 
@@ -11,6 +12,7 @@ const TextFieldForm = ({role}) => {
             name={role}
             type={role}
             id={role}
+            onChange={props.onChange}
         />
     )
 }
