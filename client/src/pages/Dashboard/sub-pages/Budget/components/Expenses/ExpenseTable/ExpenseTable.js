@@ -51,6 +51,7 @@ const ExpenseTable = (props) => {
                         {expenses.map((expenseObj, index) => {
                             const { expense, amount } = expenseObj
                             const monthly = Math.round(amount/12)
+                            const rowColor = (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
                             const propsForRows = {
                                 expense,
                                 amount, 
@@ -58,6 +59,7 @@ const ExpenseTable = (props) => {
                                 expenseIndex: index,
                                 incomingDeletion, 
                                 setIncomingDeletion,
+                                rowColor
                             }
                             return (
                                 <ExpenseRow 

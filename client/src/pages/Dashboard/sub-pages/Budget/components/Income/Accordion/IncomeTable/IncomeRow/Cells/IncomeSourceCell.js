@@ -1,7 +1,9 @@
 import { TableCell } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
+import { makeStyles } from '@material-ui/core'
 
 const IncomeSourceCell = (props) => {
+    console.log("alfjkldajklf", props)
 
     {/*  PROPS  */}
 
@@ -11,13 +13,13 @@ const IncomeSourceCell = (props) => {
         toggleChanges, 
         userMadeChanges,
         tick,
-        updateBudget
+        updateBudget,
     } = props.fromBudget
 
-    const { arrayIndex } = props.fromIncomeTable
+    const { arrayIndex, rowColor } = props.fromIncomeTable
 
     const {
-        defaultValue
+        defaultValue,
     } = props.fromIncomeRow
 
 
@@ -33,6 +35,15 @@ const IncomeSourceCell = (props) => {
         updateText(defaultValue)
     }, [defaultValue])
 
+
+    const useStyles = makeStyles({
+        cell: {
+            backgroundColor: rowColor
+        }
+    })
+
+    const classes = useStyles()
+    
 
     const updateNewIncomes = (value) => {
         let replacementArray = [...newIncomes]
@@ -60,10 +71,16 @@ const IncomeSourceCell = (props) => {
         return false
     }
 
+    const backgroundColor = {backgroundColor:rowColor}
+
     return (
-        <TableCell>
-            <form onSubmit={(e) => submit(e)}>
+        <TableCell className={classes.cell}>
+            <form 
+                onSubmit={(e) => submit(e)}
+                style={backgroundColor}
+            >
                 <input 
+                    style={backgroundColor}
                     name="text-input"
                     type="text" 
                     value={newText} 

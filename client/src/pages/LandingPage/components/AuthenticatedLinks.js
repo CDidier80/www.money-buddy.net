@@ -13,13 +13,13 @@ const AuthenticatedLinks = ({setAuth, setUserInfo}) => {
         <>
             <NavLink 
                 to={"/dashboard/"}  
-                className="navlink" 
+                className="mobile navlink" 
             > 
                 Dashboard 
             </NavLink> 
             <Link 
                 to={"#"}
-                className="navlink" 
+                className="mobile navlink" 
                 onClick={()=>logOut()}
             >
                 Sign Out

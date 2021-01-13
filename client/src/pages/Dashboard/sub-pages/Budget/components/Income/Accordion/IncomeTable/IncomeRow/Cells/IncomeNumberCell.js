@@ -1,6 +1,8 @@
 import { TableCell } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import { filterNumbers, formatToCurrency } from "./modules/cellFunctions"
+import { makeStyles } from '@material-ui/core'
+
 
 const IncomeNumberCell = (props) => {
 
@@ -17,6 +19,7 @@ const IncomeNumberCell = (props) => {
 
     const { 
         arrayIndex, 
+        rowColor
     } = props.fromIncomeTable
 
     const { 
@@ -45,6 +48,16 @@ const IncomeNumberCell = (props) => {
     
     {/* FUNCTIONS */}
 
+
+    const useStyles = makeStyles({
+        cell: {
+            backgroundColor: rowColor
+        }
+    })
+
+    const classes = useStyles()
+
+
     const updateIncomes = (value) => {
         let numValue = parseInt(value)
         numValue = isAnnual ? numValue : Math.round(numValue * 12)
@@ -71,11 +84,16 @@ const IncomeNumberCell = (props) => {
         return false
     }
 
+    const backgroundColor = {backgroundColor:rowColor}
 
     return (
-        <TableCell>
-            <form onSubmit={(e) => submit(e)}>
+        <TableCell className={classes.cell}>
+            <form 
+                onSubmit={(e) => submit(e)} 
+                style={backgroundColor}
+            >
                 <input 
+                    style={backgroundColor}
                     name="text-input"
                     type="text" 
                     value={focused ? rawNumber : newText}  

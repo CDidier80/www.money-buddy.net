@@ -1,34 +1,34 @@
 import React, { useState, useEffect } from 'react';
 import IncomeNumberCell from "./Cells/IncomeNumberCell"
 import IncomeSourceCell from "./Cells/IncomeSourceCell"
-import HighlightOffIcon from '@material-ui/icons/HighlightOff'
-import UndoIcon from '@material-ui/icons/Undo';
-import { useStyles } from "./styles/useStyles"
+// import HighlightOffIcon from '@material-ui/icons/HighlightOff'
+// import UndoIcon from '@material-ui/icons/Undo';
+import UndoIconButton from "./components/UndoIconButton"
+import { unconditionalStyles } from "./styles/useStyles"
+import DeleteIncomeIcon from "./components/DeleteIncomeIcon"
 import { 
     IconButton,
     TableCell, 
     TableRow,
-    Fade
+    Fade,
+    makeStyles
 } from '@material-ui/core'
+import Undo from '@material-ui/icons/Undo';
 
 
 const IncomeRow = (props) => {
 
     {/*  PROPS */}
     
-
-    const {
-        showIncomeDeleteIcons, 
-        setFourColumns,
-    } = props.fromIncomeAccordion
+    const { showIncomeDeleteIcons, } = props.fromIncomeAccordion
     
     const { 
         newIncomes,
-        setNewIncomes,
-        toggleChanges,
-        userMadeChanges,
-        updateBudget,
-        tick
+        // setNewIncomes,
+        // toggleChanges,
+        // userMadeChanges,
+        // updateBudget,
+        // tick
     } = props.fromBudget
 
     const {
@@ -37,6 +37,7 @@ const IncomeRow = (props) => {
         arrayIndex,
         incomingDeletion,
         setIncomingDeletion,
+        rowColor
     } = props.fromIncomeTable
 
 
@@ -100,66 +101,33 @@ const IncomeRow = (props) => {
 
     {/*  FUNCTIONS */}
 
+
+    const useStyles = makeStyles({
+        ...unconditionalStyles,
+        row : {
+            height: "38px",
+            maxHeight: "38px",
+            backgroundColor: rowColor
+        },
+    })
+    
     const classes = useStyles()
 
-
-    const handleDeleteIncome = (e) => {
-        e.preventDefault()
-        try {
-            // console.log("newIncomes:", newIncomes)
-            const incomeIndex = e.currentTarget.id
-            let newIncomesCopy = [...newIncomes]
-            newIncomesCopy.splice(incomeIndex, 1)
-            // console.log('newIncomesCopy after splice: ', newIncomesCopy)
-            setNewIncomes(newIncomesCopy)
-            // this may not work for index 0
-            setIncomingDeletion(true)
-            // let ArrayOfHistoriesCopy = [...arrayOfHistories]
-            // ArrayOfHistoriesCopy.pop()
-            // updateArrayOfHistories(ArrayOfHistoriesCopy)
-            if (!userMadeChanges) {
-                toggleChanges(true)
-            }
-            updateBudget(tick + 1)
-        } catch (error) {
-            console.log(error)
-        }
-    }
 
 
     const renderUndoIcon = (newLength) => {
         if (newLength >= 2) {
             setShowUndoIcon(true)
-            setFourColumns(true)
         } else {
             setShowUndoIcon(false)
-            setFourColumns(false)
         }
     }
 
-    const restoreLastValue = (e) => {
-        e.preventDefault()
-        let newIncomesCopy = newIncomes
-        let historyCopy = cellAmountHistory
 
-        // console.log("history copy:",  historyCopy)
-
-        const currentAmount = historyCopy.pop()
-        const previousAmount = historyCopy[historyCopy.length - 1]
-
-        // console.log("currentAmount:",  currentAmount)
-        // console.log("history after pop:",  historyCopy)
-
-        const previousRow = {
-            source: source, 
-            amount: previousAmount
-        }
-
-        newIncomesCopy[arrayIndex] = previousRow
-        setCellAmountHistory(historyCopy)
-
-        setNewIncomes(newIncomesCopy)
-        updateBudget(tick + 1)
+    const propsForUndoIcon = {
+        cellAmountHistory, 
+        setCellAmountHistory,
+        iconShouldShow
     }
 
 
@@ -177,7 +145,7 @@ const IncomeRow = (props) => {
         isAnnual: true
     }
 
-
+    
     return (
         <TableRow
             className={classes.row}
@@ -187,34 +155,14 @@ const IncomeRow = (props) => {
                 className={classes.iconCell}
                 style={{width: "30px"}}
             >
-                {iconShouldShow && (
-                    <Fade in={iconShouldShow}>
-                        {showIncomeDeleteIcons ? 
-                            <IconButton
-                                className={classes.iconButton}
-                                onClick={(e) => handleDeleteIncome(e)}
-                                id={arrayIndex}
-                            >
-                                <HighlightOffIcon 
-                                    className={classes.deleteIcon} 
-                                    fontSize="small"
-                                />
-                            </IconButton>
+                {iconShouldShow && ( showIncomeDeleteIcons ? 
 
-                            :
-
-                            <IconButton
-                                className={classes.iconButton}
-                                onClick={(e) => restoreLastValue(e)}
-                                id={arrayIndex}
-                            >
-                                <UndoIcon 
-                                    className={classes.undoIcon} 
-                                    fontSize="small"
-                                />
-                            </IconButton>
-                        }
-                    </Fade>
+                    <DeleteIncomeIcon {...props} />
+                    :
+                    <UndoIconButton 
+                        {...props} 
+                        fromIncomeRow={{...propsForUndoIcon}}
+                    />
                 )}
             </TableCell>
 
