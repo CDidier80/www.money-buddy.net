@@ -1,6 +1,7 @@
-import React, { useState }from 'react';
+import React, { useState, useEffect }from 'react';
 import { Copyright } from "../Copyright/Copyright"
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import TextFieldForm from "./components/TextfieldForm"
 import useStyles from "./styles/useStyles"
 import theme from "./styles/theme"
 import {
@@ -16,17 +17,28 @@ import {
 } from '@material-ui/core/'
 const {signup, signin} = require("./modules/formFunctions") 
 
+
 const Form = (props) => {
 
     const { setUserInfo, setAuth } = props
 
     const promptOne = "Already have an account?  Sign in"
     const promptTwo = "Don't have an account?  Sign up" 
-    const [ isSigningUp, toggleSigningUp ] = useState(props.location.state.isSigningUp ? true : false)
+    const [ isSigningUp, toggleSigningUp ] = useState(true)
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [reenteredPassword, setReenterPassword] = useState("")
 
+
+
+    useEffect(() => {
+        if (typeof props.location.state == "undefined") {
+            return
+        } else {
+            const { signingUp } = props.location.state
+            toggleSigningUp(signingUp ? true : false)
+        }
+    }, [])
 
     const classes = useStyles()
 
@@ -91,40 +103,25 @@ const Form = (props) => {
                             { isSigningUp ? "Sign Up": "Sign In" }
                         </Typography>
                         <form className={classes.form} noValidate>
-                            <TextField 
+                            <TextFieldForm
                                 autoFocus
                                 required 
-                                fullWidth 
-                                variant="outlined" 
-                                margin="normal" 
                                 label="Email Address" 
-                                name="email" 
-                                type="email" 
-                                id="email" 
+                                role="email"
                                 autoComplete="email"  
                                 onChange={(e)=>updateField(e, setEmail)}
                             />
-                            <TextField 
-                                required 
-                                fullWidth 
-                                variant="outlined"
-                                margin="normal" 
+                            <TextFieldForm 
+                                required                                 
                                 label={isSigningUp ? "Choose Password" : "Password"}
-                                name="password" 
-                                type="password" 
-                                id="password"  
+                                role="password"
                                 autoComplete={ isSigningUp? "off" : "current-password"}
                                 onChange={(e)=>updateField(e, setPassword)} 
                             />
                             { isSigningUp && 
-                                <TextField 
-                                    fullWidth
-                                    variant="outlined" 
-                                    margin="normal"  
+                                <TextFieldForm 
                                     label="Reenter Password" 
-                                    name="password" 
-                                    type="password"
-                                    id="password" 
+                                    role="password"
                                     onChange={(e)=>updateField(e, setReenterPassword)} 
                                 />
                             }
