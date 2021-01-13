@@ -5,14 +5,14 @@ const UnauthenticatedLinks = () => {
     return (
         <>
             <NavLink 
-                to={{ pathname: "/login", state: { isSigningUp: true  } }}  
-                className="navlink" 
+                to={{ pathname: "/login", state: { signingUp: true  } }}  
+                className="navlink mobile" 
             > 
                 Sign Up 
             </NavLink> 
             <NavLink 
-                to={{ pathname: "/login", state: { isSigningUp: false } }}  
-                className="navlink" 
+                to={{ pathname: "/login", state: { signingUp: false } }}  
+                className="navlink mobile" 
             > 
                 Sign In 
             </NavLink>
