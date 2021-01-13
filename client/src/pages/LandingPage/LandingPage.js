@@ -1,5 +1,6 @@
 import React from "react";
 import LandingNavBar from "./components/LandingNavBar"
+import MobileNavBar from "./components/MobileNavBar"
 import { CheckSessionService } from "../../Services/UserService";
 import "./styles/landingPage.css"
 import "./styles/hero.css"
@@ -67,8 +68,8 @@ const LandingPage = (props) => {
                     
                 </div>
                 <div className="hero-wrapper">
-                    <div className="row">
-                        <div className="column">
+                    {/* <div className="row"> */}
+                        <div className="text-container">
                             <h1 className="title">
                                 Money Buddy
                                 <span className="sub-title"> for personal finance </span>
@@ -77,8 +78,11 @@ const LandingPage = (props) => {
                                 A collection of powerful micro-tools that put you in command of your money.
                             </p>
                         </div>
-                    </div>
+                    {/* </div> */}
                 </div>
+                <MobileNavBar 
+                    {...props}
+                />
             </main>
         </div>
     )
