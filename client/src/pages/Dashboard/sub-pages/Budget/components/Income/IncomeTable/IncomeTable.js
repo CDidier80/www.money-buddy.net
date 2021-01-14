@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import IncomeRow from "./IncomeRow/IncomeRow"
+import IncomeRow from "../IncomeRow/IncomeRow"
 import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
+import { offRowColor } from "../../../../universal-functions/styleFunctions"
 import { 
     makeStyles, 
     Paper, 
@@ -60,14 +61,13 @@ const IncomeTable = (props) => {
                         />
                         {newIncomes.map((income, index) => {
                             const { source, amount } = income
-                            let arrayIndex = index
-                            const rowColor = (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
+                            const rowColor = offRowColor(index)
                             const monthly = Math.round(amount / 12)
                             const propsForRows = {
                                 source,
                                 amount, 
                                 monthly,
-                                arrayIndex,
+                                arrayIndex: index,
                                 incomingDeletion, 
                                 setIncomingDeletion,
                                 rowColor
