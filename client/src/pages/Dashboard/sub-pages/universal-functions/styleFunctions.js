@@ -1,0 +1,1 @@
+export const offRowColor = (index) => (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
