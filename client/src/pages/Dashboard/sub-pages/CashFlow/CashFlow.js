@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "./styles/CashFlow.css"
 import { useSnackbar, withSnackbar } from 'notistack';
-
+import MonthContainer from "./components/"
 
 const Cashflow = (props) => {
 
@@ -13,12 +13,12 @@ const Cashflow = (props) => {
     const [cashflowLoaded, setCashflowLoaded] = useState(false)
     const [tick, updateCashflow] = useState(0)
     const [userMadeChanges, toggleChanges] = useState(false)
-    // const [newIncomes, setNewIncomes] = useState([])
-    // const [newCategories, setNewCategories] = useState([])
-    // const [categoryNames, setCategoryNames] = useState([])
+    const [newInflows, setNewInflows] = useState([])
+    const [newCategories, setNewCategories] = useState([])
+    const [categoryNames, setCategoryNames] = useState([])
     // const [categoryTotals, setCategoryTotals] = useState([])
-    // const [totalExpenses, setTotalExpenses] = useState([])
-    // const [totalIncome, setTotalIncome] = useState([])
+    const [totalExpenses, setTotalExpenses] = useState([])
+    const [totalInflows, setTotalInflow] = useState([])
 
 
     {/*  useEffects  */}
@@ -28,13 +28,12 @@ const Cashflow = (props) => {
         // console.log("Initial-load Budget useEffect --> categories, incomes")
         // console.log(categories, incomes)
         // const catState =  initNamesTotals(categories)
-        // const incomeState =  initIncomeTotals(incomes)
-
+        // const inflowsState =  initInflowsTotals(incomes)
         // setCategoryNames(catState[0])
         // setCategoryTotals(catState[1])
         // setTotalExpenses(catState[2])
-        // setTotalIncome(incomeState)
-        // setNewIncomes(incomes)
+        // setTotalInflows(inflowsState)
+        // setNewInflows(incomes)
         // setNewCategories(categories)
         setCashflowLoaded(true)
     }, [])
@@ -45,11 +44,11 @@ const Cashflow = (props) => {
     //     if(budgetLoaded) {
     //         // console.log("Budget.js useEffect reload triggered")
     //         const catState =  initNamesTotals(newCategories)
-    //         const incomeState =  initIncomeTotals(newIncomes)
+    //         const inflowsState =  initInflowsTotals(newIncomes)
     //         setCategoryNames(catState[0])
     //         setCategoryTotals(catState[1])
     //         setTotalExpenses(catState[2])
-    //         setTotalIncome(incomeState)
+    //         setTotalInflows(inflowsState)
     //     }
     // }, [
     //     tick,
@@ -61,14 +60,14 @@ const Cashflow = (props) => {
 
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
-    const budgetSavedSnackbar = () => {
+    const cashflowSavedSnackbar = () => {
         enqueueSnackbar(`Budget Saved`, {
             variant: 'Success', 
             iconVariant: "Success"
         })
     }
     
-    const failedBudgetSaveSnackbar = () => {
+    const failCashflowSaveSnackbar = () => {
         enqueueSnackbar(`Failed to Save Changes`, {variant: 'Error'})
     }
 
@@ -76,7 +75,14 @@ const Cashflow = (props) => {
 
     {/*  PROPS OBJECTS  */}
 
-
+    const propsForMonthContainer = { 
+        newInflows,
+        setNewInflows,
+        toggleChanges,
+        userMadeChanges,
+        updateCashflow,
+        tick
+    } 
 
 
     return ( !updateCashflow ? <div></div> :
@@ -95,14 +101,9 @@ const Cashflow = (props) => {
                     </button>
                 }
             </div>
-            <div className="top-flex">
-                <div className="budget-top-widgets left">
+            {/* <Graph /> */}
 
-                </div>
-                <div className="budget-top-widgets right">
-                    <h3 className="widget-header distribution-header"></h3>
-                </div>
-            </div>
+
         </div>
     )
 }
