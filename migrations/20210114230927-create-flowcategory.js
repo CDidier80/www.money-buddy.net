@@ -15,7 +15,7 @@ module.exports = {
         onDelete: 'cascade',
         // constraints: true,
         references: {
-          model: 'budgets',
+          model: 'months',
           key: 'id'
         }
       },
