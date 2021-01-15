@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ExpenseHeaders from "./ExpenseHeaders/ExpenseHeaders"
-import ExpenseRow from "./ExpenseRow/ExpenseRow"
+import ExpenseHeaders from "./components/ExpenseHeaders"
+import ExpenseRow from "../ExpenseRow/ExpenseRow"
 import { useStyles } from "./styles/useStyles"
 import { 
     Paper, 
