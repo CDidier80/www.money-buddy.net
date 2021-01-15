@@ -41,7 +41,7 @@ const DeleteExpenseIcon = (props) => {
         e.preventDefault()
         try {
             const expenseIndex = e.currentTarget.id
-            let categoriesArrayCopy = newCategories
+            let categoriesArrayCopy = [...newCategories]
             let expenseItem = categoriesArrayCopy[categoryIndex]['expenses'][expenseIndex]['amount']
             categoriesArrayCopy[categoryIndex]['expenses'].splice(expenseIndex, 1)
             setNewCategories(categoriesArrayCopy)
