@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/summary.css"
 import useStyles from "../../../styles/useStyles"
 import { 
     AccordionDetails,
@@ -9,73 +8,53 @@ import {
     TableCell, 
     TableContainer, 
     TableRow,
-    AccordionDetails
 } from '@material-ui/core';
 
 
 
 const SummaryTable = (props) => {
     
-    {/*  PROPS */}
+    {/* ---------------- PROPS ---------------- */}
     
-    const { totalExpenses, totalIncome } = props
+    const { 
+        totalInflow, 
+        totalOutflow } = props.fromMonthContainer
     
-    {/*  STATE */}
 
-    const [totalInflows, setTotalInflows] = useState(0)
-    const [totalOuflows, setTotalOutflows] = useState(0)
+    {/* ---------------- STATE ------------------*/}
+    
+    const [monthlyInflow, setMonthlyInflow] = useState(0)
+    const [monthlyOutflow, setMonthlyOutflow] = useState(0)
     const [netCashflow, setNetCashflow] = useState(0)
-
     const [startingCash, setStartingCash] = useState(0)
     const [endingCash, setEndingCash] = useState(0)
-
-    // const [moExpenses, setMoExpenses] = useState(0)
-    // const [expenses, setExpenses] = useState(0)
-
     // const [savingsOrLoss, setSavingsOrLoss] = useState(0)
-    // const [monthlySavingsOrLoss, setMonthlySavingsOrLoss] = useState(0)
 
 
-    {/*  FUNCTIONS */}
+    {/* ---------------- useEffect ------------------*/}
 
-    // useEffect(() => {
-    //     try {
+    useEffect(() => {
+        try {
 
-    //         const ai = totalIncome[0]
-    //         const mi = totalIncome[1]
-
-    //         const ae = totalExpenses[0]
-    //         const me = totalExpenses[1]
-
-    //         const formattedIncome = format(ai)
-    //         const monthlyFormattedIncome = format(mi)
-    //         const formattedExpenses = format(ae)
-    //         const monthlyFormattedExpenses = format(me)
-    
-    //         const formattedNet = format((ai - ae))
-    //         const formattedMonthlyNet = format((mi - me))
-
-    //         const savingsBool = (ai - ae >= 0)
-
-    //         setMoIncome(monthlyFormattedIncome)
-    //         setIncome(formattedIncome)
-    //         setExpenses(formattedExpenses)
-    //         setMoExpenses(monthlyFormattedExpenses)
-    //         setSavingsOrLoss(formattedNet)
-    //         setMonthlySavingsOrLoss(formattedMonthlyNet)
-    //         setSaved(savingsBool)
-
-            
-    //     } catch (error) {
-    //         console.log(error)
-    //     }
-        
-    // }, [totalIncome[0], totalExpenses[0]])
+            const formattedInflow = format(totalInflow)
+            const formattedOutflow = format(totalOutflow)
+            const rawCashflow = totalInflow - totalOutflow
+            const formattedNet = format(rawCashflow)
+            // const savingsBool = (rawCashflow >= 0)
+            setMonthlyInflow(formattedInflow)
+            setMonthlyOutflow(formattedOutflow)
+            setNetCashflow(formattedNet)
+            // setSaved(savingsBool)
+        } catch (error) {
+            console.log(error)
+        }
+    }, [totalInflow, totalOutflow])
 
 
 
-    const classes = useStyles()
+    {/* ---------------- FUNCTIONS ------------------*/}
 
+    // const classes = useStyles()
 
     const format = (value) => {
 
@@ -94,11 +73,11 @@ const SummaryTable = (props) => {
     const rows = [
         {
             description: "Total Inflows",
-            number: totalInflows
+            number: monthlyInflow
         },
         {
             description: "Total Outflows",
-            number: totalOutflows
+            number: monthlyOutflow
         },
         {
             description: "Net Cashflow",
@@ -123,7 +102,7 @@ const SummaryTable = (props) => {
                     component={Paper}
                 >
                     <Table 
-                        className={classes.table} 
+                        // className={classes.table} 
                         // size="small" 
                         aria-label="a dense table"
                     >
