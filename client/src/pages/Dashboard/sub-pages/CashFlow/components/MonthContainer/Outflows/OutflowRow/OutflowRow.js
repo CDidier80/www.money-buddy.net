@@ -136,6 +136,13 @@ const OutflowRow = (props) => {
     //     setIconShouldShow
     // } 
 
+    const propsForIconCell= {
+        showUndoIcon,
+        setShowUndoIcon,
+        iconShouldShow, 
+        setIconShouldShow 
+    }
+
     const propsForOutlow = {
         defaultValue: outflow
     }
