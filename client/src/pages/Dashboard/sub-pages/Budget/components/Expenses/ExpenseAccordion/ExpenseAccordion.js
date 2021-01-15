@@ -105,12 +105,11 @@ const ExpenseAccordion = (props) => {
                         renderExpAccordion
                     }
                     return (
-                        <AccordionDetails key={`${20000 + index}`} >
-                            <CategoryAccordion 
-                                {...props} 
-                                fromExpenseAccordion={{...categoryAccordionProps}}
-                            />
-                        </AccordionDetails>
+                        <CategoryAccordion 
+                            key={`${20000 + index}`}
+                            {...props} 
+                            fromExpenseAccordion={{...categoryAccordionProps}}
+                        />
                     )
                 })}
             </Accordion>
