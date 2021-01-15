@@ -41,10 +41,10 @@ const SavePageButton = (props) => {
     const sendCashflowToDatabase = async (e) => {
         e.preventDefault()
         const newCashflow = await UpdateEntireCashflow(payload)
-        const { cashflowId: c, inflows: i, categories: c } = newCashflow
+        const { cashflowId: c, inflows: i, flowcategories: fc } = newCashflow
         setCashflowId(c)
         setInflows(i)
-        setCashflowCategories(c)
+        setFlowategories(fc)
     }
 
 
