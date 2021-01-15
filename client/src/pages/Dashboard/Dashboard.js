@@ -1,6 +1,7 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
 import { ReadEntireBudget } from "../../Services/BudgetService"
+import { ReadEntireCashflow } from "../../Services/CashflowService"
 import NavBar from "./components/NavBar/NavBar"
 import "./components/NavBar/styles/navbar.css"
 import SideBar from "./components/Sidebar/SideBar"
@@ -26,7 +27,7 @@ const Dashboard = (props) => {
     const [incomes, setIncomes] = useState([])
     const [categories, setCategories] = useState([])
     const [inflows, setInflows] = useState([])
-    const [cashflowCategories, setCashflowCategories] = useState([]) 
+    const [flowcategories, setFlowcategories] = useState([]) 
 
     {/* ----------------------------------- rendering & ui control */}
     const [narrow, setSidebarNarrowed] = useState(false)
@@ -53,7 +54,7 @@ const Dashboard = (props) => {
             setBudgetId(b)
             setCashflowId(cf)
             setInflows(inf)
-            setCashflowCategories(cfCategories)
+            setFlowcategories(cfCategories)
             // console.log("Log of state in async call: ")
             // console.log(budgetId, incomes, categories)
         }
@@ -89,7 +90,6 @@ const Dashboard = (props) => {
         setIncomes,
         categories,
         setCategories,
-        sendBudgetToDB,
         budgetId,
         setBudgetId
     }
@@ -99,8 +99,8 @@ const Dashboard = (props) => {
         setCashflowId,
         inflows,
         setInflows,
-        cashflowCategories,
-        setCashflowCategories,
+        flowcategories,
+        setFlowcategories,
     }
 
 
@@ -131,7 +131,7 @@ const Dashboard = (props) => {
                         <Route 
                             path="/dashboard/account" 
                             component={ (props) => ( 
-                                <AccountPage {...props} id={id} /> 
+                                <AccountPage {...props} id={userId} /> 
                             )} 
                         />
                     </Switch>
