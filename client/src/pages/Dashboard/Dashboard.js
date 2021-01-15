@@ -14,65 +14,125 @@ import "./styles/dashboard.css"
 
 const Dashboard = (props) => {
 
-    {/*  PROPS  */}
+    /* -------------------------- PROPS ------------------------- */
 
+    // console.log(props)
     const { id: userId } = props.userInfo
 
 
-    {/*  STATE  */}
+     /* -------------------------- STATE ------------------------- */
 
-    {/* ---------------------------------------- user info in state*/}
+    // {/* ---------------------------------------- user info in state*/}
+    // const [budgetId, setBudgetId] = useState(null)
+    // const [cashflowId, setCashflowId] = useState(null)
+    // const [incomes, setIncomes] = useState([])
+    // const [categories, setCategories] = useState([])
+    // const [months, setMonths] = useState([])
+    // const [inflows, setInflows] = useState([])
+
+    // {/* ----------------------------------- rendering & ui control */}
+    // const [narrow, setSidebarNarrowed] = useState(false)
+    // const [ticker, setTicker] = useState(0)
+    // const [loaded, setLoaded] = useState(false)
+
+            /*  state:  ------------ financial info in state -----------*/
+
     const [budgetId, setBudgetId] = useState(null)
     const [cashflowId, setCashflowId] = useState(null)
-    const [incomes, setIncomes] = useState([])
-    const [categories, setCategories] = useState([])
-    const [inflows, setInflows] = useState([])
-    const [flowcategories, setFlowcategories] = useState([]) 
+    const [incomes, setIncomes] = useState(null)
+    const [categories, setCategories] = useState(null)
+    const [months, setMonths] = useState(null)
 
-    {/* ----------------------------------- rendering & ui control */}
+            /*  state:  ------------ rendering & ui control ---------- */
+
     const [narrow, setSidebarNarrowed] = useState(false)
     const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
     
 
 
-    {/*  useEffects  */}
+    /* -------------------------- useEffects ------------------------- */
+
+    const renderDependencies = [
+        budgetId, 
+        cashflowId, 
+        incomes,
+        categories,
+        months,
+    ]
+
+    // console.log('typeof renderDependencies:', renderDependencies)
+
+             /* useEffect:  ------ async calls for first render ------ */
 
     useEffect(() => {
         if (!props.authenticated) {
             props.history.push("/")
         }
-
-        {/* -------------- api/database calls for first page render*/}
         const initializeDashboard = async () => {
             const budget = await ReadEntireBudget({ userId: userId }, null)
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
-            const { budgetId: b, incomes: i, categories: c } = budget
-            const { cashflowId: cf, inflows: inf, categories: cfCategories } = cashflow
+            console.log("CASHFLOW DATA", cashflow)
+            const { 
+                budgetId: b, 
+                incomes: i, 
+                categories: c 
+            } = budget
+            const { 
+                id: cashflowId, 
+                months: m
+            } = cashflow
+            // ReactDOM.unstable_batchUpdate
             setIncomes(i)
             setCategories(c)
+            setMonths(m)
+            setCashflowId(cashflowId)
             setBudgetId(b)
-            setCashflowId(cf)
-            setInflows(inf)
-            setFlowcategories(cfCategories)
+
             // console.log("Log of state in async call: ")
             // console.log(budgetId, incomes, categories)
         }
         initializeDashboard()
         // console.log("END OF DASHBOARD useEffect #1: budgetId, incomes, categories: ")
         // console.log(budgetId, incomes, categories)
+        // console.log(budgetId, cashflowId, incomes, categories, months)
     }, [])
 
 
-    {/* -- ensure all database info initialized before children render*/}
+            /* useEffect:  --- ensure all state set before rendering children --- */
+
     useEffect(() => {
-        if(budgetId && cashflowId) {
-            // console.log("Dashboard.js useEffect 2 detected all state loaded")
-            setLoaded(true)
-        }
-        // console.log("END OF DASHBOARD useEffect #2: budgetId, incomes, categories: ")
-        // console.log(budgetId, incomes, categories)
-    }, [budgetId, cashflowId])
+
+        let childrenShouldRender = true
+        renderDependencies.forEach((state) => {
+            if (state == null) {
+                childrenShouldRender = false
+            }
+        })
+        setLoaded(childrenShouldRender ? true : false)
+        // if (childrenShouldRender) {
+        //     console.log("DASHBOARD useEFFECT detected all state loaded")
+        //     console.log(budgetId, cashflowId, incomes, categories, months)
+        // }
+
+    }, [...renderDependencies])
+
+    // useEffect(() => {
+    //     if(budgetId && cashflowId && inflows && months && categories && flowcategories && incomes) {
+    //         console.log("Dashboard.js useEffect 2 detected all state loaded")
+    //         setLoaded(true)
+    //     }
+    //     console.log("END OF DASHBOARD useEffect #2: budgetId, incomes, categories: ")
+    //     console.log(budgetId, cashflowId, incomes, categories, months, inflows, flowcategories)
+    // }, [
+    //     budgetId, 
+    //     cashflowId, 
+    //     incomes,
+    //     categories,
+    //     months,
+    //     inflows,
+    //     flowcategories
+    // ])
 
     
 
@@ -97,10 +157,8 @@ const Dashboard = (props) => {
     const cashflowProps = {
         cashflowId,
         setCashflowId,
-        inflows,
-        setInflows,
-        flowcategories,
-        setFlowcategories,
+        months,
+        setMonths
     }
 
 
