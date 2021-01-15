@@ -14,7 +14,8 @@ const ButtonsAddDelete = (props) => {
 
     const {
         showDeleteIcons,
-        toggleDeleteIcons
+        toggleDeleteIcons,
+        toggleAddCategoryPanel
     } = props.fromOutflowsAccordion
 
 
