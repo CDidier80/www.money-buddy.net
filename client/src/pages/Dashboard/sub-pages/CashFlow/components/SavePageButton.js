@@ -11,12 +11,14 @@ const SavePageButton = (props) => {
     const {
         cashflowId,
         setCashflowId,
-        setInflows,
-        setCashflowCategories,
     } = props.fromDashboard
 
     const {
-
+        setNewInflows,
+        newInflows,
+        setFlowcategories,
+        newFlowcategories,
+        toggleChanges
     } = props.fromCashflow
 
 
@@ -38,13 +40,12 @@ const SavePageButton = (props) => {
     }
 
 
-    const sendCashflowToDatabase = async (e) => {
-        e.preventDefault()
+    const sendCashflowToDatabase = async (payload) => {
         const newCashflow = await UpdateEntireCashflow(payload)
         const { cashflowId: c, inflows: i, flowcategories: fc } = newCashflow
         setCashflowId(c)
-        setInflows(i)
-        setFlowategories(fc)
+        setNewInflows(i)
+        setFlowcategories(fc)
     }
 
 
@@ -54,7 +55,7 @@ const SavePageButton = (props) => {
             const payload = {
                 cashflowId: cashflowId,
                 inflows: newInflows,
-                categories: newCategories,
+                flowcategories: newFlowcategories,
             }
             await sendCashflowToDatabase(payload)
             toggleChanges(false)
