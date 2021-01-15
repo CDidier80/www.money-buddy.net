@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import OutflowHeaders from "./OutflowHeaders/OutflowHeaders"
-import OutflowRow from "./OutflowRow/OutflowRow"
-import { useStyles } from "./styles/useStyles"
+import OutflowHeaders from "./components/OutflowHeaders"
+import OutflowRow from "../OutflowRow/OutflowRow"
+// import { useStyles } from "./styles/useStyles"
 import { 
     Paper, 
     Table, 
@@ -12,7 +12,7 @@ import {
 
 
 
-const fromOutflowTable = (props) => {
+const OutflowTable = (props) => {
 
     {/*  PROPS */}
 
@@ -27,7 +27,7 @@ const fromOutflowTable = (props) => {
 
     {/*  FUNCTIONS */}
 
-    const classes = useStyles()
+    // const classes = useStyles()
 
 
     return (
@@ -37,7 +37,7 @@ const fromOutflowTable = (props) => {
                 component={Paper}
             >
                 <Table 
-                    className={classes.table} 
+                    // className={classes.table} 
                     size="small" 
                     aria-label="a dense table"
                 >
@@ -62,7 +62,7 @@ const fromOutflowTable = (props) => {
                                 <OutflowRow 
                                     key={`${index * -1}`} 
                                     {...props}
-                                    fromfromOutflowTable={{...propsForRows}}
+                                    fromOutflowTable={{...propsForRows}}
 
                                 /> 
                             )
@@ -74,5 +74,5 @@ const fromOutflowTable = (props) => {
     )
 }
 
-export default fromOutflowTable
+export default OutflowTable
 
