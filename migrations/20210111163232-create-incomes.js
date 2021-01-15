@@ -10,25 +10,13 @@ module.exports = {
       },
       budgetId: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
         field: 'budget_id',
         onDelete: 'cascade',
         onUpdate: 'cascade',
         references: {
           model: 'budgets',
           key: 'id',
-        }
-      },
-      monthId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,   // changed to true in case income is owned by Month instead for cashflow
-        field: 'month_id',
-        onDelete: 'cascade',
-        onUpdate: 'cascade',
-        // constraints: true,
-        references: {
-          model: 'months',
-          key: 'id'
         }
       },
       source: {

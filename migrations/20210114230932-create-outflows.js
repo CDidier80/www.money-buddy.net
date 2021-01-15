@@ -1,27 +1,31 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('categories', {
+    await queryInterface.createTable('outflows', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      budgetId: {
+      flowcategoryId: {
         type: Sequelize.INTEGER,
         allowNull: false,
-        field: 'budget_id',
+        field: 'flowcategory_id',
         onDelete: 'cascade',
         onUpdate: 'cascade',
         references: {
-          model: 'budgets',
+          model: 'flowcategories',
           key: 'id',
         }
       },
-      name: {
+      outflow: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      amount: {
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       createdAt: {
         field: 'created_at',
@@ -38,6 +42,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('categories');
+    await queryInterface.dropTable('outflows');
   }
-}
+};

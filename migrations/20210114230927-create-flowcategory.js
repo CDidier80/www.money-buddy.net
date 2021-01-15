@@ -1,22 +1,22 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('categories', {
+    await queryInterface.createTable('flowcategories', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      budgetId: {
+      monthId: {
         type: Sequelize.INTEGER,
-        allowNull: false,
-        field: 'budget_id',
+        allowNull: true,
+        field: 'month_id',
         onDelete: 'cascade',
-        onUpdate: 'cascade',
+        // constraints: true,
         references: {
           model: 'budgets',
-          key: 'id',
+          key: 'id'
         }
       },
       name: {
@@ -38,6 +38,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('categories');
+    await queryInterface.dropTable('flowcategories');
   }
-}
+};
