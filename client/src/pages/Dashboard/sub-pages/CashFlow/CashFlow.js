@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import "./styles/CashFlow.css"
 import { useSnackbar, withSnackbar } from 'notistack';
-import PaginatingContainer from "./components/PaginatingContainer"
+import PaginatingContainer from "./components/PaginatingContainer/PaginatingContainer"
 import { initTotalInflow, initTotalOutflow } from "./modules/initFunctions"
 import SavePageButton from './components/SavePageButton';
+import "./styles/CashFlow.css"
 
 const Cashflow = (props) => {
 
