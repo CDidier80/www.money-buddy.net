@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import "./styles/CashFlow.css"
 import { useSnackbar, withSnackbar } from 'notistack';
-import MonthContainer from "./components/"
+import PaginatingContainer from "./components/PaginatingContainer"
+import { initTotalInflow, initTotalOutflow } from "./modules/initFunctions"
+import SavePageButton from './components/SavePageButton';
 
 const Cashflow = (props) => {
 
@@ -15,77 +17,61 @@ const Cashflow = (props) => {
     const [userMadeChanges, toggleChanges] = useState(false)
     const [newInflows, setNewInflows] = useState([])
     const [newCategories, setNewCategories] = useState([])
-    const [categoryNames, setCategoryNames] = useState([])
-    // const [categoryTotals, setCategoryTotals] = useState([])
-    const [totalExpenses, setTotalExpenses] = useState([])
-    const [totalInflows, setTotalInflow] = useState([])
+    // const [categoryNames, setCategoryNames] = useState([])
+    const [totalOutflow, setTotalOutflow] = useState(0)
+    const [totalInflow, setTotalInflow] = useState(0)
 
 
     {/*  useEffects  */}
 
-    // initial page load where state is set by dashboard budget data
+    // initial page load where state is set by dashboard Cashflow data
     useEffect(() => {
-        // console.log("Initial-load Budget useEffect --> categories, incomes")
-        // console.log(categories, incomes)
-        // const catState =  initNamesTotals(categories)
-        // const inflowsState =  initInflowsTotals(incomes)
-        // setCategoryNames(catState[0])
-        // setCategoryTotals(catState[1])
-        // setTotalExpenses(catState[2])
-        // setTotalInflows(inflowsState)
-        // setNewInflows(incomes)
-        // setNewCategories(categories)
+        console.log("Initial-load Cashflow useEffect --> categories, inflows")
+        console.log(categories, inflows)
+        const newTotalOutflow =  initTotalOutflow(categories)
+        const newTotalInflow =  initTotalInflow(inflows)
+        setTotalOutflow(newTotalOutflow)
+        setTotalInflow(newTotalInflow)
+        setNewInflows(inflows)
+        setNewCategories(categories)
         setCashflowLoaded(true)
     }, [])
 
 
     // reloads in which local state changes require recalc of totals, names
-    // useEffect(() => {
-    //     if(budgetLoaded) {
-    //         // console.log("Budget.js useEffect reload triggered")
-    //         const catState =  initNamesTotals(newCategories)
-    //         const inflowsState =  initInflowsTotals(newIncomes)
-    //         setCategoryNames(catState[0])
-    //         setCategoryTotals(catState[1])
-    //         setTotalExpenses(catState[2])
-    //         setTotalInflows(inflowsState)
-    //     }
-    // }, [
-    //     tick,
-    //     userMadeChanges,
-    // ])
+    useEffect(() => {
+        if(cashflowLoaded) {
+            // console.log("Cashflow.js useEffect reload triggered")
+            const newTotalOutflow =  initTotalOutflow(categories)
+            const newTotalInflow =  initTotalInflow(inflows)
+            setTotalOutflows(newTotalOutflow)
+            setTotalInflows(newTotalInflow)
+        }
+    }, [
+        tick,
+        userMadeChanges,
+    ])
 
-
-    {/*  FUNCTIONS  */}
-
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-
-    const cashflowSavedSnackbar = () => {
-        enqueueSnackbar(`Budget Saved`, {
-            variant: 'Success', 
-            iconVariant: "Success"
-        })
-    }
-    
-    const failCashflowSaveSnackbar = () => {
-        enqueueSnackbar(`Failed to Save Changes`, {variant: 'Error'})
-    }
+   
 
 
 
     {/*  PROPS OBJECTS  */}
 
-    const propsForMonthContainer = { 
+    const paginatingContainerProps = { 
         newInflows,
-        setNewInflows,
+        totalInflow,
+        totalOutflow,
+        newCategories,
+        setNewCategories,
         toggleChanges,
         userMadeChanges,
         updateCashflow,
-        tick
+        tick,
     } 
 
 
-    return ( !updateCashflow ? <div></div> :
+    return ( !cashflowLoaded ? <div></div> :
 
         <div className="cashflow">
             <div className="header-and-button-wrapper">
@@ -93,16 +79,16 @@ const Cashflow = (props) => {
                     <h1 className="page-header">CASH FLOWS</h1>
                 </div>
                 {userMadeChanges && 
-                    <button 
-                        className="save-budget-button"
-                        // onClick={(e) => saveCashflows(e)}
-                    >
-                        Save
-                    </button>
+                    <SavePageButton 
+                        {...props}
+                    />
                 }
             </div>
             {/* <Graph /> */}
-
+            <PaginatingContainer 
+                {...props}
+                fromCashflow={{...paginatingContainerProps}}
+            />
 
         </div>
     )
