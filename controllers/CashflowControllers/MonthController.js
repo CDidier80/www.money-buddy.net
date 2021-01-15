@@ -8,16 +8,16 @@ const errorLog = ControllerLoggers.MonthControllerErrorLog
 
 /**
  * @param {Object} req.body - The month object.
- * @param {String} req.body.month - The name of the category.
  * @param {Integer} req.body.cashflowId - The id of the cashflow that has the month.
+ * @param {String} req.body.month - The name of the month.
  * @param {Integer} req.body.year - The year of the month
  */
 
 const CreateMonth = async (req, res) => {
     log(CreateMonth, req)
     try {
-        const category = await Month.create(req.body)
-        res.send(category)
+        const month = await Month.create(req.body)
+        res.send(month)
     } catch (error) {
         errorLog(CreateMonth, error) 
     }
