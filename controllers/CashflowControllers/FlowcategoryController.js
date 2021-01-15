@@ -5,6 +5,12 @@ const log = ControllerLoggers.FlowcategoryControllerLog
 const errorLog = ControllerLoggers.FlowcategoryControllerErrorLog
 
 
+/**
+ * @param {Object} req.body - The month object.
+ * @param {Integer} req.body.monthId - The id of the month that has the Flowcategory.
+ * @param {String} req.body.name - The name of the month.
+ */
+
 const CreateFlowcategory = async (req, res) => {
     log(CreateFlowcategory, req)
     try {
@@ -18,7 +24,8 @@ const CreateFlowcategory = async (req, res) => {
 
 /**
  * @param {Object} req.body - The Flowcategory object.
- * @param {Integer} req.body.monthId - The id of the cashflow that has the Flowcategory.
+ * @param {Integer} req.body.monthId - The id of the month that has the Flowcategory.
+ * @param {name} req.body.name - The name of the Flowcategory.
  */
 
 const GetFlowcategory = async (req, res) => {
