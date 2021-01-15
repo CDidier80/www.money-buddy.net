@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       }),
       Cashflow.hasMany(models.Month, {
         foreignKey: 'cashflow_id',
-        as: 'cashflow months',
+        as: 'months',
       })
     }
   };
