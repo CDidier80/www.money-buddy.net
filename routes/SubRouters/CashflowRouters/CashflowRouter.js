@@ -4,14 +4,16 @@ const {
     ReadEntireCashflow, 
     UpdateEntireCashflow,
     CreateCashflow,
-    GetOneCashflow
+    GetOneCashflow,
+    CreateDefaultCashflow
 } = controller
 
 console.log("CASHFLOW ROUTER CONNECTED")
 
-Router.post('/create', CreateCashflow)
-Router.get('/getone', GetOneCashflow)
-Router.post('/entire', ReadEntireCashflow)
-Router.put('/update', UpdateEntireCashflow)
+Router.post('/create',      CreateCashflow)
+Router.get('/getone',       GetOneCashflow)
+Router.post('/entire',      ReadEntireCashflow)
+Router.put('/update',       UpdateEntireCashflow)
+Router.post('/initaccount', CreateDefaultCashflow)
 
 module.exports = Router
