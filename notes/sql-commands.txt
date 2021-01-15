@@ -6,7 +6,6 @@ npx sequelize-cli init
 npx sequelize-cli db:create                
 
 
-
 // create models                                                                                                                           
 npx sequelize-cli model:generate --name users --attributes email:string,password:string
 npx sequelize-cli model:generate --name budgets --attributes userId:integer                                                                                                                      
@@ -15,6 +14,11 @@ npx sequelize-cli model:generate --name months --attributes cashflowId:integer,m
 npx sequelize-cli model:generate --name categories --attributes budgetId:integer,cashflowId:integer,name:string
 npx sequelize-cli model:generate --name incomes --attributes budgetId:integer,cashflowId:integer,source:string,amount:integer
 npx sequelize-cli model:generate --name expenses --attributes categoryId:integer,expense:string,amount:integer
+npx sequelize-cli model:generate --name inflows --attributes monthId:integer,source:string,amount:integer
+npx sequelize-cli model:generate --name flowcategory --attributes monthId:integer,name:string
+npx sequelize-cli model:generate --name outflows --attributes flowcategoryId:integer,outflow:string,amount:integer
+
+
 
 // migrate models
 npx sequelize-cli db:migrate 

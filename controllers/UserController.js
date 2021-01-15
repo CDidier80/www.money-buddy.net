@@ -9,7 +9,13 @@ const saltRounds = parseInt(process.env.SALT_ROUNDS)
 
 // const { Op, literal, fn, col  } = require('sequelize')
 
-console.log(User)
+
+/**
+ * @param {Object} req.body - The user object.
+ * @param {Integer} req.body.email - The user's email address.
+ * @param {String} req.body.password - The user's raw-text password.
+ */
+
 const CreateUser = async (req, res) => {
     log(CreateUser, req)
     try {

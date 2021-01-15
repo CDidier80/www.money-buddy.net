@@ -3,7 +3,7 @@ import CategoryPopup from "../CategoryPopups/CategoryPopup"
 import CategoryAccordion from "../CategoryAccordion/CategoryAccordion"
 import ButtonsAddDelete from './componenets/ButtonsAddDelete'
 import AccordionDropdownTab from "./componenets/AccordionDropdownTab"
-import { unconditionalStyles } from "./styles/unconditionalStyles"
+import { staticStyles } from "./styles/staticStyles"
 import { 
     makeStyles,
     Accordion,
@@ -59,7 +59,7 @@ const ExpenseAccordion = (props) => {
 
 
     const useStyles = makeStyles({
-        ...unconditionalStyles, 
+        ...staticStyles, 
         deleteButton: {
             fontSize: "9px",
             fontWeight: "700",
@@ -105,12 +105,11 @@ const ExpenseAccordion = (props) => {
                         renderExpAccordion
                     }
                     return (
-                        <AccordionDetails key={`${20000 + index}`} >
-                            <CategoryAccordion 
-                                {...props} 
-                                fromExpenseAccordion={{...categoryAccordionProps}}
-                            />
-                        </AccordionDetails>
+                        <CategoryAccordion 
+                            key={`${20000 + index}`}
+                            {...props} 
+                            fromExpenseAccordion={{...categoryAccordionProps}}
+                        />
                     )
                 })}
             </Accordion>

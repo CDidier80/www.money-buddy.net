@@ -8,8 +8,6 @@ import {
     DialogTitle,
     Slide,
     TextField,
-    createMuiTheme,
-    MuiThemeProvider,
     withStyles
 } from '@material-ui/core'
 

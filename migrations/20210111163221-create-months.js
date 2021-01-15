@@ -23,6 +23,10 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
+      year: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         field: 'created_at',
         allowNull: false,

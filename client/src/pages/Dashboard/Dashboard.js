@@ -1,71 +1,60 @@
 import React, { useState, useEffect, memo } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom'
-import { ReadEntireBudget, UpdateEntireBudget } from "../../Services/BudgetService"
+import { ReadEntireBudget } from "../../Services/BudgetService"
+import { ReadEntireCashflow } from "../../Services/CashflowService"
 import NavBar from "./components/NavBar/NavBar"
 import "./components/NavBar/styles/navbar.css"
 import SideBar from "./components/Sidebar/SideBar"
-import Budget from "./sub-pages/Budget/Budget"
-import Cashflow from "./sub-pages/Cashflow/Cashflow"
 import AccountPage from "./sub-pages/AccountPage/AccountPage"
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen"
+import BudgetRoute from "./components/MemoRoutes/BudgetRoute"
+import CashflowRoute from "./components/MemoRoutes/CashflowRoute"
 import "./styles/dashboard.css"
 
 
-
-const MemoizedBudgetRoute = memo((props) => {
-    
-    return (
-        <Route 
-            component={ () => ( 
-                <Budget {...props}/> 
-        )} 
-    />
-    )
-},(prevProps, nextProps) => {
-    // returning a true value causes component to skip rerender
-    // if the cause of rerender is a change in ticker (caused by collapsing/opening menu),
-    // the route should not rerender
-    return (prevProps.ticker !== nextProps.ticker)
-})
-
-const MemoizedCashflowRoute = memo((props) => {
-    
-    return (
-        <Route 
-            component={ () => ( 
-                <Cashflow {...props}/> 
-        )} 
-    />
-    )
-},(prevProps, nextProps) => {
-    return (prevProps.ticker !== nextProps.ticker)
-})
-
-
 const Dashboard = (props) => {
-    console.log(props)
-    const {userInfo} = props
-    const {id} = userInfo
-    const [userId, setUserId] = useState(id)
-    const [narrow, setSidebarNarrowed] = useState(false)
-    const [ticker, setTicker] = useState(0)
+
+    {/*  PROPS  */}
+
+    const { id: userId } = props.userInfo
+
+
+    {/*  STATE  */}
+
+    {/* ---------------------------------------- user info in state*/}
     const [budgetId, setBudgetId] = useState(null)
+    const [cashflowId, setCashflowId] = useState(null)
     const [incomes, setIncomes] = useState([])
     const [categories, setCategories] = useState([])
+    const [inflows, setInflows] = useState([])
+    const [flowcategories, setFlowcategories] = useState([]) 
+
+    {/* ----------------------------------- rendering & ui control */}
+    const [narrow, setSidebarNarrowed] = useState(false)
+    const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
+    
+
+
+    {/*  useEffects  */}
 
     useEffect(() => {
         if (!props.authenticated) {
             props.history.push("/")
         }
 
+        {/* -------------- api/database calls for first page render*/}
         const initializeDashboard = async () => {
             const budget = await ReadEntireBudget({ userId: userId }, null)
-            // console.log("budget response received during async call:", budget)
+            const cashflow = await ReadEntireCashflow({ userId: userId}, null)
             const { budgetId: b, incomes: i, categories: c } = budget
+            const { cashflowId: cf, inflows: inf, categories: cfCategories } = cashflow
             setIncomes(i)
             setCategories(c)
             setBudgetId(b)
+            setCashflowId(cf)
+            setInflows(inf)
+            setFlowcategories(cfCategories)
             // console.log("Log of state in async call: ")
             // console.log(budgetId, incomes, categories)
         }
@@ -75,24 +64,25 @@ const Dashboard = (props) => {
     }, [])
 
 
-
+    {/* -- ensure all database info initialized before children render*/}
     useEffect(() => {
-
-        if(budgetId) {
+        if(budgetId && cashflowId) {
             // console.log("Dashboard.js useEffect 2 detected all state loaded")
             setLoaded(true)
         }
         // console.log("END OF DASHBOARD useEffect #2: budgetId, incomes, categories: ")
         // console.log(budgetId, incomes, categories)
-    }, [budgetId])
+    }, [budgetId, cashflowId])
 
+    
 
-    const sendBudgetToDB = async (payload) => {
-        const newBudget = await UpdateEntireBudget(payload)
-        const { budgetId: b, incomes: i, categories: c } = newBudget
-        setBudgetId(b)
-        setIncomes(i)
-        setCategories(c)
+    {/*  PROPS OBJECTS  */}
+
+    const propsNavbar = {
+        narrow,
+        setSidebarNarrowed,
+        ticker,
+        setTicker
     }
 
     const budgetHooks = {
@@ -100,53 +90,56 @@ const Dashboard = (props) => {
         setIncomes,
         categories,
         setCategories,
-        sendBudgetToDB,
-        budgetId
+        budgetId,
+        setBudgetId
     }
 
     const cashflowProps = {
-        budgetHooks,
-        
+        cashflowId,
+        setCashflowId,
+        inflows,
+        setInflows,
+        flowcategories,
+        setFlowcategories,
     }
-    // console.log("Dashboard narrow: ", narrow)
 
 
-        return( !loaded ? <LoadingScreen /> :
+    return( !loaded ? <LoadingScreen /> :
 
-            <div className="dashboard">
-                <NavBar 
-                    {...props}
+        <div className="dashboard">
+            <NavBar 
+                {...props}
+                fromDashboard={{...propsNavbar}}
+            />
+
+            <main className="dash-main-flex">
+                <SideBar 
+                    {...props} 
                     narrow={narrow} 
-                    setSidebarNarrowed={setSidebarNarrowed}
-                    ticker={ticker}
-                    setTicker={setTicker}
-                />
+                /> 
+                <div className={ narrow ? "sub-page expanded" : "sub-page"}> 
+                    <Switch> 
+                        <BudgetRoute 
+                            exact path="/dashboard/" 
+                            budgetHooks={budgetHooks}
+                            ticker={ticker}
+                        />
+                        <CashflowRoute 
+                            path="/dashboard/cashflow" 
+                            fromDashboard={{...cashflowProps}}
+                        />
+                        <Route 
+                            path="/dashboard/account" 
+                            component={ (props) => ( 
+                                <AccountPage {...props} id={userId} /> 
+                            )} 
+                        />
+                    </Switch>
+                </div>
+            </main>
+        </div>
     
-                <main className="dash-main-flex">
-                    <SideBar {...props} narrow={narrow} /> 
-                    <div className={ narrow ? "sub-page expanded" : "sub-page"}> 
-                        <Switch> 
-                            <MemoizedBudgetRoute 
-                                exact path="/dashboard/" 
-                                budgetHooks={budgetHooks}
-                                ticker={ticker}
-                            />
-                            <MemoizedCashflowRoute 
-                                path="/dashboard/cashflow" 
-                                fromDashboard={{...cashflowProps}}
-                            />
-                            <Route 
-                                path="/dashboard/account" 
-                                component={ (props) => ( 
-                                    <AccountPage {...props} id={id} /> 
-                                )} 
-                            />
-                        </Switch>
-                    </div>
-                </main>
-            </div>
-        
-        )
+    )
 
 }
 

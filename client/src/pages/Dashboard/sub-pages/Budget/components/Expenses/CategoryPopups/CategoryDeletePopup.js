@@ -7,7 +7,6 @@ import {
     DialogContent,
     DialogTitle,
     Slide,
-
 } from '@material-ui/core'
 
 const useStyles = makeStyles({

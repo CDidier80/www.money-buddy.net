@@ -4,24 +4,19 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Month extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
     static associate(models) {
       Month.belongsTo(models.Cashflow, {
         foreignKey: 'cashflow_id',
-        as: 'cashflows',
+        as: 'months',
         constraints: true,
       }), 
-      Month.hasMany(models.Category, {
+      Month.hasMany(models.Flowcategory, {
         foreignKey: 'month_id',
-        as: 'month categories',
+        as: 'flowcategories',
       }),
-      Month.hasMany(models.Income, {
+      Month.hasMany(models.Inflow, {
         foreignKey: 'month_id',
-        as: 'month incomes',
+        as: 'inflows',
       })
     }
   }
@@ -36,7 +31,14 @@ module.exports = (sequelize, DataTypes) => {
         key: 'id'
       }
     },
-    month: DataTypes.STRING
+    month: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    year: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
   }, 
   {
     sequelize,

@@ -1,0 +1,17 @@
+.editable-cell {
+    outline: none;
+    border: none;
+    text-align: right;
+    font-family: Roboto;
+    cursor: pointer;
+    color: black;
+    width: 100%;
+}
+
+.editable-cell.income:focus {
+    outline: 1px dotted #22c1c3;
+}
+
+.editable-cell.expense:focus {
+    outline: 1px dotted #e6a824;
+}

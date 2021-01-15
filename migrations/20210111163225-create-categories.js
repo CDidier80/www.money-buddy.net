@@ -19,17 +19,6 @@ module.exports = {
           key: 'id',
         }
       },
-      monthId: {
-        type: Sequelize.INTEGER,
-        allowNull: true,
-        field: 'month_id',
-        onDelete: 'cascade',
-        // constraints: true,
-        references: {
-          model: 'budgets',
-          key: 'id'
-        }
-      },
       name: {
         type: Sequelize.STRING,
         allowNull: false,

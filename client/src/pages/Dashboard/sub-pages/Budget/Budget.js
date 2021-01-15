@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import IncomeAccordion from "./components/Income/Accordion/IncomeAccordion"
+import IncomeAccordion from "./components/Income/IncomeAccordion/IncomeAccordion"
 import ExpenseAccordion from "./components/Expenses/ExpenseAccordion/ExpenseAccordion"
-import DoughnutChart from './components/SpendingDistribution/DoughnutChart'
-import Summary from './components/Summary/Summary'
-import "./styles/budget.css"
+import DoughnutChart from './components/DonutWidget/DoughnutChart'
+import Summary from './components/SummaryChart/Summary'
 import {initNamesTotals, initIncomeTotals} from "./modules/initFunctions"
-import { useSnackbar, withSnackbar } from 'notistack';
+import TitleAndSaveButton from "./components/TitleAndSaveButton/TitleAndSaveButton"
+import "./styles/budget.css"
 
 
 const Budget = (props) => {
@@ -71,36 +71,10 @@ const Budget = (props) => {
 
     {/*  FUNCTIONS  */}
 
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-
-    const budgetSavedSnackbar = () => {
-        enqueueSnackbar(`Budget Saved`, {
-            variant: 'Success', 
-            iconVariant: "Success"
-        })
-    }
-    
-    const failedBudgetSaveSnackbar = () => {
-        enqueueSnackbar(`Failed to Save Changes`, {variant: 'Error'})
-    }
 
 
-    const saveBudget = async (e) => {
-        try {
-            e.preventDefault()
-            const payload = {
-                budgetId: budgetId,
-                incomes: newIncomes,
-                categories: newCategories,
-            }
-            await sendBudgetToDB(payload)
-            toggleChanges(false)
-            budgetSavedSnackbar()
-        } catch (error) {
-            failedBudgetSaveSnackbar()
-            console.log("budget update failed: ", error)
-        }
-    }
+
+
 
 
     {/*  PROPS OBJECTS  */}
@@ -114,7 +88,6 @@ const Budget = (props) => {
         tick
     }
 
-
     const expenseAccordionProps = {
         newCategories,
         setNewCategories, 
@@ -124,46 +97,44 @@ const Budget = (props) => {
         tick
     }
 
-
-    const userChanges = {
+    const summaryProps = {
+        totalExpenses, 
+        totalIncome,
         toggleChanges,
-        userMadeChanges,
+        userMadeChanges
+    }
+
+    const propsDoughnut = {
+        newCategories, 
+        categoryNames,
+        categoryTotals,
+        toggleChanges,
+        userMadeChanges
+    }
+
+    const propsTitleAndSave = {
+        newIncomes,
+        toggleChanges,
+        newCategories,
     }
 
 
     return ( !budgetLoaded ? <div></div> :
 
         <div className="budget">
-            <div className="header-and-button-wrapper">
-                <div className="page-header-wrapper">
-                    <h1 className="page-header">BUDGET</h1>
-                </div>
-                {userMadeChanges && 
-                    <button 
-                        className="save-budget-button"
-                        onClick={(e) => saveBudget(e)}
-                    >
-                        Save
-                    </button>
-                }
-            </div>
+            <TitleAndSaveButton 
+                {...props}
+                fromBudget={{...propsTitleAndSave}}
+            />
             <div className="top-flex">
-                <div className="budget-top-widgets left">
-                    <Summary
-                        totalExpenses={totalExpenses}
-                        totalIncome={totalIncome}
-                        userChanges={userChanges}
-                    />
-                </div>
-                <div className="budget-top-widgets right">
-                    <h3 className="widget-header distribution-header">Distribution of Spending</h3>
-                    <DoughnutChart 
-                        newCategories={newCategories} 
-                        categoryNames={categoryNames}
-                        categoryTotals={categoryTotals}
-                        userChanges={userChanges}
-                    />
-                </div>
+                <Summary
+                    {...props}
+                    fromBudget={{...summaryProps}}
+                />
+                <DoughnutChart 
+                    {...props}
+                    fromBudget={{...propsDoughnut}}
+                />
             </div>
             <IncomeAccordion 
                 fromBudget={incomeAccordionProps}
@@ -175,7 +146,7 @@ const Budget = (props) => {
     )
 }
 
-export default withSnackbar(Budget)
+export default Budget
 
 
 
