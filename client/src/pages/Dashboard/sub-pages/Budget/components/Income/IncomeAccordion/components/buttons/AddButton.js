@@ -1,6 +1,10 @@
 import React from 'react'
-import { divideDefaultsAndUserSources, insertionSort, findGapInNumbers } from "../../../../../../universal-functions/sortingFunctions"
-
+import { 
+    divideDefaultsAndUserSources, 
+    insertionSort, 
+    findGapInNumbers 
+} from "../../../../../../universal-functions/sortingFunctions"
+import { makeStyles } from '@material-ui/core'
 
 const AddButton = (props) => {
 
