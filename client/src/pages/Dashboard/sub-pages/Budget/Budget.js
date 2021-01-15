@@ -38,7 +38,7 @@ const Budget = (props) => {
     // initial page load where state is set by dashboard budget data
     useEffect(() => {
         // console.log("Initial-load Budget useEffect --> categories, incomes")
-        console.log(categories, incomes)
+        // console.log(categories, incomes)
         const catState =  initNamesTotals(categories)
         const incomeState =  initIncomeTotals(incomes)
 
