@@ -56,7 +56,48 @@ const defaultMonths = [
     "December"
 ]
 
+const nextCalendarYear = (year, monthIndex, cashflowId) => {
+    if (monthIndex === 0) {
+        const nextTwelveMonths = defaultMonths.map(month => {
+            const monthPayload = {
+                year: year,
+                month: month,
+                cashflowId: cashflowId
+            }
+            return monthPayload
+        })
+        return nextTwelveMonths
+    } 
+
+    const nextYear = year + 1
+    const nextYearStopIndex = 11 - monthIndex
+    const remainingYear = defaultMonths.slice(monthIndex,)
+    const nextYearMonths = defaultMonths.slice(0, nextYearStopIndex)
+
+    const currentYearMonthsId = remainingYear.map(month => {
+        const monthPayload = {
+            year: year, 
+            month: month, 
+            cashflowId: cashflowId,
+        }
+        return monthPayload
+    })
+
+    const nextYearMonthsId = nextYearMonths.map(month => {
+        const monthPayload = {
+            year: nextYear, 
+            month: month, 
+            cashflowId: cashflowId,
+        }
+        return monthPayload
+    })
+    
+    return [...currentYearMonthsId, ...nextYearMonthsId]
+}
+
+
 module.exports = {
     defaultCategories,
-    defaultMonths
+    defaultMonths,
+    nextCalendarYear
 }
