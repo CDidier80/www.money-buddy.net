@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import IncomeAccordion from "./components/Income/Accordion/IncomeAccordion"
+import IncomeAccordion from "./components/Income/IncomeAccordion/IncomeAccordion"
 import ExpenseAccordion from "./components/Expenses/ExpenseAccordion/ExpenseAccordion"
-import DoughnutChart from './components/SpendingDistribution/DoughnutChart'
-import Summary from './components/Summary/Summary'
-import "./styles/budget.css"
+import DoughnutChart from './components/DonutWidget/DoughnutChart'
+import Summary from './components/SummaryChart/Summary'
 import {initNamesTotals, initIncomeTotals} from "./modules/initFunctions"
 import TitleAndSaveButton from "./components/TitleAndSaveButton/TitleAndSaveButton"
+import "./styles/budget.css"
 
 
 const Budget = (props) => {
