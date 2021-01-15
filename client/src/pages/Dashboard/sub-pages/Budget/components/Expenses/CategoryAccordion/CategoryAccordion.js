@@ -5,6 +5,7 @@ import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import {styles} from "./styles/useStyles"
 import { 
     Accordion,
+    AccordionDetails,
     makeStyles
 } from '@material-ui/core';
 import ButtonsAddDel from './components/ButtonsAddDel';
@@ -57,28 +58,30 @@ const CategoryAccordion = (props) => {
     }
 
     return (
-        <div className={classes.categoryWrapper}>
-            {showCategoryDeletePopup && 
-                <CategoryDeletePopup 
-                    {...props}
-                    fromCategoryAccordion={{...categoryDeletePopupProps}}
-                />
-            }
-            <Accordion className={classes.accordion}>
-                <AccordionDropdownTab 
-                    {...props}
-                    fromCategoryAccordion={{...accordionDropdownTabProps}}
-                />
-                <ButtonsAddDel 
-                    {...props}
-                    fromCategoryAccordion={{...buttonsAddDelProps}}
-                />
-                <ExpenseTable 
-                    {...props} 
-                    fromCategoryAccordion={{...expenseTableProps}}
-                />
-            </Accordion>
-        </div>
+        <AccordionDetails  >
+            <div className={classes.categoryWrapper}>
+                {showCategoryDeletePopup && 
+                    <CategoryDeletePopup 
+                        {...props}
+                        fromCategoryAccordion={{...categoryDeletePopupProps}}
+                    />
+                }
+                <Accordion className={classes.accordion}>
+                    <AccordionDropdownTab 
+                        {...props}
+                        fromCategoryAccordion={{...accordionDropdownTabProps}}
+                    />
+                    <ButtonsAddDel 
+                        {...props}
+                        fromCategoryAccordion={{...buttonsAddDelProps}}
+                    />
+                    <ExpenseTable 
+                        {...props} 
+                        fromCategoryAccordion={{...expenseTableProps}}
+                    />
+                </Accordion>
+            </div>
+        </AccordionDetails>
     )
 }
 
