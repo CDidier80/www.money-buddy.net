@@ -19,7 +19,7 @@ const ExpenseAccordion = (props) => {
 
     const { newCategories } = props.fromBudget
 
-    console.log(newCategories)
+    // console.log(newCategories)
     
 
     {/*  STATE  */}
@@ -54,7 +54,7 @@ const ExpenseAccordion = (props) => {
 
     const handleExpansion = (e) => {
         toggleOpened(!opened)
-        console.log("changed")
+        // console.log("changed")
     }
 
 
