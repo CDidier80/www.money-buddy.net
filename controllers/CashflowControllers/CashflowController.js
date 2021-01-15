@@ -1,4 +1,5 @@
 const { ControllerLoggers } = require('../logs')
+const { defaultMonths, defaultCategories, nextCalendarYear } = require("../modules/data")
 const log = ControllerLoggers.CashflowControllerLog 
 const errorLog = ControllerLoggers.CashflowControllerErrorLog
 const { 
@@ -10,6 +11,8 @@ const {
 } = require('../../models')
 
 
+
+
 const CreateCashflow = async (req, res) => {
     log(CreateCashflow, req)
     try {
@@ -19,6 +22,94 @@ const CreateCashflow = async (req, res) => {
         errorLog(CreateCashflow, error) 
     }
 }
+
+
+/**
+ * @param {Object} req.body - The month object.
+ * @param {Integer} req.body.userId - The id of the user.
+- The year of the month
+ */
+
+const CreateDefaultCashflow = async (req, res) => {
+    log(CreateDefaultCashflow, req)
+    try {
+
+        const cashflow = await Cashflow.create(req.body,{
+            query: { raw:true}
+        })
+        const { id: cashflowId } = cashflow
+
+        console.log("cashflow: ", cashflow)
+
+        const today = new Date()
+        const y = today.getFullYear()
+        const m = today.getMonth()
+
+        const nextTwelveMonths = nextCalendarYear(y, m, cashflowId)
+        
+        const months = await Month.bulkCreate(nextTwelveMonths,{
+            query: { raw:true}
+        })
+        console.log("MONTHS:", months)
+        
+        const packagedMonths = await Promise.all(months.map(async (month) => {
+            const { id: monthId } = month
+            const newInflows = await Inflow.create({
+                monthId,
+                source: "Job 1",
+                amount: 0
+            },
+            {query: { raw:true}}
+            )
+
+            const flowcategoryNames = Object.keys(defaultCategories)
+            const flowcategoriesToCreate = flowcategoryNames.map(name => {
+                const fc = {
+                    name: name,
+                    monthId: monthId
+                }
+                return fc
+            })
+
+            const newFlowcategories = await Flowcategory.bulkCreate(flowcategoriesToCreate,
+                {query: { raw:true}}
+                )
+
+            const packagedFlowcategories = await Promise.all(newFlowcategories.map(async (category) => {
+                const { id: flowcategoryId, name } = category
+                const outflowNames = Object.values(defaultCategories[name])
+
+                const outflowsToCreate = outflowNames.map(outflowName => ({
+                    flowcategoryId,
+                    outflow: outflowName,
+                    amount: 0
+                }))
+
+                const newOutflows = await Outflow.bulkCreate(outflowsToCreate, 
+                    {query: { raw:true}})
+
+                return {...category, outflows: newOutflows}
+            }))
+
+            const packagedMonth = {
+                ...month,
+                flowcategories: packagedFlowcategories,
+                inflows: newInflows
+            }
+
+            // console.log("PACKAGED MONTH:", packagedMonth)
+
+            return packagedMonth
+        }))
+
+        const entireCashflow = {...cashflow, months: packagedMonths}
+
+        res.send(entireCashflow)
+    } catch (error) {
+        errorLog(CreateDefaultCashflow, error) 
+    }
+}
+
 
 const GetOneCashflow = async (req, res) => {
     log(GetOneCashflow, req)
@@ -176,5 +267,6 @@ module.exports = {
     CreateCashflow,
     GetOneCashflow,
     ReadEntireCashflow,
-    UpdateEntireCashflow
+    UpdateEntireCashflow,
+    CreateDefaultCashflow
 }
