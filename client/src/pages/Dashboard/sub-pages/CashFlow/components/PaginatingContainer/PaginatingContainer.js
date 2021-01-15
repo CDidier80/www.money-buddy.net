@@ -1,14 +1,21 @@
 import React from 'react'
+import MonthContainer from "../MonthContainer/MonthContainer"
 
 const PaginatingContainer = (props) => {
     
-    const {months} = props
+    const {newMonths} = props.fromCashflow
 
     return (
         <div>
-            {months.map((month, index) => {
+            {newMonths.map((month, index) => {
+                    const monthContainerProps = {
+                        thisMonth: month,
+                        monthIndex: index,
+                    }
+
                 return (
                     <MonthContainer 
+                        {...props}
                         fromPaginatingContainer={{...monthContainerProps}}
                     />
                 )
