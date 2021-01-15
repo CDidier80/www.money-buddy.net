@@ -11,15 +11,22 @@ const OutflowNumberCell = (props) => {
     const { 
         userMadeChanges, 
         toggleChanges, 
-        newCategories, 
-        setNewCategories,
         updateCashflow,
         tick
     } = props.fromCashflow
 
     const { 
-        categoryIndex, 
-        rowColor
+        monthlyOutflows, 
+        setMonthlyOutflows,
+        newFlowcategories,
+        setNewFlowcategories,
+    } = props.fromMonthContainer
+
+
+    const { 
+        rowIndex, 
+        rowColor,
+        flowcategory
     } = props.fromOutflowTable
 
     const { 
@@ -44,15 +51,15 @@ const OutflowNumberCell = (props) => {
     }, [defaultValue])
 
 
-    const updateNewCategories = (value) => {
+    const updatenewFlowcategories = (value) => {
         let numValue = parseInt(value)
         numValue = isAnnual ? numValue : Math.round(numValue * 12)
-        let categoriesArrayCopy = [...newCategories]
-        let categoryCopy = {...category}
-        categoryCopy["outflows"][categoryIndex]['amount'] = numValue
-        categoriesArrayCopy[categoryIndex] = categoryCopy
-        console.log("categoriesArrayCopy", categoriesArrayCopy)
-        setNewCategories(categoriesArrayCopy)
+        let flowcategoriesCopy = [...newFlowcategories]
+        let thisFlowcategoryCopy = {...flowcategory}
+        thisFlowcategoryCopy["outflows"][rowIndex]['amount'] = numValue
+        flowcategoriesCopy[rowIndex] = thisFlowcategoryCopy
+        console.log("flowcategoriesCopy", flowcategoriesCopy)
+        setNewFlowcategories(flowcategoriesCopy)
     }
 
 
@@ -61,7 +68,7 @@ const OutflowNumberCell = (props) => {
         e.preventDefault()
         document.activeElement.blur()
         // setCellHistory([...cellHistory, rawNumber])
-        updateNewCategories(rawNumber)
+        updatenewFlowcategories(rawNumber)
         updateText(formatToCurrency(rawNumber))
         if (!userMadeChanges) {
             toggleChanges(true)
@@ -74,7 +81,7 @@ const OutflowNumberCell = (props) => {
     const backgroundColor = {backgroundColor:rowColor}
 
     return (
-        <TableCell className={classes.cell}>
+        <TableCell>
             <form 
                 onSubmit={(e) => submit(e)} 
                 style={backgroundColor}
