@@ -5,6 +5,7 @@ import { CreateCategory }        from  "../../../../../Services/CategoryService"
 import { CreateExpense }         from  "../../../../../Services/ExpenseService"
 import { CreateEntireCashflow }  from  "../../../../../Services/CashflowService"
 
+
 const initUserAccount = async (email, password) => {
     try {
         const user = await CreateUser({ email, password })
