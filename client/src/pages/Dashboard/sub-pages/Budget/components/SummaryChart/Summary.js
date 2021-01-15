@@ -18,7 +18,7 @@ const Summary = (props) => {
     
     {/*  PROPS */}
     
-    const { totalExpenses, totalIncome } = props
+    const { totalExpenses, totalIncome } = props.fromBudget
     
     {/*  STATE */}
 
@@ -106,80 +106,83 @@ const Summary = (props) => {
     }
 
     return (
-        <div className="summary placeholder left">
-            <h3 className="widget-header distribution-header">Summary</h3>
-            <TableContainer 
-                className="tableContainer" 
-                component={Paper}
-            >
-                <Table 
-                    className={classes.table} 
-                    // size="small" 
-                    aria-label="a dense table"
+        <div className="budget-top-widgets left">
+            <div className="summary placeholder left">
+                <h3 className="widget-header distribution-header">Summary</h3>
+                <TableContainer 
+                    className="tableContainer" 
+                    component={Paper}
                 >
-                    <TableBody>
-                        <TableRow>
-
-                            <TableCell>
-                                <h5 className="summary-text">
-                                    Net Income
-                                </h5>
-                            </TableCell>
-                            <TableCell align="right">
-                                <h5>
-                                    {monthly ? moIncome : income}
-                                </h5>
-                            </TableCell>
-                        </TableRow>
-
-                        <TableRow>
-                            <TableCell>
-                                <h5 className="summary-text">
-                                    Net Expenses
-                                </h5>
-                            </TableCell>
-                            <TableCell align="right">
-                                <h5 className="summary-text">
-                                    {monthly ? moExpenses : expenses}
-                                    
-                                </h5>
-                            </TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>
-                                <h5 className="summary-text">
-                                    {saved ? "Net Savings" : "Net Loss"}
-                                </h5>
-                            </TableCell>
-                            <TableCell align="right">
-                                <h5 className={saved ? "savings-text" : "loss-text"}>
-                                    {monthly ? monthlySavingsOrLoss : savingsOrLoss}
-                                </h5>
-                            </TableCell>
-                        </TableRow>
-
-                    </TableBody>
-                </Table>
-            </TableContainer>
-
-                <ButtonGroup className={classes.buttonGroup} 
-                    variant="text" 
-                    color="primary" 
-                    aria-label="text primary button group"
-                >
-                    <Button 
-                        className={!monthly ? classes.activeButton : classes.inactiveButton}
-                        onClick={(e) => switchToAnnually(e)}
+                    <Table 
+                        className={classes.table} 
+                        // size="small" 
+                        aria-label="a dense table"
                     >
-                        Annual
-                    </Button>
-                    <Button 
-                        className={monthly ? classes.activeButton : classes.inactiveButton}
-                        onClick={(e) => switchToMonthly(e)}
+                        <TableBody>
+                            <TableRow>
+
+                                <TableCell>
+                                    <h5 className="summary-text">
+                                        Net Income
+                                    </h5>
+                                </TableCell>
+                                <TableCell align="right">
+                                    <h5>
+                                        {monthly ? moIncome : income}
+                                    </h5>
+                                </TableCell>
+                            </TableRow>
+
+                            <TableRow>
+                                <TableCell>
+                                    <h5 className="summary-text">
+                                        Net Expenses
+                                    </h5>
+                                </TableCell>
+                                <TableCell align="right">
+                                    <h5 className="summary-text">
+                                        {monthly ? moExpenses : expenses}
+                                        
+                                    </h5>
+                                </TableCell>
+                            </TableRow>
+                            <TableRow>
+                                <TableCell>
+                                    <h5 className="summary-text">
+                                        {saved ? "Net Savings" : "Net Loss"}
+                                    </h5>
+                                </TableCell>
+                                <TableCell align="right">
+                                    <h5 className={saved ? "savings-text" : "loss-text"}>
+                                        {monthly ? monthlySavingsOrLoss : savingsOrLoss}
+                                    </h5>
+                                </TableCell>
+                            </TableRow>
+
+                        </TableBody>
+                    </Table>
+                </TableContainer>
+
+                    <ButtonGroup className={classes.buttonGroup} 
+                        variant="text" 
+                        color="primary" 
+                        aria-label="text primary button group"
                     >
-                        Monthly
-                    </Button>
-                </ButtonGroup>
+                        <Button 
+                            className={!monthly ? classes.activeButton : classes.inactiveButton}
+                            onClick={(e) => switchToAnnually(e)}
+                        >
+                            Annual
+                        </Button>
+                        <Button 
+                            className={monthly ? classes.activeButton : classes.inactiveButton}
+                            onClick={(e) => switchToMonthly(e)}
+                        >
+                            Monthly
+                        </Button>
+                    </ButtonGroup>
+            </div>
+
         </div>
 
     )
