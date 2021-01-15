@@ -3,20 +3,16 @@ import { Doughnut } from 'react-chartjs-2'
 import { paletteFromTwoColors} from "./modules/colorsFunctions"
 
 
-
 const DoughnutChart = (props) => {
 
     {/* PROPS */}
-    const { categoryNames, categoryTotals } = props
+
+    const { categoryNames, categoryTotals } = props.fromBudget
 
 
     {/* STATE */}
 
     const [monthly, setMonthly] = useState(false)
-
-
-    {/* FUNCTIONS */}
-
 
     {/* VARIABLES */}
 
@@ -73,11 +69,7 @@ const DoughnutChart = (props) => {
         tooltips: {        
             callbacks: {
                 label:  (tooltipItem, data) => {
-                    // console.log("tooltipItem:", tooltipItem)
-                    // console.log("data:", data)
-
                     const { datasetIndex } = tooltipItem
-
                     const currentIndex = tooltipItem.index
                     const dollars = data.datasets[datasetIndex].data[currentIndex]
                     const currencyTooltip = dollars.toLocaleString('en-US', { 
@@ -95,10 +87,13 @@ const DoughnutChart = (props) => {
 
     
     return (
-        <Doughnut 
-            data={DATA}
-            options={options}
-        />
+        <div className="budget-top-widgets right">
+            <h3 className="widget-header distribution-header">Distribution of Spending</h3>
+            <Doughnut 
+                data={DATA}
+                options={options}
+            />
+        </div>
     )
 }
 
