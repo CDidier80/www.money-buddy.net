@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import SummaryTable from "./components/SummaryTable"
-import AccordionDropdownTab from "./componenets/AccordionDropdownTab"
-import { unconditionalStyles } from "./styles/unconditionalStyles"
 import { 
     makeStyles,
     Accordion,
@@ -54,7 +52,7 @@ const SummaryAccordion = (props) => {
     return (
         <div>
             <Accordion 
-                className={classes.accordion}
+                // className={classes.accordion}
                 onChange={(e)=>handleExpansion(e)}
             >
                 <AccordionDropdownTab opened={opened}/>
