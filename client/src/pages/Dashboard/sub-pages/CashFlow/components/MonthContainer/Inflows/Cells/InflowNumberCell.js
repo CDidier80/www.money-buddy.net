@@ -8,24 +8,28 @@ const InflowNumberCell = (props) => {
 
     {/*  PROPS  */}
 
-    // const { 
-    //     userMadeChanges, 
-    //     toggleChanges, 
-    //     newinflows, 
-    //     setNewinflows,
-    //     updateBudget,
-    //     tick
-    // } = props.fromBudget
+    const { 
+        userMadeChanges, 
+        toggleChanges, 
+        updateCashflow,
+        tick
+    } = props.fromCashflow
 
-    // const { 
-    //     arrayIndex, 
-    //     rowColor
-    // } = props.frominflowTable
+    const { 
+        monthlyInflows, 
+        setMonthlyInflows,
+    } = props.fromMonthContainer
 
-    // const { 
-    //     isAnnual, 
-    //     defaultValue
-    // } = props.frominflowRow
+
+    const { 
+        arrayIndex, 
+        rowColor
+    } = props.fromInflowTable
+
+    const { 
+        isAnnual, 
+        defaultValue
+    } = props.fromInflowRow
 
 
     {/*  STATE  */}
@@ -61,11 +65,11 @@ const InflowNumberCell = (props) => {
     const updateInflows = (value) => {
         let numValue = parseInt(value)
         numValue = isAnnual ? numValue : Math.round(numValue * 12)
-        let replacementArray = [...newInflows]
-        let inflowObject = newInflows[arrayIndex]
+        let replacementArray = [...monthlyInflows]
+        let inflowObject = monthlyInflows[arrayIndex]
         inflowObject.amount = numValue
         replacementArray[arrayIndex] = inflowObject
-        setNewinflows(replacementArray)
+        setMonthlyInflows(replacementArray)
     }
 
 

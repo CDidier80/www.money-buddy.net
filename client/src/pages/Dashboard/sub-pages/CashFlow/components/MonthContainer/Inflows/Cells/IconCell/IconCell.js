@@ -1,6 +1,6 @@
 import React from 'react'
 import DeleteInflowIcon from "./components/DeleteInflowIcon"
-import UndoIconButton from "./components/DeleteInflowIcon"
+import UndoIconButton from "./components/UndoIconButton"
 
 import { 
     makeStyles, 
@@ -9,6 +9,12 @@ import {
 
 
 const IconCell = (props) => {
+
+    const { 
+        iconShouldShow, 
+        showInflowDeleteIcons 
+    } = props.fromInflowRow
+
 
     const useStyles = makeStyles({
         iconCell: {
@@ -25,7 +31,7 @@ const IconCell = (props) => {
             className={classes.iconCell}
             style={{width: "30px"}}
         >
-            {iconShouldShow && ( showIncomeDeleteIcons ? 
+            {iconShouldShow && ( showInflowDeleteIcons ? 
                 <DeleteInflowIcon {...props} />
                 :
                 <UndoIconButton 
