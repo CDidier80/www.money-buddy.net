@@ -9,8 +9,8 @@ const {
 console.log("FLOWCATEGORY ROUTER CONNECTED")
 
 Router.post('/create',     CreateFlowcategory)
-// Router.post('/createmany', CreateManyFlowcategories)
 Router.get('/getone',      GetFlowcategory)
 Router.get('/getmany',     GetFlowcategories)
+// Router.post('/createmany', CreateManyFlowcategories)
 
 module.exports = Router
