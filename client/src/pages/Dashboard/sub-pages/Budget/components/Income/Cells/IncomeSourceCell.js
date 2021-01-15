@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core'
 
 const IncomeSourceCell = (props) => {
-    console.log("alfjkldajklf", props)
 
     {/*  PROPS  */}
 
