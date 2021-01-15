@@ -10,7 +10,7 @@ const SavePageButton = (props) => {
     const {
         setIncomes,
         setCategories,
-        sendBudgetToDB,
+
         budgetId,
         setBudgetId
     } = props.budgetHooks
