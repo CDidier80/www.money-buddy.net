@@ -7,13 +7,19 @@ import blueGrey from '@material-ui/core/colors/blueGrey';
 
 const NavBar = (props) => {
 
+    { /* PROPS */}
+
     const { 
         narrow, 
         setSidebarNarrowed,
         ticker,
         setTicker
-    } = props
+    } = props.fromDashboard
 
+
+
+    { /* FUNCTIONS */}
+    
     const logOut = (e) => {
         props.setAuth(false)
         props.setUserInfo(null)
