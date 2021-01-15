@@ -4,7 +4,7 @@ import {
     Typography, 
     AccordionSummary, 
     makeStyles 
-} from '@material-ui/core'
+} from '@material-ui/core/'
 
 
 
