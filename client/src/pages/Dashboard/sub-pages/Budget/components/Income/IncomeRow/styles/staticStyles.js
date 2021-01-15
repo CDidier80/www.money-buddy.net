@@ -1,4 +1,4 @@
-export const unconditionalStyles = {
+export const staticStyles = {
     iconCell: {
         maxWidth: "36px",
         padding: "0px"
