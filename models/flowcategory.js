@@ -3,28 +3,28 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Category extends Model {
+  class Flowcategory extends Model {
     static associate(models) {
-      Category.belongsTo(models.Budget, {
-        foreignKey: 'budget_id',
-        as: 'budget',
+      Flowcategory.belongsTo(models.Month, {
+        foreignKey: 'month_id',
+        as: 'months',
         constraints: true,
-      }),
-      Category.hasMany(models.Expense, {
-        foreignKey: 'category_id',
+      }),  
+      Flowcategory.hasMany(models.Outflow, {
+        foreignKey: 'flowcategory_id',
         as: 'category_of_expense',
       })
     }
   };
-  Category.init({
-    budgetId: {
+  Flowcategory.init({
+    monthId: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: 'budget_id',
+      field: 'month_id',
       onDelete: 'cascade',
-      constraints: true,
+      // constraints: true,
       references: {
-        model: 'budgets',
+        model: 'months',
         key: 'id'
       }
     },
@@ -32,11 +32,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
       }
-    }, 
-    {
+  }, 
+  {
     sequelize,
-    modelName: "Category",
-    tableName: 'categories',
+    modelName: 'Flowcategory',
+    tableName: 'flowcategories'
   });
-  return Category;
+  return Flowcategory;
 };

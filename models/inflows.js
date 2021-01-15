@@ -3,24 +3,24 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Income extends Model {
+  class Inflow extends Model {
     static associate(models) {
-      Income.belongsTo(models.Budget, {
-        foreignKey: 'budget_id',
-        as: 'budget',
+      Inflow.belongsTo(models.Month, {
+        foreignKey: 'month_id',
+        as: 'months',
         constraints: true,
       })
     }
   };
-  Income.init({
-    budgetId: {
+  Inflow.init({
+    monthId: {
       type: DataTypes.INTEGER,
-      allowNull: false,   
-      field: 'budget_id',
+      allowNull: true,   // changed to true in case income is owned by Month instead for cashflow
+      field: 'month_id',
       onDelete: 'cascade',
-      constraints: true,
+      // constraints: true,
       references: {
-        model: 'budgets',
+        model: 'months',
         key: 'id'
       }
     },
@@ -30,12 +30,13 @@ module.exports = (sequelize, DataTypes) => {
     },
     amount: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: false
     },
-  }, {
+  }, 
+  {
     sequelize,
-    modelName: 'Income',
-    tableName: 'incomes',
+    modelName: 'Inflow',
+    tableName: 'inflows'
   });
-  return Income;
+  return Inflow;
 };
