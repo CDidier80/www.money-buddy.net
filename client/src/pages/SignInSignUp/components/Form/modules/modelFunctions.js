@@ -1,9 +1,9 @@
-import { CreateUser }        from  "../../../../../Services/UserService"
-import { CreateBudget }      from  "../../../../../Services/BudgetService"
-import { CreateIncome }      from  "../../../../../Services/IncomeService"
-import { CreateCategory }    from  "../../../../../Services/CategoryService"
-import { CreateExpense }     from  "../../../../../Services/ExpenseService"
-import defaultCategories from  "./defaultCategories"
+import { CreateUser }            from  "../../../../../Services/UserService"
+import { CreateBudget }          from  "../../../../../Services/BudgetService"
+import { CreateIncome }          from  "../../../../../Services/IncomeService"
+import { CreateCategory }        from  "../../../../../Services/CategoryService"
+import { CreateExpense }         from  "../../../../../Services/ExpenseService"
+import { CreateEntireCashflow }  from  "../../../../../Services/CashflowService"
 
 const initUserAccount = async (email, password) => {
     try {
@@ -62,11 +62,15 @@ const initCategoriesAndExpenses = async (budgetId, defaultCategories) => {
 }
 
 
+
+
+
 const initializeAccount = async (email, password) => {
     const [user, userId] = await initUserAccount(email, password)
     const budgetId = await initBudget(userId)
     await CreateIncome({budgetId, source: "Job", amount: 0})
     await initCategoriesAndExpenses(budgetId, defaultCategories)
+    await CreateEntireCashflow({userId:userId})
     return user
 }
 
