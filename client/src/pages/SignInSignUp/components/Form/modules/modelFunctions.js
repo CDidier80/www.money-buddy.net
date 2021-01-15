@@ -4,6 +4,7 @@ import { CreateIncome }          from  "../../../../../Services/IncomeService"
 import { CreateCategory }        from  "../../../../../Services/CategoryService"
 import { CreateExpense }         from  "../../../../../Services/ExpenseService"
 import { CreateEntireCashflow }  from  "../../../../../Services/CashflowService"
+import { defaultCategories }     from  "../../../../../exports/defaultCategories"
 
 
 const initUserAccount = async (email, password) => {
