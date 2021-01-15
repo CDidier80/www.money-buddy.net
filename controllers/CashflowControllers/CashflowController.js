@@ -33,7 +33,6 @@ const CreateCashflow = async (req, res) => {
 const CreateDefaultCashflow = async (req, res) => {
     log(CreateDefaultCashflow, req)
     try {
-
         const cashflow = await Cashflow.create(req.body,{
             query: { raw:true}
         })
@@ -129,6 +128,7 @@ const GetOneCashflow = async (req, res) => {
 const ReadEntireCashflow = async (req, res) => {
     log(ReadEntireCashflow, req)
     try {
+        const { userId } = req.body
         const entireCashflow = await Cashflow.findOne({
             where: {
                 user_id: userId
@@ -145,11 +145,11 @@ const ReadEntireCashflow = async (req, res) => {
                         },
                         {
                             model: Flowcategory,
-                            as: "categories",
+                            as: "flowcategories",
                             attributes: [ "id", "name" ],
                             include: [{
                                 model : Outflow,
-                                as: "outflow",
+                                as: "outflows",
                                 attributes: [ "id", "outflow", "amount" ]
                             }]
                         }, 
