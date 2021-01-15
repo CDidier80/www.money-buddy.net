@@ -4,7 +4,7 @@ import {
     insertionSort, 
     findGapInNumbers 
 } from "../../../../../../universal-functions/sortingFunctions"
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Button } from '@material-ui/core/'
 
 const AddButton = (props) => {
 
