@@ -6,6 +6,8 @@ import InflowsAccordion from "./Inflows/InflowAccordion/InflowsAccordion"
 
 const MonthContainer = (props) => {
 
+    /* -------------------------- PROPS ------------------------- */
+
     const { monthIndex, thisMonth } = props.fromPaginatingContainer
     const { 
         monthId,
@@ -15,45 +17,69 @@ const MonthContainer = (props) => {
         inflows
     } = thisMonth
 
-    const { outflows } = flowcategories
+    /* -------------------------- STATE ------------------------- */
 
+    const [newFlowcategories, setNewFlowcategories] = useState("")
+    const [monthlyInflows, setMonthlyInflows] = useState("")
+    const [totalOutflow, setTotalOutflow] = useState("")
+    const [totalInflow, setTotalInflow] = useState("")
+    const [loaded, setLoaded] = useState(false)
 
+    
 
-    const [newFlowcategories, setNewFlowcategories] = useState(null)
-    const [monthlyInflows, setMonthlyInflows] = useState(0)
-    const [monthlyOutflows, setMonthlyOutflows] = useState(0)
-    const [totalOutflow, setTotalOutflow] = useState(0)
-    const [totalInflow, setTotalInflow] = useState(0)
+    /* -------------------------- useEffects ------------------------- */
 
-    // initialize copies of inflows, outflows, flowcategories on first render
+             /* useEffect #1: -- init local copies of cashflow info -- */
+
+    const dependencyArray = [
+        newFlowcategories, 
+        monthlyInflows, 
+        totalOutflow,
+        totalInflow,
+    ]
+
     useEffect(() => {
-        console.log("Initial-load Cashflow useEffect --> categories, inflows")
-
         const newTotalOutflow =  initTotalOutflow(flowcategories)
         const newTotalInflow =  initTotalInflow(inflows)
         setMonthlyInflows(inflows)
-        setMonthlyOutflows(outflows)
         setTotalInflow(newTotalInflow)
         setTotalOutflow(newTotalOutflow)
         setNewFlowcategories(flowcategories)
     }, [])
 
 
-    // Recalculate totals when outflows/inflows change
-    useEffect(() => {
-        console.log("Recalculate totals MonthContainer useEffect")
+             /* useEffect #2: -- recalculate totals on outflow/inflow changes -- */
 
-        const newTotalOutflow =  initTotalOutflow(monthlyOutflows)
-        const newTotalInflow =  initTotalInflow(monthlyInflows)
-        setTotalInflow(newTotalInflow)
-        setTotalOutflow(newTotalOutflow)
-        setNewFlowcategories(newFlowcategories)
-    }, [
+    useEffect(() => {
+        if (!dependencyArray.includes("")){
+            const newTotalInflow =  initTotalInflow(monthlyInflows)
+            const newTotalOutflow =  initTotalOutflow(newFlowcategories)
+            setTotalInflow(newTotalInflow)
+            setTotalOutflow(newTotalOutflow)
+            setNewFlowcategories(newFlowcategories)
+        }
+    },
+    [
         monthlyInflows, 
-        monthlyOutflows, 
         newFlowcategories
     ])
 
+
+            /* useEffect #3: --- ensure all state set before rendering children --- */
+
+    useEffect(() => {
+        let childrenShouldRender = true
+        dependencyArray.forEach((state) => {
+            if (state === "") {
+                childrenShouldRender = false
+            }
+        })
+        setLoaded(childrenShouldRender ? true : false)
+    }, [...dependencyArray])
+
+
+
+    /* --------------------- PROPS FOR CHILDREN --------------------- */
 
     const summaryAccordionProps = {
         totalOutflow,
@@ -68,14 +94,15 @@ const MonthContainer = (props) => {
 
     const outflowsAccordionProps = {
         setTotalOutflow,
-        setMonthlyOutflows,
-        monthlyOutflows,
         newFlowcategories,
         setNewFlowcategories
     }
 
-    return (
-        <div>
+
+    return ( !loaded ? <div></div> :
+        <div 
+            className="month-container"
+        >
             <SummaryAccordion 
                 {...props}
                 fromMonthContainer={{...summaryAccordionProps}}
