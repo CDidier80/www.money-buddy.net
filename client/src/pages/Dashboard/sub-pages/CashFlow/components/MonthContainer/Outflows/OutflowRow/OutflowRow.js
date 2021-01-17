@@ -13,10 +13,10 @@ const OutflowRow = (props) => {
 
     const {
         showOutflowDeleteIcons
-    } = props.fromCategoryAccordion
+    } = props.fromFlowcategoryAccordion
 
     const {
-        categoryIndex
+        flowcategoryIndex
     } = props.fromOutflowsAccordion
 
     const {
@@ -26,7 +26,7 @@ const OutflowRow = (props) => {
         incomingDeletion, 
         setIncomingDeletion,
         rowColor
-    } = props.fromOutflowTable
+    } = props.fromOutflowsTable
 
 
     {/*  STATE  */}
