@@ -1,20 +1,23 @@
 import React from 'react'
 import MonthContainer from "../MonthContainer/MonthContainer"
+import "./styles/paginator.css"
 
 const PaginatingContainer = (props) => {
     
-    const {newMonths} = props.fromCashflow
+    console.log(props)
+    const { newMonths } = props.fromCashflow
 
     return (
-        <div>
+        <div className="paginating-container">
             {newMonths.map((month, index) => {
                     const monthContainerProps = {
                         thisMonth: month,
                         monthIndex: index,
                     }
-
                 return (
                     <MonthContainer 
+                        className="month-container"
+                        key={`ABC${index}`}
                         {...props}
                         fromPaginatingContainer={{...monthContainerProps}}
                     />
@@ -25,3 +28,4 @@ const PaginatingContainer = (props) => {
 }
 
 export default PaginatingContainer
+
