@@ -1,67 +1,98 @@
 import React, { useState, useEffect } from 'react';
 import { useSnackbar, withSnackbar } from 'notistack';
 import PaginatingContainer from "./components/PaginatingContainer/PaginatingContainer"
-import SavePageButton from './components/SavePageButton';
+import CashflowHeader from './components/PageHeader/CashflowHeader';
 import "./styles/CashFlow.css"
 
 const Cashflow = (props) => {
 
-    {/*  PROPS */}
+    /* -------------------------- PROPS ------------------------- */
 
-    const { 
-        months,
-        inflows
-    } = props.fromDashboard
+    const { months } = props.fromDashboard
+    /* -------------------------- STATE ------------------------- */
 
-    console.log(props)
-    {/*  STATE  */}
-
-    // const [cashflowLoaded, setCashflowLoaded] = useState(false)
-    // const [tick, updateCashflow] = useState(0)
-    // const [userMadeChanges, toggleChanges] = useState(false)
-    // const [newInflows, setNewInflows] = useState([])
-    // const [newMonths, setNewMonths] = useState([])
-
-    const [cashflowLoaded, setCashflowLoaded] = useState(null)
+    const [cashflowLoaded, setCashflowLoaded] = useState(false)
     const [tick, updateCashflow] = useState(0)
     const [userMadeChanges, toggleChanges] = useState(null)
-    const [newMonths, setNewMonths] = useState(null)
+    const [newMonths, setNewMonths] = useState("")
 
     
-    {/*  useEffects  */}
+    /* ------------------------ useEffects ----------------------- */
 
-    // initial page load where state is set by dashboard Cashflow data
-    // useEffect(() => {
-    //     console.log("Initial-load Cashflow useEffect --> categories, inflows")
-    //     setNewInflows(inflows)
-    //     setNewMonths(months)
-    //     setCashflowLoaded(true)
-    // }, [inflows, months])
-
-
-    // useEffect(() => {
-    //     console.log("Initial-load Cashflow useEffect --> categories, inflows")
-    //     // setNewInflows(inflows)
-    //     // setNewMonths(months)
-    //     // setCashflowLoaded(true)
-    // }, [newInflows, newMonths])
+    useEffect(() => {
+        console.log("useEffect 1")
+        // console.log("Initial-load Cashflow useEffect --> categories, inflows")
+        const orderedMonths = orderMonths(months)
+        console.log("orderedMonths:",orderedMonths)
+        setNewMonths(orderedMonths)
+    }, [])
 
 
     useEffect(() => {
-        console.log("Initial-load Cashflow useEffect --> categories, inflows")
-        setNewMonths(months)
-        setCashflowLoaded(true)
-    }, [inflows, months])
-
-
-    useEffect(() => {
-        console.log("Initial-load Cashflow useEffect --> categories, inflows")
-        // setNewInflows(inflows)
-        // setNewMonths(months)
-        // setCashflowLoaded(true)
+        console.log("useEffect 2")
+        if (newMonths === ""){
+            console.log(newMonths)
+            console.log("newMonths still undefined ")
+        } else {
+            console.log("newMonths is updated with state")
+            console.log(newMonths)
+        }
+        setCashflowLoaded(newMonths === "" ? false : true)
     }, [newMonths])
 
-    {/*  PROPS OBJECTS  */}
+
+
+    /* ------------------------- FUNCTIONS ----------------------- */
+
+    let defaultMonths = {
+        "January" : 0,
+        "February" : 1,
+        "March" : 2,
+        "April" : 3,
+        "May" : 4,
+        "June" : 5,
+        "July" : 6, 
+        "August" : 7, 
+        "September" : 8,
+        "October" : 9,
+        "November" : 10, 
+        "December" : 11,
+    }
+
+    const orderMonths = (months) => {
+        const today = new Date()
+        const thisYear = today.getFullYear()
+
+        let thisYearMonths = []
+        let nextYearMonths = []
+        months.forEach(month => {
+            const { year } = month
+            if (year === thisYear) {
+                thisYearMonths.push(month)
+            } else {
+                nextYearMonths.push(month)
+            }
+        })
+        let sortedThisYearMonths = new Array(thisYearMonths.length)
+        let sortedNextYearMonths = new Array(nextYearMonths.length)
+        const indexAdjustment = 12 - thisYearMonths.length 
+
+        thisYearMonths.forEach(month => {
+            const {month: monthName} = month
+            const insertIndex = defaultMonths[monthName] - indexAdjustment
+            sortedThisYearMonths[insertIndex] = month
+        })
+        nextYearMonths.forEach(month => {
+            const {month: monthName} = month
+            const insertIndex = defaultMonths[monthName]
+            sortedNextYearMonths[insertIndex] = month
+        })
+        const sortedMonths = [...sortedThisYearMonths, ...sortedNextYearMonths]
+        return sortedMonths
+    }
+
+
+    /* -------------------- PROPS FOR CHILDREN ------------------ */
 
     const paginatingContainerProps = { 
         newMonths,
@@ -76,16 +107,10 @@ const Cashflow = (props) => {
     return ( !cashflowLoaded ? <div></div> :
 
         <div className="cashflow">
-            <div className="header-and-button-wrapper">
-                <div className="page-header-wrapper">
-                    <h1 className="page-header">CASH FLOWS</h1>
-                </div>
-                {userMadeChanges && 
-                    <SavePageButton 
-                        {...props}
-                    />
-                }
-            </div>
+            <CashflowHeader 
+                {...props}
+                fromCashflow={{...userMadeChanges}}
+            />
             {/* <Graph /> */}
             <PaginatingContainer 
                 {...props}
