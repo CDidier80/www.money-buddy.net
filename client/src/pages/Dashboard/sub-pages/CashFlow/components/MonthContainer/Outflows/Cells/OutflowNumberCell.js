@@ -27,7 +27,7 @@ const OutflowNumberCell = (props) => {
         rowIndex, 
         rowColor,
         flowcategory
-    } = props.fromOutflowTable
+    } = props.fromOutflowsTable
 
     const { 
         isAnnual, 
@@ -51,7 +51,7 @@ const OutflowNumberCell = (props) => {
     }, [defaultValue])
 
 
-    const updatenewFlowcategories = (value) => {
+    const updateNewFlowcategories = (value) => {
         let numValue = parseInt(value)
         numValue = isAnnual ? numValue : Math.round(numValue * 12)
         let flowcategoriesCopy = [...newFlowcategories]
@@ -68,7 +68,7 @@ const OutflowNumberCell = (props) => {
         e.preventDefault()
         document.activeElement.blur()
         // setCellHistory([...cellHistory, rawNumber])
-        updatenewFlowcategories(rawNumber)
+        updateNewFlowcategories(rawNumber)
         updateText(formatToCurrency(rawNumber))
         if (!userMadeChanges) {
             toggleChanges(true)

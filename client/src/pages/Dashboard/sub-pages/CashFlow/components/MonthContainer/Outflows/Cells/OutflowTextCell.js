@@ -7,12 +7,13 @@ const InflowTextCell = (props) => {
 
     {/*  PROPS  */}
 
-    const { 
-        toggleChanges, 
-        userMadeChanges,
+    const {
+        updateCashflow, 
         tick,
-        updateCashflow,
+        userMadeChanges, 
+        toggleChanges, 
     } = props.fromCashflow
+
 
     const {
         defaultValue,
@@ -26,13 +27,13 @@ const InflowTextCell = (props) => {
 
     const {
         flowcategoryIndex
-    } = props.fromOutflowAccordion
+    } = props.fromOutflowsAccordion
 
     const {
         flowcategory,
         rowIndex, 
         rowColor,
-    } = props.fromOutflowTable
+    } = props.fromOutflowsTable
 
 
     {/*  STATE  */}
