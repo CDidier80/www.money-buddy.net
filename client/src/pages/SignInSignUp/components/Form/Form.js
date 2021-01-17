@@ -22,7 +22,7 @@ const {signup, signin} = require("./modules/formFunctions")
 
 const Form = (props) => {
 
-    const { setUserInfo, setAuth } = props
+    const { setUserInfo, setAuth } = props.fromApp
 
     const promptOne = "Already have an account?  Sign in"
     const promptTwo = "Don't have an account?  Sign up" 
