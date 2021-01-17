@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Inflow.belongsTo(models.Month, {
         foreignKey: 'month_id',
-        as: 'months',
+        as: 'inflows',
         constraints: true,
       })
     }

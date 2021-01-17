@@ -30,6 +30,13 @@ const App = (props) => {
       }
   }
 
+    const propsForRoutes = {
+      authenticated, 
+      userInfo,
+      setAuth,
+      setUserInfo
+    }
+
     // console.log("App.js RENDERED. CURRENT AUTH: ", authenticated)
     return (
       <SnackbarProvider 
@@ -43,10 +50,7 @@ const App = (props) => {
                       component={ (props) => (
                           <LandingPage 
                               {...props} 
-                              authenticated={authenticated} 
-                              userInfo={userInfo} 
-                              setAuth={setAuth} 
-                              setUserInfo={setUserInfo}
+                              fromApp={{...propsForRoutes}}
                           />
                       )}
                   />
@@ -54,10 +58,7 @@ const App = (props) => {
                       component={ (props) => ( 
                           <SignInSignUpPage         
                               {...props}  
-                              setAuth={setAuth}
-                              authenticated={authenticated} 
-                              userInfo={userInfo} 
-                              setUserInfo={setUserInfo}
+                              fromApp={{...propsForRoutes}}
                               
                           />
                       )}
@@ -66,10 +67,7 @@ const App = (props) => {
                       component={ (props) => ( 
                           <Dashboard         
                               {...props}  
-                              authenticated={authenticated} 
-                              userInfo={userInfo} 
-                              setUserInfo={setUserInfo}
-                              setAuth={setAuth}
+                              fromApp={{...propsForRoutes}}
                           />
                       )}
                   />  

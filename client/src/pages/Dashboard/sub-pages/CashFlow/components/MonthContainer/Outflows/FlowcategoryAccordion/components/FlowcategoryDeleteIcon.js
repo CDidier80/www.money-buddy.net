@@ -15,18 +15,18 @@ const useStyles = makeStyles({
     }
 })
 
-const CategoryDeleteIcon = (props) => {
+const FlowcategoryDeleteIcon = (props) => {
 
     const {
-        toggleCategoryDeletePopup,
-        showCategoryDeletePopup
-    } =  props.fromCategoryAccordion
+        toggleFlowcategoryDeletePopup,
+        showFlowcategoryDeletePopup
+    } =  props.fromFlowcategoryAccordion
     
     const classes = useStyles()
 
     const handleDeleteIcon = (e) => {
         e.preventDefault()
-        toggleCategoryDeletePopup(!showCategoryDeletePopup)
+        toggleFlowcategoryDeletePopup(!showFlowcategoryDeletePopup)
     }
 
     return (
@@ -42,4 +42,4 @@ const CategoryDeleteIcon = (props) => {
     )
 }
 
-export default CategoryDeleteIcon
+export default FlowcategoryDeleteIcon

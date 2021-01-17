@@ -14,69 +14,87 @@ import "./styles/dashboard.css"
 
 const Dashboard = (props) => {
 
-    {/*  PROPS  */}
+    /* -------------------------- PROPS ------------------------- */
 
-    const { id: userId } = props.userInfo
+    // console.log(props)
+    const { userInfo, authenticated } = props.fromApp
+    const { id: userId } = userInfo
 
 
-    {/*  STATE  */}
+     /* -------------------------- STATE ------------------------- */
 
-    {/* ---------------------------------------- user info in state*/}
+            /*  state:  ------------ financial info in state -----------*/
+
     const [budgetId, setBudgetId] = useState(null)
     const [cashflowId, setCashflowId] = useState(null)
-    const [incomes, setIncomes] = useState([])
-    const [categories, setCategories] = useState([])
-    const [inflows, setInflows] = useState([])
-    const [flowcategories, setFlowcategories] = useState([]) 
+    const [incomes, setIncomes] = useState(null)
+    const [categories, setCategories] = useState(null)
+    const [months, setMonths] = useState(null)
 
-    {/* ----------------------------------- rendering & ui control */}
+            /*  state:  ------------ rendering & ui control ---------- */
+
     const [narrow, setSidebarNarrowed] = useState(false)
     const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
     
 
 
-    {/*  useEffects  */}
+    /* -------------------------- useEffects ------------------------- */
+
+             /* useEffect #1: ----- async calls for first render ----- */
 
     useEffect(() => {
-        if (!props.authenticated) {
+
+        console.log("dashboard useEffect")
+        if (!authenticated) {
             props.history.push("/")
         }
-
-        {/* -------------- api/database calls for first page render*/}
         const initializeDashboard = async () => {
             const budget = await ReadEntireBudget({ userId: userId }, null)
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
-            const { budgetId: b, incomes: i, categories: c } = budget
-            const { cashflowId: cf, inflows: inf, categories: cfCategories } = cashflow
+            const { 
+                budgetId: b, 
+                incomes: i, 
+                categories: c 
+            } = budget
+            const { 
+                id: cashflowId, 
+                months: m
+            } = cashflow
             setIncomes(i)
             setCategories(c)
+            setMonths(m)
+            setCashflowId(cashflowId)
             setBudgetId(b)
-            setCashflowId(cf)
-            setInflows(inf)
-            setFlowcategories(cfCategories)
-            // console.log("Log of state in async call: ")
-            // console.log(budgetId, incomes, categories)
         }
         initializeDashboard()
-        // console.log("END OF DASHBOARD useEffect #1: budgetId, incomes, categories: ")
-        // console.log(budgetId, incomes, categories)
+
     }, [])
 
 
-    {/* -- ensure all database info initialized before children render*/}
+            /* useEffect #2: --- ensure all state set before rendering children --- */
+
+    const renderDependencies = [
+        budgetId, 
+        cashflowId, 
+        incomes,
+        categories,
+        months,
+    ]
+
     useEffect(() => {
-        if(budgetId && cashflowId) {
-            // console.log("Dashboard.js useEffect 2 detected all state loaded")
-            setLoaded(true)
-        }
-        // console.log("END OF DASHBOARD useEffect #2: budgetId, incomes, categories: ")
-        // console.log(budgetId, incomes, categories)
-    }, [budgetId, cashflowId])
+        let childrenShouldRender = true
+        renderDependencies.forEach((state) => {
+            if (state == null) {
+                childrenShouldRender = false
+            }
+        })
+        setLoaded(childrenShouldRender ? true : false)
+    }, [...renderDependencies])
 
-    
 
-    {/*  PROPS OBJECTS  */}
+
+    /* --------------------- PROPS FOR CHILDREN --------------------- */
 
     const propsNavbar = {
         narrow,
@@ -97,10 +115,8 @@ const Dashboard = (props) => {
     const cashflowProps = {
         cashflowId,
         setCashflowId,
-        inflows,
-        setInflows,
-        flowcategories,
-        setFlowcategories,
+        months,
+        setMonths
     }
 
 

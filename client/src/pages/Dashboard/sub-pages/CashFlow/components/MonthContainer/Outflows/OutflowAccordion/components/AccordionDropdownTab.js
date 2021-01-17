@@ -18,13 +18,13 @@ const AccordionDropdownTab = (props) => {
             paddingLeft: "27px",
             fontSize: "16px",
             fontFamily: "Lato, sans-serif",
-            color: "black",
+            color: "#e6a824",
             textShadow: `
                 0 0 1px lightgray;
             `
         },
         expandMoreIcon : {
-            color:"#22c1c3",
+            color: "#e6a824",
             fontSize: "18px",
             paddingLeft: "0"
         }
@@ -45,7 +45,7 @@ const AccordionDropdownTab = (props) => {
             <Typography 
                 className={classes.heading}
             >
-                {props.month}
+                Outflows
             </Typography>
         </AccordionSummary>
     )

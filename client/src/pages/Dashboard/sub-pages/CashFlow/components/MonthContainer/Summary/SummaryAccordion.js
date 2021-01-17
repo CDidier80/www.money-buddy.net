@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import SummaryTable from "./components/SummaryTable"
-import AccordionDropdownTab from "./componenets/AccordionDropdownTab"
-import { unconditionalStyles } from "./styles/unconditionalStyles"
 import { 
     makeStyles,
     Accordion,
@@ -13,10 +11,11 @@ import {
 
 const SummaryAccordion = (props) => {
 
-    {/*  PROPS */}
+    /* -------------------------- PROPS ------------------------- */
+    // console.log("props:", props)
+    const {thisMonth} = props.fromPaginatingContainer
 
-
-    {/*  STATE  */}
+    /* -------------------------- STATE ------------------------- */
     // const [showAddCategoryPanel, toggleAddCategoryPanel] = useState(false)
     // const [showDeleteIcons, toggleDeleteIcons] = useState(false)
     const [opened, toggleOpened] = useState(false)
@@ -38,18 +37,21 @@ const SummaryAccordion = (props) => {
     }
 
 
-    // const useStyles = makeStyles({
-    //     ...unconditionalStyles, 
-    //     deleteButton: {
-    //         fontSize: "9px",
-    //         fontWeight: "700",
-    //         fontFamily: "Lato, sans-serif",
-    //         color: showDeleteIcons ? "#22c1c3" : "#e6a824",
-    //         padding: "0 5px 0 5px"
-    //     },
-    // })
+    const useStyles = makeStyles({
+        // ...unconditionalStyles, 
+        // deleteButton: {
+        //     fontSize: "9px",
+        //     fontWeight: "700",
+        //     fontFamily: "Lato, sans-serif",
+        //     color: showDeleteIcons ? "#22c1c3" : "#e6a824",
+        //     padding: "0 5px 0 5px"
+        // },
+        accordion: {
+            marginBottom: "4px",
+        }
+    })
 
-    // const classes = useStyles()
+    const classes = useStyles()
 
     return (
         <div>
@@ -57,7 +59,10 @@ const SummaryAccordion = (props) => {
                 className={classes.accordion}
                 onChange={(e)=>handleExpansion(e)}
             >
-                <AccordionDropdownTab opened={opened}/>
+                <AccordionDropdownTab 
+                    opened={opened}
+                    month={thisMonth.month}
+                />
                 <SummaryTable {...props} />
             </Accordion>
         </div>

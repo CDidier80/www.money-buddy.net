@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import CategoryDeletePopup from "../CategoryPopups/CategoryDeletePopup"
+import CategoryDeletePopup from "../FlowcategoryPopups/FlowcategoryDeletePopup"
 import OutflowsTable from "../OutflowsTable/OutflowsTable"
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import {styles} from "./styles/useStyles"
@@ -12,13 +12,13 @@ import ButtonsAddDel from './components/ButtonsAddDel';
 
 
 
-const CategoryAccordion = (props) => {
+const FlowcategoryAccordion = (props) => {
 
     {/*  STATE */}
 
     const [lengthOfOutflows, setOuflowsLength] = useState(0)
     const [render,rerenderOutflowCategory] = useState(false)
-    const [showCategoryDeletePopup, toggleCategoryDeletePopup ]= useState(false)
+    const [showFlowcategoryDeletePopup, toggleFlowcategoryDeletePopup ]= useState(false)
     const [showOutflowDeleteIcons, toggleOutflowDeleteIcons] = useState(false)
 
     {/* FUNCTIONS */}
@@ -32,9 +32,9 @@ const CategoryAccordion = (props) => {
 
 
     const categoryDeletePopupProps = {
-        showCategoryDeletePopup,
+        showFlowcategoryDeletePopup,
         rerenderOutflowCategory,
-        toggleCategoryDeletePopup,
+        toggleFlowcategoryDeletePopup,
         render
     }
 
@@ -46,8 +46,8 @@ const CategoryAccordion = (props) => {
     }
 
     const accordionDropdownTabProps = {
-        showCategoryDeletePopup, 
-        toggleCategoryDeletePopup
+        showFlowcategoryDeletePopup, 
+        toggleFlowcategoryDeletePopup
     }
 
     const outflowsTableProps = {
@@ -59,24 +59,24 @@ const CategoryAccordion = (props) => {
     return (
         <AccordionDetails>
             <div className={classes.categoryWrapper}>
-                {showCategoryDeletePopup && 
+                {showFlowcategoryDeletePopup && 
                     <CategoryDeletePopup 
                         {...props}
-                        fromCategoryAccordion={{...categoryDeletePopupProps}}
+                        fromFlowcategoryAccordion={{...categoryDeletePopupProps}}
                     />
                 }
                 <Accordion className={classes.accordion}>
                     <AccordionDropdownTab 
                         {...props}
-                        fromCategoryAccordion={{...accordionDropdownTabProps}}
+                        fromFlowcategoryAccordion={{...accordionDropdownTabProps}}
                     />
                     <ButtonsAddDel 
                         {...props}
-                        fromCategoryAccordion={{...buttonsAddDelProps}}
+                        fromFlowcategoryAccordion={{...buttonsAddDelProps}}
                     />
                     <OutflowsTable 
                         {...props} 
-                        fromCategoryAccordion={{...outflowsTableProps}}
+                        fromFlowcategoryAccordion={{...outflowsTableProps}}
                     />
                 </Accordion>
             </div>
@@ -85,4 +85,4 @@ const CategoryAccordion = (props) => {
     )
 }
 
-export default CategoryAccordion
+export default FlowcategoryAccordion

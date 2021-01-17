@@ -13,7 +13,7 @@ const IconCell = (props) => {
     const {
         iconShouldShow, 
         showOutflowDeleteIcons
-    } = props.categoryAccordion
+    } = props.fromOutflowRow
 
     const useStyles = makeStyles({
         iconCell: {

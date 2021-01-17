@@ -1,8 +1,8 @@
-export const initTotalOutflow = (categories) => {
+export const initTotalOutflow = (flowcategories) => {
     // console.log("CATEGORIES RECEIVED FROM PROPS (initNameTotals()):", categories)
     let totalOutflows = 0
-    categories.forEach((category) => {
-        const { outflows } = category
+    flowcategories.forEach((flowcategory) => {
+        const { outflows } = flowcategory
         if (outflows.length > 0) {
             const total = outflows.reduce((accumulator, currentValue) => {
                 return accumulator += currentValue.amount

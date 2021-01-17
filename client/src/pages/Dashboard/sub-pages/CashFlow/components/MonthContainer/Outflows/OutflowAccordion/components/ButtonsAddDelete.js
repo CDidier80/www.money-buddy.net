@@ -14,7 +14,8 @@ const ButtonsAddDelete = (props) => {
 
     const {
         showDeleteIcons,
-        toggleDeleteIcons
+        toggleDeleteIcons,
+        toggleAddFlowcategoryPanel
     } = props.fromOutflowsAccordion
 
 
@@ -38,9 +39,9 @@ const ButtonsAddDelete = (props) => {
     const classes = useStyles()
 
 
-    const addCategory = (e) => {
+    const addFlowcategory= (e) => {
         e.preventDefault()
-        toggleAddCategoryPanel(true)
+        toggleAddFlowcategoryPanel(true)
     }
 
 
@@ -60,7 +61,7 @@ const ButtonsAddDelete = (props) => {
             >
                 <Button 
                     className={classes.button}
-                    onClick={(e) => addCategory(e)}
+                    onClick={(e) => addFlowcategory(e)}
                 >
                     Add Category
                 </Button>

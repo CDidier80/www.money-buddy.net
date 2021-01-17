@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import CategoryPopup from "../CategoryPopups/CategoryPopup"
-import CategoryAccordion from "../CategoryAccordion/CategoryAccordion"
-import ButtonsAddDelete from './componenets/ButtonsAddDelete'
-import AccordionDropdownTab from "./componenets/AccordionDropdownTab"
-import { unconditionalStyles } from "./styles/unconditionalStyles"
+import CategoryPopup from "../FlowcategoryPopups/FlowcategoryPopup"
+import FlowcategoryAccordion from "../FlowcategoryAccordion/FlowategoryAccordion"
+import ButtonsAddDelete from './components/ButtonsAddDelete'
+import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import { 
     makeStyles,
     Accordion,
@@ -13,32 +12,39 @@ import {
 
 const OutflowsAccordion = (props) => {
 
-    {/*  PROPS */}
+    /* -------------------------- PROPS ------------------------- */
 
-    const { newCategories } = props.fromCashflow
+    // console.log(props)
+
+    const { 
+        newFlowcategories,
+        setNewFlowcategories
+    } = props.fromMonthContainer
     
 
-    {/*  STATE  */}
+    /* -------------------------- STATE ------------------------- */
 
-    const [showAddCategoryPanel, toggleAddCategoryPanel] = useState(false)
+    const [showAddFlowcategoryPanel, toggleAddFlowcategoryPanel] = useState(false)
     const [showDeleteIcons, toggleDeleteIcons] = useState(false)
     const [opened, toggleOpened] = useState(false)
     // must keep -- optimizes performance
     const [renderOutflowsAccordion, rerenderOutflowsAccordian ] = useState(false)
 
 
-    {/*  useEffect  */}
+    /* ------------------------ useEffect ----------------------- */
 
     useEffect(() => {
     }, [renderOutflowsAccordion])
 
     
 
-    {/*  FUNCTIONS  */}
+    /* ----------------------- FUNCTIONS ------------------------ */
 
 
     const useStyles = makeStyles({
-        ...unconditionalStyles, 
+        accordion: {
+            marginTop: "5px"
+        }, 
         deleteButton: {
             fontSize: "9px",
             fontWeight: "700",
@@ -59,16 +65,17 @@ const OutflowsAccordion = (props) => {
 
     const buttonsAddDeleteProps ={
         toggleDeleteIcons,
-        showDeleteIcons
+        showDeleteIcons,
+        toggleAddFlowcategoryPanel
     }
 
 
     return (
         <div>
-            { showAddCategoryPanel && 
+            { showAddFlowcategoryPanel && 
                 <CategoryPopup 
                     {...props} 
-                    toggleAddCategoryPanel={toggleAddCategoryPanel}
+                    toggleAddFlowcategoryPanel={toggleAddFlowcategoryPanel}
                 />
             }
             <Accordion 
@@ -81,19 +88,19 @@ const OutflowsAccordion = (props) => {
                 <ButtonsAddDelete 
                     fromOutflowsAccordion={{...buttonsAddDeleteProps}}
                 />
-                {newCategories.map((category, index) => {
-                    const categoryAccordionProps = {
-                        category,
-                        categoryIndex: index,
+                {newFlowcategories.map((flowcategory, index) => {
+                    const flowcategoryAccordionProps = {
+                        flowcategory,
+                        flowcategoryIndex: index,
                         showDeleteIcons,
                         rerenderOutflowsAccordian,
                         renderOutflowsAccordion
                     }
                     return (
-                        <CategoryAccordion 
+                        <FlowcategoryAccordion 
                             key={`${20000 + index}`}
                             {...props} 
-                            fromExpenseAccordion={{...categoryAccordionProps}}
+                            fromOutflowsAccordion={{...flowcategoryAccordionProps}}
                         />
                     )
                 })}

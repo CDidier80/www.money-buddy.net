@@ -76,17 +76,20 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 
 
-const CategoryPopup = (props) => {
+const FlowcategoryPopup = (props) => {
     
     {/*  PROPS */}
 
-    const { toggleAddCategoryPanel } = props
+    const { toggleAddflowcategoryPanel } = props
     const { 
-        setNewCategories, 
-        newCategories, 
         toggleChanges, 
         userMadeChanges 
     } = props.fromBudget
+
+    const {
+        setNewFlowcategories, 
+        newFlowcategories, 
+    } = props.fromMonthContainer
 
     const [open, setOpen] = useState(true)
     const [text, setText] = useState("")
@@ -117,11 +120,11 @@ const CategoryPopup = (props) => {
 
     const confirm = (e) => {
         e.preventDefault()
-        let categoriesArrayCopy = newCategories
+        let flowcategoriesCopy = [...newFlowcategories]
         let duplicates = false
-        newCategories.forEach(category => {
-            if(text === category.name){
-                console.log(category.name)
+        newFlowcategories.forEach(flowcategory => {
+            if(text === flowcategory.name){
+                console.log(flowcategory.name)
 
                 setError(true)
                 duplicates = true
@@ -131,10 +134,10 @@ const CategoryPopup = (props) => {
         })
         console.log("still running")
         if (duplicates) return
-        let newCategory = {name: text, expenses: []}
-        categoriesArrayCopy.push(newCategory)
-        setNewCategories(categoriesArrayCopy)
-        toggleAddCategoryPanel(false)
+        let newFlowflowcategory = {name: text, expenses: []}
+        flowcategoriesCopy.push(newFlowflowcategory)
+        setNewFlowcategories(flowcategoriesCopy)
+        toggleAddflowcategoryPanel(false)
         if (!userMadeChanges) {
             toggleChanges(true)
         }
@@ -143,7 +146,7 @@ const CategoryPopup = (props) => {
 
     const closePopup = (e) => {
         e.preventDefault()
-        toggleAddCategoryPanel(false)
+        toggleAddflowcategoryPanel(false)
     }
 
 
@@ -153,8 +156,8 @@ const CategoryPopup = (props) => {
 
 
     {/*  VARIABLES  */}
-    const labelOne = "category name"
-    const labelTwo = `This category already exists`
+    const labelOne = "flowcategory name"
+    const labelTwo = `This flowcategory already exists`
 
 
     return (
@@ -174,7 +177,7 @@ const CategoryPopup = (props) => {
                     disableTypography={true}
                     className={classes.header}
                 >
-                    Name your new category:
+                    Name your new flowcategory:
                 </DialogTitle>
 
                 <DialogContent>
@@ -182,7 +185,7 @@ const CategoryPopup = (props) => {
                     <CssTextField
                         autoFocus
                         margin="dense"
-                        id="category-name"
+                        id="flowcategory-name"
                         label={(error ? "Error" : labelOne)}
                         error={error}
                         // type="email"
@@ -214,4 +217,4 @@ const CategoryPopup = (props) => {
     )
 }
 
-export default CategoryPopup
+export default FlowcategoryPopup

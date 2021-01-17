@@ -6,7 +6,7 @@ const errorLog = ServiceLoggers.CashflowServiceErrorLog
 export const ReadEntireCashflow = async (body,  params) =>  {
     try {
         log(ReadEntireCashflow, body, params)
-        const response = await ApiClient.post(`cashflows/entirecashflow`, body)
+        const response = await ApiClient.post(`cashflows/entire`, body)
         return response.data
     } catch (error) {
         errorLog(ReadEntireCashflow, error)

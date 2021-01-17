@@ -7,18 +7,33 @@ const InflowTextCell = (props) => {
 
     {/*  PROPS  */}
 
-    const { 
-        toggleChanges, 
-        userMadeChanges,
+    const {
+        updateCashflow, 
         tick,
-        updateCashflow,
+        userMadeChanges, 
+        toggleChanges, 
     } = props.fromCashflow
 
-    const { categoryIndex, rowColor } = props.fromOutflowTable
 
     const {
         defaultValue,
-    } = props.fromIncomeRow
+    } = props.fromOutflowRow
+
+    const {
+        setNewFlowcategories,
+        newFlowcategories,
+    } = props.fromMonthContainer
+
+
+    const {
+        flowcategoryIndex
+    } = props.fromOutflowsAccordion
+
+    const {
+        flowcategory,
+        rowIndex, 
+        rowColor,
+    } = props.fromOutflowsTable
 
 
     {/*  STATE  */}
@@ -43,12 +58,12 @@ const InflowTextCell = (props) => {
     const classes = useStyles()
     
 
-    const updateNewCategories = (value) => {
-        let categoriesArrayCopy = [...newCategories]
-        let categoryCopy = {...category}
-        categoryCopy["outflow"][outflowsIndex]['outflow'] = value
-        categoriesArrayCopy[categoryIndex] = categoryCopy
-        setNewCategories(categoriesArrayCopy)
+    const updateNewFlowcategories = (value) => {
+        let flowcategoriesCopy = [...newFlowcategories]
+        let thisFlowcategoryCopy = {...flowcategory}
+        thisFlowcategoryCopy["outflow"][rowIndex]['outflow'] = value
+        flowcategoriesCopy[flowcategoryIndex] = thisFlowcategoryCopy
+        setNewFlowcategories(flowcategoriesCopy)
         updateCashflow(tick + 1)
     }
 
@@ -61,7 +76,7 @@ const InflowTextCell = (props) => {
     const submit = (e) => {
         e.preventDefault()
         document.activeElement.blur()
-        updateNewCategories(newText)
+        updateNewFlowcategories(newText)
         if (!userMadeChanges) {
             toggleChanges(true)
         }

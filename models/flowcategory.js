@@ -7,12 +7,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Flowcategory.belongsTo(models.Month, {
         foreignKey: 'month_id',
-        as: 'months',
+        as: 'flowcategories',
         constraints: true,
       }),  
       Flowcategory.hasMany(models.Outflow, {
         foreignKey: 'flowcategory_id',
-        as: 'category_of_expense',
+        as: 'outflows',
       })
     }
   };

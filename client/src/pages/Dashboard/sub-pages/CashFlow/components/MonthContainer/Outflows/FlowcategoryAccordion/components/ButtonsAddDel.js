@@ -10,25 +10,32 @@ import {
 
 const ButtonsAddDel = (props) => {
 
-    {/*  PROPS */}
+    /* -------------------------- PROPS ------------------------- */
 
     const {
         toggleChanges,
         userMadeChanges,
-        setNewCategories,
-        newCategories, 
-    } = props.fromBudget
+    } = props.fromCashflow
 
     const { 
-        categoryIndex: cI, 
-    } = props.fromExpenseAccordion
+        newFlowcategories,
+        setNewFlowcategories
+
+    } = props.fromMonthContainer
+
+
+    const { 
+        flowcategoryIndex: fci, 
+    } = props.fromOutflowsAccordion
+
+
 
     const {
-        lengthOfExpenses,
-        setExpensesLength,
-        toggleExpenseDeleteIcons,
-        showExpenseDeleteIcons
-    } = props.fromCategoryAccordion
+        lengthOfOutflows,
+        setOuflowsLength,
+        toggleOutflowDeleteIcons,
+        showOutflowDeleteIcons
+    } = props.fromFlowcategoryAccordion
 
 
     {/* FUNCTIONS */}
@@ -45,7 +52,7 @@ const ButtonsAddDel = (props) => {
             fontSize: "9px",
             fontWeight: "700",
             fontFamily: "Lato, sans-serif",
-            color: showExpenseDeleteIcons ? "#22c1c3" : "#e6a824",
+            color: showOutflowDeleteIcons ? "#22c1c3" : "#e6a824",
             padding: "0 5px 0 5px"
         },
     })
@@ -54,23 +61,23 @@ const ButtonsAddDel = (props) => {
     const classes = useStyles()
 
 
-    const addExpense = (e) => {
+    const addOutflow = (e) => {
         e.preventDefault() 
-        const newLength = lengthOfExpenses + 1
-        const defaultExpense = {expense: `expense #${newLength}`, amount:0}
-        let categoriesArrCopy = [...newCategories]
-        categoriesArrCopy[cI]["expenses"].unshift(defaultExpense)
-        setNewCategories(categoriesArrCopy)
+        const newLength = lengthOfOutflows + 1
+        const defaultOutflow = {outflow: `outflow #${newLength}`, amount:0}
+        let flowcategoriesCopy = [...newFlowcategories]
+        flowcategoriesCopy[fci]["outflows"].unshift(defaultOutflow)
+        setNewFlowcategories(flowcategoriesCopy)
         if (!userMadeChanges) {
             toggleChanges(true)
         }
-        setExpensesLength(newLength)
+        setOuflowsLength(newLength)
     }
 
 
-    const handleExpenseDeleteIcons = (e) => {
+    const handleOutflowDeleteIcons = (e) => {
         e.preventDefault()
-        toggleExpenseDeleteIcons(!showExpenseDeleteIcons)
+        toggleOutflowDeleteIcons(!showOutflowDeleteIcons)
     }
 
 
@@ -83,15 +90,15 @@ const ButtonsAddDel = (props) => {
             >
                 <Button 
                     className={classes.button}
-                    onClick={(e) => addExpense(e)}
+                    onClick={(e) => addOutflow(e)}
                 >
-                    Add Expense
+                    Add Outflow
                 </Button>
                 <Button 
                     className={classes.deleteButton}
-                    onClick={(e) => handleExpenseDeleteIcons(e)}
+                    onClick={(e) => handleOutflowDeleteIcons(e)}
                 >
-                    {showExpenseDeleteIcons ? "Cancel Delete" : "Delete Expense"}
+                    {showOutflowDeleteIcons ? "Cancel Delete" : "Delete Outflow"}
                 </Button>
             </ButtonGroup>
         </AccordionDetails>

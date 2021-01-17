@@ -6,17 +6,22 @@ const DeleteOutflowIcon = (props) => {
 
 
     const {
-        newCategories,
-        setNewCategories, 
         updateCashflow, 
-        tick
+        tick,
+        userMadeChanges, 
+        toggleChanges, 
     } = props.fromCashflow
+
+    const {
+        newFlowcategories,
+        setNewFlowcategories, 
+    } = props.fromMonthContainer
 
     const { 
         renderOutflowAccordion,
         rerenderOutflowAccordian,
-        categoryIndex,
-    } = props.fromOutflowAccordion
+        flowcategoryIndex,
+    } = props.fromOutflowsAccordion
 
     const { outflowIndex } = props.fromOutflowTable
 
@@ -41,10 +46,10 @@ const DeleteOutflowIcon = (props) => {
         e.preventDefault()
         try {
             const outflowIndex = e.currentTarget.id
-            let categoriesArrayCopy = [...newCategories]
-            let outflowItem = categoriesArrayCopy[categoryIndex]['outflows'][outflowIndex]['amount']
-            categoriesArrayCopy[categoryIndex]['outflows'].splice(outflowIndex, 1)
-            setNewCategories(categoriesArrayCopy)
+            let flowcategoriesCopy = [...newFlowcategories]
+            let outflowItem = flowcategoriesCopy[flowcategoryIndex]['outflows'][outflowIndex]['amount']
+            flowcategoriesCopy[flowcategoryIndex]['outflows'].splice(outflowIndex, 1)
+            setNewFlowcategories(flowcategoriesCopy)
             if (outflowItem === 0) {
                 rerenderOutflowAccordian(!renderOutflowAccordion)
             } else {

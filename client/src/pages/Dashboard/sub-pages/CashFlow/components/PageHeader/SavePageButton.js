@@ -1,26 +1,25 @@
 import React from 'react'
-import { UpdateEntireCashflow } from "../../../../../Services/CashflowService"
+import { UpdateEntireCashflow } from "../../../../../../Services/CashflowService"
 import { useSnackbar, withSnackbar } from 'notistack';
-
 
 
 const SavePageButton = (props) => {
 
-    {/*  PROPS  */}
+    /* -------------------------- PROPS ------------------------- */
 
     const {
         cashflowId,
         setCashflowId,
-        setInflows,
-        setCashflowCategories,
     } = props.fromDashboard
 
     const {
-
+        newMonths,
+        toggleChanges,
+        setNewMonths
     } = props.fromCashflow
 
 
-    {/*  FUNCTIONS  */}
+    /* ------------------------- FUNCTIONS ------------------------ */
 
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
@@ -38,13 +37,11 @@ const SavePageButton = (props) => {
     }
 
 
-    const sendCashflowToDatabase = async (e) => {
-        e.preventDefault()
+    const sendCashflowToDatabase = async (payload) => {
         const newCashflow = await UpdateEntireCashflow(payload)
-        const { cashflowId: c, inflows: i, flowcategories: fc } = newCashflow
-        setCashflowId(c)
-        setInflows(i)
-        setFlowategories(fc)
+        const { id: newCashflowId, months } = newCashflow
+        setCashflowId(newCashflowId)
+        setNewMonths(months)
     }
 
 
@@ -53,8 +50,7 @@ const SavePageButton = (props) => {
             e.preventDefault()
             const payload = {
                 cashflowId: cashflowId,
-                inflows: newInflows,
-                categories: newCategories,
+                months: newMonths
             }
             await sendCashflowToDatabase(payload)
             toggleChanges(false)
@@ -64,6 +60,7 @@ const SavePageButton = (props) => {
             console.log("cashflow update failed: ", error)
         }
     }
+
 
     return (
         <button 

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import InflowsTable from "../InflowsTable/InflowsTable"
-import AccordionDropdownTab from "./componenets/AccordionDropdownTab"
-import { unconditionalStyles } from "./styles/unconditionalStyles"
 import { 
     makeStyles,
     Accordion,
@@ -13,21 +11,19 @@ import {
 
 const InflowsAccordion = (props) => {
 
-    {/*  PROPS */}
+     /* -------------------------- PROPS ------------------------- */
 
 
-    {/*  STATE  */}
-    // const [showAddCategoryPanel, toggleAddCategoryPanel] = useState(false)
-    // const [showDeleteIcons, toggleDeleteIcons] = useState(false)
+    /* -------------------------- STATE ------------------------- */
     const [opened, toggleOpened] = useState(false)
-    const [showInflowsDeleteIcons, toggleInflowsDeleteIcons] = useState(false)
+    const [showInflowDeleteIcons, toggleInflowDeleteIcons] = useState(false)
 
-    {/*  useEffect  */}
+    /* -------------------------- useEffects ------------------------- */
 
     // useEffect(() => {
     // }, [])
 
-    {/*  FUNCTIONS  */}
+    /* -------------------------- FUNCTIONS ------------------------- */
     // const setDeleteIcons = (e) => {
     //     e.preventDefault()
     //     toggleDeleteIcons(!showDeleteIcons)
@@ -39,22 +35,27 @@ const InflowsAccordion = (props) => {
     }
 
 
-    // const useStyles = makeStyles({
-    //     ...unconditionalStyles, 
-    //     deleteButton: {
-    //         fontSize: "9px",
-    //         fontWeight: "700",
-    //         fontFamily: "Lato, sans-serif",
-    //         color: showDeleteIcons ? "#22c1c3" : "#e6a824",
-    //         padding: "0 5px 0 5px"
-    //     },
-    // })
+    const useStyles = makeStyles({
+        // ...unconditionalStyles, 
+        // deleteButton: {
+        //     fontSize: "9px",
+        //     fontWeight: "700",
+        //     fontFamily: "Lato, sans-serif",
+        //     color: showDeleteIcons ? "#22c1c3" : "#e6a824",
+        //     padding: "0 5px 0 5px"
+        // },
+        accordion: {
+            marginTop: "5px",
+        }
+    })
 
-    // const classes = useStyles()
+    const classes = useStyles()
+
+    /* --------------------- PROPS FOR CHILDREN --------------------- */
 
     const propsForInflowsTable = {
         showInflowDeleteIcons,
-        toggleIncomeDeleteIcons,
+        toggleInflowDeleteIcons,
     }
 
     return (

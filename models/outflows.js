@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       Outflow.belongsTo(models.Flowcategory, {
         foreignKey: 'flowcategory_id',
-        as: 'flowcategory',
+        as: 'outflows',
         constraints: true,
       })
     }

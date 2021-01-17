@@ -19,12 +19,12 @@ const useStyles = makeStyles({
     },
 })
 
-const DeleteIncomeIcon = (props) => {
+
+const DeleteInflowIcon = (props) => {
 
     
+    {/* ------------ Deconstruct Props -----------*/}
     const { 
-        newInflows,
-        setNewInflows,
         toggleChanges,
         userMadeChanges,
         updateCashflow,
@@ -32,10 +32,18 @@ const DeleteIncomeIcon = (props) => {
     } = props.fromCashflow
 
     const {
+        monthlyInflows,
+        setMonthlyInflows,
+    } = props.fromMonthContainer
+
+    const {
         rowIndex,
         setIncomingDeletion,
     } = props.fromInflowTable
 
+
+
+    {/* ------------ Functions -----------*/}
     const classes = useStyles()
 
 
@@ -43,9 +51,9 @@ const DeleteIncomeIcon = (props) => {
         e.preventDefault()
         try {
             const inflowIndex = e.currentTarget.id
-            let newInflowsCopy = [...newInflows]
-            newInflowsCopy.splice(inflowIndex, 1)
-            setNewInflows(newInflowsCopy)
+            let monthlyInflowsCopy = [...monthlyInflows]
+            monthlyInflowsCopy.splice(inflowIndex, 1)
+            setMonthlyInflows(monthlyInflowsCopy)
             setIncomingDeletion(true)
             if (!userMadeChanges) {
                 toggleChanges(true)
@@ -72,4 +80,4 @@ const DeleteIncomeIcon = (props) => {
     )
 }
 
-export default DeleteIncomeIcon
+export default DeleteInflowIcon

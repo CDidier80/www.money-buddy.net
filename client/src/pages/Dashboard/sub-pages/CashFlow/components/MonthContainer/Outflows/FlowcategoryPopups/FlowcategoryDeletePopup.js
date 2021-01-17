@@ -57,25 +57,28 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 
 
-const CategoryDeletePopup = (props) => {
+const FlowcategoryDeletePopup = (props) => {
 
     const { 
-        setNewCategories, 
-        newCategories, 
         toggleChanges, 
         userMadeChanges,
         updateCashflow,
         tick
     } = props.fromCashflow
 
+    const {
+        setNewFlowcategories, 
+        newFlowcategories, 
+    } = props.fromMonthContainer
+
     const { 
         category,
-        categoryIndex
+        flowcategoryIndex
     } = props.fromOutflowsAccordion
 
     const {name} = category
 
-    const { toggleCategoryDeletePopup } = props.fromCategoryAccordion
+    const { toggleFlowcategoryDeletePopup } = props.fromCategoryAccordion
 
 
     {/*  STATE  */}
@@ -90,20 +93,20 @@ const CategoryDeletePopup = (props) => {
 
     const confirm = (e) => {
         e.preventDefault()
-        let categoriesArrayCopy = [...newCategories]
-        categoriesArrayCopy.splice(categoryIndex, 1)
-        setNewCategories(categoriesArrayCopy)
+        let flowcategoriesCopy = [...newFlowcategories]
+        flowcategoriesCopy.splice(flowcategoryIndex, 1)
+        setNewFlowcategories(flowcategoriesCopy)
         if (!userMadeChanges) {
             toggleChanges(true)
         }
         updateCashflow(tick + 1)
-        toggleCategoryDeletePopup(false)
+        toggleFlowcategoryDeletePopup(false)
     }
 
 
     const closePopup = (e) => {
         e.preventDefault()
-        toggleCategoryDeletePopup(false)
+        toggleFlowcategoryDeletePopup(false)
     }
 
 
@@ -159,4 +162,4 @@ const CategoryDeletePopup = (props) => {
     )
 }
 
-export default CategoryDeletePopup
+export default FlowcategoryDeletePopup

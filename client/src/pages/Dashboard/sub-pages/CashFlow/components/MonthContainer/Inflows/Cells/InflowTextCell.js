@@ -6,20 +6,20 @@ const InflowTextCell = (props) => {
 
     {/*  PROPS  */}
 
-    // const { 
-    //     setNewInflows, 
-    //     newInflows, 
-    //     toggleChanges, 
-    //     userMadeChanges,
-    //     tick,
-    //     updateBudget,
-    // } = props.fromBudget
+    const { 
+        setNewInflows, 
+        newInflows, 
+        toggleChanges, 
+        userMadeChanges,
+        tick,
+        updateCashflow,
+    } = props.fromCashflow
 
-    // const { arrayIndex, rowColor } = props.fromIncomeTable
+    const { arrayIndex, rowColor } = props.fromInflowTable
 
-    // const {
-    //     defaultValue,
-    // } = props.fromIncomeRow
+    const {
+        defaultValue,
+    } = props.fromInflowRow
 
 
     {/*  STATE  */}
@@ -46,9 +46,9 @@ const InflowTextCell = (props) => {
 
     const updateNewInflows = (value) => {
         let replacementArray = [...newInflows]
-        let incomeObject = newInflows[arrayIndex]
-        incomeObject.source = value
-        replacementArray[arrayIndex] = incomeObject
+        let inflowObject = newInflows[arrayIndex]
+        inflowObject.source = value
+        replacementArray[arrayIndex] = inflowObject
         setNewInflows(replacementArray)
     }
 

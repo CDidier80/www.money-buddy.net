@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import "../styles/summary.css"
 import "../../../../../universal-functions/cellFormatting"
 import { offRowColor } from "../../../../../universal-functions/styleFunctions"
 import InflowRow from "../InflowRow/InflowRow"
@@ -10,8 +9,8 @@ import {
     Table, 
     TableBody, 
     TableContainer, 
-    AccordionDetails
-} from '@material-ui/core';
+    makeStyles
+} from '@material-ui/core/';
 
 
 
@@ -19,7 +18,9 @@ const InflowsTable = (props) => {
     
     {/*  PROPS */}
     
-    const { inflows } = props.fromCashflow
+    const {
+        monthlyInflows
+      } = props.fromMonthContainer
     
     {/*  STATE */}
 
@@ -81,7 +82,7 @@ const InflowsTable = (props) => {
                             <InflowHeaders 
                                 {...props}
                             />
-                            {inflows.forEach((row, index) => {
+                            {monthlyInflows.forEach((row, index) => {
                                 const {source, amount} = row
                                 const rowColor = offRowColor(index)
                                 const propsForInflowRow = {

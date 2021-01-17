@@ -1,36 +1,42 @@
 import React from 'react'
+import FlowcategoryDeleteIcon from "./FlowcategoryDeleteIcon"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { 
-    makeStyles,
+    Typography, 
     AccordionSummary,
-    Typography,
+    makeStyles
 } from '@material-ui/core';
-
 
 
 
 const AccordionDropdownTab = (props) => {
 
+    const { 
+        flowcategory,
+        showDeleteIcons,
+    } = props.fromOutflowsAccordion
+
+
     const useStyles = makeStyles({
 
-        heading: {
-            fontWeight: "700",
-            margin: "0 auto",
-            padding: "20px 0 0 13px",
-            fontSize: "30px",
-            fontFamily: "Lato, sans-serif",
+        flexWrapper: {
+            display: "flex",
+            justifyContent: "flex-start",
+            alignItems: "center"
+        },
+        flowcategory: {
             color: "#e6a824",
-            textShadow: `
-                0 0 1px lightgray;
-            `
+            fontWeight: "500",
+            fontFamily: "Lato, sans-serif",
         },
         expandMoreIcon : {
             color:"#e6a824",
-            paddingTop: "31px"
         }
     })
 
     const classes = useStyles()
+
+
 
     return (
         <AccordionSummary
@@ -42,12 +48,21 @@ const AccordionDropdownTab = (props) => {
             aria-controls="panel1a-content"
             id="panel1a-header"
         >
+
+        {showDeleteIcons &&
+            <FlowcategoryDeleteIcon 
+                {...props}
+            />
+        }
+        
+        <div className={classes.flexWrapper}>
             <Typography 
-                className={classes.heading}
+                className={classes.flowcategory}
             >
-                Outflows
+                {flowcategory.name}
             </Typography>
-        </AccordionSummary>
+        </div>
+    </AccordionSummary>
     )
 }
 

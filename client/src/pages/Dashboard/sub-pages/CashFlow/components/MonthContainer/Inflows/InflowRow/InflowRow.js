@@ -1,13 +1,14 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import InflowNumberCell from "../Cells/InflowNumberCell"
 import InflowTextCell from "../Cells/InflowTextCell"
+import IconCell from "../Cells/IconCell/IconCell"
+import { TableRow, } from '@material-ui/core/'
 
 const InflowRow = (props) => {
 
     const { 
         showInflowDeleteIcons,
-        toggleInflowsDeleteIcons,
-        showInflowsDeleteIcons,
+        toggleInflowDeleteIcons,
     } = props.fromInflowsAccordion
 
     const {
@@ -66,7 +67,7 @@ const InflowRow = (props) => {
         } else {
             setIconShouldShow(false)
         }
-    }, [showIncomeDeleteIcons, showUndoIcon])
+    }, [showInflowDeleteIcons, showUndoIcon])
 
 
     // const renderUndoIcon = (newLength) => {
@@ -102,14 +103,16 @@ const InflowRow = (props) => {
                 {...props}
                 fromInflowRow={{...propsForIconCell}}
             />
-            <InflowTextCell>
+            <InflowTextCell 
                 {...props}
                 fromInflowRow={{...propsForSource}}
-            </InflowTextCell>
-            <InflowNumberCell align="right">
+            />
+
+            <InflowNumberCell 
+                align="right"
                 {...props}
                 fromInflowRow={{...propsForMonthly}}
-            </InflowNumberCell>
+            />
         </TableRow>
     )
 }
