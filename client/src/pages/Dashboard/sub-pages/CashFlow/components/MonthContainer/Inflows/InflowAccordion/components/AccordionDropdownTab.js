@@ -14,8 +14,8 @@ const AccordionDropdownTab = (props) => {
         heading: {
             fontWeight: "700",
             margin: "0 auto",
-            // padding: "20px 0 0 13px",
-            fontSize: "13px",
+            paddingLeft: "27px",
+            fontSize: "16px",
             fontFamily: "Lato, sans-serif",
             color: "#22c1c3",
             textShadow: `
@@ -24,18 +24,18 @@ const AccordionDropdownTab = (props) => {
         },
         expandMoreIcon : {
             color:"#22c1c3",
-            // paddingTop: "31px"
+            fontSize: "18px",
+            paddingLeft: "0"
         }
     })
 
     const classes = useStyles()
-    const expandIconStyle = {color:"#22c1c3", paddingTop: "31px"}
     
     return (
         <AccordionSummary
             expandIcon={
                 <ExpandMoreIcon 
-                    style={expandIconStyle}
+                    className={classes.expandMoreIcon}
                 />
             }
             aria-controls="panel1a-content"

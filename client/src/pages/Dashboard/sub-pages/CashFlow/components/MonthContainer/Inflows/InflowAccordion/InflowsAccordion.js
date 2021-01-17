@@ -11,19 +11,19 @@ import {
 
 const InflowsAccordion = (props) => {
 
-    {/*  PROPS */}
+     /* -------------------------- PROPS ------------------------- */
 
 
-    {/*  STATE  */}
+    /* -------------------------- STATE ------------------------- */
     const [opened, toggleOpened] = useState(false)
     const [showInflowDeleteIcons, toggleInflowDeleteIcons] = useState(false)
 
-    {/*  useEffect  */}
+    /* -------------------------- useEffects ------------------------- */
 
     // useEffect(() => {
     // }, [])
 
-    {/*  FUNCTIONS  */}
+    /* -------------------------- FUNCTIONS ------------------------- */
     // const setDeleteIcons = (e) => {
     //     e.preventDefault()
     //     toggleDeleteIcons(!showDeleteIcons)
@@ -35,18 +35,23 @@ const InflowsAccordion = (props) => {
     }
 
 
-    // const useStyles = makeStyles({
-    //     ...unconditionalStyles, 
-    //     deleteButton: {
-    //         fontSize: "9px",
-    //         fontWeight: "700",
-    //         fontFamily: "Lato, sans-serif",
-    //         color: showDeleteIcons ? "#22c1c3" : "#e6a824",
-    //         padding: "0 5px 0 5px"
-    //     },
-    // })
+    const useStyles = makeStyles({
+        // ...unconditionalStyles, 
+        // deleteButton: {
+        //     fontSize: "9px",
+        //     fontWeight: "700",
+        //     fontFamily: "Lato, sans-serif",
+        //     color: showDeleteIcons ? "#22c1c3" : "#e6a824",
+        //     padding: "0 5px 0 5px"
+        // },
+        accordion: {
+            marginTop: "5px",
+        }
+    })
 
-    // const classes = useStyles()
+    const classes = useStyles()
+
+    /* --------------------- PROPS FOR CHILDREN --------------------- */
 
     const propsForInflowsTable = {
         showInflowDeleteIcons,
@@ -56,7 +61,7 @@ const InflowsAccordion = (props) => {
     return (
         <div>
             <Accordion 
-                // className={classes.accordion}
+                className={classes.accordion}
                 onChange={(e)=>handleExpansion(e)}
             >
                 <AccordionDropdownTab opened={opened}/>
