@@ -17,23 +17,11 @@ const Dashboard = (props) => {
     /* -------------------------- PROPS ------------------------- */
 
     // console.log(props)
-    const { id: userId } = props.userInfo
+    const { userInfo, authenticated } = props.fromApp
+    const { id: userId } = userInfo
 
 
      /* -------------------------- STATE ------------------------- */
-
-    // {/* ---------------------------------------- user info in state*/}
-    // const [budgetId, setBudgetId] = useState(null)
-    // const [cashflowId, setCashflowId] = useState(null)
-    // const [incomes, setIncomes] = useState([])
-    // const [categories, setCategories] = useState([])
-    // const [months, setMonths] = useState([])
-    // const [inflows, setInflows] = useState([])
-
-    // {/* ----------------------------------- rendering & ui control */}
-    // const [narrow, setSidebarNarrowed] = useState(false)
-    // const [ticker, setTicker] = useState(0)
-    // const [loaded, setLoaded] = useState(false)
 
             /*  state:  ------------ financial info in state -----------*/
 
@@ -53,26 +41,17 @@ const Dashboard = (props) => {
 
     /* -------------------------- useEffects ------------------------- */
 
-    const renderDependencies = [
-        budgetId, 
-        cashflowId, 
-        incomes,
-        categories,
-        months,
-    ]
-
-    // console.log('typeof renderDependencies:', renderDependencies)
-
-             /* useEffect:  ------ async calls for first render ------ */
+             /* useEffect #1: ----- async calls for first render ----- */
 
     useEffect(() => {
-        if (!props.authenticated) {
+
+        console.log("dashboard useEffect")
+        if (!authenticated) {
             props.history.push("/")
         }
         const initializeDashboard = async () => {
             const budget = await ReadEntireBudget({ userId: userId }, null)
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
-            console.log("CASHFLOW DATA", cashflow)
             const { 
                 budgetId: b, 
                 incomes: i, 
@@ -82,27 +61,28 @@ const Dashboard = (props) => {
                 id: cashflowId, 
                 months: m
             } = cashflow
-            // ReactDOM.unstable_batchUpdate
             setIncomes(i)
             setCategories(c)
             setMonths(m)
             setCashflowId(cashflowId)
             setBudgetId(b)
-
-            // console.log("Log of state in async call: ")
-            // console.log(budgetId, incomes, categories)
         }
         initializeDashboard()
-        // console.log("END OF DASHBOARD useEffect #1: budgetId, incomes, categories: ")
-        // console.log(budgetId, incomes, categories)
-        // console.log(budgetId, cashflowId, incomes, categories, months)
+
     }, [])
 
 
-            /* useEffect:  --- ensure all state set before rendering children --- */
+            /* useEffect #2: --- ensure all state set before rendering children --- */
+
+    const renderDependencies = [
+        budgetId, 
+        cashflowId, 
+        incomes,
+        categories,
+        months,
+    ]
 
     useEffect(() => {
-
         let childrenShouldRender = true
         renderDependencies.forEach((state) => {
             if (state == null) {
@@ -110,33 +90,11 @@ const Dashboard = (props) => {
             }
         })
         setLoaded(childrenShouldRender ? true : false)
-        // if (childrenShouldRender) {
-        //     console.log("DASHBOARD useEFFECT detected all state loaded")
-        //     console.log(budgetId, cashflowId, incomes, categories, months)
-        // }
-
     }, [...renderDependencies])
 
-    // useEffect(() => {
-    //     if(budgetId && cashflowId && inflows && months && categories && flowcategories && incomes) {
-    //         console.log("Dashboard.js useEffect 2 detected all state loaded")
-    //         setLoaded(true)
-    //     }
-    //     console.log("END OF DASHBOARD useEffect #2: budgetId, incomes, categories: ")
-    //     console.log(budgetId, cashflowId, incomes, categories, months, inflows, flowcategories)
-    // }, [
-    //     budgetId, 
-    //     cashflowId, 
-    //     incomes,
-    //     categories,
-    //     months,
-    //     inflows,
-    //     flowcategories
-    // ])
 
-    
 
-    {/*  PROPS OBJECTS  */}
+    /* --------------------- PROPS FOR CHILDREN --------------------- */
 
     const propsNavbar = {
         narrow,
