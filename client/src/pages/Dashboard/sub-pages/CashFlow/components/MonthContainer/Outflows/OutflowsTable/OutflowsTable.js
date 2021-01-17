@@ -16,8 +16,8 @@ const OutflowTable = (props) => {
 
     {/*  PROPS */}
 
-    const { category } = props.fromOutflowsAccordion
-    const { outflows } = category
+    const { flowcategory } = props.fromOutflowsAccordion
+    const { outflows } = flowcategory
 
 
      {/*  STATE */}
@@ -47,12 +47,10 @@ const OutflowTable = (props) => {
                         />
                         {outflows.map((outflowObj, index) => {
                             const { outflow, amount } = outflowObj
-                            const monthly = Math.round(amount/12)
                             const rowColor = (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
                             const propsForRows = {
                                 outflow,
                                 amount, 
-                                monthly,
                                 outflowIndex: index,
                                 incomingDeletion, 
                                 setIncomingDeletion,
@@ -62,7 +60,7 @@ const OutflowTable = (props) => {
                                 <OutflowRow 
                                     key={`${index * -1}`} 
                                     {...props}
-                                    fromOutflowTable={{...propsForRows}}
+                                    fromOutflowsTable={{...propsForRows}}
 
                                 /> 
                             )
