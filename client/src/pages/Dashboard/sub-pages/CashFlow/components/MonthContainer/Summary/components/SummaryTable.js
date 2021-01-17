@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import useStyles from "../../../styles/useStyles"
+import FlowRows from "./FlowRows"
+import CashRows from "./CashRows"
 import { 
     AccordionDetails,
     Paper, 
@@ -7,18 +8,21 @@ import {
     TableBody, 
     TableCell, 
     TableContainer, 
-    TableRow,
+    makeStyles
 } from '@material-ui/core';
 
 
 
 const SummaryTable = (props) => {
+
+    // console.log(props)
     
     {/* ---------------- PROPS ---------------- */}
     
     const { 
         totalInflow, 
-        totalOutflow } = props.fromMonthContainer
+        totalOutflow 
+    } = props.fromMonthContainer
     
 
     {/* ---------------- STATE ------------------*/}
@@ -54,7 +58,24 @@ const SummaryTable = (props) => {
 
     {/* ---------------- FUNCTIONS ------------------*/}
 
-    // const classes = useStyles()
+    const useStyles = makeStyles({
+        details :{
+            margin: "auto",
+            textAlign: "center",
+            padding: "0",
+        },
+        tableContainter :{
+            margin: "auto",
+            width: "100%",
+            padding: "5px"
+        },
+        row: {
+            maxWidth: "95%"
+        }
+        
+    })
+
+    const classes = useStyles()
 
     const format = (value) => {
 
@@ -70,66 +91,45 @@ const SummaryTable = (props) => {
         return formattedValue
     }
 
-    const rows = [
-        {
-            description: "Total Inflows",
-            number: monthlyInflow
-        },
-        {
-            description: "Total Outflows",
-            number: monthlyOutflow
-        },
-        {
-            description: "Net Cashflow",
-            number: netCashflow
-        },
-        {
-            description: "Starting Cash",
-            number: 0
-        },
-        {
-            description: "Ending Cash",
-            number: 0
-        },
-    ]
+
+
+    const flowRowsProps = {
+        monthlyInflow,
+        monthlyOutflow,
+        netCashflow
+    }
+
+    const cashRowsProps = {
+        startingCash,
+        endingCash
+    }
+
 
     return (
-        <AccordionDetails>
-            <div className="summary placeholder left">
-                <h3 className="widget-header distribution-header">Month</h3>
-                <TableContainer 
-                    className="tableContainer" 
-                    component={Paper}
+        <AccordionDetails 
+            className={classes.details}
+        >
+            <TableContainer 
+                className={classes.tableContainter}
+                component={Paper}
+            >
+                <Table 
+                    // className={classes.table} 
+                    size="small" 
+                    aria-label="a dense table"
                 >
-                    <Table 
-                        // className={classes.table} 
-                        // size="small" 
-                        aria-label="a dense table"
+                    <TableBody 
+                        className={classes.tableBody}
                     >
-                        <TableBody>
-                            {rows.forEach((row) => {
-                                const {description, number} = row
-                                return (
-                                    <TableRow>
-                                        <TableCell>
-                                            <h5 className="summary-text">
-                                                { description } 
-                                            </h5>
-                                        </TableCell>
-                                        <TableCell align="right">
-                                            <h5>
-                                                { number }
-                                            </h5>
-                                        </TableCell>
-                                    </TableRow>
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
-
-
+                        <FlowRows 
+                            fromSummaryTable={{...flowRowsProps}}
+                        />
+                        <CashRows 
+                            fromSummaryTable={{...cashRowsProps}}
+                        />
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </AccordionDetails>
 
     )
