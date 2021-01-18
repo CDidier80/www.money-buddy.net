@@ -9,6 +9,8 @@ import AccountPage from "./sub-pages/AccountPage/AccountPage"
 import LoadingScreen from "./components/LoadingScreen/LoadingScreen"
 import BudgetRoute from "./components/MemoRoutes/BudgetRoute"
 import CashflowRoute from "./components/MemoRoutes/CashflowRoute"
+import CashflowDevRoute from "./components/MemoRoutes/CashflowDevRoute"
+
 import "./styles/dashboard.css"
 
 
@@ -140,10 +142,17 @@ const Dashboard = (props) => {
                             budgetHooks={budgetHooks}
                             ticker={ticker}
                         />
-                        <CashflowRoute 
+                        {/* <CashflowRoute 
                             path="/dashboard/cashflow" 
                             fromDashboard={{...cashflowProps}}
+                        /> */}
+
+                        <CashflowDevRoute 
+                            path="/dashboard/cashflow" 
+                            fromDashboard={{...cashflowProps}}
+                            // {...props}
                         />
+
                         <Route 
                             path="/dashboard/account" 
                             component={ (props) => ( 
