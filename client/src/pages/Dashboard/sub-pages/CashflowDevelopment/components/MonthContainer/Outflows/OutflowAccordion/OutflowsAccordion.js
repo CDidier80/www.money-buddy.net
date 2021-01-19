@@ -36,27 +36,20 @@ const OutflowsAccordion = (props) => {
     useEffect(() => {
     }, [renderOutflowsAccordion])
 
-    
 
     /* ----------------------- FUNCTIONS ------------------------ */
 
 
     const useStyles = makeStyles({
         accordion: {
-            marginTop: "5px"
-        }, 
-        deleteButton: {
-            fontSize: "9px",
-            fontWeight: "700",
-            fontFamily: "Lato, sans-serif",
-            color: showDeleteIcons ? "#22c1c3" : "#e6a824",
-            padding: "0 5px 0 5px"
-        },
+            marginTop: "5px",
+            padding: "3px 3px 6px 3px"
+        }
     })
     
     const classes = useStyles()
-    
-    
+
+
     const handleExpansion = (e) => {
         toggleOpened(!opened)
         console.log("changed")
@@ -85,9 +78,9 @@ const OutflowsAccordion = (props) => {
                 <AccordionDropdownTab 
                     opened={opened}
                 />
-                <ButtonsAddDelete 
+                {/* <ButtonsAddDelete 
                     fromOutflowsAccordion={{...buttonsAddDeleteProps}}
-                />
+                /> */}
                 {newFlowcategories.map((flowcategory, index) => {
                     const flowcategoryAccordionProps = {
                         flowcategory,
