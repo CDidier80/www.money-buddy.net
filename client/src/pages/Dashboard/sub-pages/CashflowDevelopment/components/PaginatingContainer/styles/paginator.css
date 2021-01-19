@@ -1,20 +1,15 @@
 .paginating-container {
+    display: block;
+    margin: auto;
+}
+
+.monthContainer-wrapper {
     display: flex;
     width: 100%;
     overflow-x: scroll;
     overflow-y: hidden;
     border-radius: 5px;
     padding: 5px;
+    margin-top: 8px;
 }
 
-.month-container {
-    min-width: 200px;
-    padding: 8px;
-    background-color: #074141;
-    max-width: 2500px;
-    overflow: hidden;
-    padding: 10px;
-    border-radius: 8px;
-    margin: 0 4px 0 4px;
-
-}
