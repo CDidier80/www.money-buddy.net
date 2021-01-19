@@ -20,6 +20,15 @@ const SummaryTable = (props) => {
     {/* ---------------- PROPS ---------------- */}
     
     const { 
+        newMonths,
+        inflows,
+        outflows, 
+        cashReserves
+    } = props.fromCashflowDevelopment
+
+    const { monthIndex } = props.fromPaginatingContainer
+
+    const { 
         totalInflow, 
         totalOutflow 
     } = props.fromMonthContainer
@@ -49,6 +58,19 @@ const SummaryTable = (props) => {
             setMonthlyOutflow(formattedOutflow)
             setNetCashflow(formattedNet)
             // setSaved(savingsBool)
+
+            if (monthIndex === 0){
+                const formattedStartingCash = format(1000)
+                const formattedEndingCash = format(cashReserves[0])
+                setStartingCash(formattedStartingCash)
+                setEndingCash(formattedEndingCash)
+                
+            } else {
+                const formattedStartingCash = format(cashReserves[monthIndex - 1])
+                const formattedEndingCash = format(cashReserves[monthIndex])
+                setStartingCash(formattedStartingCash)
+                setEndingCash(formattedEndingCash)
+            }
         } catch (error) {
             console.log(error)
         }
@@ -85,9 +107,6 @@ const SummaryTable = (props) => {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0, 
         })
-        if (value < 0){
-            formattedValue = "-" + formattedValue
-        }
         return formattedValue
     }
 
