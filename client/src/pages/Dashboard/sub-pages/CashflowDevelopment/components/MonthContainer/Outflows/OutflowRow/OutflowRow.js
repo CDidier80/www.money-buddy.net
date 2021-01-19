@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import IconCell from "../Cells/IconCell/IconCell"
 import { makeStyles, TableRow, TableCell} from '@material-ui/core'
-
+import { formatToCurrency } from "../../../../modules/cellFunctions"
 
 
 const OutflowRow = (props) => {
 
     
-    {/*  PROPS */}
+    /* -------------------------- PROPS ------------------------- */
 
     const {
         showOutflowDeleteIcons
@@ -27,15 +27,13 @@ const OutflowRow = (props) => {
     } = props.fromOutflowsTable
 
 
-    {/*  STATE  */}
+    /* -------------------------- STATE ------------------------- */
 
     const [ showUndoIcon, setShowUndoIcon ] = useState(false)
     const [ iconShouldShow, setIconShouldShow ] = useState(false)
 
 
-    {/*  useEffect */}
-
-
+    /* -------------------------- useEffects ------------------------- */
 
 
     useEffect(() => {
@@ -53,37 +51,25 @@ const OutflowRow = (props) => {
 
 
 
-    {/*  FUNCTIONS */}
+    /* ----------------------- FUNCTIONS ---------------------- */
 
     const useStyles = makeStyles({
         row: {
-            height: "38px",
-            maxHeight: "38px",
             backgroundColor: rowColor
-            
         },
-        iconCell: {
-            maxWidth: "36px",
-            padding: "0px"
-        },
-        iconButton: {
-            marginRight: "11px",
-            "&:hover" : {
-                backgroundColor: "#ffcece65"
-            }
-        },
-        deleteIcon: {
-            color: "red",
-            fontSize: "13px"
-        },
-        undoIcon: {
-            color: "lightgray",
+        cell : {
+            padding: "8px",
+            fontSize: "12px",
+            overflowWrap: "break-word",
+            fontWeight: 700,
+            color: "black"
         }
     })
 
     const classes = useStyles()
 
 
+    /* -------------------- PROPS FOR CHILDREN ------------------- */
 
     const propsForIconCell= {
         showUndoIcon,
@@ -92,7 +78,7 @@ const OutflowRow = (props) => {
         setIconShouldShow 
     }
 
-
+    /* ----------------------- JSX ---------------------- */
 
     return (
         <TableRow
@@ -102,15 +88,17 @@ const OutflowRow = (props) => {
                 {...props}
                 fromOutflowRow={{...propsForIconCell}}
             />
-            <TableCell 
+            <TableCell
+            className={classes.cell}
                 align="right"
             >
                 {outflow}
             </TableCell>
             <TableCell 
+                className={classes.cell}
                 align="right"
             >
-                {amount}
+                {formatToCurrency(amount)}
             </TableCell>
         </TableRow>
     )
