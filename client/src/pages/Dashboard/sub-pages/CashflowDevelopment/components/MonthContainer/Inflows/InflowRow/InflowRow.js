@@ -1,8 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import IconCell from "../Cells/IconCell/IconCell"
 import { TableRow, TableCell, makeStyles} from '@material-ui/core/'
+import { formatToCurrency } from "../../../../modules/cellFunctions"
 
 const InflowRow = (props) => {
+
+    // const { 
+    //     showInflowDeleteIcons,
+    // } = props.fromMonthContainer.monthlyInflows
 
     const { 
         showInflowDeleteIcons,
@@ -36,27 +41,14 @@ const InflowRow = (props) => {
 
     const useStyles = makeStyles({
         row: {
-            height: "38px",
-            maxHeight: "38px",
             backgroundColor: rowColor
-            
         },
-        iconCell: {
-            maxWidth: "36px",
-            padding: "0px"
-        },
-        iconButton: {
-            marginRight: "11px",
-            "&:hover" : {
-                backgroundColor: "#ffcece65"
-            }
-        },
-        deleteIcon: {
-            color: "red",
-            fontSize: "13px"
-        },
-        undoIcon: {
-            color: "lightgray",
+        cell : {
+            padding: "8px",
+            fontSize: "12px",
+            overflowWrap: "break-word",
+            fontWeight: 700,
+            color: "black"
         }
     })
 
@@ -70,19 +62,24 @@ const InflowRow = (props) => {
     }
 
     return (
-        <TableRow>
+        <TableRow
+            className={classes.row}
+        >
             <IconCell 
                 fromInflowRow={{...propsForIconCell}}
             />
             <TableCell 
+                className={classes.cell}
+                align="right"
             >
                 {source}
             </TableCell>
 
             <TableCell 
+                className={classes.cell}
                 align="right"
             >
-                {amount}
+                {formatToCurrency(amount)}
             </TableCell>
         </TableRow>
     )
