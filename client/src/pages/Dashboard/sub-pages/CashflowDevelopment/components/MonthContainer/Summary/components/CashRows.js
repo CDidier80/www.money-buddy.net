@@ -50,9 +50,10 @@ const CashRows = (props) => {
             >
             {cashRows.map((row) => {
                 const {description, number} = row
-                console.log(description, number)
+                // console.log(description, number)
                 return (
                     <TableRow 
+                        key={`${number}${description}`}
                         className={classes.cashRows}
                     >
                         <TableCell
