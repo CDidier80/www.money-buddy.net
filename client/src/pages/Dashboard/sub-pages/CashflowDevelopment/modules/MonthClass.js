@@ -1,4 +1,8 @@
-const {flowcategories, monthNames, inflows} = require("./data")
+const {
+    flowcategories, 
+    monthNames, 
+    inflows
+} = require("./data")
 
 
 class Month {
@@ -6,6 +10,7 @@ class Month {
         this.month = month
         this.inflows = [...inflows]
         this.flowcategories = [...flowcategories]
+
         this.randomizeFlow = (varianceLimit) => {
             let monthlyVariation = parseInt(varianceLimit * Math.random())
             monthlyVariation *= (Math.random() < .5 ? 1 : -1)
@@ -18,6 +23,14 @@ class Month {
         this.chanceMajorOutflow = (chance, amount) => {
             return (chance >= Math.random() * 100) ? amount : 0 
         }
+                /**
+         * @param {integer} chance value 0-100 representing chance of outflow occuring 
+         * @param {integer} amount the amount of the outflow if it occurs
+         */
+        this.randomInvestmentReturn = () => {
+            const investmentsGrew = Math.random() < .5 ? true : false
+            return investmentsGrew ? parseInt(Math.random() * 500) : 0
+        }
     }
 
     randomizeIncome () {
@@ -28,7 +41,7 @@ class Month {
         }
         inflowsCopy[2] = {
             source: "Investment Returns",
-            amount: inflowsCopy[2]["amount"] + this.randomizeFlow(3000)
+            amount: inflowsCopy[2]["amount"] + this.randomInvestmentReturn()
         }
         this.inflows = inflowsCopy
     }
@@ -80,7 +93,7 @@ class Month {
             outflow: "Gasoline",
             amount: vehicle["outflows"][0]["amount"] + this.randomizeFlow(30)
         }
-        vehicle[2] = {
+        vehicle["outflows"][2] = {
             outflow: "repairs",
             amount: vehicle["outflows"][2]["amount"] + this.chanceMajorOutflow(8, 2500)
         }
@@ -116,13 +129,18 @@ class Month {
         }, 0)
     }
 
+
     get totalOutflows () {
-        return this.flowcategories.reduce((runningTotal, currentFlowcat ) => {
-            return runningTotal + currentFlowcat.outflows.reduce((catTotal, currentOutflow) => {
+        const flowcategoriesCopy = [...this.flowcategories]
+        return flowcategoriesCopy.reduce((runningTotal, currentFlowcat) => {
+            const catCopy = {...currentFlowcat}
+            const outflowsCopy = [...catCopy["outflows"]]
+            return runningTotal + outflowsCopy.reduce((catTotal, currentOutflow) => {
                 return catTotal += currentOutflow.amount
             }, 0)
         }, 0)
     }
+
 
     get netCashflow () {
         const totalInflow = this.totalInflows()
@@ -132,9 +150,25 @@ class Month {
 }
 
 
+const flowcategoryDeepClone = () => {
+    const arrayCopy = flowcategories.map(flowcategory => {
+        let outflowsCopy = [...{...flowcategory}["outflows"]].map(outflow => ({...outflow}))
+        let outflowsKVpair = {outflows : outflowsCopy}
+        const flowcategoryCopy = {
+            name: flowcategory["name"],
+            ...outflowsKVpair
+        }
+        return flowcategoryCopy
+    })
+    return arrayCopy
+}
+
+
+
 export const generateMonths = () => {
-    const generatedMonths = monthNames.map(month => {
-        let newMonth = new Month(month, [...inflows], [...flowcategories])
+    const generatedMonths = monthNames.map((month, index) => {
+        let flowcategoriesCopy = flowcategoryDeepClone()
+        let newMonth = new Month(month, [...inflows], [...flowcategoriesCopy])
         newMonth.randomizeIncome()
         newMonth.randomizeOutflows()
         return newMonth
