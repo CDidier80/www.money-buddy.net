@@ -16,7 +16,7 @@ const AccordionDropdownTab = (props) => {
             fontWeight: "700",
             margin: "0 auto",
             paddingLeft: "27px",
-            fontSize: "16px",
+            fontSize: "18px",
             fontFamily: "Lato, sans-serif",
             color: "#e6a824",
             textShadow: `
