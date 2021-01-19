@@ -7,7 +7,6 @@ import {
 } from '@material-ui/core';
 
 
-
 const AccordionDropdownTab = (props) => {
 
     const useStyles = makeStyles({
@@ -15,7 +14,7 @@ const AccordionDropdownTab = (props) => {
             fontWeight: "700",
             margin: "0 auto",
             paddingLeft: "27px",
-            fontSize: "16px",
+            fontSize: "18px",
             fontFamily: "Lato, sans-serif",
             color: "#22c1c3",
             textShadow: `
