@@ -7,14 +7,19 @@ import {
 
 
 const useStyles = makeStyles({
-
+    row: {
+        width: "100%"
+    },
     columnHeader: {
         color: "#22c1c3",
-        fontWeight: "bold"
+        // color: "black",
+        fontWeight: "bold",
+        padding: "8px",
+        fontSize: "14px"
     },
     emptyCell: {
-        maxWidth: "36px",
-        minWidth: "36px", 
+        maxWidth: "20px",
+        minWidth: "20px", 
         padding: "0px"
     }
 })
@@ -25,12 +30,15 @@ const InflowHeaders = (props) => {
     const classes = useStyles()
 
     return (
-            <TableRow>
+            <TableRow
+                className={classes.row}
+            >
                 <TableCell 
                     className={classes.emptyCell}>
                 </TableCell>
                 <TableCell 
                     className={classes.columnHeader}
+                    align="center"
                 >
                     Inflow Source
                 </TableCell>
