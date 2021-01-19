@@ -9,7 +9,16 @@ import {
 
 
 
-const Chart = ({months}) => {
+const Chart = (props) => {
+
+    // console.log(months)
+    /* -------------------------- PROPS ------------------------- */
+
+    const {
+        inflows,
+        outflows, 
+        cashReserves
+    } = props.fromCashflowDevelopment
 
     /* -------------------------- STATE ------------------------- */
 
@@ -23,15 +32,9 @@ const Chart = ({months}) => {
 
     useEffect(() => {
 
-        const [
-            inflows,
-            outflows, 
-            adjustedCashReserves
-        ] = createDatasets(months)
-
         setInflowDataset(inflows)
         setOutflowDataset(outflows)
-        setCashDataset(adjustedCashReserves)
+        setCashDataset(cashReserves)
     }, [])
 
 
@@ -47,29 +50,6 @@ const Chart = ({months}) => {
         cashDataset
     ])
 
-
-    /* ----------------------- FUNCTIONS ----------------------- */
-
-    const createDatasets = (months) => {
-
-        let inflows = []
-        let outflows = []
-        let monthlyCashReserve = [1000]
-
-        months.forEach(month => {
-            const index = monthlyCashReserve.length - 1
-            const lastCashReserve = monthlyCashReserve[index]
-            const totalInflows = month.totalInflows
-            const totalOutflows = month.totalOutflows
-            const monthlyCashflow = totalInflows - totalOutflows
-            const newCashReserve = lastCashReserve + monthlyCashflow
-            inflows.push(month.totalInflows)
-            outflows.push(month.totalOutflows)
-            monthlyCashReserve.push(newCashReserve)
-        })
-        let adjustedCashReserves = monthlyCashReserve.slice(1)
-        return [inflows, outflows, adjustedCashReserves]
-    }
 
 /* ----------------------- PROPS FOR CHART ---------------------- */
 
