@@ -13,14 +13,14 @@ import {
 } from '@material-ui/core/';
 
 
-
 const InflowsTable = (props) => {
+    console.log(props.fromMonthContainer)
     
-    {/*  PROPS */}
+    /* -------------------------- PROPS ------------------------- */
     
     const {
         monthlyInflows
-      } = props.fromMonthContainer
+    } = props.fromMonthContainer
     
     {/*  STATE */}
 
@@ -30,66 +30,61 @@ const InflowsTable = (props) => {
     {/*  useEffect */}
 
 
-    {/*  FUNCTIONS */}
+    /* ----------------------- FUNCTIONS ----------------------- */
 
     const useStyles = makeStyles({
-        table: {
-            minWidth: "270px",
-        },
-        title: {
-            flex: '1 1 100%',
+        tableBody: {
+            overflow: "hidden"
         },
         tableContainer: {
-            maxWidth: "890px",
-            margin: "auto"
+            margin: "auto",
+            padding: '4px'
         },
     })
 
     const classes = useStyles()
 
 
-
-
     return (
-        <AccordionDetails>
-            <div className="summary placeholder left">
-                <h3 className="widget-header distribution-header">Month</h3>
-                <TableContainer 
-                    className="tableContainer" 
-                    component={Paper}
+        <AccordionDetails 
+            className={classes.tableContainer}
+        >
+            <TableContainer 
+                component={Paper}
+            >
+                <Table 
+                    className={classes.table} 
+                    // size="small" 
+                    aria-label="a dense table"
                 >
-                    <Table 
-                        className={classes.table} 
-                        // size="small" 
-                        aria-label="a dense table"
+                    <TableBody
+                        className={classes.tableBody}
                     >
-                        <TableBody>
-                            <InflowHeaders 
-                                {...props}
-                            />
-                            {monthlyInflows.forEach((row, index) => {
-                                const {source, amount} = row
-                                const rowColor = offRowColor(index)
-                                const propsForInflowRow = {
-                                    source, 
-                                    amount,
-                                    rowIndex: index,
-                                    rowColor,
-                                    incomingDeletion,
-                                    setIncomingDeletion
-                                }   
-                                return (
-                                    <InflowRow 
-                                        {...props}
-                                        key={index + 2000}
-                                        fromInflowsTable={{...propsForInflowRow}}
-                                    />
-                                )
-                            })}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </div>
+                        <InflowHeaders 
+                            {...props}
+                        />
+                        {monthlyInflows.map((row, index) => {
+                            const {source, amount} = row
+                            const rowColor = offRowColor(index)
+                            const propsForInflowRow = {
+                                source, 
+                                amount,
+                                rowIndex: index,
+                                rowColor,
+                                incomingDeletion,
+                                setIncomingDeletion
+                            }   
+                            return (
+                                <InflowRow 
+                                    {...props}
+                                    key={index + 2000}
+                                    fromInflowsTable={{...propsForInflowRow}}
+                                />
+                            )
+                        })}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </AccordionDetails>
 
     )
