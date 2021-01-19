@@ -16,9 +16,6 @@ const useStyles = makeStyles({
     table: {
         minWidth: "270px",
     },
-    title: {
-        flex: '1 1 100%',
-    },
     tableContainer: {
         maxWidth: "890px",
         margin: "auto"
