@@ -15,7 +15,7 @@ const InflowsAccordion = (props) => {
 
 
     /* -------------------------- STATE ------------------------- */
-    const [opened, toggleOpened] = useState(false)
+    const [opened, toggleOpened] = useState(true)
     const [showInflowDeleteIcons, toggleInflowDeleteIcons] = useState(false)
 
     /* -------------------------- useEffects ------------------------- */
@@ -46,6 +46,7 @@ const InflowsAccordion = (props) => {
         // },
         accordion: {
             marginTop: "5px",
+            padding: "3px"
         }
     })
 
@@ -64,11 +65,10 @@ const InflowsAccordion = (props) => {
                 className={classes.accordion}
                 onChange={(e)=>handleExpansion(e)}
             >
-                <AccordionDropdownTab opened={opened}/>
+                <AccordionDropdownTab expanded={opened}/>
                 <InflowsTable 
                     {...props} 
                     fromInflowsAccordion={{...propsForInflowsTable}}
-                
                 />
             </Accordion>
         </div>
