@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import OutflowHeaders from "./components/OutflowHeaders"
 import OutflowRow from "../OutflowRow/OutflowRow"
-// import { useStyles } from "./styles/useStyles"
+import { offRowColor } from "../../../../../universal-functions/styleFunctions"
 import { 
     Paper, 
     Table, 
     TableBody, 
     TableContainer, 
-    AccordionDetails
+    AccordionDetails,
+    makeStyles
 } from '@material-ui/core'
 
 
@@ -27,27 +28,44 @@ const OutflowTable = (props) => {
 
     {/*  FUNCTIONS */}
 
-    // const classes = useStyles()
+    const useStyles = makeStyles({
+        tableBody: {
+            overflow: "hidden"
+        },
+        tableContainer: {
+            margin: "auto",
+            padding: '4px',
+            boxShadow: "1px -1px 1px rgb(0, 0, 0, 0.1)"
+        },
+        table: {
+            
+        }
+    })
+
+    const classes = useStyles()
 
 
     return (
-        <AccordionDetails>
+        <AccordionDetails
+        className={classes.tableContainer}
+        >
             <TableContainer 
-                className="tableContainer" 
                 component={Paper}
             >
                 <Table 
-                    // className={classes.table} 
+                    className={classes.table} 
                     size="small" 
                     aria-label="a dense table"
                 >
-                    <TableBody>
+                    <TableBody
+                        // className={classes.tableBody}
+                    >
                         <OutflowHeaders 
                             {...props}
                         />
                         {outflows.map((outflowObj, index) => {
                             const { outflow, amount } = outflowObj
-                            const rowColor = (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
+                            const rowColor = offRowColor(index)                            
                             const propsForRows = {
                                 outflow,
                                 amount, 
@@ -61,7 +79,6 @@ const OutflowTable = (props) => {
                                     key={`${index * -1}`} 
                                     {...props}
                                     fromOutflowsTable={{...propsForRows}}
-
                                 /> 
                             )
                         })}
