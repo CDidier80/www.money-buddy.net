@@ -13,12 +13,13 @@ const SummaryAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
     // console.log("props:", props)
-    const {thisMonth} = props.fromPaginatingContainer
+    const { thisMonth } = props.fromPaginatingContainer
+    // console.log("fromMonthContainer", props.fromMonthContainer)
 
     /* -------------------------- STATE ------------------------- */
     // const [showAddCategoryPanel, toggleAddCategoryPanel] = useState(false)
     // const [showDeleteIcons, toggleDeleteIcons] = useState(false)
-    const [opened, toggleOpened] = useState(false)
+    const [opened, toggleOpened] = useState(true)
 
     {/*  useEffect  */}
 
@@ -51,6 +52,8 @@ const SummaryAccordion = (props) => {
             <Accordion 
                 className={classes.accordion}
                 onChange={(e)=>handleExpansion(e)}
+                expanded={opened}
+
             >
                 <AccordionDropdownTab 
                     opened={opened}
