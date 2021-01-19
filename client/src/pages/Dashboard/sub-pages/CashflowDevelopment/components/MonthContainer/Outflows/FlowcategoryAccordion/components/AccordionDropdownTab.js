@@ -24,13 +24,16 @@ const AccordionDropdownTab = (props) => {
             justifyContent: "flex-start",
             alignItems: "center"
         },
-        flowcategory: {
+        flowcategoryHeader: {
             color: "#e6a824",
             fontWeight: "500",
             fontFamily: "Lato, sans-serif",
+            fontSize: "14px"
         },
         expandMoreIcon : {
-            color:"#e6a824",
+            color: "#e6a824",
+            fontSize: "18px",
+            paddingLeft: "0"
         }
     })
 
@@ -48,21 +51,19 @@ const AccordionDropdownTab = (props) => {
             aria-controls="panel1a-content"
             id="panel1a-header"
         >
-
-        {showDeleteIcons &&
-            <FlowcategoryDeleteIcon 
-                {...props}
-            />
-        }
-        
-        <div className={classes.flexWrapper}>
-            <Typography 
-                className={classes.flowcategory}
-            >
-                {flowcategory.name}
-            </Typography>
-        </div>
-    </AccordionSummary>
+            {showDeleteIcons &&
+                <FlowcategoryDeleteIcon 
+                    {...props}
+                />
+            }
+            <div className={classes.flexWrapper}>
+                <Typography 
+                    className={classes.flowcategoryHeader}
+                >
+                    {flowcategory.name}
+                </Typography>
+            </div>
+        </AccordionSummary>
     )
 }
 
