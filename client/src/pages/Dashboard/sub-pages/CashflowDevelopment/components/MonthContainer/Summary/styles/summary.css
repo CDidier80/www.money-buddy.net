@@ -10,4 +10,7 @@
 .summary-table-body {
     margin: auto;
     width: 100%;
+    background-color: rgb(180, 255, 255);
+    background-color: rgb(159, 255, 159);
+    background-color: rgb(255, 176, 176);
 }
