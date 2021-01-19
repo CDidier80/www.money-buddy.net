@@ -1,19 +1,26 @@
 import React, {useState, useEffect} from 'react'
-import { initTotalInflow, initTotalOutflow } from "./modules/initFunctions"
 import SummaryAccordion from "./Summary/SummaryAccordion"
 import OutflowsAccordion from "./Outflows/OutflowAccordion/OutflowsAccordion"
 import InflowsAccordion from "./Inflows/InflowAccordion/InflowsAccordion"
+import "./styles/monthContainer.css"
 
 const MonthContainer = (props) => {
 
-    console.log(props)
+    // console.log("fromPaginatingContainer:", props)
     /* -------------------------- PROPS ------------------------- */
 
-    const { monthIndex, thisMonth } = props.fromPaginatingContainer
     const { 
-        monthId,
-        month,
-        year,
+        inflows: inflowsDataset,
+        outflows: outflowsDataset, 
+        cashReserves
+    } = props.fromCashflowDevelopment
+
+    const { 
+        thisMonth,
+        monthIndex
+    } = props.fromPaginatingContainer
+
+    const { 
         flowcategories, 
         inflows
     } = thisMonth
@@ -27,7 +34,6 @@ const MonthContainer = (props) => {
     const [loaded, setLoaded] = useState(false)
 
     
-
     /* -------------------------- useEffects ------------------------- */
 
              /* useEffect #1: -- init local copies of cashflow info -- */
@@ -40,11 +46,9 @@ const MonthContainer = (props) => {
     ]
 
     useEffect(() => {
-        const newTotalOutflow =  thisMonth.totalOutflow
-        const newTotalInflow =  thisMonth.totalInflow
         setMonthlyInflows(inflows)
-        setTotalInflow(newTotalInflow)
-        setTotalOutflow(newTotalOutflow)
+        setTotalInflow(inflowsDataset[monthIndex])
+        setTotalOutflow(outflowsDataset[monthIndex])
         setNewFlowcategories(flowcategories)
     }, [])
 
@@ -53,11 +57,11 @@ const MonthContainer = (props) => {
 
     useEffect(() => {
         if (!dependencyArray.includes("")){
-            const newTotalInflow =  thisMonth.totalInflow 
-            const newTotalOutflow =  thisMonth.totalOutflow
+            const newTotalInflow =  thisMonth.totalInflows
+            const newTotalOutflow =  thisMonth.totalOutflows
             setTotalInflow(newTotalInflow)
             setTotalOutflow(newTotalOutflow)
-            setNewFlowcategories(newFlowcategories)
+            setNewFlowcategories(flowcategories)
         }
     },
     [
