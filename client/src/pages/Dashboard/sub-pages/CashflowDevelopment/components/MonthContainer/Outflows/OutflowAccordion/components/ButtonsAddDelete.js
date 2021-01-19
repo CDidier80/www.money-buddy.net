@@ -20,6 +20,9 @@ const ButtonsAddDelete = (props) => {
 
 
     const useStyles = makeStyles({
+        buttonGroup: {
+            margin: "0 auto"
+        },
         button: {
             fontSize: "9px",
             fontWeight: "700",
