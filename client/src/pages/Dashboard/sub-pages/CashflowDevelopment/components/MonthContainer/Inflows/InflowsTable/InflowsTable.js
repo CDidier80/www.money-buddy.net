@@ -14,7 +14,6 @@ import {
 
 
 const InflowsTable = (props) => {
-    console.log(props.fromMonthContainer)
     
     /* -------------------------- PROPS ------------------------- */
     
