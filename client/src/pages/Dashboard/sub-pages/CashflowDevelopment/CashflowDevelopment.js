@@ -1,15 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import PaginatingContainer from "./components/PaginatingContainer/PaginatingContainer"
+import "./styles/CashFlow.css"
 import Chart from "./components/Chart/Chart"
 import { generateMonths } from "./modules/MonthClass"
-import CashflowHeader from './components/CashflowHeader';
-import "./styles/CashFlow.css"
+import CashflowHeader from './components/CashflowHeader/CashflowHeader';
+import PaginatingContainer from "./components/PaginatingContainer/PaginatingContainer"
 
 const CashflowDevelopment = (props) => {
 
     // console.log(props)
-
     /* ----------------------- STATE ----------------------- */
+
     const [newMonths, setMonths] = useState("")
     const [inflows, setInflows] = useState("")
     const [outflows, setOutflows] = useState("")
@@ -43,7 +43,6 @@ const CashflowDevelopment = (props) => {
         ){
             setLoaded(true)
         }
-
     },  
     [
         newMonths,
