@@ -10,6 +10,7 @@ import {
 
 
 const AccordionDropdownTab = (props) => {
+    console.log("child rendered")
 
     const { 
         flowcategory,
