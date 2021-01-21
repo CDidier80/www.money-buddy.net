@@ -1,24 +1,20 @@
 import React, { useState, useEffect } from 'react'
-import CategoryPopup from "../FlowcategoryPopups/FlowcategoryPopup"
-import FlowcategoryAccordion from "../FlowcategoryAccordion/FlowategoryAccordion"
-import ButtonsAddDelete from './components/ButtonsAddDelete'
-import AccordionDropdownTab from "./components/AccordionDropdownTab"
+import "./styles/accordionTheme"
 import { 
     makeStyles,
     Accordion,
-} from '@material-ui/core';
-
+} from '@material-ui/core'
+import AccordionDropdownTab from "./components/AccordionDropdownTab"
+import CategoryPopup from "../FlowcategoryPopups/FlowcategoryPopup"
+import FlowcategoryAccordion from "../FlowcategoryAccordion/FlowategoryAccordion"
 
 
 const OutflowsAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    // console.log(props)
-
     const { 
         newFlowcategories,
-        setNewFlowcategories
     } = props.fromMonthContainer
     
 
@@ -27,6 +23,7 @@ const OutflowsAccordion = (props) => {
     const [showAddFlowcategoryPanel, toggleAddFlowcategoryPanel] = useState(false)
     const [showDeleteIcons, toggleDeleteIcons] = useState(false)
     const [opened, toggleOpened] = useState(false)
+    const [memoTicker, incrementMemoTicker] = useState(0)
     // must keep -- optimizes performance
     const [renderOutflowsAccordion, rerenderOutflowsAccordian ] = useState(false)
 
@@ -38,12 +35,12 @@ const OutflowsAccordion = (props) => {
 
 
     /* ----------------------- FUNCTIONS ------------------------ */
-
+// .MuiAccordion-root.Mui-expanded:last-child
 
     const useStyles = makeStyles({
-        accordion: {
+        root: {
             marginTop: "5px",
-            padding: "3px 3px 6px 3px"
+            padding: "3px 3px 6px 3px",
         }
     })
     
@@ -52,53 +49,48 @@ const OutflowsAccordion = (props) => {
 
     const handleExpansion = (e) => {
         toggleOpened(!opened)
+        incrementMemoTicker(memoTicker + 1)
         console.log("changed")
     }
 
 
-    const buttonsAddDeleteProps ={
-        toggleDeleteIcons,
-        showDeleteIcons,
-        toggleAddFlowcategoryPanel
-    }
-
-
     return (
-        <div>
-            { showAddFlowcategoryPanel && 
-                <CategoryPopup 
-                    {...props} 
-                    toggleAddFlowcategoryPanel={toggleAddFlowcategoryPanel}
-                />
-            }
-            <Accordion 
-                className={classes.accordion}
-                onChange={(e)=>handleExpansion(e)}
-            >
-                <AccordionDropdownTab 
-                    opened={opened}
-                />
-                {/* <ButtonsAddDelete 
-                    fromOutflowsAccordion={{...buttonsAddDeleteProps}}
-                /> */}
-                {newFlowcategories.map((flowcategory, index) => {
-                    const flowcategoryAccordionProps = {
-                        flowcategory,
-                        flowcategoryIndex: index,
-                        showDeleteIcons,
-                        rerenderOutflowsAccordian,
-                        renderOutflowsAccordion
-                    }
-                    return (
-                        <FlowcategoryAccordion 
-                            key={`${20000 + index}`}
-                            {...props} 
-                            fromOutflowsAccordion={{...flowcategoryAccordionProps}}
-                        />
-                    )
-                })}
-            </Accordion>
-        </div>
+            <div>
+                { showAddFlowcategoryPanel && 
+                    <CategoryPopup 
+                        {...props} 
+                        toggleAddFlowcategoryPanel={toggleAddFlowcategoryPanel}
+                    />
+                }
+                <Accordion 
+                    className={classes.root}
+                    onChange={(e)=>handleExpansion(e)}
+                >
+                    <AccordionDropdownTab 
+                        opened={opened}
+                    />
+                    {/* <ButtonsAddDelete 
+                        fromOutflowsAccordion={{...buttonsAddDeleteProps}}
+                    /> */}
+                    {newFlowcategories.map((flowcategory, index) => {
+                        const flowcategoryAccordionProps = {
+                            flowcategory,
+                            flowcategoryIndex: index,
+                            showDeleteIcons,
+                            rerenderOutflowsAccordian,
+                            renderOutflowsAccordion,
+                            memoTicker
+                        }
+                        return (
+                            <FlowcategoryAccordion 
+                                key={`${20000 + index}`}
+                                {...props} 
+                                fromOutflowsAccordion={{...flowcategoryAccordionProps}}
+                            />
+                        )
+                    })}
+                </Accordion>
+            </div>
     )
 }
 
