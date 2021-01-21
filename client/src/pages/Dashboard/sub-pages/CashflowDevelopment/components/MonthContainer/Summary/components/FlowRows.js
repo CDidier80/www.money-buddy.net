@@ -68,7 +68,7 @@ const FlowRows = (props) => {
             aria-label="a dense table"
         >
             <TableBody 
-                // className={classes.tableBody}
+                className={classes.tableBody}
             >
                 {flowRows.map((row) => {
                     const {description, number, className} = row
