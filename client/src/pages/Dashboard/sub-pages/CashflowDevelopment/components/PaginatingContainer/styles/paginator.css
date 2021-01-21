@@ -4,12 +4,12 @@
 }
 
 .monthContainer-wrapper {
-    display: flex;
     width: 100%;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    border-radius: 5px;
     padding: 5px;
-    margin-top: 8px;
+    display: flex;
+    overflow: hidden;
+    border-radius: 5px;
+    margin: 8px auto 0 auto;
+    justify-content: space-evenly;
 }
 
