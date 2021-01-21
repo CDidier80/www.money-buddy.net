@@ -34,7 +34,6 @@ const SummaryAccordion = (props) => {
 
     const handleExpansion = (e) => {
         toggleOpened(!opened)
-        console.log("changed")
     }
 
 
