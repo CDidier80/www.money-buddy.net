@@ -132,22 +132,12 @@ const SummaryTable = (props) => {
                 className={classes.tableContainter}
                 component={Paper}
             >
-                <Table 
-                    // className={classes.table} 
-                    size="small" 
-                    aria-label="a dense table"
-                >
-                    <TableBody 
-                        className={classes.tableBody}
-                    >
-                        <FlowRows 
-                            fromSummaryTable={{...flowRowsProps}}
-                        />
-                        <CashRows 
-                            fromSummaryTable={{...cashRowsProps}}
-                        />
-                    </TableBody>
-                </Table>
+                <FlowRows 
+                    fromSummaryTable={{...flowRowsProps}}
+                />
+                <CashRows 
+                    fromSummaryTable={{...cashRowsProps}}
+                />
             </TableContainer>
         </AccordionDetails>
 
