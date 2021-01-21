@@ -1,8 +1,9 @@
-import React, {useState, useEffect} from 'react'
-import SummaryAccordion from "./Summary/SummaryAccordion"
-import OutflowsAccordion from "./Outflows/OutflowAccordion/OutflowsAccordion"
-import InflowsAccordion from "./Inflows/InflowAccordion/InflowsAccordion"
-import "./styles/monthContainer.css"
+import React, {useState, useEffect, memo} from 'react'
+import MemoContent from './MemoContent/MemoContent'
+import { staticStyles } from "./styles/staticStyles"
+import { makeStyles } from '@material-ui/core/styles'
+import { accordionTheme } from './styles/accordionTheme'
+import { ThemeProvider } from '@material-ui/core/styles'
 
 const MonthContainer = (props) => {
 
@@ -17,7 +18,8 @@ const MonthContainer = (props) => {
 
     const { 
         thisMonth,
-        monthIndex
+        monthIndex,
+        displayRange,
     } = props.fromPaginatingContainer
 
     const { 
@@ -27,11 +29,11 @@ const MonthContainer = (props) => {
 
     /* -------------------------- STATE ------------------------- */
 
-    const [newFlowcategories, setNewFlowcategories] = useState("")
-    const [monthlyInflows, setMonthlyInflows] = useState("")
-    const [totalOutflow, setTotalOutflow] = useState("")
-    const [totalInflow, setTotalInflow] = useState("")
     const [loaded, setLoaded] = useState(false)
+    const [totalInflow, setTotalInflow] = useState("")
+    const [totalOutflow, setTotalOutflow] = useState("")
+    const [monthlyInflows, setMonthlyInflows] = useState("")
+    const [newFlowcategories, setNewFlowcategories] = useState("")
 
     
     /* -------------------------- useEffects ------------------------- */
@@ -47,9 +49,9 @@ const MonthContainer = (props) => {
 
     useEffect(() => {
         setMonthlyInflows(inflows)
+        setNewFlowcategories(flowcategories)
         setTotalInflow(inflowsDataset[monthIndex])
         setTotalOutflow(outflowsDataset[monthIndex])
-        setNewFlowcategories(flowcategories)
     }, [])
 
 
@@ -57,8 +59,8 @@ const MonthContainer = (props) => {
 
     useEffect(() => {
         if (!dependencyArray.includes("")){
-            const newTotalInflow =  thisMonth.totalInflows
-            const newTotalOutflow =  thisMonth.totalOutflows
+            const newTotalInflow = thisMonth.totalInflows
+            const newTotalOutflow = thisMonth.totalOutflows
             setTotalInflow(newTotalInflow)
             setTotalOutflow(newTotalOutflow)
             setNewFlowcategories(flowcategories)
@@ -83,21 +85,26 @@ const MonthContainer = (props) => {
     }, [...dependencyArray])
 
 
+    /* --------------------- FUNCTION --------------------- */
+
+    const useStyles = makeStyles({
+        monthContainer : {
+            ...staticStyles,
+            display: displayRange.includes(monthIndex) ? "block" : 'none',
+        }
+    })
+
+    const classes = useStyles()
 
     /* --------------------- PROPS FOR CHILDREN --------------------- */
 
-    const summaryAccordionProps = {
+
+    const memoProps = {
         totalOutflow,
         totalInflow,
-    }
-
-    const inflowsAccordionProps = {
         setTotalInflow,
         monthlyInflows,
-        setMonthlyInflows
-    }
-
-    const outflowsAccordionProps = {
+        setMonthlyInflows,
         setTotalOutflow,
         newFlowcategories,
         setNewFlowcategories
@@ -105,23 +112,19 @@ const MonthContainer = (props) => {
 
 
     return ( !loaded ? <div></div> :
-        <div 
-            className="month-container"
-        >
-            <SummaryAccordion 
-                {...props}
-                fromMonthContainer={{...summaryAccordionProps}}
-            />
-            <InflowsAccordion 
-                {...props}
-                fromMonthContainer={{...inflowsAccordionProps}}
-            />
-            <OutflowsAccordion 
-                {...props}
-                fromMonthContainer={{...outflowsAccordionProps}}
-            />
-        </div>
+        <ThemeProvider theme={accordionTheme}>
+            <div 
+                className={classes.monthContainer}
+            >
+                <MemoContent 
+                    {...props}
+                    fromMonthContainer={{...memoProps}}
+                />
+            </div>
+        </ThemeProvider>
     )
 }
 
 export default MonthContainer
+
+
