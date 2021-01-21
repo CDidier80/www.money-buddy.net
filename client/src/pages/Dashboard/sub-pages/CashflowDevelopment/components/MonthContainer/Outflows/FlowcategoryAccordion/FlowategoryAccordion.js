@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import CategoryDeletePopup from "../FlowcategoryPopups/FlowcategoryDeletePopup"
 import OutflowsTable from "../OutflowsTable/OutflowsTable"
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
@@ -11,7 +11,11 @@ import ButtonsAddDel from './components/ButtonsAddDel';
 
 
 
-const FlowcategoryAccordion = (props) => {
+const FlowcategoryAccordion = memo((props) => {
+
+    console.log("rendered")
+
+    const {memoTicker} = props.fromOutflowsAccordion
 
     /* -------------------------- STATE ------------------------- */
 
@@ -69,7 +73,7 @@ const FlowcategoryAccordion = (props) => {
         render
     }
 
-    return (
+    return ( memoTicker == 0 ? <div></div> :
         <AccordionDetails 
             className={classes.accordionDetails}
         >
@@ -97,6 +101,14 @@ const FlowcategoryAccordion = (props) => {
             </div>
         </AccordionDetails>
     )
-}
+}, (prevProps, nextProps) => {
+    const {memoTicker: prevMemoTicker} = prevProps.fromOutflowsAccordion
+    const {memoTicker: nextMemoTicker} = nextProps.fromOutflowsAccordion
+    if (nextMemoTicker == 1) {
+        return false
+    } else {
+        return (prevMemoTicker !== nextMemoTicker) 
+    }
+})
 
 export default FlowcategoryAccordion
