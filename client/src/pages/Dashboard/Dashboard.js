@@ -46,7 +46,6 @@ const Dashboard = (props) => {
              /* useEffect #1: ----- async calls for first render ----- */
 
     useEffect(() => {
-
         console.log("dashboard useEffect")
         if (!authenticated) {
             props.history.push("/")
@@ -70,7 +69,6 @@ const Dashboard = (props) => {
             setBudgetId(b)
         }
         initializeDashboard()
-
     }, [])
 
 
@@ -93,7 +91,6 @@ const Dashboard = (props) => {
         })
         setLoaded(childrenShouldRender ? true : false)
     }, [...renderDependencies])
-
 
 
     /* --------------------- PROPS FOR CHILDREN --------------------- */
@@ -148,11 +145,12 @@ const Dashboard = (props) => {
                         /> */}
 
                         <CashflowDevRoute 
+                            // path="/dashboard/cashflow" 
                             path="/dashboard/cashflow" 
                             fromDashboard={{...cashflowProps}}
-                            // {...props}
+                            ticker={ticker}
+                            {...props}
                         />
-
                         <Route 
                             path="/dashboard/account" 
                             component={ (props) => ( 
@@ -163,9 +161,7 @@ const Dashboard = (props) => {
                 </div>
             </main>
         </div>
-    
     )
-
 }
 
 export default withRouter(Dashboard)

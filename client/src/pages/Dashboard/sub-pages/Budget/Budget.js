@@ -10,7 +10,7 @@ import "./styles/budget.css"
 
 const Budget = (props) => {
 
-    {/*  PROPS */}
+    /* ----------------------- PROPS ------------------------ */
 
     const { 
         incomes, 
@@ -20,7 +20,7 @@ const Budget = (props) => {
     } = props.budgetHooks
     
 
-    {/*  STATE  */}
+    /* ----------------------- STATE ------------------------ */
 
     const [budgetLoaded, setBudgetLoaded] = useState(false)
     const [tick, updateBudget] = useState(0)
@@ -33,21 +33,21 @@ const Budget = (props) => {
     const [totalIncome, setTotalIncome] = useState([])
 
 
-    {/*  useEffects  */}
+    /* ----------------------- useEffects ------------------------ */
+
 
     // initial page load where state is set by dashboard budget data
     useEffect(() => {
         // console.log("Initial-load Budget useEffect --> categories, incomes")
         // console.log(categories, incomes)
-        const catState =  initNamesTotals(categories)
-        const incomeState =  initIncomeTotals(incomes)
-
+        const catState = initNamesTotals(categories)
+        const incomeState = initIncomeTotals(incomes)
         setCategoryNames(catState[0])
         setCategoryTotals(catState[1])
         setTotalExpenses(catState[2])
         setTotalIncome(incomeState)
-        setNewIncomes(incomes)
         setNewCategories(categories)
+        setNewIncomes(incomes)
         setBudgetLoaded(true)
     }, [])
 
@@ -69,15 +69,9 @@ const Budget = (props) => {
     ])
 
 
-    {/*  FUNCTIONS  */}
 
+    /* ----------------------- PROPS FOR CHILDEN ------------------------ */
 
-
-
-
-
-
-    {/*  PROPS OBJECTS  */}
 
     const incomeAccordionProps = {
         newIncomes,
