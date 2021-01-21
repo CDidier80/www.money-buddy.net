@@ -26,7 +26,6 @@ const MonthContainer = (props) => {
     const [loaded, setLoaded] = useState(false)
 
     
-
     /* -------------------------- useEffects ------------------------- */
 
              /* useEffect #1: -- init local copies of cashflow info -- */
