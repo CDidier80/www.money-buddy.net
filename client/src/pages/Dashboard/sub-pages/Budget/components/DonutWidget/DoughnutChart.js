@@ -1,99 +1,94 @@
+import { useMediaQuery } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
 import { Doughnut } from 'react-chartjs-2'
-import { paletteFromTwoColors} from "./modules/colorsFunctions"
+import { 
+    createData,
+    createOptions 
+    } from "./modules/donutFunctions"
+import "./modules/useResponsiveStyle"
+import useResponsiveStyle from './modules/useResponsiveStyle'
+import "./styles/donutStyles.css"
+
+
+
+
 
 
 const DoughnutChart = (props) => {
 
-    {/* PROPS */}
-
-    const { categoryNames, categoryTotals } = props.fromBudget
-
-
-    {/* STATE */}
-
-    const [monthly, setMonthly] = useState(false)
-
-    {/* VARIABLES */}
-
-    let monthlies = []
-    let annuals = []
-
-    categoryTotals.forEach((category)=> {
-        monthlies.push(category[1])
-        annuals.push(category[0])
-    })
-
-
-    let hoverBackgroundColor = []
-
-    // let backgroundColor = paletteFromTwoColors("#22c1c3", "#fdbb2d", categoryNames.length)
-
-    let backgroundColor = [
-        "#22c1c3",
-        "#fdbb2d", 
-        "#c746ce",
-        "#48ce46",
-        "#428bff",
-        "#e60067",
-        "#027500",
-        "#ffe342",
-        "#a2de4f",
-        "#6f68fd",
-        "#fd6868",
-        "#b17902",
-        "#69bb85",
-        "#a5b650",
-    ]
-
-    if (backgroundColor.length < categoryNames.length) {
-        backgroundColor.concat(paletteFromTwoColors("#1000f5", "#ff770f", (categoryNames.length - backgroundColor.length)))
-    }
-
-    const DATA = {
-        labels: categoryNames,
-        datasets: [
-                {
-                data: monthly ? monthlies : annuals,
-                backgroundColor: backgroundColor,
-                hoverBackgroundColor: hoverBackgroundColor,
-            }
-        ]
-    }
-
-    const options = {
-        legend :{
-            position: "left", 
-            align: "right"
-        },
-        tooltips: {        
-            callbacks: {
-                label:  (tooltipItem, data) => {
-                    const { datasetIndex } = tooltipItem
-                    const currentIndex = tooltipItem.index
-                    const dollars = data.datasets[datasetIndex].data[currentIndex]
-                    const currencyTooltip = dollars.toLocaleString('en-US', { 
-                        
-                        style: 'currency', 
-                        currency: 'USD',
-                        maximumFractionDigits: 2
-                    })
-                    return currencyTooltip
-                }
-            }
-        }
-        
-    }
 
     
+    // console.log("RERENDERED")
+
+    /* ---------------------------- PROPS ------------------------------ */
+
+    const { categoryNames, categoryTotals} = props.fromBudget
+
+    
+
+
+    /* ---------------------------- STATE ------------------------------ */
+    const [monthly, setMonthly] = useState(false)
+
+
+
+
+
+
+    /* ---------------------------- VARIABLES ------------------------------ */
+
+
+    const DATA = createData(categoryNames, categoryTotals, monthly)
+
+    const mq1 = useMediaQuery('(min-width:1500px)')
+    const mq2 = useMediaQuery('(min-width:1000px)')
+    const mq3 = useMediaQuery('(min-width:600px)')
+
+    const mediaQueries = {
+        min_width_1500px: mq1,
+        min_width_1000px: mq2,
+        min_width_600px: mq3,
+    }
+
+    const options = createOptions(mediaQueries)
+
     return (
-        <div className="budget-top-widgets right">
-            <h3 className="widget-header distribution-header">Distribution of Spending</h3>
-            <Doughnut 
-                data={DATA}
-                options={options}
-            />
+        <div 
+        className="gradient-wrapper donut"
+        >
+            <div 
+                className="budget-top-widgets donut"
+            >
+                <h3 className="donut-header">
+                    Distribution of Spending
+                </h3>
+                <div style={{width:"100%", position: "relative"}}>
+                    <Doughnut 
+                        data={DATA}
+                        options={
+                            {...options,
+                            tooltips: {        
+                                callbacks: {
+                                    label:  (tooltipItem, data) => {
+                                        const { datasetIndex } = tooltipItem
+                                        const dollars = data.datasets[datasetIndex].data.currentIndex
+                                        const currencyTooltip = dollars.toLocaleString('en-US', { 
+                                            style: 'currency', 
+                                            currency: 'USD',
+                                            maximumFractionDigits: 2
+                                        })
+                                        return currencyTooltip
+                                    }
+                                }
+                            }}
+                        }
+                        maintainAspectRatio={false}
+                    />
+                </div>
+            </div>
         </div>
+
+
     )
 }
 
