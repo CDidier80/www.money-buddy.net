@@ -1,0 +1,28 @@
+    const sizeWithPreference = () => {
+        switch (true) {
+            case userPreference === "closed":
+                console.log("switch case 1: user closed sidebar")
+                classReference.current = "sidebar closed"
+                return "sidebar closed"
+            case !smallScreen: 
+                console.log("switch case 2")
+                classReference.current = "sidebar"
+                return "sidebar"
+            // last case
+            // we know user wants open
+            // we know screen is small
+            // this could be true in 2 situations
+            // 1. The screen is shrinking but user hasn't pressed hamburger
+            // 2. The screen is already small and user clicked burger to open mobile-sidebar
+            case smallScreen && userPreference === "open":
+                console.log("switch case 3")
+                console.log("small screen:", smallScreen, "userPreference:", userPreference)
+                console.log("classReference.current", classReference.current)
+                const screenShrinking = classReference.current === "sidebar" 
+                console.log("screenShrinking",  screenShrinking)
+                classReference.current = screenShrinking ? `sidebar closed` : `sidebar mobile`
+                return screenShrinking ? `sidebar closed` : `sidebar mobile`
+            default:
+                console.log("switch statement found no true cases")
+        }
+    }
