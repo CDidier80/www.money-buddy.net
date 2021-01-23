@@ -1,6 +1,22 @@
 import { paletteFromTwoColors, backgroundColors} from "./colors"
 
-
+const createTooltips = () => ({        
+    callbacks: {
+        label:  (tooltipItem, data) => {
+            const { datasetIndex } = tooltipItem
+            const dollars = data.datasets[datasetIndex].data.currentIndex
+            let currencyTooltip
+            if (typeof dollars !== "undefined"){
+                currencyTooltip = dollars.toLocaleString('en-US', { 
+                    style: 'currency', 
+                    currency: 'USD',
+                    maximumFractionDigits: 2
+                })
+            }
+            return currencyTooltip
+        }
+    }
+})
 
 
 const divideMonthlyFromAnnual = (categoryTotals) => {
@@ -13,6 +29,7 @@ const divideMonthlyFromAnnual = (categoryTotals) => {
     return [monthlies, annuals]
 }
 
+
 const makeMoreColors = (categoryNames) => {
         return backgroundColors.concat(
             paletteFromTwoColors(
@@ -23,13 +40,10 @@ const makeMoreColors = (categoryNames) => {
 }
 
 
-
 export const createData = (categoryNames, categoryTotals, monthly) => {
-
     const [monthlies, annuals] = divideMonthlyFromAnnual(categoryTotals)
     const needMoreColors = (backgroundColors.length < categoryNames.length )
     const backgroundColorData = needMoreColors ? makeMoreColors(backgroundColors) : backgroundColors
-    
     const donutDataObject = {
         labels: categoryNames,
         datasets: [
@@ -44,6 +58,11 @@ export const createData = (categoryNames, categoryTotals, monthly) => {
 }
 
 
+/**
+ * @param {integer} fontSize size of legend font compiled to "...px"
+ * @param {integer} boxWidth width of colored box compiled to "...px"
+ */
+
 const createLegend = (fontSize, boxWidth) => ({
         position: "left",
         align: "right",
@@ -53,35 +72,42 @@ const createLegend = (fontSize, boxWidth) => ({
         }
 })
 
+
 const responsiveLegend = (mq) => {
-    let args= [12, 25]
-    console.log(mq.min_width_1500px)
+    let args = [12, 25]
     switch (true) {
+        case mq.min_width_1800px:
+            args = [24, 40]
+            break
+        case mq.min_width_1400px:
+            args = [18, 40]
+            break
+        case mq.min_width_1100px:
+            args = [14, 25]
+            break
+        case mq.min_width_862px:
+            args = [12, 25]
+            break
+        case mq.min_width_800px:
+            args = [18, 25]
+            break
         case mq.min_width_600px:
-            args = [10, 25]
-        case mq.min_width_1000px:
-            args = [30, 25]
-        case mq.min_width_1500px:
-            console.log("big")
-            args = [50, 40]
+            args = [14, 25]
+            break
         default:
-            (()=>null)()
+            // console.log("default")
     } 
-    console.log(args)
     return createLegend(args[0], args[1])
 }
+
 
 export const createOptions = (mediaQueries) => {
     const optionsObject = {
         legend: {...responsiveLegend(mediaQueries)},
         layout: {
-            padding: {
-                left: 0,
-                right: 0,
-                top: 2,
-                bottom: 6
-            }
+            padding: { left: 0, right: 0, top: 2, bottom: 6 }
         },
+        tooltips: {...createTooltips()},
         animation: {
             animateScale: true
         },
