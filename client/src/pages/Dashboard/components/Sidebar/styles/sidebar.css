@@ -1,0 +1,39 @@
+.sidebar {
+    min-height: calc(100vh - 66px);
+    width: 155px;
+    min-width: 155px;
+    top: 66px;
+    left: 0;
+    z-index: 904;
+    display: block;
+    background-color: rgba(0,0,0,.5);
+    transition: all 0.3s ease;
+}
+
+.sidebar.closed {
+    width: 49px;
+    min-width: 49px;
+    transition: all 0.3s ease;
+}
+
+.sidebar.mobile {
+    transition: all 0.3s ease;
+    width: 100px;
+    min-width: 100px;
+    overflow: hidden;
+}
+
+
+
+/* @media (max-width: 600px) {
+    .sidebar{
+        width: 49px;
+        min-width: 49px;
+    }
+}
+
+@media (max-width: 505px) {
+    .sidebar.narrowed{
+        max-width: 49px;
+    }
+} */
