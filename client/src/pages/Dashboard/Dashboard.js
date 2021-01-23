@@ -35,7 +35,13 @@ const Dashboard = (props) => {
 
             /*  state:  ------------ rendering & ui control ---------- */
 
-    const [narrow, setSidebarNarrowed] = useState(false)
+                              /* ------------ sidebar state ---------- */
+
+    // const [sidebarOpen, setSidebarOpen] = useState(null)
+    const [userPreference, setUserPreference] = useState("")
+
+                             /* ---------- forcible rerenders -------- */
+
     const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
     
@@ -46,7 +52,7 @@ const Dashboard = (props) => {
              /* useEffect #1: ----- async calls for first render ----- */
 
     useEffect(() => {
-        console.log("dashboard useEffect")
+        // console.log("dashboard useEffect")
         if (!authenticated) {
             props.history.push("/")
         }
@@ -96,10 +102,19 @@ const Dashboard = (props) => {
     /* --------------------- PROPS FOR CHILDREN --------------------- */
 
     const propsNavbar = {
-        narrow,
-        setSidebarNarrowed,
+        setUserPreference,
+        userPreference,
+        // sidebarOpen, 
+        // setSidebarOpen,
         ticker,
         setTicker
+    }
+
+    const propsSidebar = {
+        // sidebarOpen, 
+        // setSidebarOpen,
+        userPreference, 
+        setUserPreference
     }
 
     const budgetHooks = {
@@ -130,9 +145,9 @@ const Dashboard = (props) => {
             <main className="dash-main-flex">
                 <SideBar 
                     {...props} 
-                    narrow={narrow} 
+                    fromDashboard={{...propsSidebar}}
                 /> 
-                <div className={ narrow ? "sub-page expanded" : "sub-page"}> 
+                <div className="sub-page"> 
                     <Switch> 
                         <BudgetRoute 
                             exact path="/dashboard/" 
