@@ -18,3 +18,6 @@
 
 // When you pass props with spread operator {...props} you're emptying the contents of the parent props into the 
 // empty props object of the child component
+
+
+
