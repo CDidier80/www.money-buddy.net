@@ -14,9 +14,7 @@ const Budget = (props) => {
 
     const { 
         incomes, 
-        budgetId, 
         categories, 
-        sendBudgetToDB
     } = props.budgetHooks
     
 
@@ -68,7 +66,18 @@ const Budget = (props) => {
         userMadeChanges,
     ])
 
+    const [size, setSize] = useState(window.innerWidth)
 
+    const reportSize = (e) => {
+        setSize(window.innerWidth)
+    }
+
+    useEffect(() => {
+        window.addEventListener("resize", reportSize)
+        return () => {
+            window.removeEventListener("resize", reportSize)
+        }
+    }, [])
 
     /* ----------------------- PROPS FOR CHILDEN ------------------------ */
 
@@ -121,6 +130,7 @@ const Budget = (props) => {
                 {...props}
                 fromBudget={{...propsTitleAndSave}}
             />
+            <h2 style={{color:"black", fontSize:"30px"}}>{size}</h2>
             <div className="top-flex">
                 <Summary
                     {...props}
