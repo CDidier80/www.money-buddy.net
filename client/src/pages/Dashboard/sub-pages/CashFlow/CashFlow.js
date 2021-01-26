@@ -8,13 +8,12 @@ const Cashflow = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { months } = props.fromDashboard
     /* -------------------------- STATE ------------------------- */
 
     const [cashflowLoaded, setCashflowLoaded] = useState(false)
-    const [tick, updateCashflow] = useState(0)
     const [userMadeChanges, toggleChanges] = useState(null)
     const [newMonths, setNewMonths] = useState("")
+    const [tick, updateCashflow] = useState(0)
 
     
     /* ------------------------ useEffects ----------------------- */
@@ -28,17 +27,13 @@ const Cashflow = (props) => {
     }, [])
 
 
-    useEffect(() => {
-        console.log("useEffect 2")
-        if (newMonths === ""){
-            console.log(newMonths)
-            console.log("newMonths still undefined ")
-        } else {
-            console.log("newMonths is updated with state")
-            console.log(newMonths)
-        }
-        setCashflowLoaded(newMonths === "" ? false : true)
-    }, [newMonths])
+    // useEffect(() => {
+    //     console.log("useEffect 2")
+    //     if (newMonths === ""){
+    //     } else {
+    //     }
+    //     setCashflowLoaded(newMonths === "" ? false : true)
+    // }, [newMonths])
 
 
 
