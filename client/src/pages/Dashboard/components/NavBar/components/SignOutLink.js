@@ -3,9 +3,11 @@ import { Link } from 'react-router-dom'
 
 const SignOutLink = (props) => {
 
+    const {setAuth, setUserInfo} = props.fromApp
+
     const logOut = (e) => {
-        props.setAuth(false)
-        props.setUserInfo(null)
+        setAuth(false)
+        setUserInfo(null)
         localStorage.clear()
         props.history.push("/")
     }
