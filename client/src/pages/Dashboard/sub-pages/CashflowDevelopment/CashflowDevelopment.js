@@ -7,14 +7,13 @@ import PaginatingContainer from "./components/PaginatingContainer/PaginatingCont
 
 const CashflowDevelopment = (props) => {
 
-    // console.log(props)
     /* ----------------------- STATE ----------------------- */
-
-    const [newMonths, setMonths] = useState("")
+    
     const [inflows, setInflows] = useState("")
+    const [newMonths, setMonths] = useState("")
     const [outflows, setOutflows] = useState("")
     const [cashReserves, setCashReserves] = useState("")
-
+    
     const [loaded, setLoaded] = useState(false)
     const [tick, incrementTicker] = useState(0)
 
@@ -75,11 +74,11 @@ const CashflowDevelopment = (props) => {
         return [inflows, outflows, adjustedCashReserves]
     }
 
-    /* ----------------------- PROPS FOR CHILDREN ----------------------- */
+//     /* ----------------------- PROPS FOR CHILDREN ----------------------- */
 
     const headerProps = {
-        setLoaded, 
         tick,
+        setLoaded, 
         incrementTicker,
     }
 
@@ -90,9 +89,9 @@ const CashflowDevelopment = (props) => {
     }
 
     const paginatingContainerProps = {
-        newMonths,
         inflows,
         outflows, 
+        newMonths,
         cashReserves
     }
 
@@ -105,6 +104,7 @@ const CashflowDevelopment = (props) => {
                 fromCashflowDevelopment={{...headerProps}}
             />
             <Chart 
+                {...props.fromApp}
                 fromCashflowDevelopment={{...chartProps}}
             />
             <PaginatingContainer 
