@@ -2,6 +2,7 @@ import RetirementChart from "./components/RetirementChart/RetirementChart"
 import ChartControls from "./components/ChartControls/ChartControls"
 import PageHeader from "./components/PageHeader/PageHeader"
 import React, {useState, useEffect} from 'react'
+import "./styles/retirement.css"
 
 const Retirement = (props) => {
 
@@ -44,7 +45,7 @@ const Retirement = (props) => {
 
 
     return (
-        <div>
+        <div className="retirement">
             <PageHeader />
             <RetirementChart 
                 {...props}
