@@ -1,24 +1,5 @@
 import { paletteFromTwoColors, backgroundColors} from "./colors"
-
-const createTooltips = () => ({        
-    callbacks: {
-        label:  (tooltipItem, data) => {
-            const { datasetIndex, index} = tooltipItem
-            const dollarsArray = data.datasets[datasetIndex].data
-            const thisDollars = dollarsArray[index]
-            let currencyTooltip
-            if (typeof thisDollars !== "undefined"){
-                currencyTooltip = thisDollars.toLocaleString('en-US', { 
-                    maximumFractionDigits: 0,
-                    minimumFractionDigits: 0,
-                    style: 'currency', 
-                    currency: 'USD',
-                })
-            }
-            return currencyTooltip
-        }
-    }
-})
+import {createTooltips} from "./tooltips"
 
 
 const divideMonthlyFromAnnual = (categoryTotals) => {
@@ -33,7 +14,6 @@ const divideMonthlyFromAnnual = (categoryTotals) => {
         annuals
     ]
 }
-
 
 const makeMoreColors = (categoryNames) => {
         return backgroundColors.concat(
