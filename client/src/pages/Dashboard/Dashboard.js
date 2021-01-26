@@ -16,7 +16,6 @@ import "./styles/dashboard.css"
 
 
 const Dashboard = (props) => {
-    console.log(props)
     /* -------------------------- PROPS ------------------------- */
 
     const { userInfo, authenticated, gradientWrapper } = props.fromApp
