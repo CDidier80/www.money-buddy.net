@@ -4,7 +4,8 @@ import "./styles/chart.css"
 import {
     labels,
     universalProperties,
-    tooltips
+    tooltips,
+    configureAxes
 } from "./chartData"
 
 
@@ -13,6 +14,8 @@ const Chart = (props) => {
 
     // console.log(months)
     /* -------------------------- PROPS ------------------------- */
+
+    const { callback: toCurrency } = props.currencyChartCallback
 
     const {
         inflows,
@@ -45,8 +48,8 @@ const Chart = (props) => {
             cashDataset    !== "" 
         ) { setLoaded(true) }
     }, [
-        inflowDataset,
         outflowDataset, 
+        inflowDataset,
         cashDataset
     ])
 
@@ -58,33 +61,34 @@ const chartData = {
     labels : [...labels],
     datasets: [
         {
+            fill: false,
             label: 'Inflows',
-            fill: false,
-            borderColor: '#005f61',
             data: inflowDataset,
-            ...universalProperties
+            ...universalProperties,
+            borderColor: '#005f61',
 
         },
         {
-            label: 'Outflows',
             fill: false,
-            borderColor: 'rgb(192,87,75)',
+            label: 'Outflows',
             data: outflowDataset,
-            ...universalProperties
+            ...universalProperties,
+            borderColor: 'rgb(192,87,75)',
 
         },
         {
-            label: 'Cash Available',
             fill: true,
-            borderColor: 'rgba(40,211,236,.6)',
             data: cashDataset,
-            ...universalProperties
+            ...universalProperties,
+            label: 'Cash Available',
+            borderColor: 'rgba(40,211,236,.6)',
         }
 
 ]}
 
 const options = {
-    tooltips: tooltips
+    tooltips: tooltips,
+    scales: configureAxes(toCurrency)
 }
 
 /* ----------------------- JSX ----------------------- */
