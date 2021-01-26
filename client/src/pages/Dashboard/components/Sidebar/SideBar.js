@@ -1,12 +1,12 @@
+import SidebarLink from './components/SidebarLink';
+import { useMediaQuery } from '@material-ui/core'
+import { navItems } from "./modules/navItems"
+import "./styles/sidebar.css"
 import React, {
-    useEffect, 
     useLayoutEffect,
     useState
-} from 'react';
-import "./styles/sidebar.css"
-import SidebarLink from './components/SidebarLink';
-import {navItems} from "./modules/navItems"
-import { useMediaQuery } from '@material-ui/core'
+} from 'react'
+
 
 const SideBar = (props) => {
     
