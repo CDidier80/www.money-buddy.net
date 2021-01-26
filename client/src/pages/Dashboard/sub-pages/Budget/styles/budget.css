@@ -1,8 +1,5 @@
 .budget {
-    /* max-width: 890px; */
-    /* margin: auto; */
-    /* background-color: rgba(0, 0, 0, 0.2); */
-    /* color: #22c1c3; */
+
     padding: 5px;
     padding-top: 15px;
     color: #005f61;
@@ -60,10 +57,7 @@
 }
 
 
-.widget-header {
-    text-align: center;
-    margin-bottom: 15px;
-}
+
 
 
 .save-budget-button {
