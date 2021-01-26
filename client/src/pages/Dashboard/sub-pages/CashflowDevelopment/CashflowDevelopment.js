@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
-import "./styles/CashFlow.css"
-import Chart from "./components/Chart/Chart"
-import { generateMonths } from "./modules/MonthClass"
-import CashflowHeader from './components/CashflowHeader/CashflowHeader';
 import PaginatingContainer from "./components/PaginatingContainer/PaginatingContainer"
+import CashflowHeader from './components/CashflowHeader/CashflowHeader'
+import { generateMonths } from "./modules/MonthClass"
+import React, {useEffect, useState} from 'react'
+import Chart from "./components/Chart/Chart"
+import "./styles/CashFlow.css"
+
 
 const CashflowDevelopment = (props) => {
 
@@ -35,18 +36,18 @@ const CashflowDevelopment = (props) => {
 
     useEffect(() => {
         if (
-            newMonths    !== ""  |
             inflows      !== ""  |
             outflows     !== ""  |
+            newMonths    !== ""  |
             cashReserves !== "" 
         ){
             setLoaded(true)
         }
     },  
     [
-        newMonths,
         inflows,
         outflows, 
+        newMonths,
         cashReserves
     ])
 
