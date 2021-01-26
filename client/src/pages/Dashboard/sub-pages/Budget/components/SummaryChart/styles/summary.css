@@ -15,6 +15,27 @@
         0px 1px 3px 0px rgba(0,0,0,0.12);
 }
 
+.summary-container {
+    display: flex;
+    flex-direction: column;
+
+    padding: 15px;
+    background-color: white;
+    color: #000000;
+    flex-grow: 1;
+    box-shadow: 
+        0px 2px 1px -1px rgba(0,0,0,0.2), 
+        0px 1px 1px 0px rgba(0,0,0,0.14), 
+        0px 1px 3px 0px rgba(0,0,0,0.12);
+    border-radius: 4px;
+    
+}
+
+.widget-header {
+    text-align: center;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
 
 @media (max-width: 865px) {
     .gradient-wrapper.summary-chart {
