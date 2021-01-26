@@ -3,14 +3,16 @@ import { paletteFromTwoColors, backgroundColors} from "./colors"
 const createTooltips = () => ({        
     callbacks: {
         label:  (tooltipItem, data) => {
-            const { datasetIndex } = tooltipItem
-            const dollars = data.datasets[datasetIndex].data.currentIndex
+            const { datasetIndex, index} = tooltipItem
+            const dollarsArray = data.datasets[datasetIndex].data
+            const thisDollars = dollarsArray[index]
             let currencyTooltip
-            if (typeof dollars !== "undefined"){
-                currencyTooltip = dollars.toLocaleString('en-US', { 
+            if (typeof thisDollars !== "undefined"){
+                currencyTooltip = thisDollars.toLocaleString('en-US', { 
+                    maximumFractionDigits: 0,
+                    minimumFractionDigits: 0,
                     style: 'currency', 
                     currency: 'USD',
-                    maximumFractionDigits: 2
                 })
             }
             return currencyTooltip
@@ -20,13 +22,16 @@ const createTooltips = () => ({
 
 
 const divideMonthlyFromAnnual = (categoryTotals) => {
+    let annuals   = []
     let monthlies = []
-    let annuals = []
     categoryTotals.forEach((category)=> {
         monthlies.push(category[1])
         annuals.push(category[0])
     })
-    return [monthlies, annuals]
+    return [
+        monthlies, 
+        annuals
+    ]
 }
 
 
@@ -43,7 +48,9 @@ const makeMoreColors = (categoryNames) => {
 export const createData = (categoryNames, categoryTotals, monthly) => {
     const [monthlies, annuals] = divideMonthlyFromAnnual(categoryTotals)
     const needMoreColors = (backgroundColors.length < categoryNames.length )
-    const backgroundColorData = needMoreColors ? makeMoreColors(backgroundColors) : backgroundColors
+    const backgroundColorData = needMoreColors ? 
+                                makeMoreColors(backgroundColors) : 
+                                backgroundColors
     const donutDataObject = {
         labels: categoryNames,
         datasets: [
@@ -54,6 +61,7 @@ export const createData = (categoryNames, categoryTotals, monthly) => {
             }
         ]
     }
+
     return donutDataObject
 }
 
@@ -107,11 +115,11 @@ export const createOptions = (mediaQueries) => {
         layout: {
             padding: { left: 0, right: 0, top: 2, bottom: 6 }
         },
-        tooltips: {...createTooltips()},
         animation: {
             animateScale: true
         },
-        responsive: true
+        responsive: true,
+        tooltips: createTooltips(),
     }
     return optionsObject
 }
