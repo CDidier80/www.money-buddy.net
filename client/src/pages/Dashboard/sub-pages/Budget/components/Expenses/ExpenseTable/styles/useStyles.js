@@ -12,7 +12,7 @@ export const useStyles = makeStyles({
         margin: "auto"
     },
     columnHeader: {
-        color: "#e6a824",
+        color: "#d29000",
         fontWeight: "900"
     },
 })
