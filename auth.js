@@ -2,7 +2,6 @@ require('dotenv').config()
 const jwt = require('jsonwebtoken')
 const secretKey = process.env.APP_KEY
 
-
 const getToken = (req, res, next) => {
     let token = req.headers.authorization.split(' ')[1]  // separate them at the space
     token ? (res.locals.token = token) : (res.locals.token = null) // locals exist along the back-end routes within .res - > response sent. 
