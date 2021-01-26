@@ -1,4 +1,5 @@
 export const staticStyles = {
+    height: "0%",
     padding: "10px",
     minWidth: "235px",
     maxWidth: "250px",
