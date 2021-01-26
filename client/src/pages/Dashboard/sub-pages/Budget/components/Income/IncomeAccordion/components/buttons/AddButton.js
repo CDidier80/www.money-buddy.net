@@ -29,7 +29,7 @@ const AddButton = (props) => {
             fontSize: "9px",
             fontWeight: "700",
             fontFamily: "Lato, sans-serif",
-            color: "#22c1c3",
+            color: "#2c7b71",
             padding: "0 5px 0 5px"
         },
     })

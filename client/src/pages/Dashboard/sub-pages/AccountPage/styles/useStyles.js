@@ -26,14 +26,12 @@ header: {
 paper: {
     minWidth: "352px",
     maxWidth: "600px",
-    margin: theme.spacing(8, 4),
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     backgroundColor: "rgba(255,255,255,1)",
     padding: "30px",
-    margin: "30px auto",
-    borderRadius: "12px",
+    borderRadius: "7px",
     boxShadow: `
         0px 3px 1px -2px rgba(0,0,0,0.2), 
         0px 2px 2px 0px  rgba(0,0,0,0.14), 
@@ -47,14 +45,6 @@ form: {
     marginBottom: "20px",
     ...formFont
 },
-deleteText: {
-    padding: "15px",
-    color: "#D22323",
-    backgroundColor: "white",
-    fontSize: "18px",
-    cursor: "pointer",
-    ...formFont
-}
 }))
 
 export default useStyles

@@ -11,7 +11,7 @@ import {
 const useStyles = makeStyles({
 
     columnHeader: {
-        color: "#22c1c3",
+        color: "#2c7b71",
         fontWeight: "bold"
     },
     emptyCell: {

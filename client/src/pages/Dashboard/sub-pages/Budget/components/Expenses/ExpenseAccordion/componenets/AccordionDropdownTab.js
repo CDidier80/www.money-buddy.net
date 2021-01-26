@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useLayoutEffect} from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { 
     makeStyles,
@@ -7,34 +7,37 @@ import {
 } from '@material-ui/core';
 
 
-
-
 const AccordionDropdownTab = (props) => {
 
+    const { expanded } = props
+
+
     const useStyles = makeStyles({
-        // openedHeading: {
-        //     fontWeight: "700",
-        //     fontSize: "25px",
-        //     fontFamily: "Lato, sans-serif",
-        //     color: "#e6a824",
-        //     textShadow: `
-        //         0 0 1px lightgray;
-        //     `
-        // },
-        heading: {
+        summary: expanded ? 
+            {
+                position: "relative",
+                left: "50%",
+                transform: "translateX(-50%)",
+            } : 
+            {
+                position: "relative",
+                top: "7.5vh",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+            },
+        header: {
             fontWeight: "700",
             margin: "0 auto",
-            padding: "20px 0 0 13px",
             fontSize: "30px",
             fontFamily: "Lato, sans-serif",
-            color: "#e6a824",
+            color: "#d29000",
             textShadow: `
                 0 0 1px lightgray;
             `
         },
         expandMoreIcon : {
-            color:"#e6a824",
-            paddingTop: "31px"
+            color:"#d29000",
+            paddingTop: "9px",
         }
     })
 
@@ -42,6 +45,7 @@ const AccordionDropdownTab = (props) => {
 
     return (
         <AccordionSummary
+            className={classes.summary}
             expandIcon={
                 <ExpandMoreIcon 
                     className={classes.expandMoreIcon}
@@ -51,7 +55,7 @@ const AccordionDropdownTab = (props) => {
             id="panel1a-header"
         >
             <Typography 
-                className={classes.heading}
+                className={classes.header}
             >
                 Expenses
             </Typography>
