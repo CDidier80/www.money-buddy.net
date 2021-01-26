@@ -1,12 +1,14 @@
+import { createData, createOptions } from "./modules/donutFunctions"
 import { useMediaQuery } from '@material-ui/core'
-import React, { useState, useEffect, useRef } from 'react'
 import { Doughnut } from 'react-chartjs-2'
-import { 
-    createData,
-    createOptions 
-    } from "./modules/donutFunctions"
 import "./modules/useResponsiveStyle"
 import "./styles/donutStyles.css"
+import React, { 
+    useState, 
+    useEffect, 
+    useRef 
+} from 'react'
+
 
 
 
@@ -37,7 +39,6 @@ const DoughnutChart = (props) => {
         mq6Ref.current = mq6
     })
 
-
     /* ---------------------------- PROPS ------------------------------ */
 
     const { categoryNames, categoryTotals} = props.fromBudget
@@ -49,6 +50,14 @@ const DoughnutChart = (props) => {
 
     const DATA = createData(categoryNames, categoryTotals, monthly)
 
+    const queryRefs = {
+        min_width_1800px: mq6Ref.current,
+        min_width_1400px: mq1Ref.current,
+        min_width_1100px: mq2Ref.current,
+        min_width_862px:  mq5Ref.current,
+        min_width_800px:  mq3Ref.current,
+        min_width_600px:  mq4Ref.current
+    }
 
     return ( 
         <div 
@@ -60,25 +69,12 @@ const DoughnutChart = (props) => {
                 <h3 className="donut-header">
                     Distribution of Spending
                 </h3>
-                <div 
-                    style={{width:"100%", position: "relative"}}
-                >
-                <Doughnut 
-                    data={DATA}
-                    options={
-                        createOptions(
-                            {
-                                min_width_1800px: mq6Ref.current,
-                                min_width_1400px: mq1Ref.current,
-                                min_width_1100px: mq2Ref.current,
-                                min_width_862px: mq5Ref.current,
-                                min_width_800px: mq3Ref.current,
-                                min_width_600px: mq4Ref.current
-                            }
-                        )
-                    }
-                    maintainAspectRatio={false}
-                />
+                <div>
+                    <Doughnut 
+                        data={DATA}
+                        maintainAspectRatio={false}
+                        options={createOptions(queryRefs)}
+                    />
                 </div>
             </div>
         </div>

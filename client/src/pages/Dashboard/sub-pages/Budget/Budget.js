@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import IncomeAccordion from "./components/Income/IncomeAccordion/IncomeAccordion"
 import ExpenseAccordion from "./components/Expenses/ExpenseAccordion/ExpenseAccordion"
+import TitleAndSaveButton from "./components/TitleAndSaveButton/TitleAndSaveButton"
+import IncomeAccordion from "./components/Income/IncomeAccordion/IncomeAccordion"
+import {initNamesTotals, initIncomeTotals} from "./modules/initFunctions"
 import DoughnutChart from './components/DonutWidget/DoughnutChart'
 import Summary from './components/SummaryChart/Summary'
-import {initNamesTotals, initIncomeTotals} from "./modules/initFunctions"
-import TitleAndSaveButton from "./components/TitleAndSaveButton/TitleAndSaveButton"
+import React, { useState, useEffect } from 'react';
 import "./styles/budget.css"
 
 
@@ -20,42 +20,40 @@ const Budget = (props) => {
 
     /* ----------------------- STATE ------------------------ */
 
-    const [budgetLoaded, setBudgetLoaded] = useState(false)
     const [tick, updateBudget] = useState(0)
-    const [userMadeChanges, toggleChanges] = useState(false)
     const [newIncomes, setNewIncomes] = useState([])
+    const [totalIncome, setTotalIncome] = useState([])
+    const [totalExpenses, setTotalExpenses] = useState([])
     const [newCategories, setNewCategories] = useState([])
     const [categoryNames, setCategoryNames] = useState([])
+    const [budgetLoaded, setBudgetLoaded] = useState(false)
+    const [userMadeChanges, toggleChanges] = useState(false)
     const [categoryTotals, setCategoryTotals] = useState([])
-    const [totalExpenses, setTotalExpenses] = useState([])
-    const [totalIncome, setTotalIncome] = useState([])
 
 
     /* ----------------------- useEffects ------------------------ */
 
 
-    // initial page load where state is set by dashboard budget data
+    /* init state from props */
     useEffect(() => {
-        // console.log("Initial-load Budget useEffect --> categories, incomes")
-        // console.log(categories, incomes)
         const catState = initNamesTotals(categories)
         const incomeState = initIncomeTotals(incomes)
-        setCategoryNames(catState[0])
-        setCategoryTotals(catState[1])
-        setTotalExpenses(catState[2])
+
+        setBudgetLoaded(true)
+        setNewIncomes(incomes)
         setTotalIncome(incomeState)
         setNewCategories(categories)
-        setNewIncomes(incomes)
-        setBudgetLoaded(true)
+        setCategoryNames(catState[0])
+        setTotalExpenses(catState[2])
+        setCategoryTotals(catState[1])
     }, [])
 
 
-    // reloads in which local state changes require recalc of totals, names
+    /* subsequent state updates */
     useEffect(() => {
         if(budgetLoaded) {
-            // console.log("Budget.js useEffect reload triggered")
-            const catState =  initNamesTotals(newCategories)
-            const incomeState =  initIncomeTotals(newIncomes)
+            const catState = initNamesTotals(newCategories)
+            const incomeState = initIncomeTotals(newIncomes)
             setCategoryNames(catState[0])
             setCategoryTotals(catState[1])
             setTotalExpenses(catState[2])
@@ -66,60 +64,48 @@ const Budget = (props) => {
         userMadeChanges,
     ])
 
-    const [size, setSize] = useState(window.innerWidth)
-
-    const reportSize = (e) => {
-        setSize(window.innerWidth)
-    }
-
-    useEffect(() => {
-        window.addEventListener("resize", reportSize)
-        return () => {
-            window.removeEventListener("resize", reportSize)
-        }
-    }, [])
 
     /* ----------------------- PROPS FOR CHILDEN ------------------------ */
 
+    const forAll = {
+        tick,
+        updateBudget, 
+        toggleChanges,
+        userMadeChanges
+    }
 
     const incomeAccordionProps = {
+        ...forAll,
         newIncomes,
         setNewIncomes,
         toggleChanges,
         userMadeChanges,
-        updateBudget, 
-        tick
     }
 
     const expenseAccordionProps = {
+        ...forAll,
+        updateBudget, 
         newCategories,
         setNewCategories, 
-        toggleChanges,
-        userMadeChanges,
-        updateBudget, 
-        tick
     }
 
     const summaryProps = {
-        totalExpenses, 
+        ...forAll,
         totalIncome,
-        toggleChanges,
-        userMadeChanges
+        totalExpenses, 
     }
 
     const propsDoughnut = {
+        ...forAll,
         newCategories, 
         categoryNames,
         categoryTotals,
-        toggleChanges,
-        userMadeChanges
     }
 
     const propsTitleAndSave = {
+        ...forAll,
         newIncomes,
-        toggleChanges,
         newCategories,
-        userMadeChanges
     }
 
 
@@ -130,7 +116,6 @@ const Budget = (props) => {
                 {...props}
                 fromBudget={{...propsTitleAndSave}}
             />
-            <h2 style={{color:"black", fontSize:"30px"}}>{size}</h2>
             <div className="top-flex">
                 <Summary
                     {...props}
@@ -142,9 +127,11 @@ const Budget = (props) => {
                 />
             </div>
             <IncomeAccordion 
+                {...props}
                 fromBudget={incomeAccordionProps}
             />
-            <ExpenseAccordion 
+            <ExpenseAccordion
+                {...props} 
                 fromBudget={{...expenseAccordionProps}}
             />
         </div>
@@ -153,9 +140,4 @@ const Budget = (props) => {
 
 export default Budget
 
-
-
-// one chef  has many ==> categories
-
-// one category has many ==> recipes
 
