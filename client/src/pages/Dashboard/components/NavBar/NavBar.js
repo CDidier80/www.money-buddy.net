@@ -19,6 +19,7 @@ const NavBar = (props) => {
             window.removeEventListener("resize", reportSize)
         }
     }, [])
+    
     return (
         <nav className="dash-navbar">
             <LandingPageLink />
