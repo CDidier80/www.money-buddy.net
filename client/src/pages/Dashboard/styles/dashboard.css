@@ -1,22 +1,34 @@
 .dashboard {
     width: 100%;
     min-height: 100vh;
-    background-image: linear-gradient(180deg, #22c1c3, #fdbb2d); 
-    /** RGB(34,193,195), RGB(253,187,45)**/
-    background-color: rgb(0, 58, 59); /** RGB(34,193,195), RGB(253,187,45)**/
     font-family: Lato, sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    /* -webkit-animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 200ms both;
-    animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 200ms both; */
+    background-color: rgb(0, 58, 59); 
+    background-image: linear-gradient(
+        180deg, 
+        #22c1c3, 
+        #fdbb2d
+    ); 
 }
 
+/** prior colors **/
+/** RGB(34,193,195), RGB(253,187,45)**/
+/** RGB(34,193,195), RGB(253,187,45)**/
+
 .loading-background {
-    background-image:linear-gradient(180deg, #22c1c3, #fdbb2d);
-    background-image: -webkit-linear-gradient(180deg, #22c1c3, #fdbb2d);
     width: 100vw;
     height: 100vh;
-    /* background-color: #22c1c3; */
+    background-image:linear-gradient(
+        180deg,
+        #22c1c3,
+        #fdbb2d
+    );
+    background-image: -webkit-linear-gradient(
+        180deg, 
+        #22c1c3, 
+        #fdbb2d
+    );
 }
 .dash-main-flex {
     display: flex;
@@ -25,12 +37,8 @@
 .sub-page {
     margin: 0 auto;
     padding: 20px;
-    /* background-color: rgba(255, 255, 255, 0.808); */
     background-color: white;
-    /* background-color: #000000; */
     flex-grow: 1;
-    /* width: calc(100vw - 180px); */
-    /* transition: width 0.5s ease; */
 }
 
 .list {
@@ -77,19 +85,19 @@
 } */
 
 .list-link b {
-    display: block;
-    opacity: 1;
-    width: 14px;
-    height: 14px;
-    line-height: 14px;
-    text-shadow: none;
-    font-size: 18px;
-    position: absolute;
-    right: 10px;
     top: 12px;
     padding: 0;
-    text-align: center;
+    width: 14px;
+    right: 10px;
+    height: 14px;
+    display: block;
+    position: absolute;
+    opacity: 1;
     color: #ccc;
+    font-size: 18px;
+    line-height: 14px;
+    text-shadow: none;
+    text-align: center;
 }
 
 .slimScrollBar, .slimScrollRail {
