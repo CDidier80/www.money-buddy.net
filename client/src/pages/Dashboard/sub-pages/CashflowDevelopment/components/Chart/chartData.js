@@ -1,18 +1,3 @@
-export const labels = [
-    'Jan', 
-    'Feb', 
-    'March',
-    'April', 
-    'May', 
-    'June', 
-    'July',
-    'Aug', 
-    'Sept',
-    'Nov',
-    'Dec'
-]
-
-
 export const universalProperties = {
     pointRadius: 1,
     borderDash: [],
@@ -38,17 +23,15 @@ export const tooltips = {
             const currentIndex = tooltipItem.index
             const dollars = data.datasets[datasetIndex].data[currentIndex]
             const currencyTooltip = dollars.toLocaleString('en-US', { 
-                
+                maximumFractionDigits: 2,
+                maximumFractionDigits: 2,
                 style: 'currency', 
                 currency: 'USD',
-                maximumFractionDigits: 2,
-                maximumFractionDigits: 2
             })
             return currencyTooltip
         }
     }
 }
-
 
 const axesStyle = {
     fontFamily: "Roboto",
@@ -57,6 +40,24 @@ const axesStyle = {
     fontSize: 13,
     padding: 5
 }
+
+export const labels = [
+    'Jan', 
+    'Feb', 
+    'March',
+    'April', 
+    'May', 
+    'June', 
+    'July',
+    'Aug', 
+    'Sept',
+    'Nov',
+    'Dec'
+]
+
+
+
+
 
 export const configureAxes = (toCurrency) => ({
     yAxes: [{

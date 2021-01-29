@@ -4,8 +4,8 @@ import { Doughnut } from 'react-chartjs-2'
 import "./modules/useResponsiveStyle"
 import "./styles/donutStyles.css"
 import React, { 
-    useState, 
     useEffect, 
+    useState, 
     useRef 
 } from 'react'
 
@@ -18,9 +18,9 @@ const DoughnutChart = (props) => {
 
     const mq1 = useMediaQuery('(min-width:1400px)')
     const mq2 = useMediaQuery('(min-width:1100px)')
-    const mq5 = useMediaQuery('(min-width:862px)')
-    const mq3 = useMediaQuery('(min-width:800px)')
-    const mq4 = useMediaQuery('(min-width:600px)')
+    const mq5 = useMediaQuery('(min-width:862px)' )
+    const mq3 = useMediaQuery('(min-width:800px)' )
+    const mq4 = useMediaQuery('(min-width:600px)' )
     const mq6 = useMediaQuery('(min-width:1800px)')
 
     const mq1Ref = useRef("")

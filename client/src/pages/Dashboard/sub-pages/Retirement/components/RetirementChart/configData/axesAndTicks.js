@@ -6,7 +6,9 @@ const axesStyle = {
     padding: 5
 }
 
-export const generateScales = (toCurrency, yAxisCallback) => ({
+export const generateScales = (toCurrency, yAxisCallback) => (
+    
+    {
     yAxes: [{
         ticks: {
             callback: (value) => toCurrency(value),
@@ -20,6 +22,7 @@ export const generateScales = (toCurrency, yAxisCallback) => ({
         ticks: {
             autoSkip: false,
             callback: ( value, index, values ) => {
+                // console.log(value)
                 return yAxisCallback( value, index, values )
             },
             ...axesStyle,

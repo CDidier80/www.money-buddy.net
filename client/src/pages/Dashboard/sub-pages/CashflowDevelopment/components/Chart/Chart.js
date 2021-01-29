@@ -2,20 +2,17 @@ import React, {useEffect, useState} from 'react';
 import { Line } from 'react-chartjs-2'
 import "./styles/chart.css"
 import {
-    labels,
     universalProperties,
+    configureAxes,
     tooltips,
-    configureAxes
+    labels,
 } from "./chartData"
 
 
 
 const Chart = (props) => {
 
-    // console.log(months)
     /* -------------------------- PROPS ------------------------- */
-
-    const { callback: toCurrency } = props.currencyChartCallback
 
     const {
         inflows,
@@ -23,12 +20,14 @@ const Chart = (props) => {
         cashReserves
     } = props.fromCashflowDevelopment
 
+    const { callback: toCurrency } = props.currencyChartCallback
+
     /* -------------------------- STATE ------------------------- */
 
+    const [loaded, setLoaded] = useState(false)
+    const [cashDataset, setCashDataset] = useState("")
     const [inflowDataset, setInflowDataset] = useState("")
     const [outflowDataset, setOutflowDataset] = useState("")
-    const [cashDataset, setCashDataset] = useState("")
-    const [loaded, setLoaded] = useState(false)
 
 
     /* ------------------------ useEffects ----------------------- */
@@ -98,6 +97,7 @@ const options = {
             className="cashflow-chart"
         >
             <Line 
+                className="line-component"
                 data={chartData} 
                 options={options}
             />

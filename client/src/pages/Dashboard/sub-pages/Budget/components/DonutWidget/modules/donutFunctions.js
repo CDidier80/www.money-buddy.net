@@ -15,6 +15,7 @@ const divideMonthlyFromAnnual = (categoryTotals) => {
     ]
 }
 
+
 const makeMoreColors = (categoryNames) => {
         return backgroundColors.concat(
             paletteFromTwoColors(
@@ -35,13 +36,12 @@ export const createData = (categoryNames, categoryTotals, monthly) => {
         labels: categoryNames,
         datasets: [
                 {
+                    backgroundColor: backgroundColorData,
                 data: monthly ? monthlies : annuals,
-                backgroundColor: backgroundColorData,
                 hoverBackgroundColor: [],
             }
         ]
     }
-
     return donutDataObject
 }
 
@@ -52,12 +52,12 @@ export const createData = (categoryNames, categoryTotals, monthly) => {
  */
 
 const createLegend = (fontSize, boxWidth) => ({
-        position: "left",
-        align: "right",
-        labels: {
-            boxWidth: boxWidth,
-            fontSize: fontSize
-        }
+    align: "right",
+    position: "left",
+    labels: {
+        boxWidth: boxWidth,
+        fontSize: fontSize
+    }
 })
 
 
@@ -83,7 +83,6 @@ const responsiveLegend = (mq) => {
             args = [14, 25]
             break
         default:
-            // console.log("default")
     } 
     return createLegend(args[0], args[1])
 }
@@ -91,15 +90,11 @@ const responsiveLegend = (mq) => {
 
 export const createOptions = (mediaQueries) => {
     const optionsObject = {
+        layout: { padding: { left: 0, right: 0, top: 2, bottom: 6 } },
         legend: {...responsiveLegend(mediaQueries)},
-        layout: {
-            padding: { left: 0, right: 0, top: 2, bottom: 6 }
-        },
-        animation: {
-            animateScale: true
-        },
-        responsive: true,
+        animation: { animateScale: true },
         tooltips: createTooltips(),
+        responsive: true,
     }
     return optionsObject
 }

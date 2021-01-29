@@ -1,35 +1,35 @@
-import React, { useState, useEffect }from 'react';
-import { Copyright } from "../Copyright/Copyright"
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import TextFieldForm from "./components/TextfieldForm"
-// import useStyles from "./styles/useStyles"
-import {staticStyles, formFont} from "./styles/useStyles"
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import theme from "./styles/theme"
 import {
-    Avatar, 
-    makeStyles,
-    FormControlLabel,
-    Typography,
-    Checkbox,
-    Paper,
     Box,
     Grid,
-    MuiThemeProvider
+    Paper,
+    Avatar, 
+    Checkbox,
+    makeStyles,
+    Typography,
+    MuiThemeProvider,
+    FormControlLabel,
 } from '@material-ui/core/'
-const {signup, signin} = require("./modules/formFunctions") 
+import theme from "./styles/theme"
+import React, { useState, useEffect }from 'react';
+import { Copyright } from "../Copyright/Copyright"
+import TextFieldForm from "./components/TextfieldForm"
+import { staticStyles, formFont } from "./styles/useStyles"
+import useMediaQuery from '@material-ui/core/useMediaQuery'
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined'
+const { signup, signin } = require("./modules/formFunctions") 
 
 
 const Form = (props) => {
 
     const { setUserInfo, setAuth } = props.fromApp
 
-    const promptOne = "Already have an account?  Sign in"
     const promptTwo = "Don't have an account?  Sign up" 
-    const [ isSigningUp, toggleSigningUp ] = useState(true)
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const promptOne = "Already have an account?  Sign in"
+
     const [reenteredPassword, setReenterPassword] = useState("")
+    const [isSigningUp, toggleSigningUp] = useState(true)
+    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("")
 
 
 
@@ -47,21 +47,26 @@ const Form = (props) => {
     const useStyles = makeStyles((theme) => ({
         ...staticStyles,
         root: {
+            ...formFont,
             height: '70%',
-            maxHeight: "830px",
             width: '50%',
             minWidth: "300px",
             maxWidth: "410px",
+            maxHeight: "830px",
+            paddingTop: matches ? "0" : "10vh",
             position: matches ? "relative" : null,
             margin: matches ? "3vh auto 3vh auto" : "0 auto",
-            paddingTop: matches ? "0" : "10vh",
-            ...formFont,
         },
         paperRoot: {
-            borderRadius: "12px",
             ...formFont,
+            borderRadius: "12px",
             maxHeight: matches ? "600px" : null,
         },
+        textfield: {
+            "& .MuiFilledInput-root": {
+                background: "rgb(black)"
+            }
+        }
 
     }))
 
@@ -70,9 +75,7 @@ const Form = (props) => {
 
     const updateField = (e, stateFunction) => {   // [..., setState] 
         e.preventDefault()
-        const { value } = e.target
-        console.log(value)
-        stateFunction(value)
+        stateFunction(e.target.value)
     }
 
 
@@ -89,9 +92,7 @@ const Form = (props) => {
             const signedUp = await signup(args)
             if (signedUp){
                 props.history.push('/dashboard')
-            } else {
-                return
-            }
+            } else return
         } else {
             const args = {
                 setUserInfo, 
@@ -129,13 +130,15 @@ const Form = (props) => {
                             >
                                 { isSigningUp ? "Sign Up": "Sign In" }
                             </Typography>
+
                             <form className={classes.form} noValidate>
                                 <TextFieldForm
-                                    autoFocus
+                                    className={classes.textfield}
                                     required 
-                                    label="Email Address" 
+                                    autoFocus
                                     role={"email"}
                                     autoComplete="email"  
+                                    label="Email Address" 
                                     onChange={(e)=>updateField(e, setEmail)}
                                 />
                                 <TextFieldForm 
@@ -179,7 +182,6 @@ const Form = (props) => {
                                     <Link href="#" variant="body2">Forgot password?</Link>
                                 </Grid> 
                                 */}
-
                                 <div className={classes.prompt}>
                                     <p 
                                         onClick={() => toggleSigningUp(!isSigningUp)}

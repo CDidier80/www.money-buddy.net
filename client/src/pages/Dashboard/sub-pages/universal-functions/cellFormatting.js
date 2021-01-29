@@ -1,8 +1,8 @@
 export const currencyFormat = (value) => {
 
     let formattedValue = value.toLocaleString('en-US', { 
-        style: 'currency', 
         currency: 'USD',
+        style: 'currency', 
         minimumFractionDigits: 0,
         maximumFractionDigits: 0, 
     })
@@ -16,8 +16,8 @@ export const currencyChartCallback = {
     callback: (value) => {
 
     let formattedValue = value.toLocaleString('en-US', { 
-        style: 'currency', 
         currency: 'USD',
+        style: 'currency', 
         minimumFractionDigits: 0,
         maximumFractionDigits: 0, 
     })

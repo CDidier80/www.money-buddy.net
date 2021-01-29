@@ -8,14 +8,19 @@ import MarketsRoute from "./components/MemoRoutes/MarketsRoute"
 import AccountPage from "./sub-pages/AccountPage/AccountPage"
 import BudgetRoute from "./components/MemoRoutes/BudgetRoute"
 import { Switch, Route, withRouter } from 'react-router-dom'
-import React, { useState, useEffect, memo } from 'react';
 import SideBar from "./components/Sidebar/SideBar"
+import React, { useEffect, useState } from 'react'
 import NavBar from "./components/NavBar/NavBar"
 import "./components/NavBar/styles/navbar.css"
 import "./styles/dashboard.css"
 
 
 const Dashboard = (props) => {
+
+    if (!authenticated) {
+        props.history.push("/")
+    }
+
     /* -------------------------- PROPS ------------------------- */
 
     const { userInfo, authenticated, gradientWrapper } = props.fromApp
@@ -26,11 +31,11 @@ const Dashboard = (props) => {
 
     /*  ------ financial info ------*/
 
-    const [months, setMonths] = useState(null)
-    const [incomes, setIncomes] = useState(null)
-    const [budgetId, setBudgetId] = useState(null)
-    const [cashflowId, setCashflowId] = useState(null)
-    const [categories, setCategories] = useState(null)
+    const [months, setMonths] = useState("")
+    const [incomes, setIncomes] = useState("")
+    const [budgetId, setBudgetId] = useState("")
+    const [cashflowId, setCashflowId] = useState("")
+    const [categories, setCategories] = useState("")
 
     /* --------- sidebar control ------- */
 
@@ -48,21 +53,22 @@ const Dashboard = (props) => {
     /* #1: ----- async calls on first render ---- */
 
     useEffect(() => {
-        if (!authenticated) {
-            props.history.push("/")
-        }
+        let componentMounted = true
         const initializeDashboard = async () => {
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
             const budget = await ReadEntireBudget({ userId: userId }, null)
-            const { budgetId: b, incomes: i, categories: c } = budget
-            const { id: cashflowId, months: m } = cashflow
-            setCashflowId(cashflowId)
-            setCategories(c)
-            setBudgetId(b)
-            setIncomes(i)
-            setMonths(m)
+            if (componentMounted) {
+                const { budgetId: b, incomes: i, categories: c } = budget
+                const { id: cashflowId, months: m } = cashflow
+                setCashflowId(cashflowId)
+                setCategories(c)
+                setBudgetId(b)
+                setIncomes(i)
+                setMonths(m)
+            }
         }
         initializeDashboard()
+        return () => componentMounted = false
     }, [])
 
 
@@ -77,13 +83,16 @@ const Dashboard = (props) => {
     ]
 
     useEffect(() => {
+        let componentMounted = true
         let childrenShouldRender = true
         renderDependencies.forEach((state) => {
-            if (state == null) {
+            if (state == "") {
                 childrenShouldRender = false
             }
         })
-        setLoaded(childrenShouldRender ? true : false)
+        if (componentMounted){
+            setLoaded(childrenShouldRender ? true : false)
+        }
     }, [...renderDependencies])
 
 
@@ -120,8 +129,6 @@ const Dashboard = (props) => {
     const accountProps = {
         gradientWrapper
     }
-
-
 
 
     return( !loaded ? <LoadingScreen /> :
