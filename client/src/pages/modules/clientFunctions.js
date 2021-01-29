@@ -52,3 +52,5 @@ export const dollarFormat = (value, i) => {
         return `$${valInThousands}k`
     }
 }
+
+export const ternary = (condition, return1, return2) => condition ? return1 : return2
