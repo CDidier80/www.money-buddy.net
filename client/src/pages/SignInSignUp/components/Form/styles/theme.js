@@ -34,14 +34,15 @@ const theme = createMuiTheme({
                 '&:hover': {
                     borderColor: 'green',
                     "border-top-color": 'green',
+                    "border-left-color": 'green',
                     "border-right-color": 'green',
                     "border-bottom-color": 'green',
-                    "border-left-color": 'green',
                         }
                     },
             notchedOutline: {
-                // backgroundColor: "rgba(249, 216, 0, 0.3)",
                 borderColor: 'green',
+                backgroundColor: "rgba(255, 235, 0, .20)",
+                background: "linear-gradient(180deg, rgba(34, 193, 195, .08), rgba(253, 187, 45, .08))"
 
             },
         },
