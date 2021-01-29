@@ -41,8 +41,6 @@ export const tooltips = {
             })
             return currencyTooltip
         },
-        title: (tooltipItem, data) => {
-            console.log(tooltipItem)
-            return `Age: ${tooltipItem[0]["label"]}`
-    }}
+        title: (tooltipItem, data) => `Age: ${tooltipItem[0]["label"]}`
+    }
 }
