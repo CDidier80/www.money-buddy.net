@@ -15,7 +15,7 @@ export const calculateSavingsForecast = (savingsArgs) => {
         endingAge, 
         savingsROI, 
         currentAge, 
-        lifeSpanAge, 
+        lifespanAge: lifeSpanAge, 
         currentSavings, 
         salaryGrowthRate, 
         percentIncomeSaved, 
@@ -33,7 +33,6 @@ export const calculateSavingsForecast = (savingsArgs) => {
         salary
     )
     
-
     const startingRetirementSavings = savingsThruCareer[savingsThruCareer.length - 1]
 
     const savingsThruRetirement = calcSavingsThruRetirement(
