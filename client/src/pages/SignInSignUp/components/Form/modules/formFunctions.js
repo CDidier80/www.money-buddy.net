@@ -1,20 +1,25 @@
+import emailValidityCheck from "./emailValidition/emailValidationFunctions"
 import { LogInUser } from '../../../../../Services/UserService'
 import initializeAccount from "./modelFunctions"
-import emailValidityCheck from "./emailValidition/emailValidationFunctions"
 
 
-export const signup = async ({setUserInfo, setAuth, password, reenteredPassword, email}) => {
+export const signup = async (props) => {
+    const {
+        reenteredPassword, 
+        setUserInfo, 
+        password, 
+        setAuth, 
+        email
+    } = props
+
     try {
         if (password !== reenteredPassword){
-            console.log("incorrect password")
             return false
         }
         if (!emailValidityCheck(email)){
             return false
         }
-
         const response = await initializeAccount(email, password)
-        // console.log("response:", response.status)
         const {data: user, status} = response
         if (status === 200) {
             setUserInfo(user)
@@ -27,21 +32,28 @@ export const signup = async ({setUserInfo, setAuth, password, reenteredPassword,
 }
 
 
-export const signin = async ({setUserInfo, setAuth, email, password, history}) => {
+export const signin = async (props) => {
+    console.log(props)
+    const { 
+        setUserInfo, 
+        password, 
+        setAuth, 
+        history, 
+        email, 
+    } = props
     try {
+        console.log("reached")
+
         const response = await LogInUser({ email, password })
-        console.log(response.status)
+        console.log("reached")
+
         if (response.status === 200) {
-            console.log("reached")
-            setUserInfo(response.data.user)
             setAuth(true)
+            setUserInfo(response.data.user)
             history.push('/dashboard')
-        } else {
-            return
-        }
+        } 
     } catch (error) {
-        // console.log(error)
-        return
+        console.log(error)
     }
 }
 
