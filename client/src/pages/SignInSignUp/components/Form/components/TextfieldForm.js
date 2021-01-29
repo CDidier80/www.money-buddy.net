@@ -1,18 +1,25 @@
+import { TextField, makeStyles } from '@material-ui/core/'
 import React from 'react'
-import { TextField } from '@material-ui/core/'
 
+const useStyles = makeStyles((theme) => ({
+    textfield: {
+        "& .MuiOutlinedInput-notchedOutline": {
+            backgroundColor: "black"
+        }
+    }
 
-const TextFieldForm = (props) => {
-    const {role} = props
+}))
+const TextFieldForm = ({role, onChange}) => {
+    const classes = useStyles()
     return (
         <TextField 
+            id={role}
             fullWidth 
-            variant="outlined"
-            margin="normal" 
             name={role}
             type={role}
-            id={role}
-            onChange={props.onChange}
+            margin="normal" 
+            variant="outlined"
+            onChange={onChange}
         />
     )
 }
