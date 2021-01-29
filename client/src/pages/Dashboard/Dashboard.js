@@ -1,29 +1,28 @@
-import CashflowDevRoute from "./components/MemoRoutes/CashflowDevRoute"
-import RetirementRoute from "./components/MemoRoutes/RetirementRoute"
-import LoadingScreen from "./components/LoadingScreen/LoadingScreen"
-import { ReadEntireCashflow } from "../../Services/CashflowService"
-import CashflowRoute from "./components/MemoRoutes/CashflowRoute"
-import { ReadEntireBudget } from "../../Services/BudgetService"
-import MarketsRoute from "./components/MemoRoutes/MarketsRoute"
-import AccountPage from "./sub-pages/AccountPage/AccountPage"
-import BudgetRoute from "./components/MemoRoutes/BudgetRoute"
-import { Switch, Route, withRouter } from 'react-router-dom'
-import SideBar from "./components/Sidebar/SideBar"
+import CashflowDevRoute               from "./components/MemoRoutes/CashflowDevRoute"
+import RetirementRoute                from "./components/MemoRoutes/RetirementRoute"
+import LoadingScreen                  from "./components/LoadingScreen/LoadingScreen"
+import MarketsRoute                   from "./components/MemoRoutes/MarketsRoute"
+import AccountPage                    from "./sub-pages/AccountPage/AccountPage"
+import BudgetRoute                    from "./components/MemoRoutes/BudgetRoute"
+import { ReadEntireCashflow }         from "../../Services/CashflowService"
+import { ReadEntireBudget }           from "../../Services/BudgetService"
+import SideBar                        from "./components/Sidebar/SideBar"
+import NavBar                         from "./components/NavBar/NavBar"
+import { Switch, Route, withRouter }  from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
-import NavBar from "./components/NavBar/NavBar"
 import "./components/NavBar/styles/navbar.css"
 import "./styles/dashboard.css"
 
 
 const Dashboard = (props) => {
 
-    if (!authenticated) {
+    if (!props.fromApp.authenticated) {
         props.history.push("/")
     }
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { userInfo, authenticated, gradientWrapper } = props.fromApp
+    const { userInfo, gradientWrapper } = props.fromApp
     const { id: userId } = userInfo
 
 
