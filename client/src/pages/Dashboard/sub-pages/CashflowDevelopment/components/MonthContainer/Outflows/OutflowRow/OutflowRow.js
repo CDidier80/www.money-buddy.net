@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import IconCell from "../Cells/IconCell/IconCell"
-import { makeStyles, TableRow, TableCell} from '@material-ui/core'
 import { formatToCurrency } from "../../../../modules/cellFunctions"
+import { makeStyles, TableRow, TableCell} from '@material-ui/core'
+import IconCell from "../Cells/IconCell/IconCell"
+import React, {useEffect, useState} from 'react'
 
 
 const OutflowRow = (props) => {
@@ -18,12 +18,12 @@ const OutflowRow = (props) => {
     } = props.fromOutflowsAccordion
 
     const {
-        outflow,
-        outflowIndex,
         amount, 
+        outflow,
+        rowColor,
+        outflowIndex,
         incomingDeletion, 
         setIncomingDeletion,
-        rowColor
     } = props.fromOutflowsTable
 
 
@@ -59,10 +59,10 @@ const OutflowRow = (props) => {
         },
         cell : {
             padding: "8px",
+            color: "black",
+            fontWeight: 500,
             fontSize: "12px",
             overflowWrap: "break-word",
-            fontWeight: 700,
-            color: "black"
         }
     })
 
@@ -73,8 +73,8 @@ const OutflowRow = (props) => {
 
     const propsForIconCell= {
         showUndoIcon,
-        setShowUndoIcon,
         iconShouldShow, 
+        setShowUndoIcon,
         setIconShouldShow 
     }
 

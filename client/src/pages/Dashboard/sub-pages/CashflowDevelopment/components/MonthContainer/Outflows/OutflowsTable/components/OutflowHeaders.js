@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     },
     columnHeader: {
         color: "#e6a824",
-        fontWeight: "900",
+        fontWeight: "700",
         padding: "8px",
         fontSize: "14px"
     },

@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react'
-import IconCell from "../Cells/IconCell/IconCell"
 import { TableRow, TableCell, makeStyles} from '@material-ui/core/'
 import { formatToCurrency } from "../../../../modules/cellFunctions"
+import React, {useEffect, useState} from 'react'
+import IconCell from "../Cells/IconCell/IconCell"
 
 const InflowRow = (props) => {
 
@@ -44,10 +44,10 @@ const InflowRow = (props) => {
             backgroundColor: rowColor
         },
         cell : {
-            padding: "8px",
-            fontSize: "12px",
             overflowWrap: "break-word",
-            fontWeight: 700,
+            fontSize: "12px",
+            fontWeight: 500,
+            padding: "8px",
             color: "black"
         }
     })
@@ -55,10 +55,10 @@ const InflowRow = (props) => {
     const classes = useStyles()
 
     const propsForIconCell = {
-        iconShouldShow,
         setIconShouldShow,
+        setShowUndoIcon,
+        iconShouldShow,
         showUndoIcon,
-        setShowUndoIcon
     }
 
     return (

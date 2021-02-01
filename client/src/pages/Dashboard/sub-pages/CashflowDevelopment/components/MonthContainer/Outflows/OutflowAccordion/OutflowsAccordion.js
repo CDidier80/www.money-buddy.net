@@ -1,30 +1,31 @@
-import React, { useState, useEffect } from 'react'
+import FlowcategoryAccordion from "../FlowcategoryAccordion/FlowategoryAccordion"
+import AccordionDropdownTab from "./components/AccordionDropdownTab"
+import CategoryPopup from "../FlowcategoryPopups/FlowcategoryPopup"
+import React, { 
+    useState, 
+    useEffect 
+} from 'react'
 import { 
     makeStyles,
     Accordion,
 } from '@material-ui/core'
-import AccordionDropdownTab from "./components/AccordionDropdownTab"
-import CategoryPopup from "../FlowcategoryPopups/FlowcategoryPopup"
-import FlowcategoryAccordion from "../FlowcategoryAccordion/FlowategoryAccordion"
 
 
 const OutflowsAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { 
-        newFlowcategories,
-    } = props.fromMonthContainer
+    const { newFlowcategories, } = props.fromMonthContainer
     
 
     /* -------------------------- STATE ------------------------- */
 
     const [showAddFlowcategoryPanel, toggleAddFlowcategoryPanel] = useState(false)
-    const [showDeleteIcons, toggleDeleteIcons] = useState(false)
-    const [opened, toggleOpened] = useState(false)
-    const [memoTicker, incrementMemoTicker] = useState(0)
-    // must keep -- optimizes performance
     const [renderOutflowsAccordion, rerenderOutflowsAccordian ] = useState(false)
+    const [showDeleteIcons, toggleDeleteIcons] = useState(false)
+    const [memoTicker, incrementMemoTicker] = useState(0)
+    const [opened, toggleOpened] = useState(false)
+    // must keep -- optimizes performance
 
 
     /* ------------------------ useEffect ----------------------- */
@@ -34,7 +35,6 @@ const OutflowsAccordion = (props) => {
 
 
     /* ----------------------- FUNCTIONS ------------------------ */
-// .MuiAccordion-root.Mui-expanded:last-child
 
     const useStyles = makeStyles({
         root: {
@@ -73,11 +73,11 @@ const OutflowsAccordion = (props) => {
                     /> */}
                     {newFlowcategories.map((flowcategory, index) => {
                         const flowcategoryAccordionProps = {
-                            flowcategory,
-                            flowcategoryIndex: index,
-                            showDeleteIcons,
                             rerenderOutflowsAccordian,
+                            flowcategoryIndex: index,
                             renderOutflowsAccordion,
+                            showDeleteIcons,
+                            flowcategory,
                             memoTicker
                         }
                         return (
