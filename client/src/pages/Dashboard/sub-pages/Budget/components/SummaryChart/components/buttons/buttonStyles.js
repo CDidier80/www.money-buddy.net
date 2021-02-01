@@ -1,21 +1,29 @@
 import { makeStyles } from '@material-ui/core'
 
 const buttons = {
-    fontSize: "9px",
-    fontWeight: "700",
     fontFamily: "Lato, sans-serif",
-    padding: "0 5px 0 5px"
+    padding: "0 5px 0 5px",
+    borderRadius: "0px",
+    fontWeight: "700",
+    fontSize: "9px",
 }
 
 export const useStyles = makeStyles({
 
     activeButton: {
-        ...buttons,
         color: "#22c1c3",
-
+        ...buttons,
+        '&:hover': {
+            textDecoration: 'none',
+            backgroundColor: "#48e7ef1a"
+        }
     },
     inactiveButton: {
-        ...buttons,
         color: "lightgray",
+        ...buttons,
+        '&:hover': {
+            textDecoration: 'none',
+            backgroundColor: "#b8c7c71a"
+        }
     },
 })
