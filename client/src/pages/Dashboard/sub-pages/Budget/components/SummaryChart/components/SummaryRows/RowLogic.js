@@ -1,5 +1,8 @@
+import { currencyFormat } from "../../../../../universal-functions/cellFormatting"
 import React, {useState, useEffect} from 'react'
+import { makeStyles } from '@material-ui/core'
 import RowsJsx from "./RowsJsx"
+
 
 const RowLogic = (props) => {
 
@@ -19,45 +22,27 @@ const RowLogic = (props) => {
     const [savingsOrLoss, setSavingsOrLoss] = useState(0)
     const [monthlySavingsOrLoss, setMonthlySavingsOrLoss] = useState(0)
 
-
-    /* ------------------------ FUNCTIONS ------------------------*/
-
-    const format = (value) => {
-
-        let formattedValue = value.toLocaleString('en-US', { 
-            style: 'currency', 
-            currency: 'USD',
-            minimumFractionDigits: 0,
-            maximumFractionDigits: 0, 
-        })
-        if (value < 0){
-            formattedValue = "-" + formattedValue
-        }
-        return formattedValue
-    }
-
-
     /* ------------------------ useEffect ------------------------*/
 
     useEffect(() => {
             const ai = totalIncome[0]
-            const ae = totalExpenses[0]
             const mi = totalIncome[1]
+            const ae = totalExpenses[0]
             const me = totalExpenses[1]
 
-            const formattedIncome = format(ai)
-            const formattedExpenses = format(ae)
-            const monthlyFormattedIncome = format(mi)
-            const monthlyFormattedExpenses = format(me)
-            const formattedNet        = format((ai - ae))
-            const formattedMonthlyNet  = format((mi - me))
+            const formattedIncome = currencyFormat(ai)
+            const formattedExpenses = currencyFormat(ae)
+            const formattedNet = currencyFormat((ai - ae))
+            const monthlyFormattedIncome = currencyFormat(mi)
+            const monthlyFormattedExpenses = currencyFormat(me)
+            const formattedMonthlyNet = currencyFormat((mi - me))
 
             const savingsBool = (ai - ae >= 0)
 
             setSaved(savingsBool)
             setIncome(formattedIncome)
-            setSavingsOrLoss(formattedNet)
             setExpenses(formattedExpenses)
+            setSavingsOrLoss(formattedNet)
             setMoIncome(monthlyFormattedIncome)
             setMoExpenses(monthlyFormattedExpenses)
             setMonthlySavingsOrLoss(formattedMonthlyNet)
@@ -71,28 +56,36 @@ const RowLogic = (props) => {
 
     const data = [
         {
-            cellOneClass: "summary-text",
-            cellTwoClass: "",
+            cellOneClass: "summary-text lato",
+            cellTwoClass: "summary-numbers",
             cellOneContent: "Net Income",
             cellTwoContent: (monthly ? moIncome : income)
         },
         {
-            cellOneClass: "summary-text",
-            cellTwoClass: "",
+            cellOneClass: "summary-text lato",
+            cellTwoClass: "summary-numbers",
             cellOneContent: "Net Expenses",
             cellTwoContent: (monthly ? moExpenses : expenses)
         },
         {
-            cellOneClass: "summary-text",
-            cellTwoClass: (saved ? "savings-text" : "loss-text"),
+            cellOneClass: "summary-text lato",
+            cellTwoClass: (`summary-numbers ${saved ? "savings" : "loss"}`),
             cellOneContent: (saved ? "Net Savings" : "Net Loss"),
             cellTwoContent: (monthly ? monthlySavingsOrLoss : savingsOrLoss)
         },
     ]
 
+    const useRowStyles = makeStyles({
+        0: { backgroundColor: "rgba(159, 255, 159, .4)" },
+        1: { backgroundColor: "rgba(255, 176, 176, .4)" },
+        2: { backgroundColor: "rgba(180, 255, 255, .4)" }
+    })
+
+    const rowColors = useRowStyles()
+
     /* ----------------- JSX -----------------*/
 
-    return <RowsJsx data={data} {...props} />
+    return <RowsJsx {...props} data={data} rowColors={rowColors} />
 }
 
 
