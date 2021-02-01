@@ -1,22 +1,32 @@
+import { 
+    makeStyles,
+    ButtonGroup,
+    AccordionDetails, 
+} from '@material-ui/core/'
 import React from 'react'
 import DelButton from "./DelButton"
 import AddButton from "./AddButton"
-import { 
-    AccordionDetails, 
-    ButtonGroup,
-} from '@material-ui/core/'
 
 const AddDelButtonGroup = (props) => {
 
+    const useStyles = makeStyles({
+        buttonGroup: {
+            maxWidth: "890px",
+            margin: "auto"
+        },
+    })
+
+    const classes = useStyles()
+
     return (
-        <AccordionDetails>
+        <AccordionDetails className={classes.buttonGroup}>
             <ButtonGroup 
                 variant="text" 
                 color="primary" 
-                aria-label="text primary button group"
+                aria-label="button group"
             >
                 <AddButton {...props} />
-                <DelButton  {...props} />
+                <DelButton {...props} />
             </ButtonGroup>
         </AccordionDetails>
     )
