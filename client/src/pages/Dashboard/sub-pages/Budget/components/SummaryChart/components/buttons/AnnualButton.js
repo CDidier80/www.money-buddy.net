@@ -1,6 +1,6 @@
-import React from 'react'
 import { Button } from '@material-ui/core'
 import { useStyles } from "./buttonStyles"
+import React from 'react'
 
 const AnnualButton = (props) => {
 
@@ -9,9 +9,8 @@ const AnnualButton = (props) => {
 
     const switchToAnnually = (e) => {
         e.preventDefault()
-        if (monthly) {
-            setMonthly(false)
-        }
+        monthly && setMonthly(false)
+
     }
 
     const classes = useStyles()
