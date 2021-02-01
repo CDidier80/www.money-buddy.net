@@ -1,12 +1,12 @@
-import React, { useState, useLayoutEffect } from 'react';
-import IncomeTable from "../IncomeTable/IncomeTable"
-import AddDelButtonGroup from "./components/buttons/AddDelButtonGroup"
-import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import { 
     makeStyles, 
     Accordion, 
     useMediaQuery 
 } from '@material-ui/core'
+import React, { useState, useLayoutEffect } from 'react';
+import AddDelButtonGroup from "./components/buttons/AddDelButtonGroup"
+import AccordionDropdownTab from "./components/AccordionDropdownTab"
+import IncomeTable from "../IncomeTable/IncomeTable"
 
 
 const IncomeAccordion = (props) => {
@@ -74,13 +74,13 @@ const IncomeAccordion = (props) => {
     /* -------------------------- PROPS FOR CHILDREN------------------------- */
 
     const incomeTableProps = {
+        toggleIncomeDeleteIcons,
         showIncomeDeleteIcons,
-        toggleIncomeDeleteIcons
     }
 
     const addDelButtonGroupProps = {
-        showIncomeDeleteIcons,
         toggleIncomeDeleteIcons,
+        showIncomeDeleteIcons,
         setLengthOfIncomes,
         lengthOfIncomes
     }
@@ -89,9 +89,9 @@ const IncomeAccordion = (props) => {
     return (
         <div className={classes.accordionWrapper}>
             <Accordion 
+                onChange={(e) => handleExpansion(e)}
                 className={classes.accordion}
                 expanded={expanded} 
-                onChange={(e) => handleExpansion(e)}
             >
                 <AccordionDropdownTab 
                     expanded={expanded}
