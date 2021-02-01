@@ -1,6 +1,6 @@
-import React from 'react'
 import { Button } from '@material-ui/core'
 import { useStyles } from "./buttonStyles"
+import React from 'react'
 
 const MonthlyButton = (props) => {
 
@@ -16,10 +16,13 @@ const MonthlyButton = (props) => {
     const classes = useStyles()
     const monthlyButtonStyle = monthly ? classes.activeButton : classes.inactiveButton
 
+    const divider = {borderRight: "1px solid #22c1c3"}
+
     return (
         <Button 
-            className={monthlyButtonStyle}
             onClick={(e) => switchToMonthly(e)}
+            className={monthlyButtonStyle}
+            style={divider}
         >
             Monthly
         </Button>
