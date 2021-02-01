@@ -1,15 +1,15 @@
+import { 
+    Paper, 
+    Table, 
+    TableBody, 
+    makeStyles, 
+    TableContainer, 
+    AccordionDetails
+} from '@material-ui/core';
 import React, { useState } from 'react';
 import IncomeRow from "../IncomeRow/IncomeRow"
 import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
 import { offRowColor } from "../../../../universal-functions/styleFunctions"
-import { 
-    makeStyles, 
-    Paper, 
-    Table, 
-    TableBody, 
-    TableContainer, 
-    AccordionDetails
-} from '@material-ui/core';
 
 
 const useStyles = makeStyles({
@@ -25,22 +25,13 @@ const useStyles = makeStyles({
 
 const IncomeTable = (props) => {
     
-    {/*  PROPS */}
 
     const { newIncomes } = props.fromBudget    
 
-
-    {/*  STATE */}
-
     const [incomingDeletion, setIncomingDeletion] = useState(false)
-
-    {/*  FUNCTIONS */}
 
     const classes = useStyles()
 
-    // const propsForHeaders = {
-
-    // }
 
     return (
         <AccordionDetails>
@@ -58,22 +49,22 @@ const IncomeTable = (props) => {
                         />
                         {newIncomes.map((income, index) => {
                             const { source, amount } = income
-                            const rowColor = offRowColor(index)
                             const monthly = Math.round(amount / 12)
+                            const rowColor = offRowColor(index)
                             const propsForRows = {
-                                source,
-                                amount, 
-                                monthly,
+                                setIncomingDeletion,
                                 arrayIndex: index,
                                 incomingDeletion, 
-                                setIncomingDeletion,
-                                rowColor
+                                rowColor,
+                                monthly,
+                                source,
+                                amount, 
                             }
                             return (
                                 <IncomeRow 
-                                    {...props}
-                                    key={index + 100000}
                                     fromIncomeTable={{...propsForRows}}
+                                    key={index + 100000}
+                                    {...props}
                                 />
                             )
                         })}

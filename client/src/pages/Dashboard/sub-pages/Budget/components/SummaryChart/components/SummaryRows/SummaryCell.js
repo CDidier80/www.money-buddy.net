@@ -1,12 +1,12 @@
-import React from 'react'
 import { TableCell } from '@material-ui/core'
+import React from 'react'
 
 const SummaryCell = (props) => {
     
     const {
-        align,
         h5ClassName,
-        h5Content
+        h5Content,
+        align,
     } = props
 
     return (

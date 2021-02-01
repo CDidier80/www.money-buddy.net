@@ -4,6 +4,7 @@ import { Doughnut } from 'react-chartjs-2'
 import "./modules/useResponsiveStyle"
 import "./styles/donutStyles.css"
 import React, { 
+    useLayoutEffect, 
     useEffect, 
     useState, 
     useRef 
@@ -39,6 +40,20 @@ const DoughnutChart = (props) => {
         mq6Ref.current = mq6
     })
 
+    /* ------------------------- Listen to Window Size ------------------------ */
+
+    // const [height, setHeight] = useState(window.innerHeight / 2)
+    // const [width, setWidth] = useState(window.innerWidth - 200)
+
+    // const setChartWrapperSize = (e) => {
+    //     setHeight(window.innerHeight / 2)
+    //     setWidth(window.innerWidth - 200)
+    // }
+    
+    // useLayoutEffect(() => {
+    //     window.addEventListener("resize", setChartWrapperSize)
+    //     return () => window.removeEventListener("resize", setChartWrapperSize)
+    // }, [])
     /* ---------------------------- PROPS ------------------------------ */
 
     const { categoryNames, categoryTotals} = props.fromBudget

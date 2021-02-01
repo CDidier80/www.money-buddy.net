@@ -1,24 +1,21 @@
-import React from 'react'
+import { ButtonGroup, makeStyles } from '@material-ui/core'
 import MonthlyButton from "../buttons/MonthlyButton"
 import AnnualButton from "../buttons/AnnualButton"
-import { 
-    ButtonGroup, 
-    makeStyles 
-} from '@material-ui/core'
+import React from 'react'
 
 
 const ButtonGroupToggler = (props) => {
 
     const useStyles = makeStyles({
         buttonGroup: {
-            height: "30px",
-            width: "80%",
-            display: "flex",
             margin: "10px auto 0 auto",
-            textAlign: "center",
-            flexGrow: "1",
             justifyContent: "center",
-            alignItems: "center"
+            alignItems: "center",
+            textAlign: "center",
+            display: "flex",
+            height: "30px",
+            flexGrow: "1",
+            width: "80%",
         },
     })
 

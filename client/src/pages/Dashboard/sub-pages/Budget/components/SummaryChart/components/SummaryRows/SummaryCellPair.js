@@ -26,12 +26,8 @@ const SummaryCellPair = (props) => {
 
     return (
         <>
-            <SummaryCell 
-                {...cellOneProps}
-            />
-            <SummaryCell 
-                {...cellTwoProps}
-            />
+            <SummaryCell {...cellOneProps} />
+            <SummaryCell {...cellTwoProps} />
         </>
     )
 }
