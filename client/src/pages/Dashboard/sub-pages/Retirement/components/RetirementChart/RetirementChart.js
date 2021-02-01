@@ -1,7 +1,7 @@
 import { fiveYearTicks, makeXAxisAgeLabels } from "./components/functionModules/configFunctions"
 import { calculateSavingsForecast } from "./components/functionModules/totalSavings"
 import { generateScales } from "./configData/axesAndTicks"
-import React, { useState, useEffect } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import {generateDataSets} from "./configData/data"
 import { tooltips } from "./configData/tooltips"
 import LineChart from "./components/LineChart"
@@ -30,7 +30,7 @@ const ChartLogic = (props) => {
         setWidth(window.innerWidth - 200)
     }
     
-    useEffect(() => {
+    useLayoutEffect(() => {
         window.addEventListener("resize", setChartWrapperSize)
         return () => window.removeEventListener("resize", setChartWrapperSize)
     }, [])
