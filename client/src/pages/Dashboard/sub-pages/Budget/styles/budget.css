@@ -1,5 +1,4 @@
 .budget {
-
     padding: 5px;
     padding-top: 15px;
     color: #005f61;
@@ -104,28 +103,28 @@
 
 @-webkit-keyframes scale-in-ver-center {
     0% {
-      -webkit-transform: scaleY(0);
-              transform: scaleY(0);
-      opacity: 1;
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        opacity: 1;
     }
     100% {
-      -webkit-transform: scaleY(1);
-              transform: scaleY(1);
-      opacity: 1;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        opacity: 1;
     }
-  }
-  @keyframes scale-in-ver-center {
+}
+@keyframes scale-in-ver-center {
     0% {
-      -webkit-transform: scaleY(0);
-              transform: scaleY(0);
-      opacity: 1;
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+        opacity: 1;
     }
     100% {
-      -webkit-transform: scaleY(1);
-              transform: scaleY(1);
-      opacity: 1;
+        -webkit-transform: scaleY(1);
+        transform: scaleY(1);
+        opacity: 1;
     }
-  }
+}
 
 
 
