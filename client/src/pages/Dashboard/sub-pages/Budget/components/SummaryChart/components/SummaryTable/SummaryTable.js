@@ -1,15 +1,19 @@
-import React from 'react'
-import SummaryRows from "../SummaryRows/SummaryRows"
-import { sizing } from '@material-ui/system';
 import { 
     Paper, 
     Table, 
     TableBody, 
+    makeStyles,
     TableContainer, 
-    makeStyles
 } from '@material-ui/core';
+import { sizing } from '@material-ui/system';
+import React, { useLayoutEffect } from 'react'
+import { useMediaQuery } from '@material-ui/core'
+import SummaryRows from "../SummaryRows/SummaryRows"
+
 
 const SummaryTable = (props) => {
+
+
 
     const useStyles = makeStyles({
         tableContainer: {
