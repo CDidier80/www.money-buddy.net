@@ -23,6 +23,6 @@ const LifespanAge = memo((props) => {
     return (
         <ThemedSlider fromSliderParent={{...themedSliderProps}} />
     )
-}, (prevProps, nextProps) => deepPropCheck(prevProps, nextProps) )
+}, (prevProps, nextProps) => deepPropCheck(prevProps, nextProps))
 
 export default LifespanAge

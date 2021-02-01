@@ -1,4 +1,6 @@
+import { deepPropCheck } from "../../../../../../../../modules/clientFunctions"
 import ThemedSlider from "../ThemedSlider"
+
 import React, { memo } from 'react'
 
 const CurrentAge = memo((props) => {
@@ -31,8 +33,6 @@ const CurrentAge = memo((props) => {
             fromSliderParent={{...themedSliderProps}}
         />
     )
-}, (prevProps, nextProps) => {
-    const deepPropCheck = (props) => Object.values(props).filter(value => typeof value === "number").toString()
-    return deepPropCheck(prevProps) === deepPropCheck(nextProps) ? true : false})
+}, (prevProps, nextProps) => deepPropCheck(prevProps, nextProps))
 
 export default CurrentAge
