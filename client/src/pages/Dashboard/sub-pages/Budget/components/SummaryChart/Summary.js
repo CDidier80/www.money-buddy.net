@@ -1,11 +1,22 @@
+import ButtonGroupToggler from "./components/ButtonGroupToggler/ButtonGroupToggler"
+import SummaryTable from "./components/SummaryTable/SummaryTable"
 import React, { useState, useEffect } from 'react';
 import "./styles/summary.css"
-import ButtonGroupToggler from "./components/ButtonGroupToggler/ButtonGroupToggler"
-import useStyles from "./styles/useStyles"
-import SummaryTable from "./components/SummaryTable/SummaryTable"
 
 
 const Summary = (props) => {
+
+    /* -------------------------- INIT MEDIA QUERIES-------------------------- */
+
+    // const smallScreen = useMediaQuery('(max-width: 600px)', {noSsr: true})
+
+    // const [cssClasses, setCssClasses] = useState(smallScreen ? "sidebar closed" : "sidebar")
+
+    // useLayoutEffect(() => {
+    //     const classes = generateClasses()
+    //     setCssClasses(classes)
+    // }, [smallScreen, userPreference])
+
 
     const [monthly, setMonthly] = useState(false)
 
