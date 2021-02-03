@@ -1,4 +1,5 @@
 import PaginatingContainer from "./components/PaginatingContainer/PaginatingContainer"
+import InDevelopmentPopup from "./components/InDevelopmentPopup/InDevelopmentPopup"
 import CashflowHeader from './components/CashflowHeader/CashflowHeader'
 import { generateMonths } from "./modules/MonthClass"
 import React, {useEffect, useState} from 'react'
@@ -12,11 +13,12 @@ const CashflowDevelopment = (props) => {
     
     const [inflows, setInflows] = useState("")
     const [newMonths, setMonths] = useState("")
-    const [outflows, setOutflows] = useState("")
-    const [cashReserves, setCashReserves] = useState("")
-    
     const [loaded, setLoaded] = useState(false)
     const [tick, incrementTicker] = useState(0)
+    const [outflows, setOutflows] = useState("")
+    const [showPopup, toggleShowPopup] = useState(true)
+    const [cashReserves, setCashReserves] = useState("")
+
 
 
     useEffect(() => {
@@ -27,7 +29,6 @@ const CashflowDevelopment = (props) => {
             outflows, 
             adjustedCashReserves
         ] = createDatasets(generatedMonths)
-
         setInflows(inflows)
         setOutflows(outflows)
         setCashReserves(adjustedCashReserves)
@@ -86,6 +87,7 @@ const CashflowDevelopment = (props) => {
     const chartProps = {
         inflows,
         outflows, 
+        showPopup,
         cashReserves,
     }
 
@@ -93,6 +95,7 @@ const CashflowDevelopment = (props) => {
         inflows,
         outflows, 
         newMonths,
+        showPopup,
         cashReserves
     }
 
@@ -101,6 +104,11 @@ const CashflowDevelopment = (props) => {
     return ( !loaded ? <div></div> : 
 
         <div className="cashflow">
+            {showPopup && (
+                <InDevelopmentPopup 
+                    toggleShowPopup={toggleShowPopup}
+                />
+            )}
             <CashflowHeader 
                 fromCashflowDevelopment={{...headerProps}}
             />
