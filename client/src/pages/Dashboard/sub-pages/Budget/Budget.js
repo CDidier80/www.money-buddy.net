@@ -1,10 +1,17 @@
-import ExpenseAccordion from "./components/Expenses/ExpenseAccordion/ExpenseAccordion"
+import {
+    initNamesTotals, 
+    initIncomeTotals
+} from "./modules/initFunctions"
+import ExpenseAccordion   from "./components/Expenses/ExpenseAccordion/ExpenseAccordion"
 import TitleAndSaveButton from "./components/TitleAndSaveButton/TitleAndSaveButton"
-import IncomeAccordion from "./components/Income/IncomeAccordion/IncomeAccordion"
-import {initNamesTotals, initIncomeTotals} from "./modules/initFunctions"
-import DoughnutChart from './components/DonutWidget/DoughnutChart'
-import Summary from './components/SummaryChart/Summary'
-import React, { useState, useEffect } from 'react';
+import IncomeAccordion    from "./components/Income/IncomeAccordion/IncomeAccordion"
+import DoughnutChart      from './components/DonutWidget/DoughnutChart'
+import Summary            from './components/SummaryChart/Summary'
+import React, { 
+    useState, 
+    useEffect,
+    useRef 
+} from 'react';
 import "./styles/budget.css"
 
 
@@ -108,10 +115,11 @@ const Budget = (props) => {
         newCategories,
     }
 
+    const budgetRef = useRef()
 
     return ( !budgetLoaded ? <div></div> :
 
-        <div className="budget">
+        <div className="budget" ref={budgetRef}>
             <TitleAndSaveButton 
                 {...props}
                 fromBudget={{...propsTitleAndSave}}
@@ -123,6 +131,7 @@ const Budget = (props) => {
                 />
                 <DoughnutChart 
                     {...props}
+                    budgetRef={budgetRef}
                     fromBudget={{...propsDoughnut}}
                 />
             </div>
