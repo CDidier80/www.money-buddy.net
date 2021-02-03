@@ -19,6 +19,8 @@ const IncomeAccordion = (props) => {
     /* -------------------- init MEDIA QUERY -------------------- */
 
     const autoExpandHeight = useMediaQuery('(min-height:950px)', {noSsr: true})
+    const smallerButtons = useMediaQuery('(max-width:600px)', {noSsr: true})
+
     
     /* -------------------------- STATE ------------------------- */
     
@@ -31,7 +33,6 @@ const IncomeAccordion = (props) => {
 
     useLayoutEffect(() => {
         if (autoExpandHeight && !expanded) {
-            console.log("triggered")
             setExpanded(true)
         }
     }, [autoExpandHeight])
@@ -79,13 +80,14 @@ const IncomeAccordion = (props) => {
     }
 
     const addDelButtonGroupProps = {
+        smallerButtons: smallerButtons,
         toggleIncomeDeleteIcons,
         showIncomeDeleteIcons,
         setLengthOfIncomes,
-        lengthOfIncomes
+        lengthOfIncomes,
     }
     
-
+    console.log(smallerButtons)
     return (
         <div className={classes.accordionWrapper}>
             <Accordion 
