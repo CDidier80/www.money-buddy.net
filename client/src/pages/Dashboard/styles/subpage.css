@@ -1,0 +1,30 @@
+.subpage.sidebar-open {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    flex-grow: 1;
+    max-width: calc(100vw - 155px - 40px)
+}
+
+
+.subpage.sidebar-closed {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    flex-grow: 1;
+    max-width: calc(100vw - 49px - 40px)
+}
+
+.dummy-subpage {
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    flex-grow: 1;
+}
+
+@media (max-width: 500px) {
+    .subpage.sidebar-closed, .subpage.sidebar-open{
+        padding: 20px 15px 20px 5px;
+        max-width: calc(100vw - 49px - 20px);
+    }
+}
