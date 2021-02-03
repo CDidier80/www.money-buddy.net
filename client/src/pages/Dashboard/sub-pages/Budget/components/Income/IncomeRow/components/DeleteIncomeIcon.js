@@ -1,40 +1,47 @@
-import React from 'react'
-import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import { 
-    IconButton,
     Fade,
+    IconButton,
     makeStyles
 } from '@material-ui/core'
+import React from 'react'
+import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 
-const useStyles = makeStyles({
-    iconButton: {
-        marginRight: "11px",
-        "&:hover" : {
-            backgroundColor: "#ffcece65"
-        }
-    },
-    deleteIcon: {
-        color: "red",
-        fontSize: "13px"
-    },
-})
+
 
 const DeleteIncomeIcon = (props) => {
-
+    
     
     const { 
+        tick,
         newIncomes,
         setNewIncomes,
         toggleChanges,
         userMadeChanges,
         updateBudget,
-        tick
     } = props.fromBudget
-
+    
     const {
         arrayIndex,
         setIncomingDeletion,
     } = props.fromIncomeTable
+
+const { smallerIcons } = props
+
+    const smallerWidths = smallerIcons ? {paddingRight: 0, maxWidth: "25px"} : {}
+
+    const useStyles = makeStyles({
+        iconButton: {
+            marginRight: smallerIcons ? 0 : "11px",
+            "&:hover" : {
+                backgroundColor: "#ffcece65"
+            },
+            ...smallerWidths
+        },
+        deleteIcon: {
+            color: "red",
+            fontSize: "13px"
+        },
+    })
 
     const classes = useStyles()
 
