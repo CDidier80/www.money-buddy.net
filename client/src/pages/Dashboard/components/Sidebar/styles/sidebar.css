@@ -14,6 +14,7 @@
     width: 49px;
     min-width: 49px;
     transition: all 0.3s ease;
+    
 }
 
 .sidebar.mobile {
@@ -22,7 +23,6 @@
     min-width: 100px;
     overflow: hidden;
 }
-
 
 
 /* @media (max-width: 600px) {
