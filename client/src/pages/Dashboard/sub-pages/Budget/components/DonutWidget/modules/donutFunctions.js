@@ -1,5 +1,5 @@
 import { paletteFromTwoColors, backgroundColors} from "./colors"
-import {createTooltips} from "./tooltips"
+import { createTooltips } from "./tooltips"
 
 
 const divideMonthlyFromAnnual = (categoryTotals) => {
@@ -52,6 +52,7 @@ export const createData = (categoryNames, categoryTotals, monthly) => {
  */
 
 const createLegend = (fontSize, boxWidth) => ({
+    display: (window.innerWidth > 475),
     align: "right",
     position: "left",
     labels: {
@@ -62,7 +63,7 @@ const createLegend = (fontSize, boxWidth) => ({
 
 
 const responsiveLegend = (mq) => {
-    let args = [12, 25]
+    let args = [11, 15]
     switch (true) {
         case mq.min_width_1800px:
             args = [24, 40]
@@ -73,14 +74,17 @@ const responsiveLegend = (mq) => {
         case mq.min_width_1100px:
             args = [14, 25]
             break
-        case mq.min_width_862px:
+        case mq.min_width_887px:
             args = [12, 25]
             break
         case mq.min_width_800px:
             args = [18, 25]
             break
-        case mq.min_width_600px:
-            args = [14, 25]
+        case mq.min_width_622px:
+            args = [14, 15]
+            break
+        case mq.min_width_515px:
+            args = [12, 15]
             break
         default:
     } 
