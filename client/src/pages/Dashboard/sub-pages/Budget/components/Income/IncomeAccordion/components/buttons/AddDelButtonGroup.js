@@ -9,10 +9,15 @@ import AddButton from "./AddButton"
 
 const AddDelButtonGroup = (props) => {
 
+    const { smallerButtons } = props.fromIncomeAccordion
+
+    const padding = smallerButtons ? {padding: "8px 16px 8px 16px"} : {}
+
     const useStyles = makeStyles({
         buttonGroup: {
             maxWidth: "890px",
-            margin: "auto"
+            margin: "auto",
+            ...padding,
         },
     })
 
