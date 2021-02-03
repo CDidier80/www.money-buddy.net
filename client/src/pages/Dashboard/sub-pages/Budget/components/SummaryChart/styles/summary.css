@@ -5,7 +5,7 @@
 .gradient-wrapper.summary-chart {
     width: 30%;
     display: flex;
-    min-width: 212px;
+    min-width: 236px;
     padding: 7px;
     flex-grow: 1;
     margin-right: 4px;
@@ -53,8 +53,15 @@
     font-family: Roboto;
 }
 
-@media (max-width: 865px) {
+@media (max-width: 887px) {
     .gradient-wrapper.summary-chart {
         margin: 0 0 20px 0;
+        min-width: 275px;
     }
 }
+
+@media (max-width: 500px) {
+    .gradient-wrapper.summary-chart {
+        min-width: 0;
+    }
+} 
