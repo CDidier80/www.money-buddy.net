@@ -34,12 +34,8 @@
     display: flex;
 }
 
-.sub-page {
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    flex-grow: 1;
-}
+
+
 
 .list {
     margin: 0;
