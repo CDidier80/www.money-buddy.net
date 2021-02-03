@@ -12,20 +12,45 @@ const SideBar = (props) => {
     
     /* ---------------------- PROPS----------------------- */
 
-    const { userPreference } = props.fromDashboard
+    const { 
+        setSidebarClasses, 
+        setSubpageClasses,
+        userPreference, 
+        sidebarClasses, 
+        setTicker, 
+        ticker, 
+    } = props.fromDashboard
 
     /* ---------------------- init MEDIA QUERY ----------------------- */
 
     const smallScreen = useMediaQuery('(max-width: 600px)', {noSsr: true})
 
-    const [cssClasses, setCssClasses] = useState(smallScreen ? "sidebar closed" : "sidebar")
 
     useLayoutEffect(() => {
         const classes = generateClasses()
-        setCssClasses(classes)
+        reassignSubpageClass(classes)
+        setSidebarClasses(classes)
+        setTicker(ticker + 1)
     }, [smallScreen, userPreference])
 
     /* ---------------------- FUNCTIONS ----------------------- */
+
+
+    const reassignSubpageClass = (classes) => {
+        switch (classes) {
+            case "sidebar":
+                setSubpageClasses("subpage sidebar-open")
+                return
+            case "sidebar closed":
+                setSubpageClasses("subpage sidebar-closed")
+                return
+            case "sidebar mobile":
+                setSubpageClasses("subpage mobile")
+                return
+            default: 
+                console.log("no matching cases")
+        }
+    }
 
     const autoSize = () => {
         const cssClass = smallScreen ? `sidebar closed` : `sidebar`
@@ -40,7 +65,7 @@ const SideBar = (props) => {
             case !smallScreen: 
                 return "sidebar"
             case smallScreen && userPreference === "open":
-                const screenShrinking = cssClasses === "sidebar" 
+                const screenShrinking = sidebarClasses === "sidebar" 
                 const classToReturn = screenShrinking ? "sidebar closed" : "sidebar mobile"
                 return classToReturn
             default:
@@ -58,7 +83,7 @@ const SideBar = (props) => {
 
     return (
         <aside 
-            className={cssClasses} 
+            className={sidebarClasses} 
         >
             <ul className="list" >
                 {navItems.map((navItem, index) => 
