@@ -31,7 +31,6 @@ const InflowsAccordion = (props) => {
 
     const handleExpansion = (e) => {
         toggleOpened(!opened)
-        console.log("changed")
     }
 
 

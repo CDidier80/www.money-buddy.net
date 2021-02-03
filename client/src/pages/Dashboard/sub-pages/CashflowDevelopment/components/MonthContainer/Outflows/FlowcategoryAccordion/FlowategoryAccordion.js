@@ -13,8 +13,6 @@ import ButtonsAddDel from './components/ButtonsAddDel';
 
 const FlowcategoryAccordion = memo((props) => {
 
-    console.log("rendered")
-
     const {memoTicker} = props.fromOutflowsAccordion
 
     /* -------------------------- STATE ------------------------- */
