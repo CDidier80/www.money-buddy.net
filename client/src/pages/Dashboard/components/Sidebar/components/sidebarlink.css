@@ -1,0 +1,29 @@
+.list-item {
+    display: block;
+    position: relative;
+    float: none;
+    padding: 0;
+}
+
+
+.list-link {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 42px;
+    padding-left: 18px;
+    text-shadow: none;
+    font-size: 14px;
+    text-decoration: none;
+    line-height: 42px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: pointer;
+    color: #fff;
+    transition: all 0.5s ease;
+}
+
+
+.list-link:hover {
+    color: #ffcc5d;
+}

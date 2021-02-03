@@ -2,8 +2,8 @@
 export const staticStyles = {
 
     accordion: {
-        marginBottom: "20px",
-        minHeight:"15vh"
+        minHeight:"15vh",
+        position: "relative"
     },
     iconButtons: {
         marginTop: 0,
@@ -13,7 +13,7 @@ export const staticStyles = {
         fontSize: "9px",
         fontWeight: "700",
         fontFamily: "Lato, sans-serif",
-        color: "#e6a824",
+        color: "#d29000",
         padding: "0 5px 0 5px"
     },
 }

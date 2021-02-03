@@ -1,36 +1,38 @@
-import React from 'react'
 import { 
-    divideDefaultsAndUserSources, 
     insertionSort, 
-    findGapInNumbers 
+    findGapInNumbers, 
+    divideDefaultsAndUserSources, 
 } from "../../../../../../universal-functions/sortingFunctions"
 import { makeStyles, Button } from '@material-ui/core/'
+import React from 'react'
+
 
 const AddButton = (props) => {
 
     const { 
+        tick,
         newIncomes,
-        setNewIncomes,
-        toggleChanges,
-        userMadeChanges,
         updateBudget,
-        tick
+        toggleChanges,
+        setNewIncomes,
+        userMadeChanges,
     } = props.fromBudget
 
 
     const {
+        smallerButtons,
+        lengthOfIncomes,
         setLengthOfIncomes,
-        lengthOfIncomes
     } = props.fromIncomeAccordion
     
     
     const useStyles = makeStyles({
         button: {
-            fontSize: "9px",
+            fontSize: smallerButtons ? "8px" : "9px",
+            color: "#2c7b71",
             fontWeight: "700",
+            padding: "0 5px 0 5px",
             fontFamily: "Lato, sans-serif",
-            color: "#22c1c3",
-            padding: "0 5px 0 5px"
         },
     })
 

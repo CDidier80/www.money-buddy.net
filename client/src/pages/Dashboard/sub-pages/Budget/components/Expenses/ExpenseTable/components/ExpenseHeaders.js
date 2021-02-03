@@ -9,7 +9,7 @@ import {
 const useStyles = makeStyles({
 
     columnHeader: {
-        color: "#e6a824",
+        color: "#d29000",
         fontWeight: "bold"
     },
     emptyCell: {

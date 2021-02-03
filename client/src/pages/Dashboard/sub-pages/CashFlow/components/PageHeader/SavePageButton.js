@@ -1,5 +1,5 @@
 import React from 'react'
-import { UpdateEntireCashflow } from "../../../../../../Services/CashflowService"
+import { UpdateEntireCashflow } from "../../../../client/src/Services/CashflowService"
 import { useSnackbar, withSnackbar } from 'notistack';
 
 

@@ -7,7 +7,6 @@ const log = ControllerLoggers.UserControllerLog
 const errorLog = ControllerLoggers.UserControllerErrorLog
 const saltRounds = parseInt(process.env.SALT_ROUNDS)
 
-// const { Op, literal, fn, col  } = require('sequelize')
 
 
 /**

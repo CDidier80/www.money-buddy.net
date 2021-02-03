@@ -1,9 +1,10 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import HomeIcon from '@material-ui/icons/Home';
 import DonutLargeIcon from '@material-ui/icons/DonutLarge';
 import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import StarIcon from '@material-ui/icons/Star'
+
 
 const DumbSidebar = (props) => {
 
@@ -23,6 +24,11 @@ const DumbSidebar = (props) => {
                 pathname: '/dashboard/cashflow', 
                 label: 'Cash Flow', 
                 icon: <LocalAtmIcon fontSize="inherit" className="sidebar-icon"/>  
+            },
+            { 
+                pathname: '/dashboard/retirement', 
+                label: 'Retirement', 
+                icon: <StarIcon fontSize="inherit" className="sidebar-icon"/>  
             },
             // { pathname: '/summary', label: 'About', icon: 'info' },
             // { pathname: '/about', label: 'About', icon: 'info' },

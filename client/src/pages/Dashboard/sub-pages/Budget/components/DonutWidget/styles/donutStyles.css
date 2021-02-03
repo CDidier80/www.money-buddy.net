@@ -1,0 +1,64 @@
+.gradient-wrapper.donut {
+    position: relative;
+    width: 30%;
+    min-width: 410px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 4px;
+    padding: 7px;
+    box-sizing: border-box;
+    flex-grow: 1;
+    box-shadow: 
+        0px 2px 1px -1px rgba(0,0,0,0.2), 
+        0px 1px 1px 0px rgba(0,0,0,0.14), 
+        0px 1px 3px 0px rgba(0,0,0,0.12);
+}
+
+.donut-header {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+/* WIDTH */
+
+/* @media (min-width: 1112px) {
+    .donut-header {
+        margin-bottom: 25px;
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 1650px) {
+    .donut-header {
+        margin-bottom: 32px;
+        font-size: 25px;
+    }
+} */
+
+/* WIDGETS REALIGN VERTICALLY */
+
+
+@media (max-width: 887px) {
+    .budget-top-widgets.donut {
+        position: static;
+        width: 100%!important;
+    }
+}
+
+@media (max-width: 887px) {
+    .gradient-wrapper.donut {
+        margin: 0 auto;
+        position: relative;
+        display: block;
+        /* min-width: 250px; */
+    }
+
+} 
+@media (max-width: 500px) {
+    .gradient-wrapper.donut {
+        margin: 0 auto;
+        position: relative;
+        display: block;
+        min-width: 0;
+    }
+} 

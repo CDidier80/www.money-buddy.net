@@ -7,19 +7,21 @@ const IncomeSourceCell = (props) => {
     {/*  PROPS  */}
 
     const { 
-        setNewIncomes, 
-        newIncomes, 
-        toggleChanges, 
         userMadeChanges,
-        tick,
+        setNewIncomes, 
+        toggleChanges, 
         updateBudget,
+        newIncomes, 
+        tick,
     } = props.fromBudget
 
-    const { arrayIndex, rowColor } = props.fromIncomeTable
+    const { 
+        arrayIndex, 
+        rowColor,
+        textSize,
+    } = props.fromIncomeTable
 
-    const {
-        defaultValue,
-    } = props.fromIncomeRow
+    const { defaultValue, } = props.fromIncomeRow
 
 
     {/*  STATE  */}
@@ -37,7 +39,13 @@ const IncomeSourceCell = (props) => {
 
     const useStyles = makeStyles({
         cell: {
-            backgroundColor: rowColor
+            backgroundColor: rowColor,
+            ...textSize
+        },
+        input: { 
+            backgroundColor: rowColor, 
+            border: "0px",
+            ...textSize
         }
     })
 
@@ -70,23 +78,21 @@ const IncomeSourceCell = (props) => {
         return false
     }
 
-    const backgroundColor = {backgroundColor:rowColor}
 
     return (
         <TableCell className={classes.cell}>
             <form 
+                style={{backgroundColor: rowColor}}
                 onSubmit={(e) => submit(e)}
-                style={backgroundColor}
             >
                 <input 
-                    style={backgroundColor}
-                    name="text-input"
-                    type="text" 
-                    value={newText} 
-                    className="editable-cell expense"
+                    className={`${classes.input} editable-cell income`}
                     onSelect={(e) => setFocus(true)}
                     onChange={(e) => handleText(e)}
                     onBlur={(e) => submit(e)}
+                    name="text-input"
+                    value={newText} 
+                    type="text" 
                 >
                 </input>
             </form>

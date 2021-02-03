@@ -1,48 +1,64 @@
-import React, { useState } from 'react';
-import { UpdatePassword, UpdateEmail } from "../../../../Services/UserService"
-import { TextField, Typography, MuiThemeProvider } from '@material-ui/core/';
-import DeletePopup from './components/DeletePopup';
-import useStyles from "./styles/useStyles"
-import "./styles/accountPage.css"
-import {theme} from "./styles/MoneyBuddyTheme"
+import PasswordForm from "./components/PasswordForm/PasswordForm"
+import { MuiThemeProvider, makeStyles } from '@material-ui/core/'
+import DeletePopup from './components/DeleteAccount/DeletePopup'
+import DeleteText from './components/DeleteAccount/DeleteText'
+import EmailForm from "./components/EmailForm/EmailForm"
 import { withSnackbar, useSnackbar  } from 'notistack'
+import {theme} from "./styles/MoneyBuddyTheme"
+import useStyles from "./styles/useStyles"
+import React, { useState } from 'react'
+import "./styles/accountPage.css"
 
 const AccountPage = (props) => {
 
-    {/*  PROPS */}
+    console.log(props)
+
+    /* ------------------------ PROPS ------------------------ */
     
     const { id: user_id } = props
+    const { gradientWrapper } = props.fromDashboard
     
+    /* ------------------------ STATE ------------------------ */
     
-    {/*  STATE  */}
-    
-    const [newPassword, setNewPassword ] = useState("")
-    const [reenteredNewPassword, setReenteredNewPassword ] = useState("")
-    const [newEmail, setNewEmail ] = useState("")
     const [deleteTriggered, setDeleteTriggered] = useState(false)
     
-
-    {/*  FUNCTIONS  */}
+    /* ------------------------ SNACKBARS ------------------------ */
 
     const { enqueueSnackbar, closeSnackbar } = useSnackbar()
 
+    const errorVariant = {variant: 'Error'}
+    const successVariant = { variant: 'Success', iconVariant: "Success" }
+
+
     const errorSnackbar = (variable) => {
-        enqueueSnackbar(`Failed to Change ${variable}`, {variant: 'Error'})
+        enqueueSnackbar(`Failed to Change ${variable}`, errorVariant)
     }
-    
     
     const mismatch = (variableOne, variableTwo) => {
-        enqueueSnackbar(`${variableOne} doesn't match ${variableTwo}`, {variant: 'Error'})
+        enqueueSnackbar(`${variableOne} doesn't match ${variableTwo}`, errorVariant)
     }
     
-
-    const updateSnackbar = (variable) => {
-        enqueueSnackbar(`Successfully Updated ${variable}`, {variant: 'Success', iconVariant: "Success"})
-    }
+    const updateSnackbar = (variable) => enqueueSnackbar(
+        `Successfully Updated ${variable}`, successVariant
+        ) 
     
-
+    /* ------------------------ STYLES ------------------------ */
 
     const classes = useStyles()
+
+    const useGradientClass = makeStyles({
+        gradientWrapper: {
+            ...gradientWrapper,
+            padding: "7px",
+            maxWidth: "600px",
+            margin: "30px auto"
+        }
+    })
+
+    const gradientClass = useGradientClass()
+
+
+    /* ------------------------ FUNCTIONS ------------------------ */
 
     const updateField = (e, stateFunction) => {   
         e.preventDefault()
@@ -51,139 +67,60 @@ const AccountPage = (props) => {
     }
     
 
-    const submitNewPassword = async (e) => {
-        e.preventDefault()
-        // log(3)
-        if (newPassword === "" | reenteredNewPassword === "")  {
-            errorSnackbar("Password")
-            return
-        } else if (newPassword !== reenteredNewPassword){
-            mismatch('New Password', 'Reentered Password')
-            return
-        } else {
-            try {
-                const response = await UpdatePassword({userId: user_id, password: newPassword})
-                console.log("submit new password response: ", response)
-                if (response.status === 200) {
-                    updateSnackbar('Password')
-                }
-            } catch (error) {
-                console.log(error)
-                errorSnackbar('Password')
-            }
-        }
+    /* -------------------- PROPS FOR CHILDREN -------------------- */
+
+
+    const formFont = {
+        fontFamily: "Lato,sans-serif",
+        textRendering: "optimizeLegibility!important",
+        WebkitFontSmoothing: "antialiased!important"
     }
 
-
-    const submitNewEmail = async (e) => {
-        e.preventDefault()
-        // log(3)
-        if (newEmail === "") {
-            errorSnackbar("Email Address")
-            return
-        }
-        try {
-            const response = await UpdateEmail({userId: user_id, email: newEmail})
-            console.log("submit new email response: ", response)
-            if (response.status === 200) {
-                updateSnackbar('Email Address')
-            }
-        } catch (error) {
-            console.log(error)
-            errorSnackbar('Email Address')
-        }
+    const snackbars = {
+        mismatch,
+        errorSnackbar,
+        updateSnackbar,
     }
     
+    const fromProps = {
+        formFont,
+        updateField,
+        ...snackbars,
+    }
+
+
 
     return (
         <MuiThemeProvider theme={theme}>
-                <div className="account-page" className={classes.paper}>
-                    <Typography 
-                        className={classes.header}
-                        component="h1" 
-                        variant="h5"
+            <div>
+                <div className={gradientClass.gradientWrapper}>
+                    <div 
+                        className="account-page" 
+                        className={classes.paper}
                     >
-                        Change Password
-                    </Typography>
-                    <form className={classes.form} noValidate>
-                        <TextField 
-                            required 
-                            fullWidth 
-                            variant="outlined"
-                            margin="normal" 
-                            label="New Password"
-                            name="password" 
-                            type="password" 
-                            id="password"  
-                            onChange={(e)=>updateField(e, setNewPassword)} 
-                        />
-                    
-                        <TextField 
-                            fullWidth
-                            variant="outlined" 
-                            margin="normal"  
-                            label="Reenter New Password" 
-                            name="password" 
-                            type="password"
-                            id="password" 
-                            onChange={(e)=>updateField(e, setReenteredNewPassword)} 
-                        />
-
-                        <button 
-                            className="submitButton account-page"
-                            onClick={(e)=>submitNewPassword(e)}
-                        >
-                            Submit
-                        </button>
-
-                    </form>
-
-                    <Typography 
-                        className={classes.header}
-                        component="h1" 
-                        variant="h5"
-                    >
-                        Update Email
-                    </Typography>
-                    <form className={classes.form} noValidate>
-                        <TextField 
-                            autoFocus
-                            required 
-                            fullWidth 
-                            variant="outlined" 
-                            margin="normal" 
-                            label="Email Address" 
-                            name="email" 
-                            type="email" 
-                            id="email" 
-                            autoComplete="email"  
-                            onChange={(e)=>updateField(e, setNewEmail)}
-                        />
-                        
-                        <button 
-                            className="submitButton account-page"
-                            onClick={(e)=>submitNewEmail(e)}
-                        >
-                            Submit
-                        </button>
-                    </form>
-                    <Typography 
-                        className={classes.deleteText}
-                        component="h1" 
-                        variant="h5"
-                        onClick={()=>setDeleteTriggered(true)}
-                    >
-                        Delete Account
-                    </Typography>
-                    {deleteTriggered && (
-                        <DeletePopup 
+                        <PasswordForm 
                             {...props}
-                            userId={user_id}
-                            setDeleteTriggered={setDeleteTriggered} 
+                            fromAccountPage={{...fromProps}}
                         />
-                    )}
+                        <EmailForm 
+                            {...props}
+                            fromAccountPage={{...fromProps}}
+                        />
+                        <DeleteText
+                            formFont={formFont}
+                            setDeleteTriggered={setDeleteTriggered}
+                        />
+                        {deleteTriggered && (
+                            <DeletePopup 
+                                {...props}
+                                userId={user_id}
+                                setDeleteTriggered={setDeleteTriggered} 
+                            />
+                        )}
+                    </div>
                 </div>
-            </MuiThemeProvider>
+            </div>
+        </MuiThemeProvider>
     )
 }
 

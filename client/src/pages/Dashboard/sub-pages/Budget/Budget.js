@@ -1,63 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import IncomeAccordion from "./components/Income/IncomeAccordion/IncomeAccordion"
-import ExpenseAccordion from "./components/Expenses/ExpenseAccordion/ExpenseAccordion"
-import DoughnutChart from './components/DonutWidget/DoughnutChart'
-import Summary from './components/SummaryChart/Summary'
-import {initNamesTotals, initIncomeTotals} from "./modules/initFunctions"
+import {
+    initNamesTotals, 
+    initIncomeTotals
+} from "./modules/initFunctions"
+import ExpenseAccordion   from "./components/Expenses/ExpenseAccordion/ExpenseAccordion"
 import TitleAndSaveButton from "./components/TitleAndSaveButton/TitleAndSaveButton"
+import IncomeAccordion    from "./components/Income/IncomeAccordion/IncomeAccordion"
+import DoughnutChart      from './components/DonutWidget/DoughnutChart'
+import Summary            from './components/SummaryChart/Summary'
+import React, { 
+    useState, 
+    useEffect,
+    useRef 
+} from 'react';
 import "./styles/budget.css"
 
 
 const Budget = (props) => {
 
-    {/*  PROPS */}
+    /* ----------------------- PROPS ------------------------ */
 
     const { 
         incomes, 
-        budgetId, 
         categories, 
-        sendBudgetToDB
     } = props.budgetHooks
     
 
-    {/*  STATE  */}
+    /* ----------------------- STATE ------------------------ */
 
-    const [budgetLoaded, setBudgetLoaded] = useState(false)
     const [tick, updateBudget] = useState(0)
-    const [userMadeChanges, toggleChanges] = useState(false)
     const [newIncomes, setNewIncomes] = useState([])
+    const [totalIncome, setTotalIncome] = useState([])
+    const [totalExpenses, setTotalExpenses] = useState([])
     const [newCategories, setNewCategories] = useState([])
     const [categoryNames, setCategoryNames] = useState([])
+    const [budgetLoaded, setBudgetLoaded] = useState(false)
+    const [userMadeChanges, toggleChanges] = useState(false)
     const [categoryTotals, setCategoryTotals] = useState([])
-    const [totalExpenses, setTotalExpenses] = useState([])
-    const [totalIncome, setTotalIncome] = useState([])
 
 
-    {/*  useEffects  */}
+    /* ----------------------- useEffects ------------------------ */
 
-    // initial page load where state is set by dashboard budget data
+
+    /* init state from props */
     useEffect(() => {
-        // console.log("Initial-load Budget useEffect --> categories, incomes")
-        // console.log(categories, incomes)
-        const catState =  initNamesTotals(categories)
-        const incomeState =  initIncomeTotals(incomes)
+        const catState = initNamesTotals(categories)
+        const incomeState = initIncomeTotals(incomes)
 
-        setCategoryNames(catState[0])
-        setCategoryTotals(catState[1])
-        setTotalExpenses(catState[2])
-        setTotalIncome(incomeState)
-        setNewIncomes(incomes)
-        setNewCategories(categories)
         setBudgetLoaded(true)
+        setNewIncomes(incomes)
+        setTotalIncome(incomeState)
+        setNewCategories(categories)
+        setCategoryNames(catState[0])
+        setTotalExpenses(catState[2])
+        setCategoryTotals(catState[1])
     }, [])
 
 
-    // reloads in which local state changes require recalc of totals, names
+    /* subsequent state updates */
     useEffect(() => {
         if(budgetLoaded) {
-            // console.log("Budget.js useEffect reload triggered")
-            const catState =  initNamesTotals(newCategories)
-            const incomeState =  initIncomeTotals(newIncomes)
+            const catState = initNamesTotals(newCategories)
+            const incomeState = initIncomeTotals(newIncomes)
             setCategoryNames(catState[0])
             setCategoryTotals(catState[1])
             setTotalExpenses(catState[2])
@@ -69,59 +72,54 @@ const Budget = (props) => {
     ])
 
 
-    {/*  FUNCTIONS  */}
+    /* ----------------------- PROPS FOR CHILDEN ------------------------ */
 
-
-
-
-
-
-
-    {/*  PROPS OBJECTS  */}
+    const forAll = {
+        tick,
+        updateBudget, 
+        toggleChanges,
+        userMadeChanges
+    }
 
     const incomeAccordionProps = {
+        ...forAll,
         newIncomes,
         setNewIncomes,
         toggleChanges,
         userMadeChanges,
-        updateBudget, 
-        tick
     }
 
     const expenseAccordionProps = {
+        ...forAll,
+        updateBudget, 
         newCategories,
         setNewCategories, 
-        toggleChanges,
-        userMadeChanges,
-        updateBudget, 
-        tick
     }
 
     const summaryProps = {
-        totalExpenses, 
+        ...forAll,
         totalIncome,
-        toggleChanges,
-        userMadeChanges
+        totalExpenses, 
     }
 
     const propsDoughnut = {
+        ...forAll,
         newCategories, 
         categoryNames,
         categoryTotals,
-        toggleChanges,
-        userMadeChanges
     }
 
     const propsTitleAndSave = {
+        ...forAll,
         newIncomes,
-        toggleChanges,
         newCategories,
     }
 
+    const budgetRef = useRef()
 
     return ( !budgetLoaded ? <div></div> :
 
-        <div className="budget">
+        <div className="budget" ref={budgetRef}>
             <TitleAndSaveButton 
                 {...props}
                 fromBudget={{...propsTitleAndSave}}
@@ -133,13 +131,16 @@ const Budget = (props) => {
                 />
                 <DoughnutChart 
                     {...props}
+                    budgetRef={budgetRef}
                     fromBudget={{...propsDoughnut}}
                 />
             </div>
             <IncomeAccordion 
+                {...props}
                 fromBudget={incomeAccordionProps}
             />
-            <ExpenseAccordion 
+            <ExpenseAccordion
+                {...props} 
                 fromBudget={{...expenseAccordionProps}}
             />
         </div>
@@ -148,9 +149,4 @@ const Budget = (props) => {
 
 export default Budget
 
-
-
-// one chef  has many ==> categories
-
-// one category has many ==> recipes
 

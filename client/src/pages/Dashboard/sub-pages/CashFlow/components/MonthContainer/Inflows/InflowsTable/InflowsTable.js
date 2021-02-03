@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import "../../../../../universal-functions/cellFormatting"
-import { offRowColor } from "../../../../../universal-functions/styleFunctions"
+import "../../../../../../client/src/pages/Dashboard/sub-pages/universal-functions/cellFormatting"
+import { offRowColor } from "../../../../../../client/src/pages/Dashboard/sub-pages/universal-functions/styleFunctions"
 import InflowRow from "../InflowRow/InflowRow"
 import InflowHeaders from "./components/InflowHeaders"
 import { 

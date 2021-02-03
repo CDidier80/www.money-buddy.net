@@ -127,7 +127,6 @@ const CategoryPopup = (props) => {
             console.log(error)
             return
         })
-        console.log("still running")
         if (duplicates) return
         let newCategory = {name: text, expenses: []}
         categoriesArrayCopy.push(newCategory)

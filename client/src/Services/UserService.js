@@ -17,7 +17,6 @@ export const LogInUser = async (body, params) =>  {
     try {
         log(LogInUser, body, params)
         const response = await ApiClient.post(`users/login`, body)
-        console.log("service response", response)
         localStorage.setItem('token', response.data.token)
         return response
     } catch (error) {
@@ -57,7 +56,6 @@ export const UpdateEmail = async (body, params) =>  {
 
 export const DeleteUser = async (body, params) => {
     try {
-        console.log("body:", body)
         log(DeleteUser, body, params)
         // axios delete requests must send the body as a value to a "data" key
         const response = await ApiClient.delete("users/delete", {data:body})

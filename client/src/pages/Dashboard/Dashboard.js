@@ -1,123 +1,148 @@
-import React, { useState, useEffect, memo } from 'react';
-import { Switch, Route, withRouter } from 'react-router-dom'
-import { ReadEntireBudget } from "../../Services/BudgetService"
-import { ReadEntireCashflow } from "../../Services/CashflowService"
-import NavBar from "./components/NavBar/NavBar"
+import CashflowDevRoute               from "./components/MemoRoutes/CashflowDevRoute"
+import RetirementRoute                from "./components/MemoRoutes/RetirementRoute"
+import LoadingScreen                  from "./components/LoadingScreen/LoadingScreen"
+import MarketsRoute                   from "./components/MemoRoutes/MarketsRoute"
+import AccountPage                    from "./sub-pages/AccountPage/AccountPage"
+import BudgetRoute                    from "./components/MemoRoutes/BudgetRoute"
+import { ReadEntireCashflow }         from "../../Services/CashflowService"
+import { ReadEntireBudget }           from "../../Services/BudgetService"
+import SideBar                        from "./components/Sidebar/SideBar"
+import NavBar                         from "./components/NavBar/NavBar"
+import { Switch, Route, withRouter }  from 'react-router-dom'
+import React, { useEffect, useState, createRef, } from 'react'
 import "./components/NavBar/styles/navbar.css"
-import SideBar from "./components/Sidebar/SideBar"
-import AccountPage from "./sub-pages/AccountPage/AccountPage"
-import LoadingScreen from "./components/LoadingScreen/LoadingScreen"
-import BudgetRoute from "./components/MemoRoutes/BudgetRoute"
-import CashflowRoute from "./components/MemoRoutes/CashflowRoute"
 import "./styles/dashboard.css"
+import "./styles/subpage.css"
 
 
 const Dashboard = (props) => {
 
+    if (!props.fromApp.authenticated) {
+        props.history.push("/")
+    }
+
+    const smallScreen = window.innerWidth <= 600
+
     /* -------------------------- PROPS ------------------------- */
 
-    // console.log(props)
-    const { userInfo, authenticated } = props.fromApp
+    const { userInfo, gradientWrapper } = props.fromApp
     const { id: userId } = userInfo
 
 
-     /* -------------------------- STATE ------------------------- */
+    /* -------------------------- STATE ------------------------- */
 
-            /*  state:  ------------ financial info in state -----------*/
+    /*  ------ financial info ------*/
 
-    const [budgetId, setBudgetId] = useState(null)
-    const [cashflowId, setCashflowId] = useState(null)
-    const [incomes, setIncomes] = useState(null)
-    const [categories, setCategories] = useState(null)
-    const [months, setMonths] = useState(null)
+    const [months, setMonths] = useState("")
+    const [incomes, setIncomes] = useState("")
+    const [budgetId, setBudgetId] = useState("")
+    const [cashflowId, setCashflowId] = useState("")
+    const [categories, setCategories] = useState("")
 
-            /*  state:  ------------ rendering & ui control ---------- */
+    /* --------- sidebar control ------- */
 
-    const [narrow, setSidebarNarrowed] = useState(false)
+    const [userPreference, setUserPreference] = useState("")
+    const [sidebarClasses, setSidebarClasses] = useState(smallScreen ? "sidebar closed" : "sidebar")
+
+    /* --------- subpage control ------- */
+
+    const [subpageClasses, setSubpageClasses] = useState(smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed")
+
+    /* ---------- forcible rerenders -------- */
+
     const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
     
 
-
     /* -------------------------- useEffects ------------------------- */
 
-             /* useEffect #1: ----- async calls for first render ----- */
+    /* #1: ----- async calls on first render ---- */
 
     useEffect(() => {
-
-        console.log("dashboard useEffect")
-        if (!authenticated) {
-            props.history.push("/")
-        }
+        let componentMounted = true
         const initializeDashboard = async () => {
-            const budget = await ReadEntireBudget({ userId: userId }, null)
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
-            const { 
-                budgetId: b, 
-                incomes: i, 
-                categories: c 
-            } = budget
-            const { 
-                id: cashflowId, 
-                months: m
-            } = cashflow
-            setIncomes(i)
-            setCategories(c)
-            setMonths(m)
-            setCashflowId(cashflowId)
-            setBudgetId(b)
+            const budget = await ReadEntireBudget({ userId: userId }, null)
+            if (componentMounted) {
+                const { budgetId: b, incomes: i, categories: c } = budget
+                const { id: cashflowId, months: m } = cashflow
+                setCashflowId(cashflowId)
+                setCategories(c)
+                setBudgetId(b)
+                setIncomes(i)
+                setMonths(m)
+            }
         }
         initializeDashboard()
-
+        return () => componentMounted = false
     }, [])
 
 
-            /* useEffect #2: --- ensure all state set before rendering children --- */
+    /* #2: --- block ui until state loads --- */
 
     const renderDependencies = [
+        months,
+        incomes,
         budgetId, 
         cashflowId, 
-        incomes,
         categories,
-        months,
     ]
 
     useEffect(() => {
+        let componentMounted = true
         let childrenShouldRender = true
         renderDependencies.forEach((state) => {
-            if (state == null) {
+            if (state == "") {
                 childrenShouldRender = false
             }
         })
-        setLoaded(childrenShouldRender ? true : false)
+        if (componentMounted){
+            setLoaded(childrenShouldRender ? true : false)
+        }
     }, [...renderDependencies])
-
 
 
     /* --------------------- PROPS FOR CHILDREN --------------------- */
 
     const propsNavbar = {
-        narrow,
-        setSidebarNarrowed,
         ticker,
-        setTicker
+        setTicker,
+        userPreference,
+        setUserPreference,
+    }
+
+    const propsSidebar = {
+        userPreference, 
+        subpageClasses,
+        setUserPreference,
+        setSubpageClasses,
+        setSidebarClasses,
+        sidebarClasses, 
+        ticker,
+        setTicker,
     }
 
     const budgetHooks = {
         incomes,
+        budgetId,
         setIncomes,
         categories,
+        setBudgetId,
         setCategories,
-        budgetId,
-        setBudgetId
     }
 
     const cashflowProps = {
+        months,
+        setMonths,
         cashflowId,
         setCashflowId,
-        months,
-        setMonths
     }
+
+    const accountProps = {
+        gradientWrapper
+    }
+
+    const subpageRef = createRef()
 
 
     return( !loaded ? <LoadingScreen /> :
@@ -127,36 +152,57 @@ const Dashboard = (props) => {
                 {...props}
                 fromDashboard={{...propsNavbar}}
             />
-
             <main className="dash-main-flex">
                 <SideBar 
                     {...props} 
-                    narrow={narrow} 
+                    fromDashboard={{...propsSidebar}}
                 /> 
-                <div className={ narrow ? "sub-page expanded" : "sub-page"}> 
+                <div 
+                    ref={subpageRef} 
+                    style={{backgroundColor: "white"}}
+                    className={subpageClasses}
+                > 
                     <Switch> 
                         <BudgetRoute 
-                            exact path="/dashboard/" 
                             budgetHooks={budgetHooks}
+                            exact path="/dashboard/" 
+                            subpageRef={subpageRef}
                             ticker={ticker}
+                            {...props}
                         />
-                        <CashflowRoute 
-                            path="/dashboard/cashflow" 
+                        <CashflowDevRoute 
+                            // path="/dashboard/cashflow" 
                             fromDashboard={{...cashflowProps}}
+                            path="/dashboard/cashflow" 
+                            ticker={ticker}
+                            {...props}
+                        />
+                        {/* <MarketsRoute 
+                            path="/dashboard/markets" 
+                            ticker={ticker}
+                            {...props}
+                        /> */}
+                        <RetirementRoute 
+                            path="/dashboard/retirement" 
+                            ticker={ticker}
+                            {...props}
                         />
                         <Route 
+                            {...props} 
                             path="/dashboard/account" 
-                            component={ (props) => ( 
-                                <AccountPage {...props} id={userId} /> 
+                            component={(props) => ( 
+                                <AccountPage 
+                                fromDashboard={{...accountProps}} 
+                                id={userId} 
+                                    {...props} 
+                                /> 
                             )} 
                         />
                     </Switch>
                 </div>
             </main>
         </div>
-    
     )
-
 }
 
 export default withRouter(Dashboard)

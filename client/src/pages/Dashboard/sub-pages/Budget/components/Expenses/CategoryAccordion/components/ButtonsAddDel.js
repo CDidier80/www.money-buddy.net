@@ -38,14 +38,14 @@ const ButtonsAddDel = (props) => {
             fontSize: "9px",
             fontWeight: "700",
             fontFamily: "Lato, sans-serif",
-            color: "#e6a824",
+            color: "#d29000",
             padding: "0 5px 0 5px"
         },
         deleteButton: {
             fontSize: "9px",
             fontWeight: "700",
             fontFamily: "Lato, sans-serif",
-            color: showExpenseDeleteIcons ? "#22c1c3" : "#e6a824",
+            color: showExpenseDeleteIcons ? "#22c1c3" : "#d29000",
             padding: "0 5px 0 5px"
         },
     })

@@ -1,0 +1,18 @@
+.retirement {
+    animation: fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 500ms both;
+    font-weight: 300;
+}
+
+.retirement-chart-wrapper {
+    /* width: 100%; */
+    position: relative;
+    /* min-width: 600px;
+
+    width: 800px;
+    height: 500px;
+    overflow: auto; */
+
+}
+
+.line-component {
+}

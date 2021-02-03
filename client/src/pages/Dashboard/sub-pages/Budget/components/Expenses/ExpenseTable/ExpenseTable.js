@@ -30,9 +30,6 @@ const ExpenseTable = (props) => {
 
     const classes = useStyles()
 
-
-
-
     return (
         <AccordionDetails>
             <TableContainer 

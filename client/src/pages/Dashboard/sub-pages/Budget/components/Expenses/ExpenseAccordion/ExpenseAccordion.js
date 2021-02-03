@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import CategoryPopup from "../CategoryPopups/CategoryPopup"
 import CategoryAccordion from "../CategoryAccordion/CategoryAccordion"
 import ButtonsAddDelete from './componenets/ButtonsAddDelete'
@@ -7,7 +7,7 @@ import { staticStyles } from "./styles/staticStyles"
 import { 
     makeStyles,
     Accordion,
-    AccordionDetails,
+    useMediaQuery
 } from '@material-ui/core';
 
 
@@ -15,30 +15,40 @@ import {
 
 const ExpenseAccordion = (props) => {
 
-    {/*  PROPS */}
+    /* -------------------------- PROPS ------------------------- */
 
+    const { gradientWrapper } = props.fromApp
     const { newCategories } = props.fromBudget
 
-    // console.log(newCategories)
-    
+    /* ---------------------- init MEDIA QUERY--------------------- */
 
-    {/*  STATE  */}
+    const autoExpandHeight = useMediaQuery('(min-height:1050px)', {noSsr: true})
+
+
+    /* -------------------------- STATE ------------------------- */
+
     const [showAddCategoryPanel, toggleAddCategoryPanel] = useState(false)
     const [showDeleteIcons, toggleDeleteIcons] = useState(false)
-    const [opened, toggleOpened] = useState(false)
-
-    // must keep -- optimizes performance
+    const [expanded, setExpanded] = useState(false)
+    // keep -- optimizes performance
     const [renderExpAccordion, rerenderExpenseAccordian ] = useState(false)
 
 
-    {/*  useEffect  */}
+    /* -------------------------- useEffect ------------------------- */
 
     useEffect(() => {
     }, [renderExpAccordion])
 
+
+    useLayoutEffect(() => {
+        if (autoExpandHeight && !expanded) {
+            setExpanded(true)
+        }
+    }, [autoExpandHeight])
+
     
 
-    {/*  FUNCTIONS  */}
+    /* -------------------------- FUNCTIONS ------------------------- */
 
     const addCategory = (e) => {
         e.preventDefault()
@@ -52,13 +62,15 @@ const ExpenseAccordion = (props) => {
     }
 
 
-    const handleExpansion = (e) => {
-        toggleOpened(!opened)
-        // console.log("changed")
-    }
+    const handleExpansion = (e) => setExpanded(!expanded)
+
 
 
     const useStyles = makeStyles({
+        accordionWrapper: {
+            ...gradientWrapper,
+            padding: "6px"
+        },
         ...staticStyles, 
         deleteButton: {
             fontSize: "9px",
@@ -80,7 +92,7 @@ const ExpenseAccordion = (props) => {
 
 
     return (
-        <div>
+        <div className={classes.accordionWrapper}>
             { showAddCategoryPanel && 
                 <CategoryPopup 
                     {...props} 
@@ -91,8 +103,11 @@ const ExpenseAccordion = (props) => {
             <Accordion 
                 className={classes.accordion}
                 onChange={(e)=>handleExpansion(e)}
+                expanded={expanded}
             >
-                <AccordionDropdownTab opened={opened}/>
+                <AccordionDropdownTab 
+                    expanded={expanded}
+                />
                 <ButtonsAddDelete 
                     fromExpenseAccordion={{...buttonsAddDeleteProps}}
                 />

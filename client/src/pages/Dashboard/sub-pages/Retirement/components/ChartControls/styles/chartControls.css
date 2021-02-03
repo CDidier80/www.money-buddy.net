@@ -1,0 +1,49 @@
+.chart-controls {
+    margin-top: 50px;
+    width: 90%;
+    margin: 30px auto 0 auto;
+}
+
+.slider-section {
+    margin-bottom: 25px;
+}
+
+.slider-flexbox {
+    width: 100%;
+    display: flex;
+    padding: 1px;
+    /* margin-top: 20px; */
+    justify-content: space-between;
+    border-radius: 8px;
+    background-color: #074141;
+    box-shadow:        
+        2px 3px 1px -2px rgba(0,0,0,0.3),
+        2px 2px 2px 0px  rgba(0,0,0,0.22),
+        2px 1px 8px 0px rgba(0,0,0,0.18);
+    background-image: linear-gradient(180deg, #0a6666, #a0720e);
+}
+
+
+.slider-flex-item {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.slider-wrapper {
+    background-color: white;
+    position: relative;
+    flex-grow: 1;
+    height: 0%;
+    width: 100%;
+    padding: 48px 0px 0 0px;
+    margin: auto;
+    border-radius: 4px;
+}
+
+.label-wrapper {
+    border-radius: 4px;
+    background-color: white;
+    margin: 2px 0 5px 0;
+}

@@ -7,16 +7,17 @@ import UndoIconButton from "./components/UndoIconButton"
 import { staticStyles } from "./styles/staticStyles"
 import DeleteIncomeIcon from "./components/DeleteIncomeIcon"
 import { 
-    TableCell, 
     TableRow,
-    makeStyles
+    TableCell, 
+    makeStyles,
+    useMediaQuery
 } from '@material-ui/core'
 import Undo from '@material-ui/icons/Undo';
 
 
 const IncomeRow = (props) => {
 
-    {/*  PROPS */}
+    /* -------------------------- PROPS -------------------------- */
     
     const { showIncomeDeleteIcons } = props.fromIncomeAccordion
     
@@ -25,24 +26,27 @@ const IncomeRow = (props) => {
     const {
         source,
         amount,
+        rowColor,
         arrayIndex,
+        onlyTwoCells,
+        annualToggled,
         incomingDeletion,
         setIncomingDeletion,
-        rowColor
     } = props.fromIncomeTable
 
 
     const monthly = Math.round(amount / 12)
     
-
-    {/*  STATE  */}
+    /* -------------------------- STATE -------------------------- */
     
     const [ cellAmountHistory, setCellAmountHistory ] = useState([])
-    const [ showUndoIcon, setShowUndoIcon ] = useState(false)
     const [ iconShouldShow, setIconShouldShow ] = useState(false)
+    const [ showUndoIcon, setShowUndoIcon ] = useState(false)
 
+    /* -------------- MEDIA QUERIES (del/undo icon----------------- */
+        const smallerIcons = useMediaQuery('(max-width: 393px)', {noSsr: true})
 
-    {/*  useEffect */}
+    /* -------------------------- useEffect -------------------------- */
 
     useEffect(() => {
         if(incomingDeletion){
@@ -89,8 +93,7 @@ const IncomeRow = (props) => {
     }, [showIncomeDeleteIcons, showUndoIcon])
 
 
-
-    {/*  FUNCTIONS */}
+    /* -------------------------- FUNCTIONS -------------------------- */
 
 
     const useStyles = makeStyles({
@@ -105,7 +108,6 @@ const IncomeRow = (props) => {
     const classes = useStyles()
 
 
-
     const renderUndoIcon = (newLength) => {
         if (newLength >= 2) {
             setShowUndoIcon(true)
@@ -113,30 +115,32 @@ const IncomeRow = (props) => {
             setShowUndoIcon(false)
         }
     }
-
+    
+    /* ---------------------- PROPS FOR CHILDREN ---------------------- */
 
     const propsForUndoIcon = {
-        cellAmountHistory, 
+        smallerIcons: smallerIcons,
         setCellAmountHistory,
+        cellAmountHistory, 
         iconShouldShow
     }
 
-
     const propsForSource = {
-        defaultValue: source
+        defaultValue: source,
     }
 
     const propsForMonthly = {
         defaultValue: monthly,
-        isAnnual: false
+        isAnnual: false,
     }
 
     const propsForAnnual = {
         defaultValue: amount,
-        isAnnual: true
+        isAnnual: true,
     }
 
-    
+    const iconCellWidth = {width: (smallerIcons ? "25px" : "35px")}
+
     return (
         <TableRow
             className={classes.row}
@@ -144,11 +148,14 @@ const IncomeRow = (props) => {
             <TableCell 
                 size="small" 
                 className={classes.iconCell}
-                style={{width: "30px"}}
+                style={iconCellWidth}
             >
                 {iconShouldShow && ( showIncomeDeleteIcons ? 
 
-                    <DeleteIncomeIcon {...props} />
+                    <DeleteIncomeIcon 
+                        {...props} 
+                        smallerIcons={smallerIcons}
+                    />
                     :
                     <UndoIconButton 
                         {...props} 
@@ -161,16 +168,36 @@ const IncomeRow = (props) => {
                 {...props}
                 fromIncomeRow={{...propsForSource}} 
             />
-            <IncomeNumberCell 
-                {...props}
-                align="right"
-                fromIncomeRow={{...propsForMonthly}}
-            />
-            <IncomeNumberCell 
-                {...props}
-                align="right"
-                fromIncomeRow={{...propsForAnnual}}
-            />
+
+            {onlyTwoCells ? !annualToggled ?
+                <IncomeNumberCell 
+                    {...props}
+                    align="right"
+                    onlyTwoCells={true}
+                    fromIncomeRow={{...propsForMonthly}}
+                />
+                :
+                <IncomeNumberCell 
+                    {...props}
+                    align="right"
+                    onlyTwoCells={true}
+                    fromIncomeRow={{...propsForAnnual}}
+                />
+            :
+                (<>
+                    <IncomeNumberCell 
+                        {...props}
+                        align="right"
+                        fromIncomeRow={{...propsForMonthly}}
+                    />
+
+                    <IncomeNumberCell 
+                        {...props}
+                        align="right"
+                        fromIncomeRow={{...propsForAnnual}}
+                    />
+                </>)
+            }
         </TableRow>
     )
 }

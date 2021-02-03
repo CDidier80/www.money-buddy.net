@@ -6,36 +6,37 @@ import { makeStyles } from '@material-ui/core'
 
 const IncomeNumberCell = (props) => {
 
-    {/*  PROPS  */}
+    /* -------------------- PROPS -------------------- */
 
     const { 
         userMadeChanges, 
         toggleChanges, 
-        newIncomes, 
         setNewIncomes,
         updateBudget,
+        newIncomes, 
         tick
     } = props.fromBudget
 
     const { 
         arrayIndex, 
-        rowColor
+        rowColor,
+        textSize,
     } = props.fromIncomeTable
 
     const { 
+        defaultValue,
         isAnnual, 
-        defaultValue
     } = props.fromIncomeRow
 
 
-    {/*  STATE  */}
+    /* -------------------- STATE -------------------- */
 
     const [ newText, updateText ] = useState("")
     const [ rawNumber, updateRawNumber] = useState(0)
     const [ focused, setFocus ] = useState(false)
     
 
-    {/* useEffect */}
+    /* ------------------- useEffect ------------------- */
 
     useEffect(() => {
         // console.log("defauleValue: ", defaultValue)
@@ -46,12 +47,22 @@ const IncomeNumberCell = (props) => {
 
 
     
-    {/* FUNCTIONS */}
+    /* ------------------- FUNCTIONS ------------------- */
 
+    const alignment = props.onlyTwoCells ? {textAlign: "center"} : {}
 
     const useStyles = makeStyles({
         cell: {
-            backgroundColor: rowColor
+            backgroundColor: rowColor,
+            ...textSize,
+            // ...alignment
+        },
+        input: { 
+            backgroundColor: rowColor, 
+            border: "0px",
+            ...textSize,
+            ...alignment
+
         }
     })
 
@@ -76,31 +87,27 @@ const IncomeNumberCell = (props) => {
         // setCellHistory([...cellHistory, rawNumber])
         updateIncomes(rawNumber)
         updateText(formatToCurrency(rawNumber))
-        if (!userMadeChanges) {
-            toggleChanges(true)
-        }
+        !userMadeChanges && toggleChanges(true)
         updateBudget(tick + 1)
         setFocus(false)
         return false
     }
 
-    const backgroundColor = {backgroundColor:rowColor}
 
     return (
         <TableCell className={classes.cell}>
             <form 
                 onSubmit={(e) => submit(e)} 
-                style={backgroundColor}
+                style={{backgroundColor: rowColor}}
             >
                 <input 
-                    style={backgroundColor}
+                    onChange={(e) => filterNumbers(e, updateRawNumber)}
+                    className={`${classes.input} editable-cell income`}
+                    value={focused ? rawNumber : newText}  
+                    onSelect={(e) => setFocus(true)}
+                    onBlur={(e) => submit(e)}
                     name="text-input"
                     type="text" 
-                    value={focused ? rawNumber : newText}  
-                    className="editable-cell income"
-                    onSelect={(e) => setFocus(true)}
-                    onChange={(e) => filterNumbers(e, updateRawNumber)}
-                    onBlur={(e) => submit(e)}
                 >
                 </input>
             </form>

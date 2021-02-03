@@ -1,52 +1,91 @@
+import { 
+    Paper, 
+    Table, 
+    TableBody, 
+    makeStyles, 
+    useMediaQuery,
+    TableContainer, 
+    AccordionDetails
+} from '@material-ui/core';
 import React, { useState } from 'react';
 import IncomeRow from "../IncomeRow/IncomeRow"
 import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
 import { offRowColor } from "../../../../universal-functions/styleFunctions"
-import { 
-    makeStyles, 
-    Paper, 
-    Table, 
-    TableBody, 
-    TableContainer, 
-    AccordionDetails
-} from '@material-ui/core';
 
 
-const useStyles = makeStyles({
-    table: {
-        minWidth: "270px",
-    },
-    title: {
-        flex: '1 1 100%',
-    },
-    tableContainer: {
-        maxWidth: "890px",
-        margin: "auto"
-    },
-})
 
 
 const IncomeTable = (props) => {
     
-    {/*  PROPS */}
-
+    
     const { newIncomes } = props.fromBudget    
-
-
-    {/*  STATE */}
-
+    
     const [incomingDeletion, setIncomingDeletion] = useState(false)
+    const [annualToggled, setAnnualToggled] = useState(true)
 
-    {/*  FUNCTIONS */}
+    
+    /* -------------------------- MEDIA QUERY -------------------------- */
+    
+    const small = useMediaQuery('(max-width: 725px)', {noSsr: true})
+    const verySmall = useMediaQuery('(max-width: 460px)', {noSsr: true})
+    const onlyTwoCells = useMediaQuery('(max-width: 390px)', {noSsr: true})
 
+    
+    const createTextStyle = () => {
+        let fontSize 
+        let styleObject = {
+            paddingLeft: 0,
+            paddingRight: 0
+        }
+        switch (true) {
+            case verySmall: 
+            fontSize = {fontSize: "10px"}
+            break
+            case small: 
+            fontSize = {fontSize: "12px"}
+            break 
+            default: 
+            fontSize =  {}
+        }
+        return {...styleObject, ...fontSize}
+    }
+    
+
+    const padding = verySmall ? {padding: "6px"} : {}
+    const overflow = verySmall ? {overflowX: "hidden"} : {}
+
+    const useStyles = makeStyles({
+        accordionDetails: {
+            ...padding,
+            ...overflow
+
+        },
+        table: {
+            minWidth: "270px",
+            ...overflow
+        },
+        tableContainer: {
+            maxWidth: "890px",
+            margin: "auto",
+            ...overflow
+
+        },
+    })
     const classes = useStyles()
 
-    // const propsForHeaders = {
+    const textSize = small ? createTextStyle() : {}
 
-    // }
+    const propsHeaders = {
+        annualToggled,
+        setAnnualToggled,
+        textSize: textSize,
+        onlyTwoCells: onlyTwoCells
+    }
 
     return (
-        <AccordionDetails>
+        <AccordionDetails
+        className={classes.accordionDetails}
+        >
             <TableContainer 
                 className={classes.tableContainer}
                 component={Paper}
@@ -58,25 +97,29 @@ const IncomeTable = (props) => {
                     <TableBody>
                         <IncomeHeaders 
                             {...props}
+                            {...propsHeaders}
                         />
                         {newIncomes.map((income, index) => {
                             const { source, amount } = income
-                            const rowColor = offRowColor(index)
                             const monthly = Math.round(amount / 12)
+                            const rowColor = offRowColor(index)
                             const propsForRows = {
+                                setIncomingDeletion,
+                                arrayIndex: index,
+                                incomingDeletion,
+                                annualToggled,
+                                onlyTwoCells,
+                                textSize, 
+                                rowColor,
+                                monthly,
                                 source,
                                 amount, 
-                                monthly,
-                                arrayIndex: index,
-                                incomingDeletion, 
-                                setIncomingDeletion,
-                                rowColor
                             }
                             return (
                                 <IncomeRow 
-                                    {...props}
-                                    key={index + 100000}
                                     fromIncomeTable={{...propsForRows}}
+                                    key={index + 100000}
+                                    {...props}
                                 />
                             )
                         })}

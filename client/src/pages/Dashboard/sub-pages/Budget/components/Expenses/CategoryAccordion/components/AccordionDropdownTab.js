@@ -25,12 +25,12 @@ const AccordionDropdownTab = (props) => {
             alignItems: "center"
         },
         category: {
-            color: "#e6a824",
+            color: "#d29000",
             fontWeight: "500",
             fontFamily: "Lato, sans-serif",
         },
         expandMoreIcon : {
-            color:"#e6a824",
+            color:"#d29000",
         }
     })
 

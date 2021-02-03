@@ -7,6 +7,7 @@ import {
 const DelButton = (props) => {
 
     const {
+        smallerButtons,
         showIncomeDeleteIcons,
         toggleIncomeDeleteIcons,
     } = props.fromIncomeAccordion
@@ -20,10 +21,10 @@ const DelButton = (props) => {
 
     const useStyles = makeStyles({
         deleteButton: {
-            fontSize: "9px",
+            fontSize: smallerButtons ? "8px" : "9px",
             fontWeight: "700",
             fontFamily: "Lato, sans-serif",
-            color: showIncomeDeleteIcons ? "#e6a824" : "#22c1c3",
+            color: showIncomeDeleteIcons ? "#e6a824" : "#2c7b71",
             padding: "0 5px 0 5px"
         }
     })
