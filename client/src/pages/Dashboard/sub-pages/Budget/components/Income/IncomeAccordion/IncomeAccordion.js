@@ -87,7 +87,6 @@ const IncomeAccordion = (props) => {
         lengthOfIncomes,
     }
     
-    console.log(smallerButtons)
     return (
         <div className={classes.accordionWrapper}>
             <Accordion 

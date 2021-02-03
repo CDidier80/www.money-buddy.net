@@ -24,8 +24,6 @@ const AddButton = (props) => {
         lengthOfIncomes,
         setLengthOfIncomes,
     } = props.fromIncomeAccordion
-
-    console.log(smallerButtons)
     
     
     const useStyles = makeStyles({
