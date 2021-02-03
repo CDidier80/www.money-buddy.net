@@ -1,0 +1,6 @@
+./node-modules
+.env
+/a-reference
+.DS_Store
+**/node_modules
+
