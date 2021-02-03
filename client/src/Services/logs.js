@@ -33,7 +33,7 @@ export const ServiceLoggers = {
     },
 
     IncomeServiceLog : (serviceFunction, body, params) => {
-        const show = true
+        const show = false
         if (show) {
             console.log(`Request arrived in IncomeService.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
             return
@@ -41,7 +41,7 @@ export const ServiceLoggers = {
         return
     },
     IncomeServiceErrorLog : (serviceFunction, error) => {
-        const show = true
+        const show = false
         if (show) {
             console.log(`TRY{}CATCH{} ERROR --> FILE: IncomeService.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
             return
@@ -50,7 +50,7 @@ export const ServiceLoggers = {
     },
 
     CategoryServiceLog : (serviceFunction, body, params) => {
-        const show = true
+        const show = false
         if (show) {
             console.log(`Request arrived in CategoryService.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
             return
@@ -59,7 +59,7 @@ export const ServiceLoggers = {
     },
 
     CategoryServiceErrorLog : (serviceFunction, error) => {
-        const show = true
+        const show = false
         if (show) {
             console.log(`TRY{}CATCH{} ERROR --> FILE: CategoryService.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
             return
@@ -68,7 +68,7 @@ export const ServiceLoggers = {
     },
 
     ExpenseServiceLog : (serviceFunction, body, params) => {
-        const show = true
+        const show = false
         if (show) {
             console.log(`Request arrived in ExpenseService.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
             return
@@ -77,7 +77,7 @@ export const ServiceLoggers = {
     },
     
     ExpenseServiceErrorLog : (serviceFunction, error) => {
-        const show = true
+        const show = false
         if (show) {
             console.log(`TRY{}CATCH{} ERROR --> FILE: ExpenseService.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
             return
