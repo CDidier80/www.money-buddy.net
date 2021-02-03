@@ -9,9 +9,10 @@ import { ReadEntireBudget }           from "../../Services/BudgetService"
 import SideBar                        from "./components/Sidebar/SideBar"
 import NavBar                         from "./components/NavBar/NavBar"
 import { Switch, Route, withRouter }  from 'react-router-dom'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, createRef, } from 'react'
 import "./components/NavBar/styles/navbar.css"
 import "./styles/dashboard.css"
+import "./styles/subpage.css"
 
 
 const Dashboard = (props) => {
@@ -19,6 +20,8 @@ const Dashboard = (props) => {
     if (!props.fromApp.authenticated) {
         props.history.push("/")
     }
+
+    const smallScreen = window.innerWidth <= 600
 
     /* -------------------------- PROPS ------------------------- */
 
@@ -39,13 +42,17 @@ const Dashboard = (props) => {
     /* --------- sidebar control ------- */
 
     const [userPreference, setUserPreference] = useState("")
+    const [sidebarClasses, setSidebarClasses] = useState(smallScreen ? "sidebar closed" : "sidebar")
+
+    /* --------- subpage control ------- */
+
+    const [subpageClasses, setSubpageClasses] = useState(smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed")
 
     /* ---------- forcible rerenders -------- */
 
     const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
     
-
 
     /* -------------------------- useEffects ------------------------- */
 
@@ -106,7 +113,13 @@ const Dashboard = (props) => {
 
     const propsSidebar = {
         userPreference, 
-        setUserPreference
+        subpageClasses,
+        setUserPreference,
+        setSubpageClasses,
+        setSidebarClasses,
+        sidebarClasses, 
+        ticker,
+        setTicker,
     }
 
     const budgetHooks = {
@@ -129,6 +142,8 @@ const Dashboard = (props) => {
         gradientWrapper
     }
 
+    const subpageRef = createRef()
+
 
     return( !loaded ? <LoadingScreen /> :
 
@@ -137,24 +152,28 @@ const Dashboard = (props) => {
                 {...props}
                 fromDashboard={{...propsNavbar}}
             />
-
             <main className="dash-main-flex">
                 <SideBar 
                     {...props} 
                     fromDashboard={{...propsSidebar}}
                 /> 
-                <div className="sub-page"> 
+                <div 
+                    ref={subpageRef} 
+                    style={{backgroundColor: "white"}}
+                    className={subpageClasses}
+                > 
                     <Switch> 
                         <BudgetRoute 
-                            {...props}
-                            exact path="/dashboard/" 
                             budgetHooks={budgetHooks}
+                            exact path="/dashboard/" 
+                            subpageRef={subpageRef}
                             ticker={ticker}
+                            {...props}
                         />
                         <CashflowDevRoute 
                             // path="/dashboard/cashflow" 
-                            path="/dashboard/cashflow" 
                             fromDashboard={{...cashflowProps}}
+                            path="/dashboard/cashflow" 
                             ticker={ticker}
                             {...props}
                         />
@@ -173,9 +192,9 @@ const Dashboard = (props) => {
                             path="/dashboard/account" 
                             component={(props) => ( 
                                 <AccountPage 
+                                fromDashboard={{...accountProps}} 
+                                id={userId} 
                                     {...props} 
-                                    fromDashboard={{...accountProps}} 
-                                    id={userId} 
                                 /> 
                             )} 
                         />
