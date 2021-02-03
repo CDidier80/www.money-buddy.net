@@ -20,9 +20,6 @@ export const currencyChartCallback = {
             minimumFractionDigits: 0,
             maximumFractionDigits: 0, 
         })
-        if (value < 0){
-            formattedValue = "-" + formattedValue
-        }
         return formattedValue
     }
 }
