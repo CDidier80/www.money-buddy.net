@@ -70,3 +70,11 @@ html, body, .app {
   text-rendering: optimizeLegibility!important;
   -webkit-font-smoothing: antialiased!important;
 }
+
+
+@media (max-width: 500px) {
+  *::-webkit-scrollbar {
+    width: 9px;
+    border: 1px;
+  }
+}
