@@ -33,7 +33,6 @@ export const signup = async (props) => {
 
 
 export const signin = async (props) => {
-    console.log(props)
     const { 
         setUserInfo, 
         password, 
@@ -42,11 +41,7 @@ export const signin = async (props) => {
         email, 
     } = props
     try {
-        console.log("reached")
-
         const response = await LogInUser({ email, password })
-        console.log("reached")
-
         if (response.status === 200) {
             setAuth(true)
             setUserInfo(response.data.user)
