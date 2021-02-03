@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { Line } from 'react-chartjs-2'
 import "./styles/chart.css"
 import {
@@ -10,7 +10,7 @@ import {
 
 
 
-const Chart = (props) => {
+const Chart = memo((props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
@@ -33,7 +33,6 @@ const Chart = (props) => {
     /* ------------------------ useEffects ----------------------- */
 
     useEffect(() => {
-
         setInflowDataset(inflows)
         setOutflowDataset(outflows)
         setCashDataset(cashReserves)
@@ -103,6 +102,6 @@ const options = {
             />
         </div>
     )
-}
+}, (prevProps, nextProps) => prevProps.fromCashflowDevelopment.showPopup !== nextProps.fromCashflowDevelopment.showPopup)
 
 export default Chart
