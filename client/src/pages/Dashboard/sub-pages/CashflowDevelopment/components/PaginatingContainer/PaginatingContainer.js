@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState, memo } from 'react'
 import MonthContainer from "../MonthContainer/MonthContainer"
 import NextAndBackIcons from "./NextAndBackIcons"
 import "./styles/paginator.css"
 
-const PaginatingContainer = (props) => {
-    // console.log(props)
+const PaginatingContainer = memo((props) => {
     const { newMonths } = props.fromCashflowDevelopment
 
     const [displayRange, setDisplayRange] = useState([0,1,2])
@@ -47,7 +46,7 @@ const PaginatingContainer = (props) => {
             </div>
         </div>
     )
-}
+}, (prevProps, nextProps) => prevProps.fromCashflowDevelopment.showPopup !== nextProps.fromCashflowDevelopment.showPopup)
 
 export default PaginatingContainer
 
