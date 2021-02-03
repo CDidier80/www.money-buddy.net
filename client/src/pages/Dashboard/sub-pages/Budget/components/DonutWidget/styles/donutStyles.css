@@ -19,10 +19,9 @@
     margin-bottom: 15px;
 }
 
-
 /* WIDTH */
 
-@media (min-width: 1112px) {
+/* @media (min-width: 1112px) {
     .donut-header {
         margin-bottom: 25px;
         font-size: 20px;
@@ -34,23 +33,32 @@
         margin-bottom: 32px;
         font-size: 25px;
     }
-}
+} */
 
 /* WIDGETS REALIGN VERTICALLY */
 
 
-/* @media (max-width: 878px) {
+@media (max-width: 887px) {
     .budget-top-widgets.donut {
         position: static;
+        width: 100%!important;
     }
 }
 
-@media (max-width: 878px) {
+@media (max-width: 887px) {
     .gradient-wrapper.donut {
-        margin: 20px auto 0 auto;
-        position: static;
+        margin: 0 auto;
+        position: relative;
         display: block;
-
+        /* min-width: 250px; */
     }
 
-} */
+} 
+@media (max-width: 500px) {
+    .gradient-wrapper.donut {
+        margin: 0 auto;
+        position: relative;
+        display: block;
+        min-width: 0;
+    }
+} 
