@@ -20,14 +20,17 @@ const AddButton = (props) => {
 
 
     const {
+        smallerButtons,
         lengthOfIncomes,
         setLengthOfIncomes,
     } = props.fromIncomeAccordion
+
+    console.log(smallerButtons)
     
     
     const useStyles = makeStyles({
         button: {
-            fontSize: "9px",
+            fontSize: smallerButtons ? "8px" : "9px",
             color: "#2c7b71",
             fontWeight: "700",
             padding: "0 5px 0 5px",
