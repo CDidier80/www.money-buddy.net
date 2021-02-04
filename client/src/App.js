@@ -17,9 +17,9 @@ const App = (props) => {
     /* ------------------- STATE ----------------------*/
 
     const [userInfo, setUserInfo]= useState({})
-    const [validSession, setSessionValid] = useState(false)
     const [pageIsLoaded, setLoaded] = useState(true)
     const [authenticated, setAuth] = useState(false)
+    const [validSession, setSessionValid] = useState(false)
 
 
     /* -------------------- FUNCTIONS---------------------*/
@@ -29,7 +29,7 @@ const App = (props) => {
         if (token) {
             try {
                 const sessionStatus = await CheckSessionService()
-                console.log("session:", sessionStatus)
+                // console.log("session:", sessionStatus)
                 if (sessionStatus === 200) {
                     setSessionValid(true)
                     setAuth(true)

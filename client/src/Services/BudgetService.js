@@ -37,7 +37,6 @@ export const UpdateEntireBudget = async (body,  params) =>  {
     try {
         log(UpdateEntireBudget, body, params)
         const response = await ApiClient.put(`budgets/update`, body)
-        console.log(response.data)
         return response.data
     } catch (error) {
         errorLog(UpdateEntireBudget, error)
