@@ -37,7 +37,7 @@ const GetOneBudget = async (req, res) => {
 }
 
 const ReadEntireBudget = async (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     log(ReadEntireBudget, req)
     try {
         const { userId } = req.body
@@ -80,7 +80,7 @@ const ReadEntireBudget = async (req, res) => {
             incomes,
             categories
         }
-        console.log(entireBudget)
+        // console.log(entireBudget)
         res.send(entireBudget)
     } catch (error) {
         errorLog(ReadEntireBudget, error)
@@ -89,8 +89,8 @@ const ReadEntireBudget = async (req, res) => {
 
 
 const UpdateEntireBudget = async (req, res) => {
-    console.log(CreateManyIncomes)
-    console.log(req.body)
+    // console.log(CreateManyIncomes)
+    // console.log(req.body)
     log(UpdateEntireBudget, req)
     try {
         const { budgetId, incomes, categories } = req.body
@@ -130,7 +130,7 @@ const UpdateEntireBudget = async (req, res) => {
                 const newExpense = await Expense.create(expenseToCreate)
                 return newExpense
             }))
-            console.log(newExpenses)
+            // console.log(newExpenses)
             return { categoryId: newCategoryId, name, expenses: [...newExpenses] }
         }))
 
@@ -140,7 +140,7 @@ const UpdateEntireBudget = async (req, res) => {
             categories: [...newCategoriesWithExpenses]
         }
 
-        console.log("entire budget:", entireBudget)
+        // console.log("entire budget:", entireBudget)
         res.send(entireBudget)
     } catch (error) {
         errorLog(UpdateEntireBudget, error)
