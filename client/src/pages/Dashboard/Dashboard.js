@@ -107,9 +107,8 @@ const Dashboard = (props) => {
                 childrenShouldRender = false
             }
         })
-        if (componentMounted){
-            setLoaded(childrenShouldRender ? true : false)
-        }
+        componentMounted && setLoaded(childrenShouldRender ? true : false)
+
     }, [...renderDependencies])
 
 
