@@ -74,7 +74,7 @@ const Dashboard = (props) => {
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
             const budget = await ReadEntireBudget({ userId: userId }, null)
             if (componentMounted) {
-                const { budgetId: b, incomes: i, categories: c } = budget››
+                const { budgetId: b, incomes: i, categories: c } = budget
                 const { id: cashflowId, months: m } = cashflow
                 setCashflowId(cashflowId)
                 setCategories(c)
