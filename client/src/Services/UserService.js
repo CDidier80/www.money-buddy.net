@@ -14,6 +14,7 @@ export const CreateUser = async (body, params) =>  {
     }
 }
 
+
 export const LogInUser = async (body, params) =>  {
     try {
         log(LogInUser, body, params)
@@ -26,6 +27,7 @@ export const LogInUser = async (body, params) =>  {
     }
 }
 
+
 export const ReadUser = async (body,  params) =>  {
     try {
         log(ReadUser, body, params)
@@ -35,6 +37,7 @@ export const ReadUser = async (body,  params) =>  {
         errorLog(ReadUser, error)
     }
 }
+
 
 export const UpdatePassword= async (body, params) =>  {
     try {
@@ -46,6 +49,7 @@ export const UpdatePassword= async (body, params) =>  {
     }
 }
 
+
 export const UpdateEmail = async (body, params) =>  {
     try {
         log(UpdateEmail, body, params)
@@ -55,6 +59,7 @@ export const UpdateEmail = async (body, params) =>  {
         errorLog(UpdateEmail, error)
     }
 }
+
 
 export const DeleteUser = async (body, params) => {
     try {
@@ -66,6 +71,7 @@ export const DeleteUser = async (body, params) => {
         errorLog(DeleteUser,error)
     }
 }
+
 
 export const CheckSessionService = async (body, params) => {
     try{
