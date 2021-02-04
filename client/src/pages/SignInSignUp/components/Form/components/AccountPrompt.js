@@ -1,6 +1,8 @@
 import React from 'react'
 
-const AccountPrompt = ({classes, isSigningUp, toggleSigningUp}) => {
+const AccountPrompt = (props) => {
+
+    const {classes, isSigningUp, toggleSigningUp} = props
 
     const accountPrompt = isSigningUp ? 
                         "Already have an account?  Sign in" : 
