@@ -3,13 +3,12 @@ const { defaultMonths, defaultCategories, nextCalendarYear } = require("../modul
 const log = ControllerLoggers.CashflowControllerLog 
 const errorLog = ControllerLoggers.CashflowControllerErrorLog
 const { 
-    Cashflow, 
-    Inflow, 
     Flowcategory, 
+    Cashflow, 
     Outflow, 
+    Inflow, 
     Month
 } = require('../../models')
-
 
 
 
@@ -22,7 +21,6 @@ const CreateCashflow = async (req, res) => {
         errorLog(CreateCashflow, error) 
     }
 }
-
 
 /**
  * @param {Object} req.body - The month object.
@@ -37,9 +35,6 @@ const CreateDefaultCashflow = async (req, res) => {
             query: { raw:true}
         })
         const { id: cashflowId } = cashflow
-
-        console.log("cashflow: ", cashflow)
-
         const today = new Date()
         const y = today.getFullYear()
         const m = today.getMonth()
@@ -49,7 +44,6 @@ const CreateDefaultCashflow = async (req, res) => {
         const months = await Month.bulkCreate(nextTwelveMonths,{
             query: { raw:true}
         })
-        console.log("MONTHS:", months)
         
         const packagedMonths = await Promise.all(months.map(async (month) => {
             const { id: monthId } = month
@@ -158,7 +152,7 @@ const ReadEntireCashflow = async (req, res) => {
             ]
         })
             
-        console.log(entireCashflow)
+        // console.log(entireCashflow)
         res.send(entireCashflow)
     } catch (error) {
         errorLog(ReadEntireCashflow, error)
@@ -231,7 +225,7 @@ const UpdateEntireCashflow = async (req, res) => {
             cashflowId : cashflowId,
             months: updatedMonths
         }
-        console.log("entire Cashflow:", entireCashflow)
+        // console.log("entire Cashflow:", entireCashflow)
         res.send(entireCashflow)
     } catch (error) {
         errorLog(UpdateEntireCashflow, error)
