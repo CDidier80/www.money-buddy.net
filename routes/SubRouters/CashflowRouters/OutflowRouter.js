@@ -1,12 +1,10 @@
 const Router = require('express').Router()
 const { 
     CreateOutflow,
-    CreateManyOutflows,
     GetOneOutflow,
-    GetAllOutflows
+    GetAllOutflows,
+    CreateManyOutflows,
 } = require('../../../controllers/CashflowControllers/OutflowController')
-
-console.log("OUTFLOW ROUTER CONNECTED")
 
 Router.post('/create',     CreateOutflow)
 Router.post('/createmany', CreateManyOutflows)

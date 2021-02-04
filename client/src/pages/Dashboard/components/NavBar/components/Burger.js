@@ -9,10 +9,10 @@ const Burger = (props) => {
     /* ---------- PROPS---------- */
 
     const { 
+        ticker,
+        setTicker,
         userPreference,
         setUserPreference,
-        ticker,
-        setTicker
     } = props.fromDashboard
 
 
@@ -22,7 +22,6 @@ const Burger = (props) => {
         e.preventDefault()
         switch (userPreference) {
             case "open":   
-                console.log("user closed sidebar")
                 // if (window.innerWidth <= 600) {
                 //     setUserPreference("open")
                 // } else {
@@ -30,12 +29,10 @@ const Burger = (props) => {
                 // }
                 break
             case "closed":
-                console.log("user opened sidebar")
                 setUserPreference("open")
                 break
             case "": 
                 const smallScreen = window.innerWidth <= 600
-                console.log("user set a preference")
                 setUserPreference(smallScreen ? "open" : "closed")
         }
         setTicker(ticker + 1)
@@ -45,14 +42,14 @@ const Burger = (props) => {
 
     return (
         <IconButton 
-            onClick={(e)=>handleBurger(e)} 
             className="hamburger-iconbutton-wrapper" 
+            onClick={(e)=>handleBurger(e)} 
             style={iconStyle}
         >
             <MenuIcon 
+                htmlColor={blueGrey[50]}
                 className="hamburger" 
                 fontSize="default" 
-                htmlColor={blueGrey[50]}
             />
         </IconButton> 
     )

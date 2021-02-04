@@ -15,7 +15,7 @@ const OutflowRouter      = require('./SubRouters/CashflowRouters/OutflowRouter')
 const FlowcategoryRouter = require('./SubRouters/CashflowRouters/FlowcategoryRouter')
 
 
-console.log("APP ROUTER CONNECTED")
+// console.log("APP ROUTER CONNECTED")
 
 
 Router.use('/users', UserRouter)

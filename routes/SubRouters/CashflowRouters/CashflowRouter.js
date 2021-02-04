@@ -8,8 +8,6 @@ const {
     CreateDefaultCashflow
 } = controller
 
-console.log("CASHFLOW ROUTER CONNECTED")
-
 Router.post('/create',      CreateCashflow)
 Router.get('/getone',       GetOneCashflow)
 Router.post('/entire',      ReadEntireCashflow)
