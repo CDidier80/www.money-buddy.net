@@ -23,7 +23,7 @@ At this stage of development, the app covers the topics of budgeting, cashflows,
 
 
 ## Technologies used
-   <div width="39%" align="right">
+   <div width="39%" align="center">
     <img width="10%" height=30px" src="https://img.shields.io/badge/-HTML5-E34F26?style=plastic-square&logo=html5&logoColor=white" />
     <img width="10%" height=30px" src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3" />
     <img width="10%" height=30px" src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript" />
