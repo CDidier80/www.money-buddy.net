@@ -3,10 +3,11 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const  { User }  = require("../models")
 const { ControllerLoggers } = require('./logs')
-const log = ControllerLoggers.UserControllerLog 
-const errorLog = ControllerLoggers.UserControllerErrorLog
-const saltRounds = parseInt(process.env.SALT_ROUNDS)
+const secretKey = process.env.APP_SECRET
 
+const log = ControllerLoggers.UserControllerLog 
+const saltRounds = parseInt(process.env.SALT_ROUNDS)
+const errorLog = ControllerLoggers.UserControllerErrorLog
 
 
 /**
@@ -25,7 +26,7 @@ const CreateUser = async (req, res) => {
         if (userExists){ 
             return res.send({ message: 'account already exists' })
         } else {
-            console.log("NO DUPLICATE USER ACCOUNT FOUND.")
+            // console.log("NO DUPLICATE USER ACCOUNT FOUND.")
         }
         let { password, email } = req.body
         password = await bcrypt.hash(password, saltRounds)
@@ -36,6 +37,7 @@ const CreateUser = async (req, res) => {
         errorLog(CreateUser, error) 
     }
 }
+
 
 const LogInUser = async (req, res) => {
     try {
@@ -53,7 +55,6 @@ const LogInUser = async (req, res) => {
                 _id: user._id,
                 email: user.email,
             }
-            const secretKey = process.env.APP_SECRET
             let token = jwt.sign(payload, secretKey)
             return res.send({ user, token })
         }  
@@ -75,6 +76,7 @@ const ReadUser = async (req, res) => {
     }
 }
 
+
 const UpdatePassword = async (req, res) => {
     log(UpdatePassword, req)
     try {
@@ -94,6 +96,7 @@ const UpdatePassword = async (req, res) => {
     }
 }
 
+
 const UpdateEmail = async (req, res) => {
     log(UpdateEmail, req)
     try {
@@ -111,11 +114,9 @@ const UpdateEmail = async (req, res) => {
     }
 }
 
-const DeleteUser = async (req, res) => {
-    console.log(req)
 
+const DeleteUser = async (req, res) => {
     log(DeleteUser, req)
-    console.log("req.data", req.data)
     try {
         let userId = req.body.userId
         await User.destroy({
@@ -129,24 +130,41 @@ const DeleteUser = async (req, res) => {
     }
 }
 
+
 const RefreshSession = async (req, res) => {
     try {
-        const { token } = res.locals
-        const user = await User.findByPk(token.id, {
-            attributes: ['id', 'name', 'emai']
-        })
-        res.send({ user, status: 'OK' })
+        console.log("user controller reached")
+        // pull the token from local storage split from the word "Bearer"
+        let token = req.headers.authorization.split(' ')[1] 
+
+        console.log("token:", token)
+
+        token ? (res.locals.token = token) : (res.locals.token = null) // locals exist along the back-end routes within .res - > response sent. 
+        console.log("new value of res.locals.token:", res.locals.token)
+        let valid = jwt.verify(token, secretKey)
+        console.log("valid?", valid)
+        if (!valid) {
+            return res.status(401).send({ message: 'Unauthorized', status: 'error' })
+        } else {
+            res.locals.token = valid
+        }
+        // const user = await User.findByPk(token.id, {
+        //     attributes: ['id', 'name', 'email']
+        // })'
+        console.log("decoded token:", jwt.decode(token))
+        res.send({ user: jwt.decode(token), token: res.locals.token })
     } catch (error) {
         errorLog(RefreshSession, req)
     }
 }
 
+
 module.exports = {
-    CreateUser,
-    ReadUser,
-    DeleteUser,
+    RefreshSession,
     UpdatePassword,
     UpdateEmail,
+    DeleteUser,
+    CreateUser,
     LogInUser,
-    RefreshSession
+    ReadUser,
 }
