@@ -8,13 +8,13 @@ const {
 } = require('../../auth')
 
 const { 
-    CreateUser, 
-    ReadUser, 
     UpdatePassword, 
+    RefreshSession, 
     UpdateEmail, 
     DeleteUser, 
+    CreateUser, 
     LogInUser, 
-    RefreshSession 
+    ReadUser, 
 } = controller
 
 console.log("USER ROUTER CONNECTED")
@@ -31,8 +31,8 @@ Router.delete('/delete',     DeleteUser)
 // check session
 Router.get(
         '/session', 
-        getToken, 
-        verifyToken, 
+        // getToken, 
+        // verifyToken, 
         RefreshSession
     )
 
