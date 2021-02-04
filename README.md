@@ -8,7 +8,8 @@ By: Collin Didier
 [GitHub](https://github.com/CDidier80) |
 [LinkedIn](https://www.linkedin.com/in/collin-didier/) 
 
-![budget snapshot](https://i.ibb.co/XtSGZcr/08-E081-DB-05-CC-4327-95-CC-0-B7-B198-C3-AE6.jpg)
+![budget snapshot](https://i.ibb.co/qjgGV5p/D86-BAE02-94-D8-40-CF-BD34-33-A877-C1-D13-C.jpg)
+![cashflows snapshot](https://i.ibb.co/r0Gj6dk/3-C4391-B8-1-CE0-47-C3-8932-FA3-DA3-D0880-B.jpg)
 
 ## Description
 A full stack web app designed to making financial planning easy, accessible, and comprehensive. 
