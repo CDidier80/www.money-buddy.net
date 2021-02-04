@@ -14,11 +14,11 @@ By: Collin Didier
 
 ## Description
 
-This app was inspired by needs of many friends, family and others who desire greater control over their personal financial planning; Informed, USER-controlled financial insights should be accessible to everyone, regardless of their familiarity with spreadsheet software.
+This app was inspired by needs of many friends, family and others who desire greater control over their personal financial planning; Informed, USER-controlled financial insights should be accessible to everyone, regardless of one's familiarity with spreadsheet software.
 
-This full-stack web app is designed to make personal financial planning both easy and comprehensive. A simple and intuitive user-interface lays atop sophisticated, automated financial planning logic that provide valuable analysis and reporting on each user's unique situation.
+This full-stack web app is designed to make personal financial planning both easy and comprehensive. The user experiences a smooth and intuitive UI comprised of a toolset of financial widgets. That experience is powered by sophisticated and  automated financial planning logic, programmed to provide valuable analysis, tracking and reporting on each user's unique situation.
 
-The UI is comprised of a toolset of financial widgets. At this state of development, the app covers the topics of budgeting, cashflows, and retirement planning - with many more features on the way. 
+At this state of development, the app covers the topics of budgeting, cashflows, and retirement planning - with many more features on the way. 
 
 
 
