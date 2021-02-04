@@ -7,6 +7,7 @@ export const CreateUser = async (body, params) =>  {
     try {
         log(CreateUser, body, params)
         const response = await ApiClient.post(`users/create`, body)
+        localStorage.setItem('token', response.data.token)
         return response
     } catch (error) {
         errorLog(CreateUser, error)
@@ -18,6 +19,7 @@ export const LogInUser = async (body, params) =>  {
         log(LogInUser, body, params)
         const response = await ApiClient.post(`users/login`, body)
         localStorage.setItem('token', response.data.token)
+        // console.log("local storage at login:", localStorage)
         return response
     } catch (error) {
         errorLog(LogInUser,error)
@@ -68,8 +70,11 @@ export const DeleteUser = async (body, params) => {
 export const CheckSessionService = async (body, params) => {
     try{
         log(CheckSessionService, body, params)
-        const res = await ApiClient.get('users/session')
-        return res.data
+        // console.log("reached check sessions service")
+        const response = await ApiClient.get('users/session')
+        // console.log("response received in services")
+        // console.log("response: ", response)
+        return response.status
     } catch (error) {
         errorLog(CheckSessionService, error)
     }
