@@ -45,27 +45,28 @@ const Dashboard = (props) => {
     /* --------- sidebar control ------- */
 
     const [userPreference, setUserPreference] = useState("")
-    const [sidebarClasses, setSidebarClasses] = useState(smallScreen ? "sidebar closed" : "sidebar")
-
+    const initSidebarClass = smallScreen ? "sidebar closed" : "sidebar"
+    const [sidebarClasses, setSidebarClasses] = useState(initSidebarClass)
+    
     /* --------- subpage control ------- */
-
-    const [subpageClasses, setSubpageClasses] = useState(smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed")
+    
+    const initSubpageClass = smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed"
+    const [subpageClasses, setSubpageClasses] = useState(initSubpageClass)
 
     /* ---------- forcible rerenders -------- */
 
-    const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
+    const [ticker, setTicker] = useState(0)
 
 
     /* -------------------------- useEffects ------------------------- */
 
-
-    /* #1: --------- verify token validy -------- */
+    /* #1: ---- verify token validity ---- */
 
     useEffect(() => verifyTokenValid(), [])
 
 
-    /* #2: ----- async calls on first render ---- */
+    /* #2: - async calls on first render - */
     
     useEffect(() => {
         let componentMounted = true
@@ -73,7 +74,7 @@ const Dashboard = (props) => {
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
             const budget = await ReadEntireBudget({ userId: userId }, null)
             if (componentMounted) {
-                const { budgetId: b, incomes: i, categories: c } = budget
+                const { budgetId: b, incomes: i, categories: c } = budget››
                 const { id: cashflowId, months: m } = cashflow
                 setCashflowId(cashflowId)
                 setCategories(c)
