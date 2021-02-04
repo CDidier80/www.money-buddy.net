@@ -1,8 +1,8 @@
 # Money-Buddy
 
-Project created on January 2, 2021
+#### Project created on January 2, 2021
 
-By Collin Didier
+#### By Collin Didier
 
 
 [GitHub](https://github.com/CDidier80) |
