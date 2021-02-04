@@ -8,6 +8,7 @@ const getToken = (req, res, next) => {
     next() // move on to verify token
 }
 
+
 const verifyToken = (req, res, next) => {
     const { token } = res.locals
     let valid = jwt.verify(token, secretKey)
@@ -17,6 +18,7 @@ const verifyToken = (req, res, next) => {
     }
     res.status(401).send({ message: 'Unauthorized', status: 'error' })
 }
+
 
 module.exports = {
     verifyToken,
