@@ -1,8 +1,8 @@
 # Money-Buddy
 
-Date: January 2, 2021
+Project created on January 2, 2021
 
-By: Collin Didier
+By Collin Didier
 
 
 [GitHub](https://github.com/CDidier80) |
@@ -18,20 +18,21 @@ This app was inspired by needs of many friends, family and others who desire gre
 
 This full-stack web app is designed to make personal financial planning both easy and comprehensive. The user experiences a smooth and intuitive UI comprised of a toolset of financial widgets. That experience is powered by sophisticated and  automated financial planning logic, programmed to provide valuable analysis, tracking and reporting on each user's unique situation.
 
-At this state of development, the app covers the topics of budgeting, cashflows, and retirement planning - with many more features on the way. 
+At this stage of development, the app covers the topics of budgeting, cashflows, and retirement planning - with many more features on the way. 
 
 
 
 ## Technologies used
    <div width="39%" align="right">
-    <img width="12%" height=30px" src="https://img.shields.io/badge/-HTML5-E34F26?style=plastic-square&logo=html5&logoColor=white" />
-    <img width="12%" height=30px" src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3" />
-    <img width="12%" height=30px" src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript" />
-    <img width="12%" height=30px" src="https://img.shields.io/badge/-ReactJS-black?style=flat-square&logo=react" />
-    <img width="12%" height=30px" src="https://img.shields.io/badge/-NodeJS-black?style=flat-square&logo=Node.js" />
-    <img width="12%" height=30px" src="https://img.shields.io/badge/-ExpressJS-yellow?style=flat-square&logo=express" />
-    <img width="12%" height=30px" src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql" />
-    <img width="12%" height=30px" src="https://img.shields.io/badge/-MaterialUI-blue?style=flat-square&logo=materialui" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-HTML5-E34F26?style=plastic-square&logo=html5&logoColor=white" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-ReactJS-black?style=flat-square&logo=react" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-NodeJS-black?style=flat-square&logo=Node.js" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-ExpressJS-yellow?style=flat-square&logo=express" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-Sequelize-336791?style=flat-square&logo=sequelize" />
+    <img width="11%" height=30px" src="https://img.shields.io/badge/-MaterialUI-blue?style=flat-square&logo=materialui" />
   </div>
 </div>
 
