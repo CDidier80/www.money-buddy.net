@@ -36,55 +36,75 @@ At this state of development, the app covers the topics of budgeting, cashflows,
 </div>
 
 
-## Implemented Widgets
+## Implemented Widgets/Features
 
-1. Budget with editable income & expense line items and categories
-2. Budget Summary Chart
-3. Distribution of Spending Chart
+### User Accounts 
+1. Users can create an account with email/password
+2. Users can update their login credentials
+3. Users can delete their account
+4. Passwords are hashed for security
+4. Partial-validation of credentials - because this app is being actively demoed, I've temporarily allowed invalid email addresses for testing user registration/login. However, the form control will reject email addresses not conforming to proper formatting i.e. "example@somesite.com". Note that accounts created with invalid email addresses will be purged in the near future.
+5. Ability to save changes made during session
 
 
-## Planned Widgets
+### Budget
+1. Income and Expense Widgets
+2. Default expenses/expense categories populate the budget upon user registration
+3. Users add, delete, and update income/expense line-items and categories
+4. Users can save all changes.
+5. A Budget Summary Chart with annual & monthly views of income/expenses and net savings/loss that updates in real-time with user changes.
+6. Distribution of Spending Chart that breaks down expenses by category and updates in real-time with user-changes.
 
-1. Cash Flow Statement w/ pagination
-2. Cash Flow Summary
+### Retirement
+1. An animated, live-updating retirement chart that plots the accumulated savings and annual income of a user over their lifetime
+2. 9 slider-controls allowing the user to input financial information and set assumptions about the future
+3. Tooltips displaying accumulated savings on-hover over of the selected year on the chart
+
+### Cashflows
+1. An animated, live-updating chart projecting a user's monthly inflows, outflows and available cash 
+2. Monthly cashflow widgets displaying monthly inflows/outflows, starting/ending cash and net cashflows
+3. Ability to paginate through months
+4. *Temporary - a randomize button for demo purposes showing the page view with randomized financial data
+
+### Responsive Design
+
+Responsive pages and components are partially implemented, with improvements made frequently. 
+The landing page and login page have been optimized across device sizes.
+Current responsive design efforts are focused on the various financial widgets throughout the app.
+
+### Security Features
+
+1. Protective middleware
+2. Use of JSON Web Tokens 
+3. Encryption of user submitted data
+4. HTTPS protocol 
+
+
+## Upcoming Widgets/Features
+
+1. Cashflows integration with Budget for fine-tuned control over short and long term projections
+2. Ability to add, edit and delete inflows and outflows by line-item or category
+3. Ability to sync Budget to Cashflows or Cashflows to Budget with recent changes.
+4. Retirement page auto-populated with user information 
+5. Ability to save and view different retirement/savings scenarios
 3. Tax Estimator w/ budget integration
-4. Holiday/Gift sub-budget
-5. Investment Calculator - ability to save 
+4. Holiday/Gift - an optional sub-budget on the main Budget
+5. Investment Calculator collection
 6. Investments Timeline
 7. Net-worth timeline
-8. Investment calculator -- add selectable, common investment types
-9. Stock Market Tracker via 3rd-party API
+9. Markets dashboard with live-feed from FinnHub API
 
-
-## Security
-
-User account details are protected by hashing. On-site navigation is secured by JSON web tokens.
-
-
-## How to get started
-
-Visit "web address" to create an account/sign-in with your email and password.
-New users are directed to their dashboard, where they can begin making changes to their
-default budget and cash flow statements. All changes can be saved for future use.
-
-
-## User Stories
-1. Users can create, sign-in, sign-out, edit and delete their account.
-2. Users can easily make edits to their budget & cash flow. 
-3. Users will interact with intuitive, user-friendly widgets that need no explanation.
-4. Users can view powerful analytics and snapshots of their financial situation
-5. Widgets will use the same pool of user's data to report on various aspects of personal finance over time, increasing the usefullness and degree of their integration.
 
 ## ERD
 #### ERD - Budget Only
 ![wireframe](https://i.ibb.co/y89h3P0/76-C6-D7-D9-165-C-4409-B6-DF-7-E3-BC51-B2432.jpg)
 
-#### ERD - Budget & Cash Flow Implemented
+#### ERD - Budget & Cash Flow 
 ![wireframe](https://i.ibb.co/kSM6BmR/DF72-CC96-8-F29-45-BC-8629-0-A9-AB345509-D.jpg)
 
 <!-- ## Wireframe
 ![wireframe](./img/homepage.png) -->
 
-## Trello link
+<!-- ## Trello link
 https://trello.com/b/lDwcI9L2/personal-finance
-
+ -->
