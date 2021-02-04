@@ -13,9 +13,14 @@ By: Collin Didier
 ![retirement snapshot](https://i.ibb.co/wM7p0Fr/4-B5-FA731-A8-B8-4-CC2-920-E-8-BD3820696-CB.jpg)
 
 ## Description
-A full stack web app designed to making financial planning easy, accessible, and comprehensive. 
 
-The site will integrate a set of micro tools and widgets designed to analyze and report on a various aspects of user's personal financial situation. The combined effect of the various tools will be to create an integrated, macro view of  personal finance that empowers the user to make informed decisions about their money.
+This app was inspired by needs of many friends, family and others who desire greater control over their personal financial planning; Informed, USER-controlled financial insights should be accessible to everyone, regardless of their familiarity with spreadsheet software.
+
+This full-stack web app is designed to make personal financial planning both easy and comprehensive. A simple and intuitive user-interface lays atop sophisticated, automated financial planning logic that provide valuable analysis and reporting on each user's unique situation.
+
+The UI is comprised of a toolset of financial widgets. At this state of development, the app covers the topics of budgeting, cashflows, and retirement planning - with many more features on the way. 
+
+
 
 ## Technologies used
    <div width="39%" align="right">
@@ -33,7 +38,7 @@ The site will integrate a set of micro tools and widgets designed to analyze and
 
 ## Implemented Widgets
 
-1. Budget with Income/Expense Tables
+1. Budget with editable income & expense line items and categories
 2. Budget Summary Chart
 3. Distribution of Spending Chart
 
