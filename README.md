@@ -96,10 +96,6 @@ Current responsive design efforts are focused on the various financial widgets t
 9. Markets dashboard with live-feed from FinnHub API
 
 
-## ERD
-#### ERD - Budget Only
-![wireframe](https://i.ibb.co/y89h3P0/76-C6-D7-D9-165-C-4409-B6-DF-7-E3-BC51-B2432.jpg)
-
 #### ERD - Budget & Cash Flow 
 ![wireframe](https://i.ibb.co/kSM6BmR/DF72-CC96-8-F29-45-BC-8629-0-A9-AB345509-D.jpg)
 
