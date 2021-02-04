@@ -17,15 +17,18 @@ import "./styles/subpage.css"
 
 const Dashboard = (props) => {
 
-    if (!props.fromApp.authenticated) {
-        props.history.push("/")
-    }
 
     const smallScreen = window.innerWidth <= 600
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { userInfo, gradientWrapper } = props.fromApp
+    const { 
+        userInfo, 
+        validSession,
+        authenticated,
+        gradientWrapper, 
+        verifyTokenValid, 
+    } = props.fromApp
     const { id: userId } = userInfo
 
 
@@ -52,12 +55,18 @@ const Dashboard = (props) => {
 
     const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
-    
+
 
     /* -------------------------- useEffects ------------------------- */
 
-    /* #1: ----- async calls on first render ---- */
 
+    /* #1: --------- verify token validy -------- */
+
+    useEffect(() => verifyTokenValid(), [])
+
+
+    /* #2: ----- async calls on first render ---- */
+    
     useEffect(() => {
         let componentMounted = true
         const initializeDashboard = async () => {
@@ -73,9 +82,10 @@ const Dashboard = (props) => {
                 setMonths(m)
             }
         }
-        initializeDashboard()
+        /* - verify token before requesting user data - */
+        validSession && initializeDashboard()
         return () => componentMounted = false
-    }, [])
+    }, [validSession])
 
 
     /* #2: --- block ui until state loads --- */
