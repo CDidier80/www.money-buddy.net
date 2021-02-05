@@ -1,8 +1,5 @@
+import { Button, makeStyles } from '@material-ui/core/'
 import React from 'react'
-import { 
-    Button, 
-    makeStyles,
-} from '@material-ui/core/'
 
 const DelButton = (props) => {
 
@@ -21,11 +18,11 @@ const DelButton = (props) => {
 
     const useStyles = makeStyles({
         deleteButton: {
-            fontSize: smallerButtons ? "8px" : "9px",
             fontWeight: "700",
+            padding: "0 5px 0 5px",
             fontFamily: "Lato, sans-serif",
+            fontSize: smallerButtons ? "8px" : "9px",
             color: showIncomeDeleteIcons ? "#e6a824" : "#2c7b71",
-            padding: "0 5px 0 5px"
         }
     })
 

@@ -16,24 +16,24 @@ const AccordionDropdownTab = (props) => {
     const useStyles = makeStyles({
         summary: expanded ? 
         {
+            transform: "translateX(-50%)",
             position: "relative",
             left: "50%",
-            transform: "translateX(-50%)",
         } : 
         {
+            transform: "translate(-50%, -50%)",
             position: "relative",
             top: "7.5vh",
             left: "50%",
-            transform: "translate(-50%, -50%)",
         },
         heading: {
+            fontFamily: "Lato, sans-serif",
             fontWeight: "700",
             margin: "0 auto",
             fontSize: "30px",
-            fontFamily: "Lato, sans-serif",
             color: "#2c7b71",
             textShadow: `
-                0 0 1px lightgray;
+            0 0 1px lightgray;
             `
         },
         expandMoreIcon : {

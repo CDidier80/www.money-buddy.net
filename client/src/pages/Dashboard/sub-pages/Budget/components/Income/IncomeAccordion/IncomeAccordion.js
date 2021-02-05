@@ -49,23 +49,23 @@ const IncomeAccordion = (props) => {
 
     const useStyles = makeStyles({
         accordionWrapper: {
+            padding: "6px",
             ...gradientWrapper,
             marginBottom: "20px",
-            padding: "6px",
             marginBottom: "20px",
             position: "relative"
         },
         accordion: {
-            borderRadius: "3px",
             minHeight: "15vh",
+            borderRadius: "3px",
             position: "relative"
         },
         deleteButton: {
             fontSize: "9px",
             fontWeight: "700",
+            padding: "0 5px 0 5px",
             fontFamily: "Lato, sans-serif",
             color: showIncomeDeleteIcons ? "#e6a824" : "#2c7b71",
-            padding: "0 5px 0 5px"
         }
     })
     
