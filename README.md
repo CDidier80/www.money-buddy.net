@@ -23,6 +23,8 @@
   </div>
 </div>
 
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 
 ![budget snapshot](https://i.ibb.co/qjgGV5p/D86-BAE02-94-D8-40-CF-BD34-33-A877-C1-D13-C.jpg)
 ![cashflows snapshot](https://i.ibb.co/r0Gj6dk/3-C4391-B8-1-CE0-47-C3-8932-FA3-DA3-D0880-B.jpg)
