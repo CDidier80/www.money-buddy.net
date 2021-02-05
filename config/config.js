@@ -11,8 +11,8 @@ module.exports = {
     },
     test: {
         database: "money_buddy_test",
+        dialect: "postgres",
         host: "127.0.0.1",
-        dialect: "postgres"
     },
     production: {
         use_env_variable: 'DATABASE_URL',
