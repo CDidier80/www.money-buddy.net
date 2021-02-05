@@ -29,7 +29,7 @@ const App = (props) => {
         if (token) {
             try {
                 const sessionStatus = await CheckSessionService()
-                // console.log("session:", sessionStatus)
+
                 if (sessionStatus === 200) {
                     setSessionValid(true)
                     setAuth(true)
