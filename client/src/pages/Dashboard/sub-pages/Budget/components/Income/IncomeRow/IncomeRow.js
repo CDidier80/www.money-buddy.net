@@ -52,7 +52,6 @@ const IncomeRow = (props) => {
         if(incomingDeletion){
             setCellAmountHistory([amount])
             if (arrayIndex === newIncomes.length-1){
-                console.log("last elem")
                 setIncomingDeletion(false)
             }
             return
@@ -62,18 +61,12 @@ const IncomeRow = (props) => {
         const lastHistoryValue = lastHistoryIndex >= 0 ? cellAmountHistory[lastHistoryIndex] : null
         const valueIsNew = lastHistoryIndex >= 0  ? (amount !== lastHistoryValue) : null
         let nextLength 
-
         if (lengthOfStack === 0) {
             setCellAmountHistory([amount])
-            // arrayOfHistories.push([amount])
             nextLength = 1
         } else {
             if (valueIsNew){
-                console.log("new value")
                 setCellAmountHistory([...cellAmountHistory, amount])
-                // let ArrayOfHistoriesCopy = [...arrayOfHistories]
-                // ArrayOfHistoriesCopy[arrayIndex] = [...cellAmountHistory, amount]
-                // updateArrayOfHistories(ArrayOfHistoriesCopy)
                 nextLength = lengthOfStack + 1
             } else {
                 nextLength = lengthOfStack
@@ -99,9 +92,9 @@ const IncomeRow = (props) => {
     const useStyles = makeStyles({
         ...staticStyles,
         row : {
-            height: "38px",
+            backgroundColor: rowColor,
             maxHeight: "38px",
-            backgroundColor: rowColor
+            height: "38px",
         },
     })
     
