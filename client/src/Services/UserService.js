@@ -3,6 +3,7 @@ const { ServiceLoggers } = require('./logs')
 const log = ServiceLoggers.UserServiceLog
 const errorLog = ServiceLoggers.UserServiceErrorLog
 
+
 export const CreateUser = async (body, params) =>  {
     try {
         log(CreateUser, body, params)
@@ -20,7 +21,6 @@ export const LogInUser = async (body, params) =>  {
         log(LogInUser, body, params)
         const response = await ApiClient.post(`users/login`, body)
         localStorage.setItem('token', response.data.token)
-        // console.log("local storage at login:", localStorage)
         return response
     } catch (error) {
         errorLog(LogInUser,error)
@@ -64,7 +64,6 @@ export const UpdateEmail = async (body, params) =>  {
 export const DeleteUser = async (body, params) => {
     try {
         log(DeleteUser, body, params)
-        // axios delete requests must send the body as a value to a "data" key
         const response = await ApiClient.delete("users/delete", {data:body})
         return response
     } catch (error) {
@@ -76,10 +75,7 @@ export const DeleteUser = async (body, params) => {
 export const CheckSessionService = async (body, params) => {
     try{
         log(CheckSessionService, body, params)
-        // console.log("reached check sessions service")
         const response = await ApiClient.get('users/session')
-        // console.log("response received in services")
-        // console.log("response: ", response)
         return response.status
     } catch (error) {
         errorLog(CheckSessionService, error)
