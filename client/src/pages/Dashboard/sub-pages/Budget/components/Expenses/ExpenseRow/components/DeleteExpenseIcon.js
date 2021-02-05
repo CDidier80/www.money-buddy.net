@@ -53,7 +53,7 @@ const DeleteExpenseIcon = (props) => {
                 updateBudget(tick + 1)
             }
         } catch (error) {
-            console.log(error)
+            throw error
         }
     }
 

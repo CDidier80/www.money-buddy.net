@@ -1,6 +1,5 @@
 export const formatToCurrency = (number) => {
     try {
-        // console.log(number)
         let formattedCell = number.toLocaleString('en-US', { 
             style: 'currency', 
             currency: 'USD',
@@ -10,7 +9,6 @@ export const formatToCurrency = (number) => {
         return formattedCell
         
     } catch (error) {
-        // console.log(error)
         throw(error)
     }
 }

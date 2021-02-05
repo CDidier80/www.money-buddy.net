@@ -39,7 +39,6 @@ const IncomeNumberCell = (props) => {
     /* ------------------- useEffect ------------------- */
 
     useEffect(() => {
-        // console.log("defauleValue: ", defaultValue)
         const currency = formatToCurrency(defaultValue)
         updateRawNumber(defaultValue)
         updateText(currency)
