@@ -1,17 +1,17 @@
-import React from 'react'
 import PasswordField from "./PasswordField"
+import React from 'react'
 
 const RetypedPassword = (props) => {
 
     const passwordFieldProps = {
+        setHook: props.setReenteredNewPassword,
         label: "Reenter New Password",
-        setHook: props.setReenteredNewPassword
     }
 
     return (
         <PasswordField 
+        {...passwordFieldProps}
             {...props}
-            {...passwordFieldProps}
         />
     )
 }

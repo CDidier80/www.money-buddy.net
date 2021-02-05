@@ -1,17 +1,17 @@
-import React from 'react'
 import PasswordField from "./PasswordField"
+import React from 'react'
 
 const NewPassword = (props) => {
 
     const passwordFieldProps = {
+        setHook: props.setNewPassword,
         label: "New Password",
-        setHook: props.setNewPassword
     }
 
     return (
         <PasswordField 
-            {...props}
             {...passwordFieldProps}
+            {...props}
         />
     )
 }

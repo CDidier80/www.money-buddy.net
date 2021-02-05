@@ -32,8 +32,8 @@ const PasswordButton = (props) => {
                     updateSnackbar('Password')
                 }
             } catch (error) {
-                console.log(error)
                 errorSnackbar('Password')
+                throw error
             }
         }
     }
