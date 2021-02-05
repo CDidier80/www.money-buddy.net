@@ -1,12 +1,9 @@
-import { makeStyles } from '@material-ui/styles';
-import React, { useState } from 'react';
 import { DeleteUser} from "../../../../../../Services/UserService"
+import React from 'react';
 
 const DeletePopup = (props) => {
 
     const {userId, history, setDeleteTriggered} = props
-
-
 
     const deleteAccount = async (e) => {
         e.preventDefault()
