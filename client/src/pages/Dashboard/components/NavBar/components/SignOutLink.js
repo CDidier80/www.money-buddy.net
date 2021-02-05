@@ -1,5 +1,5 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
+import React from 'react'
 
 const SignOutLink = (props) => {
 
@@ -15,8 +15,8 @@ const SignOutLink = (props) => {
     return (
         <Link 
             className="sign-out-link" 
-            to="#"
             onClick={()=>logOut()}
+            to="#"
         >
             Sign Out
         </Link>
