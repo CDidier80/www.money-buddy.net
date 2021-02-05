@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import IncomeNumberCell from "../Cells/IncomeNumberCell"
-import IncomeSourceCell from "../Cells/IncomeSourceCell"
-// import HighlightOffIcon from '@material-ui/icons/HighlightOff'
-// import UndoIcon from '@material-ui/icons/Undo';
-import UndoIconButton from "./components/UndoIconButton"
-import { staticStyles } from "./styles/staticStyles"
-import DeleteIncomeIcon from "./components/DeleteIncomeIcon"
 import { 
     TableRow,
     TableCell, 
     makeStyles,
     useMediaQuery
 } from '@material-ui/core'
-import Undo from '@material-ui/icons/Undo';
+import React, { useState, useEffect } from "react"
+import { staticStyles }  from  "./styles/staticStyles"
+import IncomeNumberCell  from  "../Cells/IncomeNumberCell"
+import IncomeSourceCell  from  "../Cells/IncomeSourceCell"
+import UndoIconButton    from  "./components/UndoIconButton"
+import DeleteIncomeIcon  from  "./components/DeleteIncomeIcon"
 
 
 const IncomeRow = (props) => {
@@ -44,7 +41,7 @@ const IncomeRow = (props) => {
     const [ showUndoIcon, setShowUndoIcon ] = useState(false)
 
     /* -------------- MEDIA QUERIES (del/undo icon----------------- */
-        const smallerIcons = useMediaQuery('(max-width: 393px)', {noSsr: true})
+        const smallerIcons = useMediaQuery('(max-width: 393px)', { noSsr: true })
 
     /* -------------------------- useEffect -------------------------- */
 
