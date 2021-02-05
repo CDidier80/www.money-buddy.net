@@ -1,4 +1,4 @@
-# Money-Buddy
+# www.Money-Buddy.net
 
 #### Project created on January 2, 2021
 
@@ -7,19 +7,6 @@
 
 [GitHub](https://github.com/CDidier80) |
 [LinkedIn](https://www.linkedin.com/in/collin-didier/) 
-
-![budget snapshot](https://i.ibb.co/qjgGV5p/D86-BAE02-94-D8-40-CF-BD34-33-A877-C1-D13-C.jpg)
-![cashflows snapshot](https://i.ibb.co/r0Gj6dk/3-C4391-B8-1-CE0-47-C3-8932-FA3-DA3-D0880-B.jpg)
-![retirement snapshot](https://i.ibb.co/wM7p0Fr/4-B5-FA731-A8-B8-4-CC2-920-E-8-BD3820696-CB.jpg)
-
-## Description
-
-This app was inspired by needs of many friends, family and others who desire greater control over their personal financial planning; Informed, USER-controlled financial insights should be accessible to everyone, regardless of one's familiarity with spreadsheet software.
-
-This full-stack web app is designed to make personal financial planning both easy and comprehensive. The user experiences a smooth and intuitive UI comprised of a toolset of financial widgets. That experience is powered by sophisticated and  automated financial planning logic, programmed to provide valuable analysis, tracking and reporting on each user's unique situation.
-
-At this stage of development, the app covers the topics of budgeting, cashflows, and retirement planning - with many more features on the way. 
-
 
 
 ## Technologies used
@@ -35,6 +22,22 @@ At this stage of development, the app covers the topics of budgeting, cashflows,
     <img width="10%" height=30px" src="https://img.shields.io/badge/-MaterialUI-blue?style=flat-square&logo=materialui" />
   </div>
 </div>
+
+
+![budget snapshot](https://i.ibb.co/qjgGV5p/D86-BAE02-94-D8-40-CF-BD34-33-A877-C1-D13-C.jpg)
+![cashflows snapshot](https://i.ibb.co/r0Gj6dk/3-C4391-B8-1-CE0-47-C3-8932-FA3-DA3-D0880-B.jpg)
+![retirement snapshot](https://i.ibb.co/wM7p0Fr/4-B5-FA731-A8-B8-4-CC2-920-E-8-BD3820696-CB.jpg)
+
+## Description
+
+This app was inspired by needs of many friends, family and others who desire greater control over their personal financial planning; Informed, USER-controlled financial insights should be accessible to everyone, regardless of one's familiarity with spreadsheet software.
+
+This full-stack web app is designed to make personal financial planning both easy and comprehensive. The user experiences a smooth and intuitive UI comprised of a toolset of financial widgets. That experience is powered by sophisticated and  automated financial planning logic, programmed to provide valuable analysis, tracking and reporting on each user's unique situation.
+
+At this stage of development, the app covers the topics of budgeting, cashflows, and retirement planning - with many more features on the way. 
+
+
+
 
 
 ## Implemented Widgets/Features
