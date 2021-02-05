@@ -1,10 +1,10 @@
 import { TextField } from '@material-ui/core/'
 import React from 'react'
 
-const CustomTextfield = () => {
+const CustomTextfield = (props) => {
 
     const {role, onChange} = props
-    
+
     return (
         <TextField 
             id={role}
