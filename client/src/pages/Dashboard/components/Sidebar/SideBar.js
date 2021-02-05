@@ -1,11 +1,8 @@
-import SidebarLink from './components/SidebarLink';
+import SidebarLink from './components/SidebarLink'
 import { useMediaQuery } from '@material-ui/core'
+import React, { useLayoutEffect, } from 'react'
 import { navItems } from "./modules/navItems"
 import "./styles/sidebar.css"
-import React, {
-    useLayoutEffect,
-    useState
-} from 'react'
 
 
 const SideBar = (props) => {
@@ -48,7 +45,7 @@ const SideBar = (props) => {
                 setSubpageClasses("subpage mobile")
                 return
             default: 
-                console.log("no matching cases")
+                () => null
         }
     }
 
@@ -69,7 +66,7 @@ const SideBar = (props) => {
                 const classToReturn = screenShrinking ? "sidebar closed" : "sidebar mobile"
                 return classToReturn
             default:
-                console.log("switch statement found no true cases")
+                () => null
         }
     }
 
