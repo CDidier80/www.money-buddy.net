@@ -9,7 +9,7 @@
 [LinkedIn](https://www.linkedin.com/in/collin-didier/) 
 
 
-## Technologies used
+### An application built with: 
    <div width="39%" align="center">
     <img width="8%" height=30px" src="https://img.shields.io/badge/-HTML5-E34F26?style=plastic-square&logo=html5&logoColor=white" />
     <img width="8%" height=30px" src="https://img.shields.io/badge/-CSS3-1572B6?style=flat-square&logo=css3" />
