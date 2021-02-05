@@ -6,11 +6,9 @@ const {
     CreateManyInflows
 } = require('../../../controllers/CashflowControllers/InflowController')
 
-console.log("INFLOW ROUTER CONNECTED")
-
 Router.post('/create',     CreateInflow)
-Router.post('/createmany', CreateManyInflows)
 Router.get('/getone',      GetOneInflow)
 Router.get('/getmany',     GetAllInflows)
+Router.post('/createmany', CreateManyInflows)
 
 module.exports = Router

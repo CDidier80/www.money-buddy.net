@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import IncomeNumberCell from "../Cells/IncomeNumberCell"
-import IncomeSourceCell from "../Cells/IncomeSourceCell"
-// import HighlightOffIcon from '@material-ui/icons/HighlightOff'
-// import UndoIcon from '@material-ui/icons/Undo';
-import UndoIconButton from "./components/UndoIconButton"
-import { staticStyles } from "./styles/staticStyles"
-import DeleteIncomeIcon from "./components/DeleteIncomeIcon"
 import { 
     TableRow,
     TableCell, 
     makeStyles,
     useMediaQuery
 } from '@material-ui/core'
-import Undo from '@material-ui/icons/Undo';
+import React, { useState, useEffect } from "react"
+import { staticStyles }  from  "./styles/staticStyles"
+import IncomeNumberCell  from  "../Cells/IncomeNumberCell"
+import IncomeSourceCell  from  "../Cells/IncomeSourceCell"
+import UndoIconButton    from  "./components/UndoIconButton"
+import DeleteIncomeIcon  from  "./components/DeleteIncomeIcon"
 
 
 const IncomeRow = (props) => {
@@ -44,7 +41,7 @@ const IncomeRow = (props) => {
     const [ showUndoIcon, setShowUndoIcon ] = useState(false)
 
     /* -------------- MEDIA QUERIES (del/undo icon----------------- */
-        const smallerIcons = useMediaQuery('(max-width: 393px)', {noSsr: true})
+        const smallerIcons = useMediaQuery('(max-width: 393px)', { noSsr: true })
 
     /* -------------------------- useEffect -------------------------- */
 
@@ -52,7 +49,6 @@ const IncomeRow = (props) => {
         if(incomingDeletion){
             setCellAmountHistory([amount])
             if (arrayIndex === newIncomes.length-1){
-                console.log("last elem")
                 setIncomingDeletion(false)
             }
             return
@@ -62,18 +58,12 @@ const IncomeRow = (props) => {
         const lastHistoryValue = lastHistoryIndex >= 0 ? cellAmountHistory[lastHistoryIndex] : null
         const valueIsNew = lastHistoryIndex >= 0  ? (amount !== lastHistoryValue) : null
         let nextLength 
-
         if (lengthOfStack === 0) {
             setCellAmountHistory([amount])
-            // arrayOfHistories.push([amount])
             nextLength = 1
         } else {
             if (valueIsNew){
-                console.log("new value")
                 setCellAmountHistory([...cellAmountHistory, amount])
-                // let ArrayOfHistoriesCopy = [...arrayOfHistories]
-                // ArrayOfHistoriesCopy[arrayIndex] = [...cellAmountHistory, amount]
-                // updateArrayOfHistories(ArrayOfHistoriesCopy)
                 nextLength = lengthOfStack + 1
             } else {
                 nextLength = lengthOfStack
@@ -99,9 +89,9 @@ const IncomeRow = (props) => {
     const useStyles = makeStyles({
         ...staticStyles,
         row : {
-            height: "38px",
+            backgroundColor: rowColor,
             maxHeight: "38px",
-            backgroundColor: rowColor
+            height: "38px",
         },
     })
     

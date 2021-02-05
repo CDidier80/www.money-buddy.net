@@ -1,7 +1,5 @@
 const { Month } = require('../../models')
 const { ControllerLoggers } = require('../logs')
-const { defaultMonths } = require("../modules/data")
-// const { Op, literal, fn, col  } = require('sequelize')
 const log = ControllerLoggers.MonthControllerLog 
 const errorLog = ControllerLoggers.MonthControllerErrorLog
 
@@ -68,6 +66,6 @@ const GetMonths = async (req, res) => {
 
 module.exports = {
     CreateMonth,
-    GetMonth,
     GetMonths,
+    GetMonth,
 }

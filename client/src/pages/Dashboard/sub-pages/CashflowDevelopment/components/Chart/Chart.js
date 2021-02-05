@@ -96,9 +96,9 @@ const options = {
             className="cashflow-chart"
         >
             <Line 
-                className="line-component"
                 data={chartData} 
                 options={options}
+                className="line-component"
             />
         </div>
     )

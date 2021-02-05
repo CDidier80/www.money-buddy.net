@@ -54,7 +54,6 @@ const ExpenseNumberCell = (props) => {
         let categoryCopy = {...category}
         categoryCopy["expenses"][expenseIndex]['amount'] = numValue
         categoriesArrayCopy[categoryIndex] = categoryCopy
-        console.log("categoriesArrayCopy", categoriesArrayCopy)
         setNewCategories(categoriesArrayCopy)
     }
 

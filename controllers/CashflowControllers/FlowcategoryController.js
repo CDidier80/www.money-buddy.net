@@ -1,6 +1,5 @@
 const { Flowcategory } = require('../../models')
 const { ControllerLoggers } = require('../logs')
-const { defaultCategories} = require("../modules/data")
 const log = ControllerLoggers.FlowcategoryControllerLog 
 const errorLog = ControllerLoggers.FlowcategoryControllerErrorLog
 
@@ -65,11 +64,8 @@ const GetFlowcategories= async (req, res) => {
 }
 
 
-
-
-
 module.exports = {
     CreateFlowcategory,
-    GetFlowcategory,
     GetFlowcategories,
+    GetFlowcategory,
 }

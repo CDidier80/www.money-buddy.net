@@ -14,10 +14,10 @@ const DeleteIncomeIcon = (props) => {
     const { 
         tick,
         newIncomes,
+        updateBudget,
         setNewIncomes,
         toggleChanges,
         userMadeChanges,
-        updateBudget,
     } = props.fromBudget
     
     const {
@@ -38,8 +38,8 @@ const { smallerIcons } = props
             ...smallerWidths
         },
         deleteIcon: {
+            fontSize: "13px",
             color: "red",
-            fontSize: "13px"
         },
     })
 
@@ -49,23 +49,17 @@ const { smallerIcons } = props
     const handleDeleteIncome = (e) => {
         e.preventDefault()
         try {
-            // console.log("newIncomes:", newIncomes)
             const incomeIndex = e.currentTarget.id
             let newIncomesCopy = [...newIncomes]
             newIncomesCopy.splice(incomeIndex, 1)
-            // console.log('newIncomesCopy after splice: ', newIncomesCopy)
             setNewIncomes(newIncomesCopy)
-            // this may not work for index 0
             setIncomingDeletion(true)
-            // let ArrayOfHistoriesCopy = [...arrayOfHistories]
-            // ArrayOfHistoriesCopy.pop()
-            // updateArrayOfHistories(ArrayOfHistoriesCopy)
             if (!userMadeChanges) {
                 toggleChanges(true)
             }
             updateBudget(tick + 1)
         } catch (error) {
-            console.log(error)
+            throw error
         }
     }
 

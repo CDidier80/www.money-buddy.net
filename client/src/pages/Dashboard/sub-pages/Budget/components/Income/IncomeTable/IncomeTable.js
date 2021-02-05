@@ -13,18 +13,19 @@ import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
 import { offRowColor } from "../../../../universal-functions/styleFunctions"
 
 
-
-
 const IncomeTable = (props) => {
-    
+
+    /* -------------------------- PROPS -------------------------- */
     
     const { newIncomes } = props.fromBudget    
-    
+
+    /* -------------------------- STATE -------------------------- */
+
     const [incomingDeletion, setIncomingDeletion] = useState(false)
     const [annualToggled, setAnnualToggled] = useState(true)
 
     
-    /* -------------------------- MEDIA QUERY -------------------------- */
+    /* ----------------------- MEDIA QUERY ------------------------ */
     
     const small = useMediaQuery('(max-width: 725px)', {noSsr: true})
     const verySmall = useMediaQuery('(max-width: 460px)', {noSsr: true})
@@ -39,20 +40,20 @@ const IncomeTable = (props) => {
         }
         switch (true) {
             case verySmall: 
-            fontSize = {fontSize: "10px"}
-            break
+                fontSize = {fontSize: "10px"}
+                break
             case small: 
-            fontSize = {fontSize: "12px"}
-            break 
+                fontSize = {fontSize: "12px"}
+                break 
             default: 
-            fontSize =  {}
+                fontSize =  {}
         }
         return {...styleObject, ...fontSize}
     }
     
 
-    const padding = verySmall ? {padding: "6px"} : {}
-    const overflow = verySmall ? {overflowX: "hidden"} : {}
+    const padding  = verySmall ? { padding: "6px" } : {}
+    const overflow = verySmall ? { overflowX: "hidden" } : {}
 
     const useStyles = makeStyles({
         accordionDetails: {
@@ -84,7 +85,7 @@ const IncomeTable = (props) => {
 
     return (
         <AccordionDetails
-        className={classes.accordionDetails}
+            className={classes.accordionDetails}
         >
             <TableContainer 
                 className={classes.tableContainer}

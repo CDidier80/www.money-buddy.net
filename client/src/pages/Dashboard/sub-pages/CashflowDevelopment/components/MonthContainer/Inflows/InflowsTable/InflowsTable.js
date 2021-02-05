@@ -17,16 +17,11 @@ const InflowsTable = (props) => {
     
     /* -------------------------- PROPS ------------------------- */
     
-    const {
-        monthlyInflows
-    } = props.fromMonthContainer
+    const { monthlyInflows } = props.fromMonthContainer
     
-    {/*  STATE */}
+    /* ------------------------- STATE ------------------------- */
 
     const [incomingDeletion, setIncomingDeletion] = useState(false)
-
-
-    {/*  useEffect */}
 
 
     /* ----------------------- FUNCTIONS ----------------------- */
@@ -53,7 +48,6 @@ const InflowsTable = (props) => {
             >
                 <Table 
                     className={classes.table} 
-                    // size="small" 
                     aria-label="a dense table"
                 >
                     <TableBody
@@ -66,18 +60,18 @@ const InflowsTable = (props) => {
                             const {source, amount} = row
                             const rowColor = offRowColor(index)
                             const propsForInflowRow = {
-                                source, 
-                                amount,
+                                setIncomingDeletion,
+                                incomingDeletion,
                                 rowIndex: index,
                                 rowColor,
-                                incomingDeletion,
-                                setIncomingDeletion
+                                source, 
+                                amount,
                             }   
                             return (
                                 <InflowRow 
-                                    {...props}
-                                    key={index + 2000}
                                     fromInflowsTable={{...propsForInflowRow}}
+                                    key={index + 2000}
+                                    {...props}
                                 />
                             )
                         })}

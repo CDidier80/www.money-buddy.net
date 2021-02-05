@@ -32,17 +32,17 @@ const FormBody = (props) => {
         <MuiThemeProvider theme={theme}>
             <div className="form-wrapper" >
                 <Grid 
-                    container 
                     className={classes.root}
+                    container 
                 >
                     <Grid 
-                        square 
-                        component={Paper} 
                         className={classes.paperRoot}
+                        component={Paper} 
+                        square 
                     >
-                        <div   className={classes.paper}      >
-                            <LockedOut classes={classes}     />
-                            <Header      {...forHeader}      />
+                        <div   className={classes.paper} >
+                            <LockedOut classes={classes} />
+                            <Header        {...forHeader} />
                             <FormControl {...forFormControl} />
                         </div>
                     </Grid>

@@ -1,7 +1,6 @@
 const initNamesTotals = (cats) => {
-    // console.log("CATEGORIES RECEIVED FROM PROPS (initNameTotals()):", cats)
-    let categoryNames = []
     let categoryTotals = []
+    let categoryNames = []
     let totalExpenses = 0
     
     cats.forEach((category) => {
@@ -36,6 +35,6 @@ const initIncomeTotals = (incomes) => {
 
 
 module.exports = {
+    initIncomeTotals,
     initNamesTotals,
-    initIncomeTotals
 }

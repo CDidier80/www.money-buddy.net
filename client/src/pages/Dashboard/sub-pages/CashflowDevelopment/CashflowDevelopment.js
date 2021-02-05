@@ -20,6 +20,12 @@ const CashflowDevelopment = (props) => {
     const [cashReserves, setCashReserves] = useState("")
 
 
+    const loadDependencies = [
+        inflows,
+        outflows, 
+        newMonths,
+        cashReserves
+    ]
 
     useEffect(() => {
         const generatedMonths = generateMonths()
@@ -29,11 +35,11 @@ const CashflowDevelopment = (props) => {
             outflows, 
             adjustedCashReserves
         ] = createDatasets(generatedMonths)
-        setInflows(inflows)
-        setOutflows(outflows)
         setCashReserves(adjustedCashReserves)
-
+        setOutflows(outflows)
+        setInflows(inflows)
     }, [tick])
+
 
     useEffect(() => {
         if (
@@ -44,13 +50,8 @@ const CashflowDevelopment = (props) => {
         ){
             setLoaded(true)
         }
-    },  
-    [
-        inflows,
-        outflows, 
-        newMonths,
-        cashReserves
-    ])
+    }, [loadDependencies] 
+)
 
 
     /* ----------------------- FUNCTIONS ----------------------- */
@@ -120,7 +121,6 @@ const CashflowDevelopment = (props) => {
                 {...props}
                 fromCashflowDevelopment={{...paginatingContainerProps}}
             />
-
         </div>
     )
 }

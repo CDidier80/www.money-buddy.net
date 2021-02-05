@@ -21,6 +21,7 @@ const CreateBudget = async (req, res) => {
     }
 }
 
+
 const GetOneBudget = async (req, res) => {
     log(GetOneBudget, req)
     try {
@@ -36,8 +37,8 @@ const GetOneBudget = async (req, res) => {
     }
 }
 
+
 const ReadEntireBudget = async (req, res) => {
-    console.log(req.body)
     log(ReadEntireBudget, req)
     try {
         const { userId } = req.body
@@ -46,16 +47,13 @@ const ReadEntireBudget = async (req, res) => {
                 user_id: userId
             }, 
         })
-
         const { id: budgetId } = budget
-
         const incomes = await Income.findAll({
             where: {
                 budget_id: budgetId
             },
             attributes: [ "id", "source", "amount" ]
         })
-
         let categories = await Category.findAll({
             raw: true,
             where: { 
@@ -63,7 +61,6 @@ const ReadEntireBudget = async (req, res) => {
             }, 
             attributes: [ "id", "name" ]
         })
-
         for (let i = 0; i<=categories.length -1; i++) {
             const { id: categoryId  } = categories[i]
             const expenses = await Expense.findAll({
@@ -74,13 +71,11 @@ const ReadEntireBudget = async (req, res) => {
             })
             categories[i] = {...categories[i], expenses: expenses}
         }
-            
         const entireBudget = {
             budgetId,
             incomes,
             categories
         }
-        console.log(entireBudget)
         res.send(entireBudget)
     } catch (error) {
         errorLog(ReadEntireBudget, error)
@@ -89,8 +84,7 @@ const ReadEntireBudget = async (req, res) => {
 
 
 const UpdateEntireBudget = async (req, res) => {
-    console.log(CreateManyIncomes)
-    console.log(req.body)
+
     log(UpdateEntireBudget, req)
     try {
         const { budgetId, incomes, categories } = req.body
@@ -130,7 +124,6 @@ const UpdateEntireBudget = async (req, res) => {
                 const newExpense = await Expense.create(expenseToCreate)
                 return newExpense
             }))
-            console.log(newExpenses)
             return { categoryId: newCategoryId, name, expenses: [...newExpenses] }
         }))
 
@@ -140,37 +133,11 @@ const UpdateEntireBudget = async (req, res) => {
             categories: [...newCategoriesWithExpenses]
         }
 
-        console.log("entire budget:", entireBudget)
         res.send(entireBudget)
     } catch (error) {
         errorLog(UpdateEntireBudget, error)
     }
 }
-
-            // const newExpenses = expenses.map( async (expense) => {
-            //     await CreateExpense({
-            //         categoryId : newCategory.id,
-            //         expense: expense, 
-            //         amount: expense.amount
-            //     })
-            // })
-
-
-        // repopulate budget with updated content
-        
-
-        // destroy current budget contents
-        // await Income.destroy({
-        //     where: {
-        //         budget_id: budgetId
-        //     }
-        // })
-
-        // await Category.destroy({
-        //     where: { 
-        //         budget_id: budgetId 
-        //     }
-        // })
 
 module.exports = {
     CreateBudget,
@@ -178,28 +145,3 @@ module.exports = {
     ReadEntireBudget,
     UpdateEntireBudget
 }
-
-
-
-
-// const budget = await Budget.findOne({
-//     where: {
-//         user_id: userId
-//     }, 
-//     include: [
-//         {
-//             model: Income,
-//             as: "budget_income"
-//         },
-//         {
-//             model: Category,
-//             as: "alias",
-//             include: [{
-//                 model : Expenses,
-//                 as: "alias"
-//             }]
-//         }, 
-//     ]
-// }
-
-// )

@@ -5,9 +5,7 @@ import IconCell from "../Cells/IconCell/IconCell"
 
 const InflowRow = (props) => {
 
-    // const { 
-    //     showInflowDeleteIcons,
-    // } = props.fromMonthContainer.monthlyInflows
+    /* -- PROPS -- */
 
     const { 
         showInflowDeleteIcons,
@@ -19,17 +17,16 @@ const InflowRow = (props) => {
         rowColor
     } = props.fromInflowsTable
 
-{/*  STATE */}
+    /* -- STATE -- */
 
     const [ showUndoIcon, setShowUndoIcon ] = useState(false)
     const [ iconShouldShow, setIconShouldShow ] = useState(false)
 
 
-    {/*  useEffect */}
-
+    /* ---- useEffect ---- */
 
     useEffect(() => {
-        const anIconWasActivated = (showInflowDeleteIcons | showUndoIcon) == true 
+        const anIconWasActivated = (showInflowDeleteIcons || showUndoIcon) == true 
         if (anIconWasActivated && iconShouldShow == false) {
                 setIconShouldShow(true)
         } else {

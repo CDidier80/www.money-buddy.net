@@ -4,9 +4,9 @@ import React from 'react'
 const Header = ({text}) => {
 
     const styles = {
+        color: "black",
         ...latoTextStyle,
         fontSize: "20px",
-        color: "black",
         marginBottom: "10px",
         paddingRight: "10px"
     }

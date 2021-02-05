@@ -8,12 +8,11 @@ const {
     RestoreDefaultCategories,
 } = controller
 
-console.log("CATEGORY ROUTER CONNECTED")
 
 Router.post('/create',                 CreateCategory)
-Router.post('/restoredefaults',        RestoreDefaultCategories)
 Router.get("/getone",                  GetOneCategory)
 Router.get('/budgetcategories',        ReadBudgetCategories)
+Router.post('/restoredefaults',        RestoreDefaultCategories)
 Router.delete('/deletemanyfrombudget', DeleteCategoriesFromBudget)
 
 module.exports = Router

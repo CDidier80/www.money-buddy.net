@@ -3,15 +3,18 @@ const { ServiceLoggers } = require('./logs')
 const log = ServiceLoggers.UserServiceLog
 const errorLog = ServiceLoggers.UserServiceErrorLog
 
+
 export const CreateUser = async (body, params) =>  {
     try {
         log(CreateUser, body, params)
         const response = await ApiClient.post(`users/create`, body)
+        localStorage.setItem('token', response.data.token)
         return response
     } catch (error) {
         errorLog(CreateUser, error)
     }
 }
+
 
 export const LogInUser = async (body, params) =>  {
     try {
@@ -24,6 +27,7 @@ export const LogInUser = async (body, params) =>  {
     }
 }
 
+
 export const ReadUser = async (body,  params) =>  {
     try {
         log(ReadUser, body, params)
@@ -33,6 +37,7 @@ export const ReadUser = async (body,  params) =>  {
         errorLog(ReadUser, error)
     }
 }
+
 
 export const UpdatePassword= async (body, params) =>  {
     try {
@@ -44,6 +49,7 @@ export const UpdatePassword= async (body, params) =>  {
     }
 }
 
+
 export const UpdateEmail = async (body, params) =>  {
     try {
         log(UpdateEmail, body, params)
@@ -54,10 +60,10 @@ export const UpdateEmail = async (body, params) =>  {
     }
 }
 
+
 export const DeleteUser = async (body, params) => {
     try {
         log(DeleteUser, body, params)
-        // axios delete requests must send the body as a value to a "data" key
         const response = await ApiClient.delete("users/delete", {data:body})
         return response
     } catch (error) {
@@ -65,11 +71,12 @@ export const DeleteUser = async (body, params) => {
     }
 }
 
+
 export const CheckSessionService = async (body, params) => {
     try{
         log(CheckSessionService, body, params)
-        const res = await ApiClient.get('users/session')
-        return res.data
+        const response = await ApiClient.get('users/session')
+        return response.status
     } catch (error) {
         errorLog(CheckSessionService, error)
     }

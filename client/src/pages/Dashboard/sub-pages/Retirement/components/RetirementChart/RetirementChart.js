@@ -11,13 +11,13 @@ const ChartLogic = (props) => {
 
     /* -------------------------------- PROPS -------------------------------- */
 
-    const savingsForecast = calculateSavingsForecast({...props.fromRetirement})
-    const { callback: toCurrency } = props.fromApp.currencyChartCallback
     const { 
-        lifespanAge, 
+        endingAge, 
         currentAge, 
-        endingAge 
+        lifespanAge, 
     } = props.fromRetirement
+    const { callback: toCurrency } = props.fromApp.currencyChartCallback
+    const savingsForecast = calculateSavingsForecast({...props.fromRetirement})
 
 
     /* ------------------------- Listen to Window Size ------------------------ */
@@ -36,7 +36,7 @@ const ChartLogic = (props) => {
     }, [])
     
 
-    /* ---------------------- ASSEMBLE CHART PROPS ---------------------- */
+    /* ---------------------- CREATE CHART CONFIGURATION ---------------------- */
 
     const chartData = {
         labels: makeXAxisAgeLabels(lifespanAge, currentAge, endingAge),
@@ -57,13 +57,13 @@ const ChartLogic = (props) => {
         <div 
             className="retirement-chart-wrapper"
             style={{
+                height: height,
                 width: width,
-                height: height
             }}
         >
             <LineChart 
-                data={chartData}
                 options={options}
+                data={chartData}
             />
         </div>
     )

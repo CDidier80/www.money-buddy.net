@@ -11,8 +11,8 @@ const EmailTextfield = ({classes, setEmail, email}) => {
             role={"email"}
             autoComplete="email"  
             label="Email Address" 
-            onChange={(e)=>setEmail(e.target.value)}
             className={classes.textfield}
+            onChange={(e)=>setEmail(e.target.value)}
         />
     )
 }

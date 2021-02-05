@@ -66,7 +66,6 @@ const AddButton = (props) => {
             const defaults = sources.map(num => ({source: ("income source #" + String(num)), amount: 0}))
             incomesArrayCopy = [...userIncomes, ...defaults]
             updateBudgetIncomes(incomesArrayCopy)
-            // console.log("final copy of incomesArrayCopy: ", incomesArrayCopy)
         }   
     }
 

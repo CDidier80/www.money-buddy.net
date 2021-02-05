@@ -10,7 +10,6 @@ const CashflowHeader = (props) => {
 
     const rerender = (e) => {
         e.preventDefault()
-        console.log("clicked")
         setLoaded(false)
         incrementTicker(tick + 1)
     }

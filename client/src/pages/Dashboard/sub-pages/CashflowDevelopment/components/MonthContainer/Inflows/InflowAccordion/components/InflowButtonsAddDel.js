@@ -1,10 +1,10 @@
-import React from 'react'
-import { Button, ButtonGroup, } from '@material-ui/core'
 import { 
-    divideDefaultsAndUserSources, 
     insertionSort, 
-    findGapInNumbers 
+    findGapInNumbers, 
+    divideDefaultsAndUserSources, 
 } from "../../../../../../../../universal-functions/sortingFunctions"
+import { Button, ButtonGroup } from '@material-ui/core'
+import React from 'react'
 
 
 const InflowButtonsAddDel = (props) => {
@@ -18,16 +18,16 @@ const InflowButtonsAddDel = (props) => {
         button: {
             fontSize: "9px",
             fontWeight: "700",
-            fontFamily: "Lato, sans-serif",
             color: "#22c1c3",
-            padding: "0 5px 0 5px"
+            padding: "0 5px 0 5px",
+            fontFamily: "Lato, sans-serif",
         },
         deleteButton: {
             fontSize: "9px",
             fontWeight: "700",
+            padding: "0 5px 0 5px",
             fontFamily: "Lato, sans-serif",
             color: showIncomeDeleteIcons ? "#e6a824" : "#22c1c3",
-            padding: "0 5px 0 5px"
         }
     })
     
@@ -53,8 +53,6 @@ const InflowButtonsAddDel = (props) => {
             sources = findGapInNumbers(sources)
             const defaults = sources.map(num => ({source: ("income source #" + String(num)), amount: 0}))
             inflowsArrayCopy = [...userInflows, ...defaults]
-            // updateBudgetIncomes(incomesArrayCopy)
-            // console.log("final copy of incomesArrayCopy: ", incomesArrayCopy)
         }   
     }
 

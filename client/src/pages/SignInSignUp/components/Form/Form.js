@@ -65,6 +65,7 @@ const Form = (props) => {
     }
 
     const forSubmit = {
+        toggleSigningUp,
         isSigningUp,
         ...fromApp,
         history,

@@ -68,8 +68,8 @@ const GetAllOutflows = async (req, res) => {
 
 
 module.exports = {
-    CreateOutflow,
     CreateManyOutflows,
+    GetAllOutflows,
+    CreateOutflow,
     GetOneOutflow,
-    GetAllOutflows
 }

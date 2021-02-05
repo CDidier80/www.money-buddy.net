@@ -1,29 +1,29 @@
-import React from 'react'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { 
     makeStyles,
-    AccordionSummary,
     Typography,
-} from '@material-ui/core';
+    AccordionSummary,
+} from '@material-ui/core'
+import React from 'react'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
 
 const AccordionDropdownTab = (props) => {
 
     const useStyles = makeStyles({
         heading: {
+            fontFamily: "Lato, sans-serif",
+            paddingLeft: "27px",
             fontWeight: "700",
             margin: "0 auto",
-            paddingLeft: "27px",
             fontSize: "18px",
-            fontFamily: "Lato, sans-serif",
             color: "#22c1c3",
             textShadow: `
                 0 0 1px lightgray;
             `
         },
         expandMoreIcon : {
-            color:"#22c1c3",
             fontSize: "18px",
+            color:"#22c1c3",
             paddingLeft: "0"
         }
     })

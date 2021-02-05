@@ -119,12 +119,10 @@ const CategoryPopup = (props) => {
         let duplicates = false
         newCategories.forEach(category => {
             if(text === category.name){
-                console.log(category.name)
-
                 setError(true)
                 duplicates = true
             }
-            console.log(error)
+            // console.log(error)
             return
         })
         if (duplicates) return

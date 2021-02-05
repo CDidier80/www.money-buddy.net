@@ -12,7 +12,6 @@ import React, {
 const DoughnutChart = (props) => {
 
     /* ---------------------------- PROPS ------------------------------ */
-    // console.log(props)
     const { categoryNames, categoryTotals} = props.fromBudget
     const { subpageRef, budgetRef } = props
     /* ---------------------- init MEDIA QUERIES ----------------------- */

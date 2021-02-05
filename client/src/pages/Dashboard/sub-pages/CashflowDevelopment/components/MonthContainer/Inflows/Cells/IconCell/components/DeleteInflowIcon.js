@@ -25,18 +25,12 @@ const DeleteInflowIcon = (props) => {
     
     {/* ------------ Deconstruct Props -----------*/}
 
-
     const {
         rowIndex,
     } = props.fromInflowTable
 
-
-
     {/* ------------ Functions -----------*/}
     const classes = useStyles()
-
-
-
 
     return (
         <Fade in={true}>

@@ -1,13 +1,11 @@
-const Router = require('express').Router()
 const controller = require('../../../controllers/BudgetControllers/BudgetController')
+const Router = require('express').Router()
 const { 
     CreateBudget, 
     GetOneBudget, 
     ReadEntireBudget, 
     UpdateEntireBudget 
 } = controller
-
-console.log("BUDGET ROUTER CONNECTED")
 
 Router.post('/create',       CreateBudget)
 Router.get('/getone',        GetOneBudget)

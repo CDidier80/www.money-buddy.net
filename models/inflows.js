@@ -15,10 +15,9 @@ module.exports = (sequelize, DataTypes) => {
   Inflow.init({
     monthId: {
       type: DataTypes.INTEGER,
-      allowNull: true,   // changed to true in case income is owned by Month instead for cashflow
+      allowNull: true,  
       field: 'month_id',
       onDelete: 'cascade',
-      // constraints: true,
       references: {
         model: 'months',
         key: 'id'

@@ -1,20 +1,20 @@
 import ReenterPasswordField   from   "./ReenterPasswordField"
-import PasswordTextfield      from      "./PasswordTextfield"
-import EmailTextfield         from         "./EmailTextfield"
-import AccountPrompt          from          "./AccountPrompt"
-import SubmitButton           from           "./SubmitButton"
-import RememberMe             from             "./RememberMe"
-import Copyright              from              "./Copyright"
-import {useState}             from                    "react"
-import React                  from                    "react"
+import PasswordTextfield      from   "./PasswordTextfield"
+import EmailTextfield         from   "./EmailTextfield"
+import AccountPrompt          from   "./AccountPrompt"
+import SubmitButton           from   "./SubmitButton"
+import RememberMe             from   "./RememberMe"
+import Copyright              from   "./Copyright"
+import {useState}             from   "react"
+import React                  from   "react"
 
 
 const FormControl = (props) => {
 
     const { 
         toggleSigningUp, 
-        isSigningUp, 
         setUserInfo,
+        isSigningUp, 
         setAuth,
         history,
         classes, 
@@ -80,9 +80,3 @@ const FormControl = (props) => {
 }
 
 export default FormControl
-
-// implement after email api configured
-
-// <Grid item xs>
-//     <Link href="#" variant="body2">Forgot password?</Link>
-// </Grid> 

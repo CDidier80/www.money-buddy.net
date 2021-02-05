@@ -15,8 +15,6 @@ const CurrentAge = memo((props) => {
 
     const maxValue = (endingAge - 1)
 
-
-
     const themedSliderProps = {
         min: 0,
         step: 1,

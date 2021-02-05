@@ -3,10 +3,11 @@ const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const  { User }  = require("../models")
 const { ControllerLoggers } = require('./logs')
-const log = ControllerLoggers.UserControllerLog 
-const errorLog = ControllerLoggers.UserControllerErrorLog
-const saltRounds = parseInt(process.env.SALT_ROUNDS)
+const secretKey = process.env.APP_SECRET
 
+const log = ControllerLoggers.UserControllerLog 
+const saltRounds = parseInt(process.env.SALT_ROUNDS)
+const errorLog = ControllerLoggers.UserControllerErrorLog
 
 
 /**
@@ -25,7 +26,7 @@ const CreateUser = async (req, res) => {
         if (userExists){ 
             return res.send({ message: 'account already exists' })
         } else {
-            console.log("NO DUPLICATE USER ACCOUNT FOUND.")
+            // console.log("NO DUPLICATE USER ACCOUNT FOUND.")
         }
         let { password, email } = req.body
         password = await bcrypt.hash(password, saltRounds)
@@ -37,23 +38,20 @@ const CreateUser = async (req, res) => {
     }
 }
 
+
 const LogInUser = async (req, res) => {
     try {
         let { email } = req.body
-        console.log("email:", email)
         const user = await User.findOne({
             where: {
                 email: email
             }
         })
-
         if (user && await bcrypt.compare(req.body.password, user.password)) {
-            console.log("reached")
             const payload = {
                 _id: user._id,
                 email: user.email,
             }
-            const secretKey = process.env.APP_SECRET
             let token = jwt.sign(payload, secretKey)
             return res.send({ user, token })
         }  
@@ -75,6 +73,7 @@ const ReadUser = async (req, res) => {
     }
 }
 
+
 const UpdatePassword = async (req, res) => {
     log(UpdatePassword, req)
     try {
@@ -94,6 +93,7 @@ const UpdatePassword = async (req, res) => {
     }
 }
 
+
 const UpdateEmail = async (req, res) => {
     log(UpdateEmail, req)
     try {
@@ -111,11 +111,9 @@ const UpdateEmail = async (req, res) => {
     }
 }
 
-const DeleteUser = async (req, res) => {
-    console.log(req)
 
+const DeleteUser = async (req, res) => {
     log(DeleteUser, req)
-    console.log("req.data", req.data)
     try {
         let userId = req.body.userId
         await User.destroy({
@@ -129,24 +127,30 @@ const DeleteUser = async (req, res) => {
     }
 }
 
+
 const RefreshSession = async (req, res) => {
     try {
-        const { token } = res.locals
-        const user = await User.findByPk(token.id, {
-            attributes: ['id', 'name', 'emai']
-        })
-        res.send({ user, status: 'OK' })
+        let token = req.headers.authorization.split(' ')[1] 
+        token ? (res.locals.token = token) : (res.locals.token = null) 
+        let valid = jwt.verify(token, secretKey)
+        if (!valid) {
+            return res.status(401).send({ message: 'Unauthorized', status: 'error' })
+        } else {
+            res.locals.token = valid
+        }
+        res.send({ user: jwt.decode(token), token: res.locals.token })
     } catch (error) {
         errorLog(RefreshSession, req)
     }
 }
 
+
 module.exports = {
-    CreateUser,
-    ReadUser,
-    DeleteUser,
+    RefreshSession,
     UpdatePassword,
     UpdateEmail,
+    DeleteUser,
+    CreateUser,
     LogInUser,
-    RefreshSession
+    ReadUser,
 }

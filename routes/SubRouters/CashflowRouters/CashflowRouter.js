@@ -1,14 +1,12 @@
-const Router = require('express').Router()
 const controller = require('../../../controllers/CashflowControllers/CashflowController')
+const Router = require('express').Router()
 const { 
-    ReadEntireCashflow, 
-    UpdateEntireCashflow,
     CreateCashflow,
     GetOneCashflow,
-    CreateDefaultCashflow
+    ReadEntireCashflow, 
+    UpdateEntireCashflow,
+    CreateDefaultCashflow,
 } = controller
-
-console.log("CASHFLOW ROUTER CONNECTED")
 
 Router.post('/create',      CreateCashflow)
 Router.get('/getone',       GetOneCashflow)

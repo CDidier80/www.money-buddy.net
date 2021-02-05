@@ -1,10 +1,6 @@
+import { IconButton, Fade, makeStyles } from '@material-ui/core'
+import UndoIcon from '@material-ui/icons/Undo'
 import React from 'react';
-import UndoIcon from '@material-ui/icons/Undo';
-import { 
-    IconButton,
-    Fade,
-    makeStyles
-} from '@material-ui/core'
 
 
 
@@ -21,14 +17,13 @@ const useStyles = makeStyles({
 })
 
 
-
 const UndoIconButton = (props) => {
 
     const { 
+        tick,
         newIncomes,
-        setNewIncomes,
         updateBudget,
-        tick
+        setNewIncomes,
     } = props.fromBudget
 
     const {
@@ -37,9 +32,9 @@ const UndoIconButton = (props) => {
     } = props.fromIncomeTable
 
     const {
+        iconShouldShow,
         cellAmountHistory, 
         setCellAmountHistory,
-        iconShouldShow
     } = props.fromIncomeRow
 
 
@@ -50,11 +45,8 @@ const UndoIconButton = (props) => {
         e.preventDefault()
         let newIncomesCopy = newIncomes
         let historyCopy = cellAmountHistory
-        // console.log("history copy:",  historyCopy)
         const currentAmount = historyCopy.pop()
         const previousAmount = historyCopy[historyCopy.length - 1]
-        // console.log("currentAmount:",  currentAmount)
-        // console.log("history after pop:",  historyCopy)
         const previousRow = {
             source: source, 
             amount: previousAmount
