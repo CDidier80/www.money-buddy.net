@@ -6,20 +6,6 @@ import Burger from "./components/Burger"
 
 const NavBar = (props) => {
 
-
-    // const [size, setSize] = useState(`X: ${window.innerWidth}  Y: ${window.innerHeight}`)
-
-    // const reportSize = (e) => {
-    //     setSize(`${window.innerWidth} x ${window.innerHeight}`)
-    // }
-
-    // useEffect(() => {
-    //     window.addEventListener("resize", reportSize)
-    //     return () => {
-    //         window.removeEventListener("resize", reportSize)
-    //     }
-    // }, [])
-    
     return (
         <nav className="dash-navbar">
             <LandingPageLink />
