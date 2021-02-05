@@ -8,6 +8,7 @@ const CustomTextfield = ({role, onChange}) => {
             fullWidth 
             name={role}
             type={role}
+            label={role}
             margin="normal" 
             variant="outlined"
             onChange={onChange}

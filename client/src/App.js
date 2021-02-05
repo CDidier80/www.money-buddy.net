@@ -9,6 +9,9 @@ import  { CheckSessionService }  from  "./Services/UserService"
 import  Routes                   from  "./TopLevelComponents/Routes"
 import  AppWrapper               from  "./TopLevelComponents/AppWrapper"
 
+// background-image: linear-gradient(
+//     45deg
+//     ,#2227c3,#ff3939);
 
 const App = (props) => {
 
