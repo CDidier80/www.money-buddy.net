@@ -15,7 +15,7 @@
     <img width="11%" height=30px" src="https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript" />
     <img width="11%" height=30px" src="https://img.shields.io/badge/-ReactJS-black?style=flat-square&logo=react" />
     <img width="11%" height=30px" src="https://img.shields.io/badge/-NodeJS-black?style=flat-square&logo=Node.js" />
-    <img width="10%" height=30px" src="https://img.shields.io/badge/-ExpressJS-yellow?style=flat-square&logo=express" />
+    <img width="10%" height=30px" src="https://img.shields.io/badge/-ExpressJS-black?style=flat-square&logo=express" />
     <img width="11%" height=30px" src="https://img.shields.io/badge/-PostgreSQL-336791?style=flat-square&logo=postgresql" />
     <img width="10%" height=30px" src="https://img.shields.io/badge/-Sequelize-336791?style=flat-square&logo=sequelize" />
     <img width="10%" height=30px" src="https://img.shields.io/badge/-MaterialUI-blue?style=flat-square&logo=materialui" />
