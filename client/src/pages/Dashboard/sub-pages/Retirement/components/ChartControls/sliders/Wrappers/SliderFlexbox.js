@@ -4,21 +4,21 @@ import React from 'react'
 const SliderFlexbox = ({item1, item2, item3}) => {
 
     const forItem1 = {
-        ...item1,
+        borderRadius: "4px 0 0 4px",
         margin: "5px 0 5px 5px",
-        borderRadius: "4px 0 0 4px"
+        ...item1,
     }
 
     const forItem2 = {
-        ...item2,
         margin: "5px 0 5px 0",
-        borderRadius: "0"
+        borderRadius: "0",
+        ...item2,
     }
 
     const forItem3 = {
-        ...item3,
+        borderRadius: "0 4px 4px 0",
         margin: "5px 5px 5px 0",
-        borderRadius: "0 4px 4px 0"
+        ...item3,
     }
     
 

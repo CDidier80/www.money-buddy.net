@@ -1,11 +1,11 @@
-import React from 'react'
-import DeleteInflowIcon from "./components/DeleteInflowIcon"
-import UndoIconButton from "./components/UndoIconButton"
 
 import { 
-    makeStyles, 
     TableCell, 
+    makeStyles, 
 } from '@material-ui/core'
+import React from 'react'
+import UndoIconButton from "./components/UndoIconButton"
+import DeleteInflowIcon from "./components/DeleteInflowIcon"
 
 
 const IconCell = (props) => {

@@ -1,6 +1,6 @@
-import ShapesContainer from "./components/ShapesContainer"
 import LandingNavBar from "./components/Navbar/LandingNavBar"
 import MobileNavBar from "./components/Navbar/MobileNavBar"
+import ShapesContainer from "./components/ShapesContainer"
 import Hero from "./components/Hero"
 import "./styles/landingPage.css"
 import "./styles/shapes.css"

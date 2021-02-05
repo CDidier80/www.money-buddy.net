@@ -1,4 +1,3 @@
-import { gradientWrapper } from '../../../../../../../../modules/styles'
 import React from 'react'
 
 const LabledSliderBox = (props) => {
@@ -14,14 +13,13 @@ const LabledSliderBox = (props) => {
     const box = {
         width: "30%",
         flexGrow: 1,
-        display: "flex",
-        // ...gradientWrapper,
-        alignItems: "center",
-        flexDirection: "column",
-        borderRadius: borderRadius, 
         padding: "6px",
         margin: margin,
-        backgroundColor: "white"
+        display: "flex",
+        alignItems: "center",
+        backgroundColor: "white",
+        flexDirection: "column",
+        borderRadius: borderRadius, 
     }
 
 

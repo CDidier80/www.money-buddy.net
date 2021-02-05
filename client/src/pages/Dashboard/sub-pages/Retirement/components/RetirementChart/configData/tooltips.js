@@ -34,10 +34,10 @@ export const tooltips = {
             const currentIndex = tooltipItem.index
             const dollars = data.datasets[datasetIndex].data[currentIndex]
             const currencyTooltip = dollars.toLocaleString('en-US', { 
+                maximumFractionDigits: 0,
+                maximumFractionDigits: 0,
                 style: 'currency', 
                 currency: 'USD',
-                maximumFractionDigits: 0,
-                maximumFractionDigits: 0
             })
             return currencyTooltip
         },

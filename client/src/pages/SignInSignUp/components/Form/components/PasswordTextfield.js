@@ -8,11 +8,11 @@ const PasswordTextfield = ({setPassword, isSigningUp, password}) => {
                                         ["Password", "current-password"]
     return (
         <CustomTextfield 
-            autoComplete={autocompleteSetting}
             onChange={(e)=>setPassword(e.target.value)} 
+            autoComplete={autocompleteSetting}
             label={correctPrompt}
-            value={password}
             role={"password"}
+            value={password}
             required                                 
         />
     )

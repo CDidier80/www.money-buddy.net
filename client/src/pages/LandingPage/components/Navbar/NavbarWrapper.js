@@ -6,15 +6,15 @@ const NavbarWrapper = (props) => {
 
     const defaultClasses = [
         "navbar",
-        "container", 
         "linkbar",
+        "container", 
         "unordered-links"
     ]
 
     const mobileClasses = [
         "mobile-navbar",
-        "container mobile", 
         "linkbar mobile",
+        "container mobile", 
         "unordered-links mobile"
     ]
 
@@ -22,14 +22,14 @@ const NavbarWrapper = (props) => {
 
     return (
         <nav className={classes[0]}>
-        <div className={classes[1]}>
-            <div className={classes[2]}>
-                <ul className={classes[3]}>
-                    {props.children}
-                </ul>
+            <div className={classes[1]}>
+                <div className={classes[2]}>
+                    <ul className={classes[3]}>
+                        {props.children}
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
     )
 }
 

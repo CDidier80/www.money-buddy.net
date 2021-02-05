@@ -9,10 +9,8 @@ const AccountPrompt = (props) => {
                         "Don't have an account?  Sign up" 
 
     return (
-        <div className={classes.prompt}>
-            <p 
-                onClick={() => toggleSigningUp(!isSigningUp)}
-            > 
+        <div className={classes.prompt} >
+            <p onClick={() => toggleSigningUp(!isSigningUp)} > 
                 { accountPrompt } 
             </p>
         </div>

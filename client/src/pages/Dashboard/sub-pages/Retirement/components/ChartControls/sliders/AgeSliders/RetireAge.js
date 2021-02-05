@@ -21,8 +21,8 @@ const RetireAge = memo((props) => {
         min: minValue,
         max: maxValue,
         hookValue: endingAge,
-        ariaLabel: "lifespan-age-slider",
         makeLabel: (value, i ) => value,
+        ariaLabel: "lifespan-age-slider",
         marks: makeMarks(minValue, maxValue),
         setHook: (e, value) => setEndingAge(value),
     }

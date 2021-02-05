@@ -5,7 +5,6 @@ import React from "react";
 
 const LandingNavBar = (props) => {
 
-
     return (
         <NavbarWrapper type={"default"}>
             {props.fromApp.authenticated ? 

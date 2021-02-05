@@ -1,7 +1,6 @@
 import CashflowDevRoute               from "./components/MemoRoutes/CashflowDevRoute"
 import RetirementRoute                from "./components/MemoRoutes/RetirementRoute"
 import LoadingScreen                  from "./components/LoadingScreen/LoadingScreen"
-import MarketsRoute                   from "./components/MemoRoutes/MarketsRoute"
 import AccountPage                    from "./sub-pages/AccountPage/AccountPage"
 import BudgetRoute                    from "./components/MemoRoutes/BudgetRoute"
 import { ReadEntireCashflow }         from "../../Services/CashflowService"
@@ -34,6 +33,11 @@ const Dashboard = (props) => {
 
     /* -------------------------- STATE ------------------------- */
 
+    /* ---------- forcible rerenders -------- */
+
+    const [ticker, setTicker] = useState(0)
+    const [loaded, setLoaded] = useState(false)
+    
     /*  ------ financial info ------*/
 
     const [months, setMonths] = useState("")
@@ -53,10 +57,6 @@ const Dashboard = (props) => {
     const initSubpageClass = smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed"
     const [subpageClasses, setSubpageClasses] = useState(initSubpageClass)
 
-    /* ---------- forcible rerenders -------- */
-
-    const [loaded, setLoaded] = useState(false)
-    const [ticker, setTicker] = useState(0)
 
 
     /* -------------------------- useEffects ------------------------- */
@@ -122,14 +122,14 @@ const Dashboard = (props) => {
     }
 
     const propsSidebar = {
+        ticker,
+        setTicker,
         userPreference, 
+        sidebarClasses, 
         subpageClasses,
         setUserPreference,
         setSubpageClasses,
         setSidebarClasses,
-        sidebarClasses, 
-        ticker,
-        setTicker,
     }
 
     const budgetHooks = {
@@ -216,72 +216,3 @@ const Dashboard = (props) => {
 }
 
 export default withRouter(Dashboard)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // <ul ng-if="item.subMenu" className="al-sidebar-sublist"
-        //             ng-className="{expanded: item.expanded, 'slide-right': item.slideRight}">
-        //         <li ng-repeat="subitem in item.subMenu" ng-className="{'selected': subitem.selected, 'with-sub-menu': subitem.subMenu}">
-        //             <a ng-mouseenter="hoverItem($event, item)" ng-if="subitem.subMenu" href ng-click="toggleSubMenu($event, subitem);"
-        //             className="al-sidebar-list-link subitem-submenu-link"><span>{{ subitem.title }}</span>
-        //             <b className="fa" ng-className="{'fa-angle-up': subitem.expanded, 'fa-angle-down': !subitem.expanded}"
-        //                 ng-if="subitem.subMenu"></b>
-        //             </a>
-        //             <ul ng-if="subitem.subMenu" className="al-sidebar-sublist subitem-submenu-list"
-        //                 ng-className="{expanded: subitem.expanded, 'slide-right': subitem.slideRight}">
-        //             <li ng-mouseenter="hoverItem($event, item)" ng-repeat="subSubitem in subitem.subMenu" ng-className="{selected: subitem.selected}">
-        //                 <a  ng-mouseenter="hoverItem($event, item)" href="{{ subSubitem.root }}">{{
-        //                 subSubitem.title }}</a>
-        //             </li>
-        //             </ul>
-        //             <a  ng-mouseenter="hoverItem($event, item)" target="{{subitem.blank ? '_blank' : '_self'}}" ng-if="!subitem.subMenu" href="{{ subitem.root }}">{{ subitem.title}}</a>
-        //         </li>
-        //         </ul>
-
-        /*
-        <div className="sidebar-hover-elem" ng-style="{top: hoverElemTop + 'px', height: hoverElemHeight + 'px'}"
-                ng-className="{'show-hover-elem': showHoverElem }"></div>
-        */
-
-        // ul - slimscroll="{height: '{{menuHeight}}px'}" slimscroll-watch="menuHeight"
-
-
-
-
-
-
-// for mobile friendly experience, budget categories should be collabsible panels with default setting as closed
-
-// imagine panel on the left containing "links" in dropdown to open various "pages" in the main page
-// all pages would render on the main dashboard page
-
-
-

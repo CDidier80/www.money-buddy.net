@@ -6,19 +6,21 @@ const Copyright = () => {
     
     const font = {
         fontFamily: "Lato,sans-serif",
+        WebkitFontSmoothing: "antialiased!important",
         textRendering: "optimizeLegibility!important",
-        WebkitFontSmoothing: "antialiased!important"
     }
+
+    const copyright = `Copyright © ${new Date().getFullYear()} www.money-buddy.net`
 
     return (
         <Box mt={5}>
             <Typography 
-                variant="body2" 
                 color="textSecondary" 
+                variant="body2" 
                 align="center"
                 style={font}
             >
-                {`Copyright © ${new Date().getFullYear()} www.money-buddy.com`}
+                {copyright}
             </Typography>
         </Box>
     );

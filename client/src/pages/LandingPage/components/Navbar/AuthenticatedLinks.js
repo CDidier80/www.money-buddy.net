@@ -20,9 +20,9 @@ const AuthenticatedLinks = (props) => {
                 Dashboard 
             </NavLink> 
             <Link 
-                to={"#"}
                 className="mobile navlink" 
                 onClick={()=>logOut()}
+                to={"#"}
             >
                 Sign Out
             </Link>

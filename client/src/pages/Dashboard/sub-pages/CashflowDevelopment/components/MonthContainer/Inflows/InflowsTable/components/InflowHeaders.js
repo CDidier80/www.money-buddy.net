@@ -1,9 +1,9 @@
-import React from 'react';
 import { 
-    TableCell, 
     TableRow,
+    TableCell, 
     makeStyles, 
-} from '@material-ui/core';
+} from '@material-ui/core'
+import React from 'react'
 
 
 const useStyles = makeStyles({
@@ -11,11 +11,10 @@ const useStyles = makeStyles({
         width: "100%"
     },
     columnHeader: {
-        color: "#22c1c3",
-        // color: "black",
         fontWeight: "bold",
+        color: "#22c1c3",
+        fontSize: "14px",
         padding: "8px",
-        fontSize: "14px"
     },
     emptyCell: {
         maxWidth: "20px",

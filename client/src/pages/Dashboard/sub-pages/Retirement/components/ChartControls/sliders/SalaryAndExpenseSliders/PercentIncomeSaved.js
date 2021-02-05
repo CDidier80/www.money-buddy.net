@@ -1,5 +1,5 @@
-import ThemedSlider from "../ThemedSlider"
 import { deepPropCheck } from "../../../../../../../../modules/clientFunctions"
+import ThemedSlider from "../ThemedSlider"
 import React, { memo } from 'react'
 
 const PercentIncomeSaved = memo((props) => {

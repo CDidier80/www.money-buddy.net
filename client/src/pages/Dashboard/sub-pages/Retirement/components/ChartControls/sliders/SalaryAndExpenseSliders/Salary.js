@@ -15,9 +15,9 @@ const Salary = memo((props) => {
     const themedSliderProps = {
         hookValue: salary,
         ariaLabel: "salary-slider",
+        marks: makeMarks(0, 500000,),
         min: 0, step: 500, max: 500000,
         setHook: (e, value) => setSalary(value),
-        marks: makeMarks(0, 500000,),
         makeLabel: (v, i ) => dollarFormat(v, i),
     }
 
