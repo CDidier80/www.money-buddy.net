@@ -27,11 +27,4 @@ export const navItems = [
         label: 'Retirement', 
         icon: <StarIcon fontSize="inherit" className="sidebar-icon"/>  
     },
-    // { 
-    //     pathname: '/dashboard/markets', 
-    //     label: 'Markets', 
-    //     icon: <TrendingUpIcon fontSize="inherit" className="sidebar-icon"/>  
-    // },
-    // { pathname: '/summary', label: 'About', icon: 'info' },
-    // { pathname: '/about', label: 'About', icon: 'info' },
 ]

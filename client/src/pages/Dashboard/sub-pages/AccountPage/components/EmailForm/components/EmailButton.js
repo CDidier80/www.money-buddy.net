@@ -14,7 +14,6 @@ const EmailButton = (props) => {
     
     const submitNewEmail = async (e) => {
         e.preventDefault()
-        // log(3)
         if (newEmail === "") {
             errorSnackbar("Email Address")
             return

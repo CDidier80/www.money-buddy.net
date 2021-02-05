@@ -7,22 +7,22 @@ const DeleteText = (props) => {
 
     const useStyles = makeStyles({
         deleteText: {
-        padding: "15px",
-        color: "#D22323",
-        backgroundColor: "white",
-        fontSize: "18px",
-        cursor: "pointer",
-        ...formFont
+            backgroundColor: "white",
+            cursor: "pointer",
+            color: "#D22323",
+            fontSize: "18px",
+            padding: "15px",
+            ...formFont
     }})
 
     const classes = useStyles()
 
     return (
         <Typography 
+            onClick={()=>setDeleteTriggered(true)}
             className={classes.deleteText}
             component="h1" 
             variant="h5"
-            onClick={()=>setDeleteTriggered(true)}
         >
             Delete Account
         </Typography>

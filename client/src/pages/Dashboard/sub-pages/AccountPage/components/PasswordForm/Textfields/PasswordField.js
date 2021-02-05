@@ -8,14 +8,14 @@ const PasswordField = (props) => {
 
     return (
         <TextField 
-            fullWidth
+            onChange={(e)=>updateField(e, setHook)} 
             variant="outlined" 
             margin="normal"  
-            label={label} 
             name="password" 
             type="password"
             id="password" 
-            onChange={(e)=>updateField(e, setHook)} 
+            label={label} 
+            fullWidth
         />
     )
 }
