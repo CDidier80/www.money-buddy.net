@@ -3,6 +3,7 @@ const { ServiceLoggers } = require('./logs')
 const log = ServiceLoggers.IncomeServiceLog
 const errorLog = ServiceLoggers.IncomeServiceErrorLog
 
+
 export const CreateIncome = async (body, params) =>  {
     try {
         log(CreateIncome, body, params)
@@ -13,6 +14,7 @@ export const CreateIncome = async (body, params) =>  {
     }
 }
 
+
 export const GetOneIncome = async (body,  params) =>  {
     try {
         log(GetOneIncome, body, params)
@@ -22,6 +24,8 @@ export const GetOneIncome = async (body,  params) =>  {
         errorLog.log(GetOneIncome, error)
     }
 }
+
+
 export const ReadBudgetIncomes = async (body,  params) =>  {
     try {
         log(ReadBudgetIncomes, body, params)
