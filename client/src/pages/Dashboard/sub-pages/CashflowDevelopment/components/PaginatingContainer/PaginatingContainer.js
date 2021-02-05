@@ -1,19 +1,26 @@
-import React, { useState, memo } from 'react'
 import MonthContainer from "../MonthContainer/MonthContainer"
 import NextAndBackIcons from "./NextAndBackIcons"
+import React, { useState, memo } from "react"
 import "./styles/paginator.css"
 
 const PaginatingContainer = memo((props) => {
+
+    /* Props */
+
     const { newMonths } = props.fromCashflowDevelopment
+
+    /*  State */
 
     const [displayRange, setDisplayRange] = useState([0,1,2])
     const [pagMemoTicker, incrementPagTicker] = useState(0)
 
+    /*  Props for children */
+
     const iconProps = {
-        displayRange,
+        incrementPagTicker,
         setDisplayRange,
         pagMemoTicker,
-        incrementPagTicker
+        displayRange,
     }
 
     return (
@@ -26,27 +33,32 @@ const PaginatingContainer = memo((props) => {
             <div className="monthContainer-wrapper">
                 {newMonths.map((month, index) => {
                         const monthContainerProps = {
-                            thisMonth: month,
+                            incrementPagTicker,
                             monthIndex: index,
-                            displayRange,
+                            thisMonth: month,
                             setDisplayRange,
                             pagMemoTicker,
-                            incrementPagTicker
+                            displayRange,
                         }
                     return (
                         <MonthContainer 
                             {...props}
-                            className="month-container"
                             key={`ABC${index}`}
-                            fromPaginatingContainer={{...monthContainerProps}}
+                            className="month-container"
                             displayRange={displayRange}
+                            fromPaginatingContainer={{...monthContainerProps}}
                         />
                     )
                     })}
             </div>
         </div>
     )
-}, (prevProps, nextProps) => prevProps.fromCashflowDevelopment.showPopup !== nextProps.fromCashflowDevelopment.showPopup)
+}, (prevProps, nextProps) => {
+        const { showPopup: prevPop} = prevProps.fromCashflowDevelopment
+        const { showPopup: nextPop} = nextProps.fromCashflowDevelopment
+        return prevPop !== nextPop
+    }
+)
 
 export default PaginatingContainer
 

@@ -38,7 +38,7 @@ const CellButtonGroup = (props) => {
                 aria-label="button group"
             >
                 <MonthlyButton {...props} />
-                <AnnualButton {...props} />
+                <AnnualButton  {...props} />
             </ButtonGroup>
         </AccordionDetails>
     )

@@ -7,12 +7,12 @@ const PopupHeader = () => {
     const useStyles = makeStyles({
 
         header: {
+            fontFamily: "Lato, sans-serif",
+            padding: "20 20 0 20px",
+            textAlign: "center",
             fontWeight: "700",
             fontSize: "20px",
-            fontFamily: "Lato, sans-serif",
             color: "#22c1c3",
-            padding: "20 20 0 20px",
-            textAlign: "center"
         }
     })
     
