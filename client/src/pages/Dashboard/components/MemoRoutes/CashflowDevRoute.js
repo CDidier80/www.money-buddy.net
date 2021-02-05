@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Route } from 'react-router-dom'
 import CashflowDevelopment from "../../sub-pages/CashflowDevelopment/CashflowDevelopment"
+import { Route } from 'react-router-dom'
+import React, { memo } from 'react'
 
 const CashflowDevRoute = memo((props) => {
     
@@ -11,8 +11,6 @@ const CashflowDevRoute = memo((props) => {
         )} 
     />
     )
-},(prevProps, nextProps) => {
-    return (prevProps.ticker !== nextProps.ticker)
-})
+},(prevProps, nextProps) => (prevProps.ticker !== nextProps.ticker))
 
 export default CashflowDevRoute
