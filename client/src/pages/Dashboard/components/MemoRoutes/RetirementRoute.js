@@ -1,6 +1,6 @@
-import React, { memo } from 'react';
-import { Route } from 'react-router-dom'
 import Retirement from "../../sub-pages/Retirement/Retirement"
+import { Route } from 'react-router-dom'
+import React, { memo } from 'react'
 
 const RetirementRoute = memo((props) => {
     
@@ -11,8 +11,6 @@ const RetirementRoute = memo((props) => {
         )} 
     />
     )
-},(prevProps, nextProps) => {
-    return (prevProps.ticker !== nextProps.ticker)
-})
+},(prevProps, nextProps) => (prevProps.ticker !== nextProps.ticker))
 
 export default RetirementRoute
