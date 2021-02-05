@@ -8,15 +8,14 @@ const MonthlyButton = (props) => {
 
     const switchToMonthly = (e) => {
         e.preventDefault()
-        if (annualToggled) {
-            setAnnualToggled(false)
-        }
+        annualToggled && setAnnualToggled(false)
+        
     }
 
     const classes = useStyles()
     const monthlyButtonStyle = !annualToggled ? classes.activeButton : classes.inactiveButton
 
-    const divider = {borderRight: "1px solid #22c1c3"}
+    const divider = { borderRight: "1px solid #22c1c3" }
 
     return (
         <Button 
