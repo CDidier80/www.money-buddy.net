@@ -4,10 +4,8 @@ import {
     TableBody, 
     makeStyles,
     TableContainer, 
-} from '@material-ui/core';
-import { sizing } from '@material-ui/system';
-import React, { useLayoutEffect } from 'react'
-import { useMediaQuery } from '@material-ui/core'
+} from '@material-ui/core'
+import React from 'react'
 import SummaryRows from "../SummaryRows/SummaryRows"
 
 
@@ -36,7 +34,6 @@ const SummaryTable = (props) => {
             <Table 
                 aria-label="a dense table"
                 className={classes.table}
-                
             >
                 <TableBody>
                     <SummaryRows {...props} />
