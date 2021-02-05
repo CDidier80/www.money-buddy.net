@@ -8,10 +8,14 @@ import { ReadEntireBudget }           from "../../Services/BudgetService"
 import SideBar                        from "./components/Sidebar/SideBar"
 import NavBar                         from "./components/NavBar/NavBar"
 import { Switch, Route, withRouter }  from 'react-router-dom'
-import React, { useEffect, useState, createRef, } from 'react'
 import "./components/NavBar/styles/navbar.css"
 import "./styles/dashboard.css"
 import "./styles/subpage.css"
+import React, { 
+    createRef, 
+    useEffect, 
+    useState, 
+} from 'react'
 
 
 const Dashboard = (props) => {
@@ -24,7 +28,6 @@ const Dashboard = (props) => {
     const { 
         userInfo, 
         validSession,
-        authenticated,
         gradientWrapper, 
         verifyTokenValid, 
     } = props.fromApp
@@ -181,17 +184,11 @@ const Dashboard = (props) => {
                             {...props}
                         />
                         <CashflowDevRoute 
-                            // path="/dashboard/cashflow" 
                             fromDashboard={{...cashflowProps}}
                             path="/dashboard/cashflow" 
                             ticker={ticker}
                             {...props}
                         />
-                        {/* <MarketsRoute 
-                            path="/dashboard/markets" 
-                            ticker={ticker}
-                            {...props}
-                        /> */}
                         <RetirementRoute 
                             path="/dashboard/retirement" 
                             ticker={ticker}
