@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       field: 'month_id',
       onDelete: 'cascade',
-      // constraints: true,
       references: {
         model: 'months',
         key: 'id'
