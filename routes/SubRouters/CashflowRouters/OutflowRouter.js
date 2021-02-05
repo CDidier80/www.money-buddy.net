@@ -7,8 +7,8 @@ const {
 } = require('../../../controllers/CashflowControllers/OutflowController')
 
 Router.post('/create',     CreateOutflow)
-Router.post('/createmany', CreateManyOutflows)
 Router.get('/getone',      GetOneOutflow)
 Router.get('/getmany',     GetAllOutflows)
+Router.post('/createmany', CreateManyOutflows)
 
 module.exports = Router
