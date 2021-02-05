@@ -1,12 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import { IconButton } from '@material-ui/core';
-import blueGrey from '@material-ui/core/colors/blueGrey';
-// import { logs, firstLogs } from "./logs"
+import AccountCircleIcon from '@material-ui/icons/AccountCircle'
+import blueGrey from '@material-ui/core/colors/blueGrey'
+import MenuIcon from '@material-ui/icons/Menu'
+import { IconButton } from '@material-ui/core'
+import { Link } from 'react-router-dom'
+import React from 'react'
 
-const DumbNavbar = (props) => {
+const DumbNavbar = () => {
 
     return (
         <nav className="dash-navbar" >
@@ -19,9 +18,9 @@ const DumbNavbar = (props) => {
                 style={{margin: "6px 0 0 6px"}
             }>
                 <MenuIcon 
+                    htmlColor={blueGrey[50]}
                     className="hamburger" 
                     fontSize="default" 
-                    htmlColor={blueGrey[50]}
                 />
             </IconButton> 
 
@@ -36,8 +35,8 @@ const DumbNavbar = (props) => {
             >
                 <AccountCircleIcon                     
                     className="account-icon" 
-                    fontSize="default" 
                     htmlColor={blueGrey[50]}
+                    fontSize="default" 
                 />
             </IconButton> 
         </nav>

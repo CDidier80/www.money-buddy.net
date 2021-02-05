@@ -1,13 +1,12 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import HomeIcon from '@material-ui/icons/Home';
-import DonutLargeIcon from '@material-ui/icons/DonutLarge';
-import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import DonutLargeIcon from '@material-ui/icons/DonutLarge'
+import LocalAtmIcon from '@material-ui/icons/LocalAtm'
 import StarIcon from '@material-ui/icons/Star'
+import HomeIcon from '@material-ui/icons/Home'
+import { Link } from 'react-router-dom'
+import React from 'react'
 
 
-const DumbSidebar = (props) => {
-
+const DumbSidebar = () => {
 
     const navItems = [
             { 
@@ -30,8 +29,6 @@ const DumbSidebar = (props) => {
                 label: 'Retirement', 
                 icon: <StarIcon fontSize="inherit" className="sidebar-icon"/>  
             },
-            // { pathname: '/summary', label: 'About', icon: 'info' },
-            // { pathname: '/about', label: 'About', icon: 'info' },
         ]
 
 
