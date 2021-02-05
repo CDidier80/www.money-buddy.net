@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CashflowHeader = (props) => {
+const CashflowHeader = () => {
 
     return (
         <div className="header-and-button-wrapper">
