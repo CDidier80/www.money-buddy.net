@@ -3,6 +3,7 @@ const { ServiceLoggers } = require('./logs')
 const log = ServiceLoggers.CashflowServiceLog
 const errorLog = ServiceLoggers.CashflowServiceErrorLog
 
+
 export const ReadEntireCashflow = async (body,  params) =>  {
     try {
         log(ReadEntireCashflow, body, params)
@@ -13,6 +14,7 @@ export const ReadEntireCashflow = async (body,  params) =>  {
     }
 }
 
+
 export const UpdateEntireCashflow = async (body,  params) =>  {
     try {
         log(UpdateEntireCashflow, body, params)
@@ -22,6 +24,7 @@ export const UpdateEntireCashflow = async (body,  params) =>  {
         errorLog(UpdateEntireCashflow, error)
     }
 }
+
 
 export const CreateEntireCashflow = async (body,  params) =>  {
     try {
