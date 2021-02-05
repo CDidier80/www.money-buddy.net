@@ -1,7 +1,7 @@
-import React from 'react'
+import blueGrey from '@material-ui/core/colors/blueGrey'
 import { IconButton } from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu'
-import blueGrey from '@material-ui/core/colors/blueGrey'
+import React from 'react'
 
 
 const Burger = (props) => {
@@ -22,11 +22,7 @@ const Burger = (props) => {
         e.preventDefault()
         switch (userPreference) {
             case "open":   
-                // if (window.innerWidth <= 600) {
-                //     setUserPreference("open")
-                // } else {
-                    setUserPreference("closed")
-                // }
+                setUserPreference("closed")
                 break
             case "closed":
                 setUserPreference("open")
