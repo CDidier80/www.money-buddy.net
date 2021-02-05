@@ -1,18 +1,17 @@
 const { Expense } = require('../../models')
 const { ControllerLoggers } = require('../logs')
-// const { Op, literal, fn, col  } = require('sequelize')
 const log = ControllerLoggers.ExpenseControllerLog 
 const errorLog = ControllerLoggers.ExpenseControllerErrorLog
 
 
 
 /**
- * Assign the project to an employee.
  * @param {Object} req.body - The expense object.
  * @param {String} req.body.expense - The name of the expense.
  * @param {Integer} req.body.amount - The name of the expense.
  * @param {Integer} req.body.categoryId - The id of the budget that has the category.
  */
+
 const CreateExpense = async (req, res) => {
     log(CreateExpense, req)
     try {
@@ -22,6 +21,7 @@ const CreateExpense = async (req, res) => {
         errorLog(CreateExpense, error) 
     }
 }
+
 
 const CreateManyExpenses = async (req, res) => {
     log(CreateManyExpenses, req)
@@ -42,6 +42,7 @@ const CreateManyExpenses = async (req, res) => {
     }
 }
 
+
 const GetOneExpense = async (req, res) => {
     log(GetOneExpense, req)
     try {
@@ -57,6 +58,7 @@ const GetOneExpense = async (req, res) => {
     }
 }
 
+
 const ReadBudgetExpenses = async (req, res) => {
     log(ReadBudgetExpenses, req)
     try {
@@ -71,6 +73,7 @@ const ReadBudgetExpenses = async (req, res) => {
         errorLog(ReadBudgetExpenses, error) 
     }
 }
+
 
 module.exports = {
     CreateExpense,

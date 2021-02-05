@@ -42,15 +42,12 @@ const CreateUser = async (req, res) => {
 const LogInUser = async (req, res) => {
     try {
         let { email } = req.body
-        console.log("email:", email)
         const user = await User.findOne({
             where: {
                 email: email
             }
         })
-
         if (user && await bcrypt.compare(req.body.password, user.password)) {
-            console.log("reached")
             const payload = {
                 _id: user._id,
                 email: user.email,
@@ -133,25 +130,14 @@ const DeleteUser = async (req, res) => {
 
 const RefreshSession = async (req, res) => {
     try {
-        console.log("user controller reached")
-        // pull the token from local storage split from the word "Bearer"
         let token = req.headers.authorization.split(' ')[1] 
-
-        console.log("token:", token)
-
-        token ? (res.locals.token = token) : (res.locals.token = null) // locals exist along the back-end routes within .res - > response sent. 
-        console.log("new value of res.locals.token:", res.locals.token)
+        token ? (res.locals.token = token) : (res.locals.token = null) 
         let valid = jwt.verify(token, secretKey)
-        console.log("valid?", valid)
         if (!valid) {
             return res.status(401).send({ message: 'Unauthorized', status: 'error' })
         } else {
             res.locals.token = valid
         }
-        // const user = await User.findByPk(token.id, {
-        //     attributes: ['id', 'name', 'email']
-        // })'
-        console.log("decoded token:", jwt.decode(token))
         res.send({ user: jwt.decode(token), token: res.locals.token })
     } catch (error) {
         errorLog(RefreshSession, req)

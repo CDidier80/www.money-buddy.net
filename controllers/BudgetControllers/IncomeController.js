@@ -1,8 +1,8 @@
 const { Income } = require('../../models')
 const { ControllerLoggers } = require('../logs')
-// const { Op, literal, fn, col  } = require('sequelize')
 const log = ControllerLoggers.IncomeControllerLog 
 const errorLog = ControllerLoggers.IncomeControllerErrorLog
+
 
 const CreateIncome = async (req, res) => {
     log(CreateIncome, req)
@@ -14,8 +14,8 @@ const CreateIncome = async (req, res) => {
     }
 }
 
+
 const CreateManyIncomes = async (req, res) => {
-    console.log("req: ", req)
     log(CreateManyIncomes, req)
     try {
         const {incomes, budgetId} = req.body
@@ -65,9 +65,10 @@ const ReadBudgetIncomes = async (req, res) => {
     }
 }
 
+
 module.exports = {
     CreateIncome,
     GetOneIncome,
     ReadBudgetIncomes,
-    CreateManyIncomes
+    CreateManyIncomes,
 }

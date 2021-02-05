@@ -1,5 +1,5 @@
+const { defaultCategories, nextCalendarYear } = require("../modules/data")
 const { ControllerLoggers } = require('../logs')
-const { defaultMonths, defaultCategories, nextCalendarYear } = require("../modules/data")
 const log = ControllerLoggers.CashflowControllerLog 
 const errorLog = ControllerLoggers.CashflowControllerErrorLog
 const { 
@@ -11,7 +11,6 @@ const {
 } = require('../../models')
 
 
-
 const CreateCashflow = async (req, res) => {
     log(CreateCashflow, req)
     try {
@@ -21,6 +20,7 @@ const CreateCashflow = async (req, res) => {
         errorLog(CreateCashflow, error) 
     }
 }
+
 
 /**
  * @param {Object} req.body - The month object.
@@ -54,7 +54,6 @@ const CreateDefaultCashflow = async (req, res) => {
             },
             {query: { raw:true}}
             )
-
             const flowcategoryNames = Object.keys(defaultCategories)
             const flowcategoriesToCreate = flowcategoryNames.map(name => {
                 const fc = {
@@ -63,35 +62,27 @@ const CreateDefaultCashflow = async (req, res) => {
                 }
                 return fc
             })
-
             const newFlowcategories = await Flowcategory.bulkCreate(flowcategoriesToCreate,
-                {query: { raw:true}}
+                    {query: { raw:true}}
                 )
-
             const packagedFlowcategories = await Promise.all(newFlowcategories.map(async (category) => {
                 const { id: flowcategoryId, name } = category
                 const outflowNames = Object.values(defaultCategories[name])
-
                 const outflowsToCreate = outflowNames.map(outflowName => ({
                     flowcategoryId,
                     outflow: outflowName,
                     amount: 0
                 }))
-
                 const newOutflows = await Outflow.bulkCreate(outflowsToCreate, 
                     {query: { raw:true}})
 
                 return {...category, outflows: newOutflows}
             }))
-
             const packagedMonth = {
                 ...month,
                 flowcategories: packagedFlowcategories,
                 inflows: newInflows
             }
-
-            // console.log("PACKAGED MONTH:", packagedMonth)
-
             return packagedMonth
         }))
 
@@ -118,6 +109,7 @@ const GetOneCashflow = async (req, res) => {
         errorLog(GetOneCashflow, error) 
     }
 }
+
 
 const ReadEntireCashflow = async (req, res) => {
     log(ReadEntireCashflow, req)
@@ -152,7 +144,6 @@ const ReadEntireCashflow = async (req, res) => {
             ]
         })
             
-        // console.log(entireCashflow)
         res.send(entireCashflow)
     } catch (error) {
         errorLog(ReadEntireCashflow, error)
@@ -200,8 +191,8 @@ const UpdateEntireCashflow = async (req, res) => {
                 const newOutflows = Promise.all(outflows.map( async (out) => {
                     const { outflow, amount } = out
                     const outflowToCreate = {
-                        flowcategoryId,
                         outflow : outflow,
+                        flowcategoryId,
                         amount : amount
                     }
                     const newOutflow = await Outflow.create(outflowToCreate)
@@ -225,37 +216,12 @@ const UpdateEntireCashflow = async (req, res) => {
             cashflowId : cashflowId,
             months: updatedMonths
         }
-        // console.log("entire Cashflow:", entireCashflow)
         res.send(entireCashflow)
     } catch (error) {
         errorLog(UpdateEntireCashflow, error)
     }
 }
 
-            // const newOutflow = Outflow.map( async (Outflow) => {
-            //     await CreateOutflow({
-            //         categoryId : newCategory.id,
-            //         Outflow: Outflow, 
-            //         amount: Outflow.amount
-            //     })
-            // })
-
-
-        // repopulate Cashflow with updated content
-        
-
-        // destroy current Cashflow contents
-        // await inflow.destroy({
-        //     where: {
-        //         Cashflow_id: cashflowId
-        //     }
-        // })
-
-        // await Category.destroy({
-        //     where: { 
-        //         Cashflow_id: cashflowId 
-        //     }
-        // })
 
 module.exports = {
     CreateCashflow,
