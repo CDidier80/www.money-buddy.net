@@ -9,6 +9,7 @@ const CustomTextfield = ({role, onChange}) => {
             name={role}
             type={role}
             margin="normal" 
+            label={role}
             variant="outlined"
             onChange={onChange}
         />
