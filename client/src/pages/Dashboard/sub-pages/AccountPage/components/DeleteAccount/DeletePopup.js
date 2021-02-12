@@ -11,7 +11,6 @@ const DeletePopup = (props) => {
 
     const {
         setAuth,
-        setSessionValid,
     } = props.fromApp
 
     const deleteAccount = async (e) => {
@@ -19,7 +18,6 @@ const DeletePopup = (props) => {
         await DeleteUser({userId})
         localStorage.clear()
         setAuth(false)
-        setSessionValid(false)
         history.push("/")
     }
 
