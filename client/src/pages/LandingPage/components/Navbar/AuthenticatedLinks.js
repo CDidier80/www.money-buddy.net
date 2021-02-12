@@ -6,9 +6,10 @@ const AuthenticatedLinks = (props) => {
     const { setAuth, setUserInfo } = props.fromApp
 
     const logOut = (e) => {
+        e.preventDefault()
+        localStorage.clear()
         setAuth(false)
         setUserInfo(null)
-        localStorage.clear()
     }
 
     return (
@@ -21,7 +22,7 @@ const AuthenticatedLinks = (props) => {
             </NavLink> 
             <Link 
                 className="mobile navlink" 
-                onClick={()=>logOut()}
+                onClick={(e)=>logOut(e)}
                 to={"#"}
             >
                 Sign Out
