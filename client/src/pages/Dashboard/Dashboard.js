@@ -16,17 +16,13 @@ import "./styles/subpage.css"
 
 const Dashboard = (props) => {
 
-
     const smallScreen = window.innerWidth <= 600
 
     /* -------------------------- PROPS ------------------------- */
 
     const { 
         userInfo, 
-        validSession,
-        authenticated,
         gradientWrapper, 
-        verifyTokenValid, 
     } = props.fromApp
     const { id: userId } = userInfo
 
@@ -63,7 +59,7 @@ const Dashboard = (props) => {
 
     /* #1: ---- verify token validity ---- */
 
-    useEffect(() => verifyTokenValid(), [])
+    // useEffect(() => verifyTokenValid(), [])
 
 
     /* #2: - async calls on first render - */
@@ -84,9 +80,9 @@ const Dashboard = (props) => {
             }
         }
         /* - verify token before requesting user data - */
-        validSession && initializeDashboard()
+        initializeDashboard()
         return () => componentMounted = false
-    }, [validSession])
+    }, [])
 
 
     /* #2: --- block ui until state loads --- */
@@ -200,10 +196,10 @@ const Dashboard = (props) => {
                         <Route 
                             {...props} 
                             path="/dashboard/account" 
-                            component={(props) => ( 
+                            component={() => ( 
                                 <AccountPage 
-                                fromDashboard={{...accountProps}} 
-                                id={userId} 
+                                    fromDashboard={{...accountProps}} 
+                                    id={userId} 
                                     {...props} 
                                 /> 
                             )} 

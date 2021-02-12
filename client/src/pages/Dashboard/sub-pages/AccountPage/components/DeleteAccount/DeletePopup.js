@@ -3,19 +3,28 @@ import React from 'react';
 
 const DeletePopup = (props) => {
 
-    const {userId, history, setDeleteTriggered} = props
+    const {
+        userId, 
+        history, 
+        setDeleteTriggered
+    } = props
+
+    const {
+        setAuth,
+    } = props.fromApp
 
     const deleteAccount = async (e) => {
         e.preventDefault()
-        console.log(userId)
         await DeleteUser({userId})
+        localStorage.clear()
+        setAuth(false)
         history.push("/")
     }
 
     return (
         <div 
             className="customBackdrop" 
-            onClick={(e) => setDeleteTriggered(false)} 
+            onClick={() => setDeleteTriggered(false)} 
         >
             <div className="popup">
                 <p className="warning">Warning: This action is irreversible.</p>

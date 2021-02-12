@@ -22,17 +22,17 @@ export const calculateSavingsForecast = (savingsArgs) => {
         lifespanAge: lifeSpanAge, 
     } = savingsArgs
 
-    const remainingCareerYears = endingAge - currentAge
+    const yearsToRetirement = endingAge - currentAge
     const remainingLifeYrs = lifeSpanAge - endingAge
 
     const savingsThruCareer = calcAccumulatingCareerSavings(
-        remainingCareerYears,
-        percentIncomeSaved, 
+        percentIncomeSaved,
+        yearsToRetirement,
         salaryGrowthRate, 
         currentSavings,
         salary
     )
-    
+        
     const startingRetirementSavings = savingsThruCareer[savingsThruCareer.length - 1]
 
     const savingsThruRetirement = calcSavingsThruRetirement(

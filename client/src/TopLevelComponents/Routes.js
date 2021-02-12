@@ -2,40 +2,34 @@ import  SignInSignUpPage  from  "../pages/SignInSignUp/SignInSignUpPage.js"
 import  LandingPage       from  "../pages/LandingPage/LandingPage.js"
 import  Dashboard         from  "../pages/Dashboard/Dashboard.js"
 import { Route, Switch }  from  "react-router-dom"
+import ProtectedRoute     from  "./ProtectedRoute"
 import React              from  "react"
 
 
-const Routes = (appProps) => {
+const Routes = (props) => {
+
     return (
         <Switch> 
             <Route 
                 exact path="/"      
-                component={ (props) => (
+                component={ () => (
                     <LandingPage 
                         {...props}
-                        {...appProps} 
                     />
                 )}
             />
             <Route 
                 path="/login"        
-                component={ (props) => ( 
-                    <SignInSignUpPage
-                        {...props}
-                        {...appProps}  
-                        
-                    />
+                component={ () => ( 
+                    <SignInSignUpPage {...props} />
                 )}
             />
-            <Route 
+            <ProtectedRoute
+                {...props}
                 path="/dashboard"        
-                component={ (props) => ( 
-                    <Dashboard
-                        {...props}
-                        {...appProps}  
-                    />
-                )}
-            />  
+            >
+                <Dashboard {...props} />
+            </ProtectedRoute> 
         </Switch>
     )
 }

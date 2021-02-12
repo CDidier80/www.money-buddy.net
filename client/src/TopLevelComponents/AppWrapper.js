@@ -1,14 +1,15 @@
 import { SnackbarProvider } from 'notistack'
 import React from 'react'
 
-const AppWrapper = (props) => {
+const AppWrapper = ({children}) => {
+
     return (
         <SnackbarProvider 
             maxSnack={3} 
             style={{fontWeight: "bold"}
         }>
             <main className="app">
-                {props.children}
+                {children}
             </main>
         </SnackbarProvider>
     )

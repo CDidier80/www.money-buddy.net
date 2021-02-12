@@ -11,8 +11,6 @@ import "./styles/accountPage.css"
 
 const AccountPage = (props) => {
 
-    console.log(props)
-
     /* ------------------------ PROPS ------------------------ */
     
     const { id: user_id } = props

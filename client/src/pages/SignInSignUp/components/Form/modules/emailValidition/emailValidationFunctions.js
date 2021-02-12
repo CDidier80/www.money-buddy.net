@@ -16,7 +16,6 @@ const includesExtension = (textInput) => {
     const periodIndex = textInput.indexOf(".")
     const extensionStartIndex = periodIndex + 1
     const extension = (textInput.substring(extensionStartIndex)).toUpperCase()
-    console.log(extension in emailExtensions)
     if (extension in emailExtensions) {
         return true
     } else {
@@ -27,13 +26,11 @@ const includesExtension = (textInput) => {
 
 const validateEmailExtension = (textInput) => {
     const periodCount = checkPeriodCount(textInput)
-    console.log(periodCount)
     if (periodCount != 1) {
         console.log("invalid email: incorrect extension")
         return false
     } 
     const validExtension = includesExtension(textInput)
-    console.log(validExtension)
     return validExtension
 }
 

@@ -16,6 +16,8 @@ const errorLog = ControllerLoggers.UserControllerErrorLog
  * @param {String} req.body.password - The user's raw-text password.
  */
 
+ const createToken = (id, email) => jwt.sign({id: id, email: email}, secretKey)
+
 const CreateUser = async (req, res) => {
     log(CreateUser, req)
     try {
@@ -32,7 +34,9 @@ const CreateUser = async (req, res) => {
         password = await bcrypt.hash(password, saltRounds)
         let updatedBody = { email, password }
         let user = await User.create(updatedBody)
-        res.send(user)
+        const {id} = user
+        let token = createToken(id, email)
+        res.send({user, token})
     } catch (error) {
         errorLog(CreateUser, error) 
     }
@@ -48,11 +52,11 @@ const LogInUser = async (req, res) => {
             }
         })
         if (user && await bcrypt.compare(req.body.password, user.password)) {
-            const payload = {
+            const payloadForJWT = {
                 _id: user._id,
                 email: user.email,
             }
-            let token = jwt.sign(payload, secretKey)
+            let token = jwt.sign(payloadForJWT, secretKey)
             return res.send({ user, token })
         }  
         res.status(401).send({status: 401})
@@ -130,15 +134,19 @@ const DeleteUser = async (req, res) => {
 
 const RefreshSession = async (req, res) => {
     try {
-        let token = req.headers.authorization.split(' ')[1] 
-        token ? (res.locals.token = token) : (res.locals.token = null) 
-        let valid = jwt.verify(token, secretKey)
-        if (!valid) {
-            return res.status(401).send({ message: 'Unauthorized', status: 'error' })
-        } else {
-            res.locals.token = valid
-        }
-        res.send({ user: jwt.decode(token), token: res.locals.token })
+        const [tokenExists, tokenValue] = "authorization" in req.headers ? [true, req.headers.authorization] : [false, null]
+        console.log(tokenExists ? `Received JSON web token with value: ${tokenValue}` : `NO TOKEN RECEIVED`)
+        const tokenIsValid = tokenExists && jwt.verify(tokenValue, secretKey)
+        
+        const [ responseToken, responseStatus, responsePayload ] = tokenIsValid ? 
+        [tokenValue, 200, (() => {
+            const { id, email } = jwt.decode(tokenValue)
+            console.log("id, email: ", id, email)
+            return { id: id, email: email}
+        })()] :
+        [null, 401, "unauthorized"] 
+        res.locals.token = responseToken
+        return res.status(responseStatus).send(responsePayload)
     } catch (error) {
         errorLog(RefreshSession, req)
     }

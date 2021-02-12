@@ -75,11 +75,11 @@ export const paletteFromTwoColors = (hex1, hex2, numOfColors) => {
 }
 
 export const backgroundColors = [
-    "#22c1c3",
     "#fdbb2d", 
     "#c746ce",
-    "#48ce46",
     "#428bff",
+    "#22c1c3",
+    "#48ce46",
     "#e60067",
     "#027500",
     "#ffe342",
