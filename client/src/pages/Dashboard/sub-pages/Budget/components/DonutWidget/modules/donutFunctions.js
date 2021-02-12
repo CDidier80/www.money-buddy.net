@@ -26,18 +26,28 @@ const makeMoreColors = (categoryNames) => {
 }
 
 
+const noExpenseData = (monthlies, annuals) => {
+    const monthliesTotal = monthlies.reduce((runningTotal, subtotal) => (runningTotal + subtotal), 0)
+    const annualsTotal = annuals.reduce((runningTotal, subtotal) => (runningTotal + subtotal), 0)
+    return (annualsTotal === 0 && monthliesTotal === 0) 
+}
+
 export const createData = (categoryNames, categoryTotals, monthly) => {
     const [monthlies, annuals] = divideMonthlyFromAnnual(categoryTotals)
-    const needMoreColors = (backgroundColors.length < categoryNames.length )
+    const [data, labels] = noExpenseData(monthlies, annuals) ? 
+        [[1, 1, 1], Array(3).fill("Add some expenses")] :
+        [(monthly ? monthlies : annuals), categoryNames] 
+
+    const needMoreColors = backgroundColors.length < categoryNames.length 
     const backgroundColorData = needMoreColors ? 
-                                makeMoreColors(backgroundColors) : 
-                                backgroundColors
+        makeMoreColors(backgroundColors) : 
+        backgroundColors
     const donutDataObject = {
-        labels: categoryNames,
+        labels: labels,
         datasets: [
-                {
-                    backgroundColor: backgroundColorData,
-                data: monthly ? monthlies : annuals,
+            {
+                backgroundColor: backgroundColorData,
+                data: data,
                 hoverBackgroundColor: [],
             }
         ]
