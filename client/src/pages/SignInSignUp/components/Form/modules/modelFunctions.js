@@ -9,9 +9,9 @@ import { defaultCategories }     from  "../../../../../exports/defaultCategories
 
 const initUserAccount = async (email, password) => {
     try {
-        const user = await CreateUser({ email, password })
-        const { id: userId } = user.data
-        return [user, userId]
+        const {data, status} = await CreateUser({ email, password })
+        const { user } = data
+        return [user, user.id, status]
     } catch (error) {
         console.log(error)
     }
@@ -68,12 +68,12 @@ const initCategoriesAndExpenses = async (budgetId, defaultCategories) => {
 
 
 const initializeAccount = async (email, password) => {
-    const [user, userId] = await initUserAccount(email, password)
+    const [user, userId, status] = await initUserAccount(email, password)
     const budgetId = await initBudget(userId)
     await CreateIncome({budgetId, source: "Job", amount: 0})
     await initCategoriesAndExpenses(budgetId, defaultCategories)
-    await CreateEntireCashflow({userId:userId})
-    return user
+    await CreateEntireCashflow({ userId: userId })
+    return [user, status]
 }
 
 
