@@ -13,7 +13,7 @@ const DoughnutChart = (props) => {
 
     /* ---------------------------- PROPS ------------------------------ */
     const { categoryNames, categoryTotals} = props.fromBudget
-    const { subpageRef, budgetRef } = props
+    const { budgetRef } = props
     /* ---------------------- init MEDIA QUERIES ----------------------- */
     
     const mq6 = useMediaQuery('(min-width:1800px)')
