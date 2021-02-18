@@ -1,15 +1,23 @@
 import LandingNavBar from "./components/Navbar/LandingNavBar"
 import MobileNavBar from "./components/Navbar/MobileNavBar"
 import ShapesContainer from "./components/ShapesContainer"
+import Canvas from "./components/ParticleCanvas/Canvas"
 import Hero from "./components/Hero"
 import "./styles/landingPage.css"
 import "./styles/shapes.css"
 import "./styles/navbar.css"
 import "./styles/hero.css"
-import React from "react"
+import React, {useState} from "react"
 
 
 const LandingPage = (props) => {
+
+    const [tick, setTick] = useState(0)
+
+    const handleClick = (e) => {
+        console.log("clicked")
+        setTick(tick + 1)
+    }
 
     return (
         <div className="landingPage">
@@ -23,6 +31,8 @@ const LandingPage = (props) => {
                     {...props}
                 />
             </main>
+                {/* <button style={{position: "absolute", zIndex: 44444444}} onClick={(e) => handleClick(e)}>rerender</button>
+                <Canvas tick={tick}/> */}
         </div>
     )
 }
