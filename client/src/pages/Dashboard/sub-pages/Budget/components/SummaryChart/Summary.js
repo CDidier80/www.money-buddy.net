@@ -1,5 +1,7 @@
 import ButtonGroupToggler from "./components/ButtonGroupToggler/ButtonGroupToggler"
+import GradientWrapper from "../../../../../../TopLevelComponents/GradientWrapper"
 import SummaryTable from "./components/SummaryTable/SummaryTable"
+
 import React, { useState, useEffect } from 'react';
 import "./styles/summary.css"
 
@@ -14,7 +16,11 @@ const Summary = (props) => {
     }
 
     return (
-        <div className="gradient-wrapper summary-chart">
+
+        <GradientWrapper
+            theme={props.theme}
+            className={"gradient-wrapper summary-chart"}
+        >
             <div className="summary-container">
                 <h3 className="widget-header">Summary</h3>
                 <SummaryTable 
@@ -25,7 +31,7 @@ const Summary = (props) => {
                     fromSummary={{...childrenProps}}
                 />
             </div>
-        </div>
+        </GradientWrapper>
 
     )
 }
