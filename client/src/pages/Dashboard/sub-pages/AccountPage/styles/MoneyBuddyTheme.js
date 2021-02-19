@@ -4,10 +4,10 @@ import React, { useState } from 'react'
 export const theme = createMuiTheme({
     palette: {
         primary: {
-            main: '#22c1c3',
+            main: '#2227c3',
         },
         secondary: {
-            main: '#fdbb2d',
+            main: '#ff3939',
             contrastText: '#ffcc00',
         },
         contrastThreshold: 3,
