@@ -4,6 +4,7 @@ import {
     useMediaQuery 
 } from '@material-ui/core'
 import React, { useState, useLayoutEffect } from 'react';
+import GradientWrapper from "../../../../../../../TopLevelComponents/GradientWrapper"
 import AddDelButtonGroup from "./components/buttons/AddDelButtonGroup"
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import IncomeTable from "../IncomeTable/IncomeTable"
@@ -29,7 +30,7 @@ const IncomeAccordion = (props) => {
     const [expanded, setExpanded] = useState(false)
 
 
-    /* ------------------------ EFFECTS ----------------------- */
+    /* ------------------------- EFFECTS ------------------------ */
 
     useLayoutEffect(() => {
         if (autoExpandHeight && !expanded) {
@@ -38,7 +39,7 @@ const IncomeAccordion = (props) => {
     }, [autoExpandHeight])
 
     
-    /* -------------------------- FUNCTIONS ------------------------- */
+    /* ------------------------- FUNCTIONS ------------------------ */
 
     const handleExpansion = (e) => {
         setExpanded(!expanded)
@@ -47,29 +48,32 @@ const IncomeAccordion = (props) => {
 
     /* -------------------------- STYLES ------------------------- */
 
-    const useStyles = makeStyles({
-        accordionWrapper: {
-            padding: "6px",
-            ...gradientWrapper,
-            marginBottom: "20px",
-            marginBottom: "20px",
-            position: "relative"
-        },
-        accordion: {
-            minHeight: "15vh",
-            borderRadius: "3px",
-            position: "relative"
-        },
-        deleteButton: {
-            fontSize: "9px",
-            fontWeight: "700",
-            padding: "0 5px 0 5px",
-            fontFamily: "Lato, sans-serif",
-            color: showIncomeDeleteIcons ? "#e6a824" : "#2c7b71",
-        }
+    const useStyles = makeStyles(theme => {
+
+        const { primary, secondary } = theme.palette
+
+        return ({
+            accordionWrapper: {
+                padding: "6px",
+                marginBottom: "20px",
+                position: "relative"
+            },
+            accordion: {
+                minHeight: "15vh",
+                borderRadius: "3px",
+                position: "relative"
+            },
+            deleteButton: {
+                color: showIncomeDeleteIcons ? primary.main : secondary.main,
+                padding: "0 5px 0 5px",
+                fontWeight: "700",
+                fontSize: "9px",
+                ...theme.lato
+            }
+        })
     })
     
-    const classes = useStyles()
+    const classes = useStyles(props.theme)
 
 
     /* -------------------------- PROPS FOR CHILDREN------------------------- */
@@ -88,7 +92,10 @@ const IncomeAccordion = (props) => {
     }
     
     return (
-        <div className={classes.accordionWrapper}>
+        <GradientWrapper
+            theme={props.theme}
+            className={classes.accordionWrapper}
+        >
             <Accordion 
                 onChange={(e) => handleExpansion(e)}
                 className={classes.accordion}
@@ -106,7 +113,7 @@ const IncomeAccordion = (props) => {
                     fromIncomeAccordion={{...incomeTableProps}}
                 />
             </Accordion>
-        </div>
+        </GradientWrapper>
     )
 }
 
