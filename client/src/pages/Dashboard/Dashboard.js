@@ -7,8 +7,19 @@ import { ReadEntireCashflow }         from "../../Services/CashflowService"
 import { ReadEntireBudget }           from "../../Services/BudgetService"
 import SideBar                        from "./components/Sidebar/SideBar"
 import NavBar                         from "./components/NavBar/NavBar"
-import { Switch, Route, withRouter }  from 'react-router-dom'
-import React, { useEffect, useState, createRef, } from 'react'
+import { withTheme }                  from '@material-ui/core'
+import { useDashboardStyles }         from "./styles/styles"
+import { 
+    Route, 
+    Switch, 
+    withRouter 
+}  from 'react-router-dom'
+import React, { 
+    useEffect, 
+    createRef, 
+    useState, 
+} from 'react'
+
 import "./components/NavBar/styles/navbar.css"
 import "./styles/dashboard.css"
 import "./styles/subpage.css"
@@ -20,10 +31,7 @@ const Dashboard = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { 
-        userInfo, 
-        gradientWrapper, 
-    } = props.fromApp
+    const { userInfo, gradientWrapper, } = props.fromApp
     const { id: userId } = userInfo
 
 
@@ -149,11 +157,12 @@ const Dashboard = (props) => {
     }
 
     const subpageRef = createRef()
+    const classes = useDashboardStyles(props.theme)
 
 
     return( !loaded ? <LoadingScreen /> :
 
-        <div className="dashboard">
+        <div className={classes.dashboard}>
             <NavBar 
                 {...props}
                 fromDashboard={{...propsNavbar}}
@@ -183,11 +192,6 @@ const Dashboard = (props) => {
                             ticker={ticker}
                             {...props}
                         />
-                        {/* <MarketsRoute 
-                            path="/dashboard/markets" 
-                            ticker={ticker}
-                            {...props}
-                        /> */}
                         <RetirementRoute 
                             path="/dashboard/retirement" 
                             ticker={ticker}
@@ -211,4 +215,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default withRouter(Dashboard)
+export default withRouter(withTheme(Dashboard))
