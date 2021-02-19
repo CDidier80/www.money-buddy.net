@@ -1,10 +1,10 @@
 import PasswordForm from "./components/PasswordForm/PasswordForm"
-import { MuiThemeProvider, makeStyles } from '@material-ui/core/'
+import { withTheme, makeStyles } from '@material-ui/core/'
 import DeletePopup from './components/DeleteAccount/DeletePopup'
+import { gradientWrapper } from "../../../../modules/styles"
 import DeleteText from './components/DeleteAccount/DeleteText'
 import EmailForm from "./components/EmailForm/EmailForm"
 import { withSnackbar, useSnackbar  } from 'notistack'
-import {theme} from "./styles/MoneyBuddyTheme"
 import useStyles from "./styles/useStyles"
 import React, { useState } from 'react'
 import "./styles/accountPage.css"
@@ -14,7 +14,6 @@ const AccountPage = (props) => {
     /* ------------------------ PROPS ------------------------ */
     
     const { id: user_id } = props
-    const { gradientWrapper } = props.fromDashboard
     
     /* ------------------------ STATE ------------------------ */
     
@@ -89,7 +88,6 @@ const AccountPage = (props) => {
 
 
     return (
-        <MuiThemeProvider theme={theme}>
             <div>
                 <div className={gradientClass.gradientWrapper}>
                     <div 
@@ -118,11 +116,10 @@ const AccountPage = (props) => {
                     </div>
                 </div>
             </div>
-        </MuiThemeProvider>
     )
 }
 
-export default withSnackbar(AccountPage)
+export default withSnackbar(withTheme(AccountPage))
 
 
 
