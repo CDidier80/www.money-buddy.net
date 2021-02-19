@@ -3,46 +3,54 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { 
     Typography, 
     AccordionSummary, 
-    makeStyles 
+    makeStyles ,
+    withTheme
 } from '@material-ui/core/'
 
 
 
 const AccordionDropdownTab = (props) => {
 
-    const { expanded } = props
+    console.log(props)
+
+    const { expanded, theme } = props
 
 
-    const useStyles = makeStyles({
-        summary: expanded ? 
-        {
-            transform: "translateX(-50%)",
-            position: "relative",
-            left: "50%",
-        } : 
-        {
-            transform: "translate(-50%, -50%)",
-            position: "relative",
-            top: "7.5vh",
-            left: "50%",
-        },
-        heading: {
-            fontFamily: "Lato, sans-serif",
-            fontWeight: "700",
-            margin: "0 auto",
-            fontSize: "30px",
-            color: "#2c7b71",
-            textShadow: `
-            0 0 1px lightgray;
-            `
-        },
-        expandMoreIcon : {
-            color: "#2c7b71",
-            paddingTop: "9px"
-        }
-    })
+    const useStyles = makeStyles(theme => {
+
+
+        const { main } = theme.palette.primaryDark
+        
+        return ({
+            summary: expanded ? 
+            {
+                transform: "translateX(-50%)",
+                position: "relative",
+                left: "50%",
+            } : 
+            {
+                transform: "translate(-50%, -50%)",
+                position: "relative",
+                top: "7.5vh",
+                left: "50%",
+            },
+            heading: {
+                ...theme.lato,
+                fontWeight: "700",
+                margin: "0 auto",
+                fontSize: "30px",
+                color: main,
+                textShadow: `
+                    0 0 1px lightgray;
+                `
+            },
+            expandMoreIcon : {
+                color: main,
+                paddingTop: "9px"
+            }
+    })})
     
-    const classes = useStyles()
+    const classes = useStyles(theme)
 
     return (
         <AccordionSummary
@@ -64,4 +72,4 @@ const AccordionDropdownTab = (props) => {
     )
 }
 
-export default AccordionDropdownTab
+export default withTheme(AccordionDropdownTab)
