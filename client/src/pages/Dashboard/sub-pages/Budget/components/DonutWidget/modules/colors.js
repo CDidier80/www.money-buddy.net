@@ -1,3 +1,5 @@
+import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
+
 /**
  * @param {String} color hex color
  * @param {Integer} percent -100 to 100 value that lightens or darkens a color
@@ -74,7 +76,18 @@ export const paletteFromTwoColors = (hex1, hex2, numOfColors) => {
     }
 }
 
+const {
+    primary,
+    primaryDark,
+    secondary,
+    primaryBright,
+    secondaryBright,
+    secondaryDark
+} = moneyBuddyTheme.palette
 export const backgroundColors = [
+    primaryBright.main,
+    secondary.main,
+    primaryDark.main,
     "#fdbb2d", 
     "#c746ce",
     "#428bff",
