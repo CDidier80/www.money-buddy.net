@@ -15,45 +15,48 @@ import ButtonsAddDel from './components/ButtonsAddDel';
 const CategoryAccordion = (props) => {
     
 
-    {/*  STATE */}
+    /* ------------------------- STATE -------------------------*/
 
+    const [showCategoryDeletePopup, toggleCategoryDeletePopup] = useState(false)
+    const [showExpenseDeleteIcons, toggleExpenseDeleteIcons] = useState(false)
     const [lengthOfExpenses, setExpensesLength] = useState(0)
     const [render,rerenderExpenseCategory] = useState(false)
-    const [showCategoryDeletePopup, toggleCategoryDeletePopup ]= useState(false)
-    const [showExpenseDeleteIcons, toggleExpenseDeleteIcons] = useState(false)
 
-    {/* FUNCTIONS */}
+    /* ------------------------- FUNCTIONS -------------------------*/
 
-    useEffect(() => {
-    }, [lengthOfExpenses])
+    useEffect(() => {}, [lengthOfExpenses])
 
+    /* ------------- styles -------------*/
 
     const useStyles = makeStyles({...styles})
     const classes = useStyles()
 
 
+
+    /* --------------------- PROPS FOR CHILDREN --------------------*/
+
     const categoryDeletePopupProps = {
+        toggleCategoryDeletePopup,
         showCategoryDeletePopup,
         rerenderExpenseCategory,
-        toggleCategoryDeletePopup,
         render
     }
 
     const buttonsAddDelProps = {
         lengthOfExpenses,
         setExpensesLength,
+        showExpenseDeleteIcons,
         toggleExpenseDeleteIcons,
-        showExpenseDeleteIcons
     }
 
     const accordionDropdownTabProps = {
+        toggleCategoryDeletePopup,
         showCategoryDeletePopup, 
-        toggleCategoryDeletePopup
     }
 
     const expenseTableProps = {
-        showExpenseDeleteIcons,
         rerenderExpenseCategory,
+        showExpenseDeleteIcons,
         render
     }
 
