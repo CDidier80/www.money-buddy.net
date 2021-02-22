@@ -27,11 +27,11 @@ const PasswordForm = (props) => {
         }
     }))
 
-    const classes = useStyles
+    const classes = useStyles(props.theme)
 
     return (
         <>
-            <Header />
+            <Header {...props}/>
             <form 
                 className={classes.form} 
                 noValidate
