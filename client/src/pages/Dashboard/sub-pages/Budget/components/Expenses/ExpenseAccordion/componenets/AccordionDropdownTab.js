@@ -9,43 +9,48 @@ import {
 
 const AccordionDropdownTab = (props) => {
 
-    const { expanded } = props
+    const { expanded, theme } = props
 
 
-    const useStyles = makeStyles({
-        summary: expanded ? 
-            {
-                position: "relative",
+    const useStyles = makeStyles( theme => {
+        
+        const { secondaryDark } = theme.palette
+
+        return ({
+            summaryExpanded: {
                 left: "50%",
+                position: "relative",
                 transform: "translateX(-50%)",
-            } : 
-            {
-                position: "relative",
-                top: "7.5vh",
+            }, 
+            summaryClosed: {
                 left: "50%",
+                top: "7.5vh",
+                position: "relative",
                 transform: "translate(-50%, -50%)",
             },
-        header: {
-            fontWeight: "700",
-            margin: "0 auto",
-            fontSize: "30px",
-            fontFamily: "Lato, sans-serif",
-            color: "#d29000",
-            textShadow: `
-                0 0 1px lightgray;
-            `
-        },
-        expandMoreIcon : {
-            color:"#d29000",
-            paddingTop: "9px",
-        }
-    })
+            header: {
+                ...theme.lato,
+                margin: "0 auto",
+                fontSize: "30px",
+                fontWeight: "700",
+                color: secondaryDark.main,
+                textShadow: `0 0 1px lightgray`
+            },
+            expandMoreIcon : {
+                color: secondaryDark.main,
+                paddingTop: "9px",
+            }
+        })
+})
 
-    const classes = useStyles()
+    const classes = useStyles(theme)
+    const { summaryExpanded, summaryClosed } = classes
+
+    const currentClass = expanded ? summaryExpanded : summaryClosed
 
     return (
         <AccordionSummary
-            className={classes.summary}
+            className={currentClass}
             expandIcon={
                 <ExpandMoreIcon 
                     className={classes.expandMoreIcon}

@@ -99,33 +99,37 @@ const ExpenseRow = (props) => {
 
     {/*  FUNCTIONS */}
 
-    const useStyles = makeStyles({
-        row: {
-            height: "38px",
-            maxHeight: "38px",
-            backgroundColor: rowColor
-            
-        },
-        iconCell: {
-            maxWidth: "36px",
-            padding: "0px"
-        },
-        iconButton: {
-            marginRight: "11px",
-            "&:hover" : {
-                backgroundColor: "#ffcece65"
-            }
-        },
-        deleteIcon: {
-            color: "red",
-            fontSize: "13px"
-        },
-        undoIcon: {
-            color: "lightgray",
-        }
-    })
+    const useStyles = makeStyles( theme => {
 
-    const classes = useStyles()
+        return ({
+            row: {
+                height: "38px",
+                maxHeight: "38px",
+                backgroundColor: rowColor
+                
+            },
+            iconCell: {
+                maxWidth: "36px",
+                padding: "0px"
+            },
+            iconButton: {
+                marginRight: "11px",
+                "&:hover" : {
+                    backgroundColor: "#ffcece65"
+                }
+            },
+            deleteIcon: {
+                color: "red",
+                fontSize: "13px"
+            },
+            undoIcon: {
+                color: "lightgray",
+            }
+        })
+        }
+    )
+
+    const classes = useStyles(props.theme)
 
     // const renderUndoIcon = (newLength) => {
     //     if (newLength >= 2) {

@@ -1,5 +1,6 @@
+import GradientWrapper from "../../../../../../TopLevelComponents/GradientWrapper"
 import { createData, createOptions } from "./modules/donutFunctions"
-import { useMediaQuery } from '@material-ui/core'
+import { useMediaQuery, withTheme } from '@material-ui/core'
 import { Doughnut } from 'react-chartjs-2'
 import "./styles/donutStyles.css"
 import React, { 
@@ -12,8 +13,10 @@ import React, {
 const DoughnutChart = (props) => {
 
     /* ---------------------------- PROPS ------------------------------ */
+
     const { categoryNames, categoryTotals} = props.fromBudget
     const { budgetRef } = props
+
     /* ---------------------- init MEDIA QUERIES ----------------------- */
     
     const mq6 = useMediaQuery('(min-width:1800px)')
@@ -23,7 +26,6 @@ const DoughnutChart = (props) => {
     const mq3 = useMediaQuery('(min-width:800px)' )
     const mq4 = useMediaQuery('(min-width:622px)' )
     const mq7 = useMediaQuery('(min-width:515px)' )
-    // const mq7 = useMediaQuery('(min-width:515px)' )
 
     const mq1Ref = useRef("")
     const mq2Ref = useRef("")
@@ -84,9 +86,10 @@ const DoughnutChart = (props) => {
 
 
     return ( 
-        <div 
-            className="gradient-wrapper donut"
-            style={useSubpageRef ? {width: budgetWidth} : null}
+        <GradientWrapper
+            theme={props.theme}
+            className={"gradient-wrapper donut"}
+            overrides={useSubpageRef && { width: budgetWidth }}
         >
             <div className="budget-top-widgets" >
                 <h3 
@@ -105,11 +108,11 @@ const DoughnutChart = (props) => {
                     />
                 </div>
             </div>
-        </div>
+        </GradientWrapper>
     )
 }
 
-export default DoughnutChart
+export default withTheme(DoughnutChart)
 
 
 

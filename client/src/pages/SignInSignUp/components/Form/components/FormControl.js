@@ -74,7 +74,7 @@ const FormControl = (props) => {
             <RememberMe        {...onlyClasses}        />
             <SubmitButton      {...propsSubmitButton}  />
             <AccountPrompt     {...propsAccountPrompt} />
-            <Copyright />
+            {/* <Copyright /> */}
         </form>
     )
 }

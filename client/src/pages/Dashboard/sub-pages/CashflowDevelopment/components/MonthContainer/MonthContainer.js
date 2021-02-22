@@ -1,13 +1,9 @@
 import React, {useState, useEffect, memo} from 'react'
 import MemoContent from './MemoContent/MemoContent'
-import { staticStyles } from "./styles/staticStyles"
-import { makeStyles } from '@material-ui/core/styles'
-import { accordionTheme } from './styles/accordionTheme'
-import { ThemeProvider } from '@material-ui/core/styles'
+import { makeMonthContainerStyles } from "./styles/styles"
 
 const MonthContainer = (props) => {
 
-    // console.log("fromPaginatingContainer:", props)
     /* -------------------------- PROPS ------------------------- */
 
     const { 
@@ -87,14 +83,8 @@ const MonthContainer = (props) => {
 
     /* --------------------- FUNCTION --------------------- */
 
-    const useStyles = makeStyles({
-        monthContainer : {
-            ...staticStyles,
-            display: displayRange.includes(monthIndex) ? "block" : 'none',
-        }
-    })
-
-    const classes = useStyles()
+    const display = displayRange.includes(monthIndex) ? "block" : 'none'
+    const {monthContainer} = makeMonthContainerStyles(props.theme)
 
     /* --------------------- PROPS FOR CHILDREN --------------------- */
 
@@ -112,16 +102,15 @@ const MonthContainer = (props) => {
 
 
     return ( !loaded ? <div></div> :
-        <ThemeProvider theme={accordionTheme}>
             <div 
-                className={classes.monthContainer}
+                className={monthContainer}
+                style={{display: display}}
             >
                 <MemoContent 
                     {...props}
                     fromMonthContainer={{...memoProps}}
                 />
             </div>
-        </ThemeProvider>
     )
 }
 

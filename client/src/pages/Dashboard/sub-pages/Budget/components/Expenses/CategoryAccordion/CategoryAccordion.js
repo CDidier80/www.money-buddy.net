@@ -1,59 +1,59 @@
-import React, { useState, useEffect } from 'react';
-import CategoryDeletePopup from "../CategoryPopups/CategoryDeletePopup"
-import ExpenseTable from "../ExpenseTable/ExpenseTable"
-import AccordionDropdownTab from "./components/AccordionDropdownTab"
-import {styles} from "./styles/useStyles"
 import { 
     Accordion,
+    makeStyles,
     AccordionDetails,
-    makeStyles
-} from '@material-ui/core';
-import ButtonsAddDel from './components/ButtonsAddDel';
-
+} from '@material-ui/core'
+import {styles} from "./styles/useStyles"
+import React, { useState, useEffect } from 'react'
+import ButtonsAddDel from './components/ButtonsAddDel'
+import ExpenseTable from "../ExpenseTable/ExpenseTable"
+import AccordionDropdownTab from "./components/AccordionDropdownTab"
+import CategoryDeletePopup from "../CategoryPopups/DeleteCategoryPopup/CategoryDeletePopup"
 
 
 const CategoryAccordion = (props) => {
     
+    /* ------------------------- STATE -------------------------*/
 
-    {/*  STATE */}
-
+    const [showCategoryDeletePopup, toggleCategoryDeletePopup] = useState(false)
+    const [showExpenseDeleteIcons, toggleExpenseDeleteIcons] = useState(false)
     const [lengthOfExpenses, setExpensesLength] = useState(0)
     const [render,rerenderExpenseCategory] = useState(false)
-    const [showCategoryDeletePopup, toggleCategoryDeletePopup ]= useState(false)
-    const [showExpenseDeleteIcons, toggleExpenseDeleteIcons] = useState(false)
 
-    {/* FUNCTIONS */}
+    /* ------------------------- FUNCTIONS -------------------------*/
 
-    useEffect(() => {
-    }, [lengthOfExpenses])
+    useEffect(() => {}, [lengthOfExpenses])
 
+    /* ------------- styles -------------*/
 
     const useStyles = makeStyles({...styles})
     const classes = useStyles()
 
 
+    /* --------------------- PROPS FOR CHILDREN --------------------*/
+
     const categoryDeletePopupProps = {
+        toggleCategoryDeletePopup,
         showCategoryDeletePopup,
         rerenderExpenseCategory,
-        toggleCategoryDeletePopup,
         render
     }
 
     const buttonsAddDelProps = {
-        lengthOfExpenses,
-        setExpensesLength,
         toggleExpenseDeleteIcons,
-        showExpenseDeleteIcons
+        showExpenseDeleteIcons,
+        setExpensesLength,
+        lengthOfExpenses,
     }
 
     const accordionDropdownTabProps = {
+        toggleCategoryDeletePopup,
         showCategoryDeletePopup, 
-        toggleCategoryDeletePopup
     }
 
     const expenseTableProps = {
-        showExpenseDeleteIcons,
         rerenderExpenseCategory,
+        showExpenseDeleteIcons,
         render
     }
 

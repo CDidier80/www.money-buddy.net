@@ -55,24 +55,28 @@ const IncomeTable = (props) => {
     const padding  = verySmall ? { padding: "6px" } : {}
     const overflow = verySmall ? { overflowX: "hidden" } : {}
 
-    const useStyles = makeStyles({
-        accordionDetails: {
-            ...padding,
-            ...overflow
-
-        },
-        table: {
-            minWidth: "270px",
-            ...overflow
-        },
-        tableContainer: {
-            maxWidth: "890px",
-            margin: "auto",
-            ...overflow
-
-        },
+    const useStyles = makeStyles( theme => {
+        
+       return ({
+            accordionDetails: {
+                ...padding,
+                ...overflow
+    
+            },
+            table: {
+                minWidth: "270px",
+                ...overflow
+            },
+            tableContainer: {
+                maxWidth: "890px",
+                margin: "auto",
+                ...overflow
+    
+            },
+        })
     })
-    const classes = useStyles()
+
+    const classes = useStyles(props.theme)
 
     const textSize = small ? createTextStyle() : {}
 

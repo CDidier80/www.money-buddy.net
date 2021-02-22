@@ -2,25 +2,46 @@ import LandingNavBar from "./components/Navbar/LandingNavBar"
 import MobileNavBar from "./components/Navbar/MobileNavBar"
 import ShapesContainer from "./components/ShapesContainer"
 import Canvas from "./components/ParticleCanvas/Canvas"
+import { makeStyles, withTheme } from '@material-ui/core/styles'
 import Hero from "./components/Hero"
 import "./styles/landingPage.css"
 import "./styles/shapes.css"
 import "./styles/navbar.css"
 import "./styles/hero.css"
-import React, {useState} from "react"
+import React, { useState } from "react"
 
 
 const LandingPage = (props) => {
 
+    console.log(props)
+
     const [tick, setTick] = useState(0)
+
+    const { primary, secondary } = props.theme.palette
 
     const handleClick = (e) => {
         console.log("clicked")
         setTick(tick + 1)
     }
 
+    const useStyles = makeStyles({
+        landingPage: {
+            width: `100%`,
+            height: `100vh`,
+            'overflow-x': "hidden",
+            fontWeight: 400,
+            lineHeight: 1.5,
+            backgroundImage: `linear-gradient(45deg, ${primary.main} 20%, ${secondary.main})`,
+            textRendering: `optimizeLegibility!important`,
+            '-webkit-font-smoothing': `antialiased!important`,
+        },
+    })
+
+    const classes = useStyles()
+
+
     return (
-        <div className="landingPage">
+        <div className={classes.landingPage}>
             <LandingNavBar 
                 {...props}
             />
@@ -37,7 +58,7 @@ const LandingPage = (props) => {
     )
 }
 
-export default LandingPage
+export default withTheme(LandingPage)
 
 
 

@@ -1,28 +1,20 @@
-import { TableCell, TableRow, makeStyles, useMediaQuery } from '@material-ui/core';
+import { TableCell, TableRow  } from '@material-ui/core'
 import CellButtonGroup from "./buttons/CellButtonGroup"
+import { useIncomeHeaderStyles } from "../styles"
 import React from 'react';
 
 
 
 const IncomeHeaders = (props) => {
 
-    const smallerWidth = props.onlyTwoCells ? {width: "70x"} : {}
-    
-    const useStyles = makeStyles({
-    
-        columnHeader: {
-            color: "#2c7b71",
-            fontWeight: "bold",
-            ...props.textSize,
-        },
-        emptyCell: {
-            maxWidth: "36px",
-            minWidth: "36px", 
-            padding: "0px"
-        }
-    })
+    const { onlyTwoCells, textSize: ts } = props
 
-    const classes = useStyles()
+    const smallerWidth = props.onlyTwoCells ? {width: "70x"} : {}
+    const textSize = ts ? ts : {}
+
+    const inlineHeaderStyles = { ...smallerWidth, ...textSize }
+
+    const classes = useIncomeHeaderStyles(props.theme)
     
     return (
         // <TableHead>
@@ -32,7 +24,7 @@ const IncomeHeaders = (props) => {
                 </TableCell>
                 <TableCell 
                     className={classes.columnHeader}
-                    style={smallerWidth}
+                    style={inlineHeaderStyles}
                 >
                     Income Source
                 </TableCell>
@@ -42,12 +34,14 @@ const IncomeHeaders = (props) => {
                     <>
                         <TableCell 
                             className={classes.columnHeader} 
+                            style={inlineHeaderStyles}
                             align="right"
                         >
                             Monthly Average
                         </TableCell>
                         <TableCell 
                             className={classes.columnHeader} 
+                            style={inlineHeaderStyles}
                             align="right"
                         >
                                 Annual

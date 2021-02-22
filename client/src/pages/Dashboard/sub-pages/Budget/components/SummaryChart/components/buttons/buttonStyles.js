@@ -8,22 +8,22 @@ const buttons = {
     fontSize: "9px",
 }
 
-export const useStyles = makeStyles({
+export const useStyles = makeStyles(({palette: p}) => ({
 
     activeButton: {
-        color: "#22c1c3",
         ...buttons,
+        color: p.primary.main,
         '&:hover': {
             textDecoration: 'none',
             backgroundColor: "#48e7ef1a"
         }
     },
     inactiveButton: {
-        color: "lightgray",
         ...buttons,
+        color: "lightgray",
         '&:hover': {
             textDecoration: 'none',
-            backgroundColor: "#b8c7c71a"
+            backgroundColor: p.secondary.transparent["1"]
         }
     },
-})
+}))
