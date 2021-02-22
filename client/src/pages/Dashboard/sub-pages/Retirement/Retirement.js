@@ -1,6 +1,6 @@
 import RetirementChart     from  "./components/RetirementChart/RetirementChart"
 import ChartControls       from  "./components/ChartControls/ChartControls"
-import PageHeader          from  "./components/PageHeader/PageHeader"
+import Header              from  "../../components/reuseable/Header"
 import React, { useState } from  "react"
 import "./styles/retirement.css"
 
@@ -50,9 +50,18 @@ const Retirement = (props) => {
         setRetirementSpending,
     }
 
+    const headerProps = {
+        text: "RETIREMENT",
+        overrides: {
+            marginBottom: "20px"
+        }
+    }
+
     return (
         <div className="retirement">
-            <PageHeader />
+            <Header
+                {...headerProps}
+            />
             <RetirementChart 
                 {...props}
                 fromRetirement={{...hookValues}}
