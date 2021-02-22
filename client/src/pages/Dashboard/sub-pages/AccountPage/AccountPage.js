@@ -1,8 +1,8 @@
+import GradientWrapper from "../../../../TopLevelComponents/GradientWrapper"
 import PasswordForm from "./components/PasswordForm/PasswordForm"
-import { withTheme, makeStyles } from '@material-ui/core/'
 import DeletePopup from './components/DeleteAccount/DeletePopup'
-import { gradientWrapper } from "../../../../modules/styles"
 import DeleteText from './components/DeleteAccount/DeleteText'
+import { withTheme, makeStyles } from '@material-ui/core/'
 import EmailForm from "./components/EmailForm/EmailForm"
 import { withSnackbar, useSnackbar  } from 'notistack'
 import useStyles from "./styles/useStyles"
@@ -41,19 +41,14 @@ const AccountPage = (props) => {
     
     /* ------------------------ STYLES ------------------------ */
 
-    const classes = useStyles()
+    const gradientOverrides = {
+        padding: "7px",
+        maxWidth: "600px",
+        minWidth: "415",
+        margin: "30px auto"
+    }
 
-    const useGradientClass = makeStyles({
-        gradientWrapper: {
-            ...gradientWrapper,
-            padding: "7px",
-            maxWidth: "600px",
-            margin: "30px auto"
-        }
-    })
-
-    const gradientClass = useGradientClass()
-
+    const classes = useStyles(props.theme)
 
     /* ------------------------ FUNCTIONS ------------------------ */
 
@@ -79,7 +74,7 @@ const AccountPage = (props) => {
         updateSnackbar,
     }
     
-    const fromProps = {
+    const formProps = {
         formFont,
         updateField,
         ...snackbars,
@@ -88,19 +83,21 @@ const AccountPage = (props) => {
 
 
     return (
-            <div>
-                <div className={gradientClass.gradientWrapper}>
+            <GradientWrapper 
+                theme={props.theme}
+                overrides={gradientOverrides}
+            >
                     <div 
                         className="account-page" 
                         className={classes.paper}
                     >
                         <PasswordForm 
                             {...props}
-                            fromAccountPage={{...fromProps}}
+                            fromAccountPage={{...formProps}}
                         />
                         <EmailForm 
                             {...props}
-                            fromAccountPage={{...fromProps}}
+                            fromAccountPage={{...formProps}}
                         />
                         <DeleteText
                             formFont={formFont}
@@ -114,8 +111,8 @@ const AccountPage = (props) => {
                             />
                         )}
                     </div>
-                </div>
-            </div>
+
+            </GradientWrapper>
     )
 }
 
