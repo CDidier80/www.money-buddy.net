@@ -1,4 +1,4 @@
-import { Button, makeStyles, withTheme } from '@material-ui/core/'
+import { Button, makeStyles } from '@material-ui/core/'
 import { latoTextStyle } from '../modules/themeAndStyles'
 
 import React from 'react'
@@ -8,9 +8,7 @@ const ThemedButton = (props) => {
     const { theme, children, onClick } = props
 
     const useStyles = makeStyles(theme => {
-
         const { primary } = theme.palette
-        
         const buttonStyles = {
             button: {
                 width: "100%",
@@ -22,9 +20,6 @@ const ThemedButton = (props) => {
                 padding: "8px 8px 8px 8px",
                 background: theme.gradients.gradient1,
                 boxShadow: theme.boxShadows.buttonShadow,
-                "&:hover": {
-                    boxShadow: `${primary.transparent["6"]} 0px 10px 17px -5px`
-                }
             }
         }
         return buttonStyles
@@ -34,11 +29,11 @@ const ThemedButton = (props) => {
 
     return (
         <Button
+            onClick={onClick}
             className={classes.button}
             style={props.overrides && props.overrides}
-            onClick={onClick}
         >
-            {children}
+            { children }
         </Button>
     )
 }
