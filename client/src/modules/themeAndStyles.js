@@ -112,6 +112,10 @@ export const moneyBuddyTheme = createMuiTheme({
             main: secondaryDark,
             transparent: makeTransparentVariants(secondaryDark)
         },
+        secondaryWrapper : {
+            main: secondaryWrapper,
+            transparent: makeTransparentVariants(secondaryWrapper)
+        },
 
         // Used by `getContrastText()` to maximize the contrast between
         // the background and the text.
@@ -136,6 +140,33 @@ export const moneyBuddyTheme = createMuiTheme({
 
 
     overrides: {
+
+        MuiAccordion: {
+            root: {
+                '&:first-child': {
+                    '&:before': {
+                    display: 'none'
+                    }
+                },
+                '&$expanded': {
+                    margin: '16px 0',
+                    '&:first-child': {
+                    marginTop: "1px"
+                    },
+                    '&:last-child': {
+                    marginBottom: 0
+                    },
+                    '&:before': {
+                    opacity: 0
+                    }
+                },
+                '&$expanded + &': {
+                    '&:before': {
+                    display: 'none'
+                    }
+                },
+            },
+        },
 
         MuiInput: {
             backgroundColor: "rgba(0,0,0,0)",
