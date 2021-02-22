@@ -1,4 +1,4 @@
-import { useDashboardStyles } from "../../../Dashboard/styles/styles"
+import { useDashboardStyles } from "../../../Dashboard/sub-pages/styles/styles"
 import DumbSidebar from "./DumbSidebar"
 import DumbNavbar from "./DumbNavbar"
 import React from 'react'
