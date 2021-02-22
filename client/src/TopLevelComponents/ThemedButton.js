@@ -35,6 +35,7 @@ const ThemedButton = (props) => {
     return (
         <Button
             className={classes.button}
+            style={props.overrides && props.overrides}
             onClick={onClick}
         >
             {children}
