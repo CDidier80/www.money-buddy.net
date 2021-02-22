@@ -22,7 +22,7 @@ const AddDelButtonGroup = (props) => {
     let fontSize = "9px"
 
     if (props.fromIncomeAccordion.smallerButtons) {
-        padding = { padding: "8px 16px 8px 16px" }
+        // padding = { padding: "8px 16px 8px 16px" }
         fontSize = "8px"
     }
 

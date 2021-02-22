@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/'
  */
 
 const { lato, palette } = moneyBuddyTheme
-const { primary: p, secondary: s} = palette
+const { primaryDark: pd, secondary: s} = palette
 
 /**
  * =======================================
@@ -55,14 +55,14 @@ const { primary: p, secondary: s} = palette
  */
 
 export const usePrimaryStyles = makeStyles({
-    ...makeDeleteButtons(s.main, p.main,),
-    ...makeButtonGroup(p.main),
-    ...makeAddButton(p.main)
+    ...makeDeleteButtons(s.main, pd.main,),
+    ...makeButtonGroup(pd.main),
+    ...makeAddButton(pd.main)
 })
 
 
 export const useSecondaryStyles = makeStyles({
-    ...makeDeleteButtons(s.main, p.main),
+    ...makeDeleteButtons(s.main, pd.main),
     ...makeButtonGroup(s.main),
     ...makeAddButton(s.main)
 })
