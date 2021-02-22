@@ -13,7 +13,7 @@ const MonthlyButton = (props) => {
         }
     }
 
-    const classes = useStyles()
+    const classes = useStyles(props.theme)
     const monthlyButtonStyle = monthly ? classes.activeButton : classes.inactiveButton
 
     const divider = {borderRight: "1px solid #22c1c3"}
