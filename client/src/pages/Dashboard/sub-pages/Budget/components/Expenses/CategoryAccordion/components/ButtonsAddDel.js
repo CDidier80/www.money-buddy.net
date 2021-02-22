@@ -33,25 +33,40 @@ const ButtonsAddDel = (props) => {
 
     /* --------------- FUNCTIONS ---------------*/
 
-    const useStyles = makeStyles({
-        button: {
+
+
+    const useStyles = makeStyles( theme => {
+
+        const { primary, secondaryDark } = theme.palette
+
+        const buttonConstants = {
+            ...theme.lato,
             fontSize: "9px",
-            color: "#d29000",
             fontWeight: "700",
             padding: "0 5px 0 5px",
-            fontFamily: "Lato, sans-serif",
-        },
-        deleteButton: {
-            fontSize: "9px",
-            fontWeight: "700",
-            padding: "0 5px 0 5px",
-            fontFamily: "Lato, sans-serif",
-            color: showExpenseDeleteIcons ? "#22c1c3" : "#d29000",
-        },
+
+        }
+
+        return ({
+            button: {
+                ...buttonConstants,
+                color: secondaryDark.main,
+            },
+            deleteButtonIconsDisplay: {
+                ...buttonConstants,
+                color: primary.main 
+            },
+            deleteButtonNoIcons: {
+                ...buttonConstants,
+                color: secondaryDark.main
+            }
+        })
     })
 
+    const classes = useStyles(props.theme)
 
-    const classes = useStyles()
+    const { deleteButtonIconsDisplay: dbid, deleteButtonNoIcons: dbni} = classes
+    const currentClass = showExpenseDeleteIcons ? dbid : dbni
 
 
     const addExpense = (e) => {
@@ -88,7 +103,7 @@ const ButtonsAddDel = (props) => {
                     Add Expense
                 </Button>
                 <Button 
-                    className={classes.deleteButton}
+                    className={currentClass}
                     onClick={(e) => handleExpenseDeleteIcons(e)}
                 >
                     {showExpenseDeleteIcons ? "Cancel Delete" : "Delete Expense"}

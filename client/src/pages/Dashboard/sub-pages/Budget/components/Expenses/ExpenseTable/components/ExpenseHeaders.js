@@ -6,18 +6,22 @@ import {
 } from '@material-ui/core';
 
 
-const useStyles = makeStyles({
+const useStyles = makeStyles( ({palette: p}) => {
 
-    columnHeader: {
-        color: "#d29000",
-        fontWeight: "bold"
-    },
-    emptyCell: {
-        maxWidth: "36px",
-        minWidth: "36px", 
-        padding: "0px"
+    return ({
+        columnHeader: {
+            color: p.secondaryDark.main,
+            fontWeight: "bold"
+        },
+        emptyCell: {
+            maxWidth: "36px",
+            minWidth: "36px", 
+            padding: "0px"
+        }
+        })
     }
-})
+)
+
 
 const ExpenseHeaders = (props) => {
 

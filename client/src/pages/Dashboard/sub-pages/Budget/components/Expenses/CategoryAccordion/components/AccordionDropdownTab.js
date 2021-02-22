@@ -17,24 +17,29 @@ const AccordionDropdownTab = (props) => {
     } = props.fromExpenseAccordion
 
 
-    const useStyles = makeStyles({
+    const useStyles = makeStyles(theme => {
 
-        flexWrapper: {
-            display: "flex",
-            justifyContent: "flex-start",
-            alignItems: "center"
-        },
-        category: {
-            color: "#d29000",
-            fontWeight: "500",
-            fontFamily: "Lato, sans-serif",
-        },
-        expandMoreIcon : {
-            color:"#d29000",
-        }
+
+        const { secondary, secondaryDark } = theme.palette
+        
+        return ({
+            flexWrapper: {
+                justifyContent: "flex-start",
+                alignItems: "center",
+                display: "flex",
+            },
+            category: {
+                color: secondaryDark.main,
+                fontWeight: "500",
+                ...theme.lato
+            },
+            expandMoreIcon : {
+                color: secondaryDark.main,
+            }
+        })
     })
 
-    const classes = useStyles()
+    const classes = useStyles(props.theme)
 
 
 
