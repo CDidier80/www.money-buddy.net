@@ -8,13 +8,13 @@ const formFont = {
 
 const useStyles = makeStyles((theme) => ({
 root: {
-    height: '70%',
     maxHeight: "830px",
-    width: '50%',
     minWidth: "300px",
     maxWidth: "410px",
-    margin: "0 auto",
     paddingTop: "10vh",
+    margin: "0 auto",
+    height: '70%',
+    width: '50%',
     ...formFont,
 },
 header: {
@@ -24,14 +24,14 @@ header: {
     ...formFont
 },
 paper: {
+    backgroundColor: "rgba(255,255,255,1)",
+    flexDirection: 'column',
+    alignItems: 'center',
     minWidth: "352px",
     maxWidth: "600px",
     display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    backgroundColor: "rgba(255,255,255,1)",
-    padding: "30px",
     borderRadius: "7px",
+    padding: "30px",
     boxShadow: `
         0px 3px 1px -2px rgba(0,0,0,0.2), 
         0px 2px 2px 0px  rgba(0,0,0,0.14), 
