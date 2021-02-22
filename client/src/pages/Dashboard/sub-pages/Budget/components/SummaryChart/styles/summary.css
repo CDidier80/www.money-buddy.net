@@ -36,6 +36,7 @@
     font-size: 12px; 
     letter-spacing: 1px;
     font-weight: bold;
+    color: white;
 }
 
 .summary-text.loss{
@@ -47,6 +48,7 @@
     letter-spacing: 1px;
     font-weight: 700;
     font-family: Roboto;
+    color: white;
 }
 
 @media (max-width: 887px) {
