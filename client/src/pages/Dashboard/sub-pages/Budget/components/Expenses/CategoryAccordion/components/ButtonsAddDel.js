@@ -1,22 +1,22 @@
-import React from 'react'
 import { 
     Button,
+    makeStyles,
     ButtonGroup,
     AccordionDetails,
-    makeStyles
 } from '@material-ui/core'
+import React from 'react'
 
 
 
 const ButtonsAddDel = (props) => {
 
-    {/*  PROPS */}
+    /* --------------- PROPS ---------------*/
 
     const {
+        newCategories, 
         toggleChanges,
         userMadeChanges,
         setNewCategories,
-        newCategories, 
     } = props.fromBudget
 
     const { 
@@ -26,27 +26,27 @@ const ButtonsAddDel = (props) => {
     const {
         lengthOfExpenses,
         setExpensesLength,
+        showExpenseDeleteIcons,
         toggleExpenseDeleteIcons,
-        showExpenseDeleteIcons
     } = props.fromCategoryAccordion
 
 
-    {/* FUNCTIONS */}
+    /* --------------- FUNCTIONS ---------------*/
 
     const useStyles = makeStyles({
         button: {
             fontSize: "9px",
-            fontWeight: "700",
-            fontFamily: "Lato, sans-serif",
             color: "#d29000",
-            padding: "0 5px 0 5px"
+            fontWeight: "700",
+            padding: "0 5px 0 5px",
+            fontFamily: "Lato, sans-serif",
         },
         deleteButton: {
             fontSize: "9px",
             fontWeight: "700",
+            padding: "0 5px 0 5px",
             fontFamily: "Lato, sans-serif",
             color: showExpenseDeleteIcons ? "#22c1c3" : "#d29000",
-            padding: "0 5px 0 5px"
         },
     })
 
