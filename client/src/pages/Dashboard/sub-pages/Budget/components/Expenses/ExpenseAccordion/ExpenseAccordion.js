@@ -4,11 +4,11 @@ import {
     useMediaQuery
 } from '@material-ui/core'
 import { staticStyles } from "./styles/staticStyles"
-import CategoryPopup from "../CategoryPopups/CategoryPopup"
 import ButtonsAddDelete from './componenets/ButtonsAddDelete'
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import AccordionDropdownTab from "./componenets/AccordionDropdownTab"
 import CategoryAccordion from "../CategoryAccordion/CategoryAccordion"
+import CategoryPopup from "../CategoryPopups/AddCategoryPopup/CategoryPopup"
 import GradientWrapper from "../../../../../../../TopLevelComponents/GradientWrapper"
 
 
