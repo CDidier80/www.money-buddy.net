@@ -23,7 +23,7 @@ const EmailForm = (props) => {
 
     return (
         <>
-            <EmailHeader />
+            <EmailHeader theme={props.theme}/>
             <form 
                 className={classes.form} 
                 noValidate
