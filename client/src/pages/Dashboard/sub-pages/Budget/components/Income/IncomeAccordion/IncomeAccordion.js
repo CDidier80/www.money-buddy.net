@@ -45,7 +45,6 @@ const IncomeAccordion = (props) => {
         setExpanded(!expanded)
     }
 
-
     /* -------------------------- STYLES ------------------------- */
 
     const useStyles = makeStyles(theme => {
