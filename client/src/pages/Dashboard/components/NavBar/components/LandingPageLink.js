@@ -17,7 +17,8 @@ const LandingPageLink = (props) => {
             },
             money: {
                 color: main,
-                fontSize: "24px",
+                fontSize: "26px",
+                marginRight: "2px"
             }
         }
 
