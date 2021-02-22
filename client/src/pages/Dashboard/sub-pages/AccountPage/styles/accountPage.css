@@ -8,12 +8,7 @@
 }
 
 
-.submitButton.account-page {
-    width: 20%;
-}
-
-
-.customBackdrop {
+.custom-backdrop {
     background-color: rgba(60, 54, 54, 0.75);
     position: absolute;
     top: 0;
@@ -52,31 +47,6 @@
     margin-top: 30px;
 }
 
-.submitButton.delete-account-button { 
-    font-size: 12px;
-    font-weight: bold;
-    color: #e41919;
-    background: #000000;
-    width: 30%;
-    
-}
-
-.submitButton.delete-account-button:hover{ 
-    font-size: 12px;
-    font-weight: bold;
-    color: #e41919;
-    background: #fff3dc;
-    width: 30%;
-}
-
-.submitButton.return {
-    width: 30%;
-    font-size: 12px;
-    font-weight: bold;
-    font-family: Lato, sans-serif;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
-}
 
 .signInLink {
     padding-right: 8px;
