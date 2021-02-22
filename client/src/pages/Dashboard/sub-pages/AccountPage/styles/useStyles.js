@@ -18,7 +18,7 @@ root: {
     ...formFont,
 },
 header: {
-    color: "black",
+    color: theme.palette.primaryDark.main,
     backgroundColor: "white",
     fontSize: "18px",
     ...formFont
