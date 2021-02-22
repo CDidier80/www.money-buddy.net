@@ -7,8 +7,8 @@ import { ReadEntireCashflow }         from "../../Services/CashflowService"
 import { ReadEntireBudget }           from "../../Services/BudgetService"
 import SideBar                        from "./components/Sidebar/SideBar"
 import NavBar                         from "./components/NavBar/NavBar"
+import { useDashboardStyles }         from "./sub-pages/styles/styles"
 import { withTheme }                  from '@material-ui/core'
-import { useDashboardStyles }         from "./styles/styles"
 import { 
     Route, 
     Switch, 
@@ -21,8 +21,8 @@ import React, {
 } from 'react'
 
 import "./components/NavBar/styles/navbar.css"
-import "./styles/dashboard.css"
-import "./styles/subpage.css"
+import "./sub-pages/styles/subpage.css"
+import "./dashboard.css"
 
 
 const Dashboard = (props) => {
