@@ -7,6 +7,7 @@ import React, { useState, useLayoutEffect } from 'react';
 import GradientWrapper from "../../../../../../../TopLevelComponents/GradientWrapper"
 import AddDelButtonGroup from "./components/buttons/AddDelButtonGroup"
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
+import AddDeleteButtons from "./components/buttons/AddDeleteButtons"
 import IncomeTable from "../IncomeTable/IncomeTable"
 
 
@@ -14,7 +15,6 @@ const IncomeAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
     
-    const { gradientWrapper } = props.fromApp
     const { newIncomes } = props.fromBudget
 
     /* -------------------- init MEDIA QUERY -------------------- */
@@ -104,7 +104,11 @@ const IncomeAccordion = (props) => {
                 <AccordionDropdownTab 
                     expanded={expanded}
                 />
-                <AddDelButtonGroup 
+                {/* <AddDelButtonGroup 
+                    {...props}
+                    fromIncomeAccordion={{...addDelButtonGroupProps}}
+                /> */}
+                <AddDeleteButtons
                     {...props}
                     fromIncomeAccordion={{...addDelButtonGroupProps}}
                 />
