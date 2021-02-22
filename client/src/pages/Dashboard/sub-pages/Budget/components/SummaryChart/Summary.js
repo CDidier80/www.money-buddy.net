@@ -2,7 +2,7 @@ import ButtonGroupToggler from "./components/ButtonGroupToggler/ButtonGroupToggl
 import GradientWrapper from "../../../../../../TopLevelComponents/GradientWrapper"
 import SummaryTable from "./components/SummaryTable/SummaryTable"
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import "./styles/summary.css"
 
 
