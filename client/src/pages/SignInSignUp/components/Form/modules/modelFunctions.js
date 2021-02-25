@@ -64,9 +64,6 @@ const initCategoriesAndExpenses = async (budgetId, defaultCategories) => {
 }
 
 
-
-
-
 const initializeAccount = async (email, password) => {
     const [user, userId, status] = await initUserAccount(email, password)
     const budgetId = await initBudget(userId)
