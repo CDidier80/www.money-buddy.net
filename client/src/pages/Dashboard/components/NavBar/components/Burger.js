@@ -15,18 +15,13 @@ const Burger = (props) => {
         setUserPreference,
     } = props.fromDashboard
 
-
     /* ------------- click handler ----------- */
 
     const handleBurger = (e) => {
         e.preventDefault()
         switch (userPreference) {
             case "open":   
-                // if (window.innerWidth <= 600) {
-                //     setUserPreference("open")
-                // } else {
-                    setUserPreference("closed")
-                // }
+                setUserPreference("closed")
                 break
             case "closed":
                 setUserPreference("open")
