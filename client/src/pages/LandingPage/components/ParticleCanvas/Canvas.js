@@ -18,8 +18,8 @@ const Canvas = (props) => {
     useEffect(() => {
             const particleCanvas = canvasRef.current
             const context = particleCanvas.getContext('2d')
-            setXBasePosition(particleCanvas.width / 2)
             setYBasePosition(particleCanvas.height / 2)
+            setXBasePosition(particleCanvas.width / 2)
             const particleClassArgs = {
                 setParticleIndex,
                 setParticleGroup,
@@ -35,7 +35,6 @@ const Canvas = (props) => {
             }
 
             context.fillStyle = 'rgba(0,0,0,.4)'
-            // console.log(particleCanvas)
             console.log(typeof animateParticles)
             requestAnimationFrame(animateParticles)
             return () => cancelAnimationFrame(animateParticles)
@@ -44,10 +43,10 @@ const Canvas = (props) => {
 
     const animateParticles = (huh) => {
         const {
-            context,
-            particleGroup, 
-            particleCanvas, 
             particleDensity,
+            particleCanvas, 
+            particleGroup, 
+            context,
         } = huh
 
         context.clearRect(0, 0, particleCanvas.width, particleCanvas.height)
@@ -58,11 +57,8 @@ const Canvas = (props) => {
         for (let i in particleGroup) {
             particleGroup[i].draw();
         }
-
         requestAnimationFrame(animateParticles)
     }
-
-
 
 
     const canvasStyle = {
@@ -72,9 +68,6 @@ const Canvas = (props) => {
         height: "30vh", 
         width: "100vw",
     }
-
-
-
 
     return (
             
