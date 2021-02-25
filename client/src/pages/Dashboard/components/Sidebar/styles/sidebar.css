@@ -22,17 +22,3 @@
     overflow: hidden;
     width: 100px;
 }
-
-
-/* @media (max-width: 600px) {
-    .sidebar{
-        width: 49px;
-        min-width: 49px;
-    }
-}
-
-@media (max-width: 505px) {
-    .sidebar.narrowed{
-        max-width: 49px;
-    }
-} */
