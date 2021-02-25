@@ -18,8 +18,6 @@ export const makeHeaderStyles = makeStyles(theme => {
         header: {
             color: theme.palette.primaryDark.main
         }
-
     }
-
     return headerStyles
 })
