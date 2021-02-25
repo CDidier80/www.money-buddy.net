@@ -16,12 +16,9 @@ const Form = (props) => {
     const [isSigningUp, toggleSigningUp] = useState(true)
 
     useEffect(() => {
-        if (typeof props.location.state == "undefined") {
-            return
-        } else {
+        if (typeof props.location.state == "undefined") return
             const { signingUp } = props.location.state
             toggleSigningUp(signingUp ? true : false)
-        }
     }, [])
 
 
@@ -36,9 +33,9 @@ const Form = (props) => {
             maxHeight: "830px",
             minWidth: "300px",
             maxWidth: "410px",
+            ...latoTextStyle,
             height: '70%',
             width: '50%',
-            ...latoTextStyle,
         },
         paperRoot: {
             maxHeight: medQuery("600px", null),
@@ -51,7 +48,6 @@ const Form = (props) => {
             }
         },
         ...staticStyles,
-
     })
 
     const classes = useStyles()
@@ -73,7 +69,7 @@ const Form = (props) => {
         classes,
     }
 
-    return  <FormBody {...propsFormBody} forSubmit={{...forSubmit}}/> 
+    return  <FormBody {...propsFormBody} forSubmit={{...forSubmit}} /> 
 }
 
 export default withTheme(Form)
