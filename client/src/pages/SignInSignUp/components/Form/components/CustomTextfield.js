@@ -3,7 +3,7 @@ import React from 'react'
 
 const CustomTextfield = (props) => {
 
-    const {role, onChange} = props
+    const { role, onChange } = props
 
     return (
         <TextField 

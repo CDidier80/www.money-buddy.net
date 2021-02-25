@@ -1,14 +1,12 @@
-import React, { useEffect, useState, memo } from 'react';
-import { Line } from 'react-chartjs-2'
-import "./styles/chart.css"
 import {
-    universalProperties,
-    configureAxes,
-    tooltips,
     labels,
+    tooltips,
+    configureAxes,
+    universalProperties,
 } from "./chartData"
-
-
+import "./styles/chart.css"
+import { Line } from 'react-chartjs-2'
+import React, { useEffect, useState, memo } from 'react';
 
 const Chart = memo((props) => {
 
@@ -28,7 +26,6 @@ const Chart = memo((props) => {
     const [cashDataset, setCashDataset] = useState("")
     const [inflowDataset, setInflowDataset] = useState("")
     const [outflowDataset, setOutflowDataset] = useState("")
-
 
     /* ------------------------ useEffects ----------------------- */
 
@@ -51,7 +48,6 @@ const Chart = memo((props) => {
         cashDataset
     ])
 
-
 /* ----------------------- PROPS FOR CHART ---------------------- */
 
 const chartData = {
@@ -64,7 +60,6 @@ const chartData = {
             data: inflowDataset,
             ...universalProperties,
             borderColor: '#005f61',
-
         },
         {
             fill: false,
@@ -72,7 +67,6 @@ const chartData = {
             data: outflowDataset,
             ...universalProperties,
             borderColor: 'rgb(192,87,75)',
-
         },
         {
             fill: true,
@@ -81,14 +75,11 @@ const chartData = {
             label: 'Cash Available',
             borderColor: 'rgba(40,211,236,.6)',
         }
-
 ]}
-
 const options = {
     tooltips: tooltips,
     scales: configureAxes(toCurrency)
 }
-
 /* ----------------------- JSX ----------------------- */
 
     return ( !loaded ? <div></div> :

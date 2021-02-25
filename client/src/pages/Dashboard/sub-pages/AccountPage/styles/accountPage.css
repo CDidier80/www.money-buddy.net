@@ -1,81 +1,49 @@
 .dashboard {
-    width: 100%;
-    min-height: 100vh;
     background-image: linear-gradient(0deg, #22c1c3, #fdbb2d);
-    font-family: Lato, sans-serif;
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
+    font-family: Lato, sans-serif;
+    min-height: 100vh;
+    width: 100%;
 }
 
-
-.submitButton.account-page {
-    width: 20%;
-}
-
-
-.customBackdrop {
-    background-color: rgba(60, 54, 54, 0.75);
-    position: absolute;
+.custom-backdrop {
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
+    bottom: 0;
+    z-index: 1000;
     min-width: 100vw;
     min-height: 100vh;
+    position: absolute;
     font-family: Lato, sans-serif;
-    z-index: 1000;
+    background-color: rgba(60, 54, 54, 0.75);
 }
 
 .popup {
-    position: absolute;
-    top: 20vh;
-    width: 30vw;
-    min-width: 500px;
     background-color: rgb(255, 255, 255);
-    padding: 20px;
-    z-index: 200;
-    left: 50%;
     transform: translate(-50%, 0);
     border-radius: 12px;
+    position: absolute;
     text-align: center;
+    min-width: 500px;
+    padding: 20px;
+    z-index: 200;
+    width: 30vw;
+    top: 20vh;
+    left: 50%;
 }
 
 .warning {
+    font-weight: bold;
     margin-top: 15px;
     font-size: 20px;
-    font-weight: bold;
 }
 
 .button-container {
-    display: flex;
     justify-content: space-evenly;
     margin-top: 30px;
-}
-
-.submitButton.delete-account-button { 
-    font-size: 12px;
-    font-weight: bold;
-    color: #e41919;
-    background: #000000;
-    width: 30%;
-    
-}
-
-.submitButton.delete-account-button:hover{ 
-    font-size: 12px;
-    font-weight: bold;
-    color: #e41919;
-    background: #fff3dc;
-    width: 30%;
-}
-
-.submitButton.return {
-    width: 30%;
-    font-size: 12px;
-    font-weight: bold;
-    font-family: Lato, sans-serif;
-    text-rendering: optimizeLegibility !important;
-    -webkit-font-smoothing: antialiased !important;
+    display: flex;
 }
 
 .signInLink {

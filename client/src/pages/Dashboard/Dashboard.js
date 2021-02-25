@@ -7,11 +7,22 @@ import { ReadEntireCashflow }         from "../../Services/CashflowService"
 import { ReadEntireBudget }           from "../../Services/BudgetService"
 import SideBar                        from "./components/Sidebar/SideBar"
 import NavBar                         from "./components/NavBar/NavBar"
-import { Switch, Route, withRouter }  from 'react-router-dom'
-import React, { useEffect, useState, createRef, } from 'react'
+import { useDashboardStyles }         from "./sub-pages/styles/styles"
+import { withTheme }                  from '@material-ui/core'
+import { 
+    Route, 
+    Switch, 
+    withRouter 
+}  from 'react-router-dom'
+import React, { 
+    useEffect, 
+    createRef, 
+    useState, 
+} from 'react'
+
 import "./components/NavBar/styles/navbar.css"
-import "./styles/dashboard.css"
-import "./styles/subpage.css"
+import "./sub-pages/styles/subpage.css"
+import "./dashboard.css"
 
 
 const Dashboard = (props) => {
@@ -20,10 +31,7 @@ const Dashboard = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { 
-        userInfo, 
-        gradientWrapper, 
-    } = props.fromApp
+    const { userInfo, gradientWrapper, } = props.fromApp
     const { id: userId } = userInfo
 
 
@@ -149,11 +157,12 @@ const Dashboard = (props) => {
     }
 
     const subpageRef = createRef()
+    const classes = useDashboardStyles(props.theme)
 
 
     return( !loaded ? <LoadingScreen /> :
 
-        <div className="dashboard">
+        <div className={classes.dashboard}>
             <NavBar 
                 {...props}
                 fromDashboard={{...propsNavbar}}
@@ -165,8 +174,8 @@ const Dashboard = (props) => {
                 /> 
                 <div 
                     ref={subpageRef} 
-                    style={{backgroundColor: "white"}}
                     className={subpageClasses}
+                    style={{backgroundColor: "white"}}
                 > 
                     <Switch> 
                         <BudgetRoute 
@@ -177,17 +186,11 @@ const Dashboard = (props) => {
                             {...props}
                         />
                         <CashflowDevRoute 
-                            // path="/dashboard/cashflow" 
                             fromDashboard={{...cashflowProps}}
                             path="/dashboard/cashflow" 
                             ticker={ticker}
                             {...props}
                         />
-                        {/* <MarketsRoute 
-                            path="/dashboard/markets" 
-                            ticker={ticker}
-                            {...props}
-                        /> */}
                         <RetirementRoute 
                             path="/dashboard/retirement" 
                             ticker={ticker}
@@ -211,4 +214,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default withRouter(Dashboard)
+export default withRouter(withTheme(Dashboard))

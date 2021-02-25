@@ -1,4 +1,5 @@
 import React from 'react'
+import ThemedButton from '../../../../../TopLevelComponents/ThemedButton'
 const { signup, signin } = require("../modules/formFunctions") 
 
 const SubmitButton = (props) => {
@@ -42,16 +43,15 @@ const SubmitButton = (props) => {
         await signin(args)
     }
     
-    const correctPrompt = isSigningUp ? "CONFIRM AND SIGN UP": "SIGN IN"
+    const correctPrompt = isSigningUp ? "Confirm and Sign Up": "Sign In"
     const correctSubmitFunction = isSigningUp ? signUp : signIn
     
     return (
-        <button 
-            className="submitButton"
+        <ThemedButton 
             onClick={(e)=>correctSubmitFunction(e)}
         >
             {correctPrompt}
-        </button>
+        </ThemedButton>
     )
 }
 

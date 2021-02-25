@@ -3,33 +3,30 @@ import {
     createMuiTheme,
 } from '@material-ui/core/styles'
 import Slider from '@material-ui/core/Slider'
-import { themeData } from "../styles/cleanSliderTheme"
 import React, { useRef, useLayoutEffect, useState } from 'react'
 import { makeDeepClone } from "../../../../../../../modules/clientFunctions"
+import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
 
 
 const ThemedSlider = (props) => {
 
-    const { ariaLabel, hookValue, makeLabel, setHook, marks, 
-        step, min, max, } = props.fromSliderParent
-
+    const { ariaLabel, hookValue, makeLabel, setHook, marks, step, min, max, } = props.fromSliderParent
     const labelLength = useRef(String(hookValue).length)
     labelLength.current = String(hookValue).length
 
-    const [theme, setNewTheme] = useState(createMuiTheme(makeDeepClone(themeData)))
+    const [theme, setNewTheme] = useState(createMuiTheme(makeDeepClone(moneyBuddyTheme)))
 
     useLayoutEffect(() => {
-        let fontSize = theme.overrides.MuiSlider.valueLabel.fontSize
+        let fontSize = moneyBuddyTheme.overrides.MuiSlider.valueLabel.fontSize
         const fontTooLargeForTooltip = fontSize === "11px" && labelLength >= 3
         const fontTooSmallForTooltip = fontSize === "10px" && labelLength  < 3
         const fontMustChange = (fontTooLargeForTooltip || fontTooSmallForTooltip)
         if (fontMustChange){
-            const freshlyClonedData = makeDeepClone(themeData)
+            const freshlyClonedData = makeDeepClone(moneyBuddyTheme)
             const newTheme = createMuiTheme(freshlyClonedData)
             setNewTheme(newTheme)
         }
     }, [labelLength])
-
 
     return (
         <ThemeProvider theme={theme} >

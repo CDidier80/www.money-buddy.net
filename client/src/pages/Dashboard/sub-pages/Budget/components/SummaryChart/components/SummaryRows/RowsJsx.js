@@ -11,9 +11,7 @@ const RowsJsx = props => {
                     key={`${index}SummaryCells`}
                     className={rowColors[index]}
                 >
-                    <SummaryCellPair 
-                        {...cellPairProps}
-                    />
+                    <SummaryCellPair {...cellPairProps} />
                 </TableRow>
             ))}
         </>

@@ -1,65 +1,53 @@
-import React, { useState, useEffect } from 'react';
-import OutflowHeaders from "./components/OutflowHeaders"
-import OutflowRow from "../OutflowRow/OutflowRow"
-import { offRowColor } from "../../../../../universal-functions/styleFunctions"
 import { 
     Paper, 
     Table, 
     TableBody, 
+    makeStyles,
     TableContainer, 
     AccordionDetails,
-    makeStyles
 } from '@material-ui/core'
-
+import React, { useState } from 'react'
+import OutflowRow from "../OutflowRow/OutflowRow"
+import OutflowHeaders from "./components/OutflowHeaders"
+import { offRowColor } from "../../../../../universal-functions/styleFunctions"
 
 
 const OutflowTable = (props) => {
 
-    {/*  PROPS */}
+    /*  PROPS */
 
     const { flowcategory } = props.fromOutflowsAccordion
     const { outflows } = flowcategory
 
-
-     {/*  STATE */}
+     /*  STATE */
 
     const [incomingDeletion, setIncomingDeletion] = useState(false)
 
 
-    {/*  FUNCTIONS */}
+    /*  FUNCTIONS */
 
     const useStyles = makeStyles({
-        tableBody: {
-            overflow: "hidden"
-        },
+        tableBody: { overflow: "hidden" },
         tableContainer: {
-            margin: "auto",
+            boxShadow: "1px -1px 1px rgb(0, 0, 0, 0.1)",
             padding: '4px',
-            boxShadow: "1px -1px 1px rgb(0, 0, 0, 0.1)"
+            margin: "auto",
         },
-        table: {
-            
-        }
     })
 
     const classes = useStyles()
 
-
     return (
         <AccordionDetails
-        className={classes.tableContainer}
+            className={classes.tableContainer}
         >
-            <TableContainer 
-                component={Paper}
-            >
+            <TableContainer component={Paper}>
                 <Table 
                     className={classes.table} 
-                    size="small" 
                     aria-label="a dense table"
+                    size="small" 
                 >
-                    <TableBody
-                        // className={classes.tableBody}
-                    >
+                    <TableBody >
                         <OutflowHeaders 
                             {...props}
                         />
@@ -67,17 +55,17 @@ const OutflowTable = (props) => {
                             const { outflow, amount } = outflowObj
                             const rowColor = offRowColor(index)                            
                             const propsForRows = {
-                                outflow,
-                                amount, 
+                                setIncomingDeletion,
                                 outflowIndex: index,
                                 incomingDeletion, 
-                                setIncomingDeletion,
+                                outflow,
+                                amount, 
                                 rowColor
                             }
                             return (
                                 <OutflowRow 
-                                    key={`${index * -1}`} 
                                     {...props}
+                                    key={`${index * -1}`} 
                                     fromOutflowsTable={{...propsForRows}}
                                 /> 
                             )

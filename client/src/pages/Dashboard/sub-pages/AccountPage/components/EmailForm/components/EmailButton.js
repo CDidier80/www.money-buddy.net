@@ -1,8 +1,10 @@
+import ThemedButton from "../../../../../../../TopLevelComponents/ThemedButton"
 import { UpdateEmail } from "../../../../../../../Services/UserService"
 import React from 'react'
 
 const EmailButton = (props) => {
 
+    const overrides = {width: "20%", marginTop: "20px" }
     const {id: user_id, newEmail} = props
 
     const {
@@ -10,8 +12,6 @@ const EmailButton = (props) => {
         updateSnackbar,
     } = props.fromAccountPage
 
-
-    
     const submitNewEmail = async (e) => {
         e.preventDefault()
         if (newEmail === "") {
@@ -19,24 +19,19 @@ const EmailButton = (props) => {
             return
         }
         try {
-            const response = await UpdateEmail({userId: user_id, email: newEmail})
-            console.log("submit new email response: ", response)
-            if (response.status === 200) {
-                updateSnackbar('Email Address')
-            }
-        } catch (error) {
-            console.log(error)
-            errorSnackbar('Email Address')
-        }
+            const {status} = await UpdateEmail({userId: user_id, email: newEmail})
+            if (status === 200) updateSnackbar('Email Address')
+        } catch (error) { errorSnackbar('Email Address') }
     }
 
     return (
-        <button 
-            className="submitButton account-page"
+        <ThemedButton
             onClick={(e)=>submitNewEmail(e)}
+            overrides={overrides}
+            theme={props.theme} 
         >
             Submit
-        </button>
+        </ThemedButton>
     )
 }
 

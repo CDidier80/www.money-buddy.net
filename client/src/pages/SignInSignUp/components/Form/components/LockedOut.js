@@ -5,13 +5,8 @@ import React from 'react'
 
 const LockedOut = ({classes}) => {
 
-    const backgroundColor = { backgroundColor: "#fdbb2d" }
-
     return (
-        <Avatar 
-            className={classes.avatar}
-            style={backgroundColor}
-        >
+        <Avatar className={classes.avatar} >
             <LockOutlinedIcon />
         </Avatar>
     )

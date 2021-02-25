@@ -36,9 +36,7 @@ const findGapInNumbers = (sources) => {
         if (i+1 === sources[i]) {
             if(i === iterCount){
                 sources.push(i+2)
-            } else {
-                continue
-            }
+            } else { continue }
         } else {
             sources.splice(i, 0, i+1)
             break

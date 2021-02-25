@@ -4,7 +4,7 @@ import React from 'react'
 const Header = (props) => {
 
     const { classes, isSigningUp } = props
-    const correctHeader = isSigningUp ? "Sign Up": "Sign In" 
+    const correctHeader = isSigningUp ? "Create an Account": "Welcome Back" 
     
     return (
         <Typography 

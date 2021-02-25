@@ -1,5 +1,4 @@
 export const initTotalOutflow = (flowcategories) => {
-    // console.log("CATEGORIES RECEIVED FROM PROPS (initNameTotals()):", categories)
     let totalOutflows = 0
     flowcategories.forEach((flowcategory) => {
         const { outflows } = flowcategory

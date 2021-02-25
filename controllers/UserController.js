@@ -4,7 +4,6 @@ const jwt = require('jsonwebtoken')
 const  { User }  = require("../models")
 const { ControllerLoggers } = require('./logs')
 const secretKey = process.env.APP_SECRET
-
 const log = ControllerLoggers.UserControllerLog 
 const saltRounds = parseInt(process.env.SALT_ROUNDS)
 const errorLog = ControllerLoggers.UserControllerErrorLog
@@ -27,14 +26,12 @@ const CreateUser = async (req, res) => {
         })
         if (userExists){ 
             return res.send({ message: 'account already exists' })
-        } else {
-            // console.log("NO DUPLICATE USER ACCOUNT FOUND.")
-        }
+        } 
         let { password, email } = req.body
         password = await bcrypt.hash(password, saltRounds)
         let updatedBody = { email, password }
         let user = await User.create(updatedBody)
-        const {id} = user
+        const { id } = user
         let token = createToken(id, email)
         res.send({user, token})
     } catch (error) {

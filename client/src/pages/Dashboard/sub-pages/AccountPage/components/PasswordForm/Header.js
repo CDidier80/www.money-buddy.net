@@ -1,20 +1,20 @@
 import { Typography, makeStyles } from '@material-ui/core/'
 import React from 'react'
 
-const Header = () => {
+const Header = ({theme}) => {
 
-    const useStyles = makeStyles({
+    const useStyles = makeStyles(theme => ({
         header: {
-            color: "black",
             fontSize: "18px",
             backgroundColor: "white",
             fontFamily: "Lato,sans-serif",
+            color: theme.palette.primaryDark.main,
             WebkitFontSmoothing: "antialiased!important",
             textRendering: "optimizeLegibility!important",
         },
-    })
+    }))
 
-    const classes = useStyles()
+    const classes = useStyles(theme)
 
     return (
         <Typography 

@@ -1,23 +1,21 @@
-import React, { useState, useEffect, useLayoutEffect } from 'react'
-import CategoryPopup from "../CategoryPopups/CategoryPopup"
-import CategoryAccordion from "../CategoryAccordion/CategoryAccordion"
-import ButtonsAddDelete from './componenets/ButtonsAddDelete'
-import AccordionDropdownTab from "./componenets/AccordionDropdownTab"
-import { staticStyles } from "./styles/staticStyles"
 import { 
     makeStyles,
     Accordion,
     useMediaQuery
-} from '@material-ui/core';
-
-
+} from '@material-ui/core'
+import { staticStyles } from "./styles/staticStyles"
+import ButtonsAddDelete from './componenets/ButtonsAddDelete'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
+import AccordionDropdownTab from "./componenets/AccordionDropdownTab"
+import CategoryAccordion from "../CategoryAccordion/CategoryAccordion"
+import CategoryPopup from "../CategoryPopups/AddCategoryPopup/CategoryPopup"
+import GradientWrapper from "../../../../../../../TopLevelComponents/GradientWrapper"
 
 
 const ExpenseAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { gradientWrapper } = props.fromApp
     const { newCategories } = props.fromBudget
 
     /* ---------------------- init MEDIA QUERY--------------------- */
@@ -46,7 +44,6 @@ const ExpenseAccordion = (props) => {
         }
     }, [autoExpandHeight])
 
-    
 
     /* -------------------------- FUNCTIONS ------------------------- */
 
@@ -65,23 +62,27 @@ const ExpenseAccordion = (props) => {
     const handleExpansion = (e) => setExpanded(!expanded)
 
 
+    const useStyles = makeStyles(theme => {
+        
+        const { primary, secondary } = theme.palette
 
-    const useStyles = makeStyles({
-        accordionWrapper: {
-            ...gradientWrapper,
-            padding: "6px"
-        },
-        ...staticStyles, 
-        deleteButton: {
-            fontSize: "9px",
-            fontWeight: "700",
-            fontFamily: "Lato, sans-serif",
-            color: showDeleteIcons ? "#22c1c3" : "#e6a824",
-            padding: "0 5px 0 5px"
-        },
+        return ({
+            accordionWrapper: {
+                padding: "6px"
+            },
+            ...staticStyles, 
+            deleteButton: {
+                color: showDeleteIcons ? primary.main : secondary.main,
+                fontFamily: "Lato, sans-serif",
+                padding: "0 5px 0 5px",
+                fontWeight: "700",
+                fontSize: "9px",
+            },
+        })
     })
 
-    const classes = useStyles()
+
+    const classes = useStyles(props.theme)
 
 
     const buttonsAddDeleteProps ={
@@ -92,43 +93,43 @@ const ExpenseAccordion = (props) => {
 
 
     return (
-        <div className={classes.accordionWrapper}>
+        <GradientWrapper
+            theme={props.theme}
+            className={classes.accordionWrapper}
+        >
             { showAddCategoryPanel && 
                 <CategoryPopup 
                     {...props} 
                     toggleAddCategoryPanel={toggleAddCategoryPanel}
                 />
             }
-
             <Accordion 
+                expanded={expanded}
                 className={classes.accordion}
                 onChange={(e)=>handleExpansion(e)}
-                expanded={expanded}
             >
-                <AccordionDropdownTab 
-                    expanded={expanded}
-                />
+                <AccordionDropdownTab expanded={expanded} />
                 <ButtonsAddDelete 
                     fromExpenseAccordion={{...buttonsAddDeleteProps}}
                 />
                 {newCategories.map((category, index) => {
                     const categoryAccordionProps = {
-                        category,
-                        categoryIndex: index,
-                        showDeleteIcons,
                         rerenderExpenseAccordian,
-                        renderExpAccordion
+                        categoryIndex: index,
+                        renderExpAccordion,
+                        showDeleteIcons,
+                        category,
                     }
                     return (
                         <CategoryAccordion 
+                            fromExpenseAccordion={{...categoryAccordionProps}}
                             key={`${20000 + index}`}
                             {...props} 
-                            fromExpenseAccordion={{...categoryAccordionProps}}
                         />
                     )
                 })}
             </Accordion>
-        </div>
+        </GradientWrapper>
     )
 }
 

@@ -1,8 +1,6 @@
 import React from 'react'
 
-const NavbarWrapper = (props) => {
-
-    const { type } = props 
+const NavbarWrapper = ({ type, children }) => {
 
     const defaultClasses = [
         "navbar",
@@ -25,7 +23,7 @@ const NavbarWrapper = (props) => {
             <div className={classes[1]}>
                 <div className={classes[2]}>
                     <ul className={classes[3]}>
-                        {props.children}
+                        {children}
                     </ul>
                 </div>
             </div>

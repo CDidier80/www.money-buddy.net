@@ -1,8 +1,9 @@
-import { staticStyles, formFont } from "./styles/useStyles"
+import { latoTextStyle } from "../../../../modules/themeAndStyles"
 import useMediaQuery from '@material-ui/core/useMediaQuery'
+import { makeStyles, withTheme} from '@material-ui/core/'
 import FormControl from "./components/FormControl"
+import { staticStyles } from "./styles/useStyles"
 import React, { useState, useEffect }from 'react'
-import { makeStyles, } from '@material-ui/core/'
 import LockedOut from './components/LockedOut'
 import FormBody from "./components/FormBody"
 import Header from "./components/Header"
@@ -15,19 +16,16 @@ const Form = (props) => {
     const [isSigningUp, toggleSigningUp] = useState(true)
 
     useEffect(() => {
-        if (typeof props.location.state == "undefined") {
-            return
-        } else {
+        if (typeof props.location.state == "undefined") return
             const { signingUp } = props.location.state
             toggleSigningUp(signingUp ? true : false)
-        }
     }, [])
 
 
     const medQuery = (style1, style2) => matches ? style1 : style2
     const matches = useMediaQuery('(max-height:730px)')
 
-    const useStyles = makeStyles((theme) => ({
+    const useStyles = makeStyles({
         root: {
             margin: medQuery("3vh auto 3vh auto", "0 auto"),
             position: medQuery("relative", null),
@@ -35,14 +33,14 @@ const Form = (props) => {
             maxHeight: "830px",
             minWidth: "300px",
             maxWidth: "410px",
+            ...latoTextStyle,
             height: '70%',
             width: '50%',
-            ...formFont,
         },
         paperRoot: {
             maxHeight: medQuery("600px", null),
             borderRadius: "12px",
-            ...formFont,
+            ...latoTextStyle,
         },
         textfield: {
             "& .MuiFilledInput-root": {
@@ -50,8 +48,7 @@ const Form = (props) => {
             }
         },
         ...staticStyles,
-
-    }))
+    })
 
     const classes = useStyles()
 
@@ -72,7 +69,7 @@ const Form = (props) => {
         classes,
     }
 
-    return  <FormBody {...propsFormBody} forSubmit={{...forSubmit}}/> 
+    return  <FormBody {...propsFormBody} forSubmit={{...forSubmit}} /> 
 }
 
-export default Form
+export default withTheme(Form)
