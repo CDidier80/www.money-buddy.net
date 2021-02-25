@@ -1,7 +1,8 @@
+import { makeSliderFlexboxStyles } from "../../styles/style"
 import LabledSliderBox from "./LabledSliderBox"
 import React from 'react'
 
-const SliderFlexbox = ({item1, item2, item3}) => {
+const SliderFlexbox = ({item1, item2, item3, theme}) => {
 
     const forItem1 = {
         borderRadius: "4px 0 0 4px",
@@ -21,9 +22,10 @@ const SliderFlexbox = ({item1, item2, item3}) => {
         ...item3,
     }
     
+    const classes = makeSliderFlexboxStyles(theme)
 
     return (
-        <div className="slider-flexbox"  >
+        <div className={classes.sliderFlexbox}  >
             <LabledSliderBox {...forItem1} />
             <LabledSliderBox {...forItem2} />
             <LabledSliderBox {...forItem3} />
