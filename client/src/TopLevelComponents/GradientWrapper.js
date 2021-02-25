@@ -10,8 +10,8 @@ const GradientWrapper = (props) => {
         borderRadius: "8px",
         boxShadow: boxShadows.shadow2,
         padding: (props.padding || '8px'),
-        backgroundColor: palette.primary.main,
         backgroundImage: gradients.wrapper,
+        backgroundColor: palette.primary.main,
         ...overrides
     }
     
