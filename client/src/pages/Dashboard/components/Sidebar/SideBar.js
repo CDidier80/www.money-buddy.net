@@ -22,10 +22,10 @@ const SideBar = (props) => {
     const smallScreen = useMediaQuery('(max-width: 600px)', {noSsr: true})
 
     useLayoutEffect(() => {
-        setTicker(ticker + 1)
-        setSidebarClasses(classes)
-        reassignSubpageClass(classes)
         const classes = generateClasses()
+        reassignSubpageClass(classes)
+        setSidebarClasses(classes)
+        setTicker(ticker + 1)
     }, [smallScreen, userPreference])
 
     /* ---------------------- FUNCTIONS ----------------------- */
