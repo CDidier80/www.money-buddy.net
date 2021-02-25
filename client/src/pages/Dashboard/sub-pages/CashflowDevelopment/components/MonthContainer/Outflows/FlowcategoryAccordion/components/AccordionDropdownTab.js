@@ -1,16 +1,14 @@
-import React from 'react'
-import FlowcategoryDeleteIcon from "./FlowcategoryDeleteIcon"
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { 
+    makeStyles,
     Typography, 
     AccordionSummary,
-    makeStyles
-} from '@material-ui/core';
-
+} from '@material-ui/core'
+import React from 'react'
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import FlowcategoryDeleteIcon from "./FlowcategoryDeleteIcon"
 
 
 const AccordionDropdownTab = (props) => {
-    console.log("child rendered")
 
     const { 
         flowcategory,
@@ -21,15 +19,15 @@ const AccordionDropdownTab = (props) => {
     const useStyles = makeStyles({
 
         flexWrapper: {
-            display: "flex",
             justifyContent: "flex-start",
-            alignItems: "center"
+            alignItems: "center",
+            display: "flex",
         },
         flowcategoryHeader: {
-            color: "#e6a824",
-            fontWeight: "500",
             fontFamily: "Lato, sans-serif",
-            fontSize: "14px"
+            fontWeight: "500",
+            fontSize: "14px",
+            color: "#e6a824",
         },
         expandMoreIcon : {
             color: "#e6a824",
@@ -39,8 +37,6 @@ const AccordionDropdownTab = (props) => {
     })
 
     const classes = useStyles()
-
-
 
     return (
         <AccordionSummary
