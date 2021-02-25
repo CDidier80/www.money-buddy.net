@@ -116,28 +116,15 @@ export const moneyBuddyTheme = createMuiTheme({
             main: secondaryWrapper,
             transparent: makeTransparentVariants(secondaryWrapper)
         },
-
-        // Used by `getContrastText()` to maximize the contrast between
-        // the background and the text.
         contrastThreshold: 3,
-        // Used by the functions below to shift a color's luminance by approximately
-        // two indexes within its tonal palette.
-        // E.g., shift from Red 500 to Red 300 or Red 700.
         tonalOffset: 0.2,
     },
-
 
     lato: {
         textRendering: "optimizeLegibility !important",
         WebkitFontSmoothing: "antialiased !important",
         fontFamily: "Lato, sans-serif",
     },
-
-    tableHeaders: {
-
-    },
-
-
 
     overrides: {
 
@@ -201,9 +188,10 @@ export const moneyBuddyTheme = createMuiTheme({
             },
         },
 
+        /* ------------------RETIREMENT SLIDER THEME STYLES ------------------*/
+
         /* for text */
         MuiInputBase: {
-            // the root cont
             root: {
                 color: "black",
                 fontFamily: "Lato,sans-serif",
@@ -212,13 +200,80 @@ export const moneyBuddyTheme = createMuiTheme({
                 }
             },
         },
-        /* autofilled text labels for text fields, i.e. "password", "email" */
-        MuiInputLabel: {
-            outlined: {
-                color: secondaryDark,
-            }
+        MuiSlider: {
+            /* Styles applied to the rail element. */
+            root: {
+                width: "87%",
+                margin: "auto",
+                display: "block",
+                backgroundColor: "white",
+            },
+            rail: {
+                height: 2,
+                width: '100%',
+                borderRadius: 1,
+                display: 'block',
+                position: 'absolute',
+                backgroundColor: addTransparency(.6, secondaryMain),
+                '$vertical &': {
+                    height: '100%',
+                    width: 2
+                }
+            },
+            /* Styles applied to the track element. */
+            track: {
+                height: 2,
+                borderRadius: 1,
+                display: 'block',
+                position: 'absolute',
+                backgroundColor: secondaryMain,
+                '$vertical &': {
+                    width: 2
+                }
+            },
+            /* Styles applied to the thumb element. */
+            thumb: {
+                width: 12,
+                height: 12,
+                outline: 0,
+                marginTop: -5,
+                marginLeft: -6,
+                display: 'flex',
+                borderRadius: '50%',
+                alignItems: 'center',
+                position: 'absolute',
+                boxSizing: 'border-box',
+                justifyContent: 'center',
+                border: "1px solid black",
+                backgroundColor: primaryMain,
+                borderShadow: "0 0 5px black",
+                '&$focusVisible, &:hover': {
+                    boxShadow: `0px 0px 0px 9px ${addTransparency(.3, primaryBright)}`,
+                    '@media (hover: none)': {
+                    boxShadow: 'none'
+                    }
+                },
         },
+
+            /* Styles applied to the thumb label element. */
+            valueLabel: {
+                // IE 11 centering bug, to remove from the customization demos once no longer supported
+                color: addTransparency(.8,primaryMain),
+                fontWeight: "bold",
+                fontSize: "11px",
+                left: 'calc(-50% - 6px)',
+                transform: "scale(1.1) translateY(-10px)!important"
+            },
+            /* Styles applied to the mark element. */
+            mark: {
+                width: 2,
+                height: 2,
+                borderRadius: 1,
+                position: 'absolute',
+                backgroundColor: primaryDark.main
+            },
         }
+    }
 })
 
 export const gradientWrapper = {
