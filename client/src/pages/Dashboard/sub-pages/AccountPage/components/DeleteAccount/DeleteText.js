@@ -1,9 +1,7 @@
 import { Typography, makeStyles } from '@material-ui/core/'
 import React from 'react'
 
-const DeleteText = (props) => {
-
-    const { setDeleteTriggered, formFont } = props
+const DeleteText = ({ setDeleteTriggered, formFont }) => {
 
     const useStyles = makeStyles({
         deleteText: {
