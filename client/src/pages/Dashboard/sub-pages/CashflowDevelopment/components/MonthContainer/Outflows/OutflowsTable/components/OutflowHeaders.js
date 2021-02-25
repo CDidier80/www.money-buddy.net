@@ -1,20 +1,18 @@
-import React from 'react';
 import { 
+    makeStyles, 
     TableCell, 
     TableRow,
-    makeStyles, 
-} from '@material-ui/core';
+} from '@material-ui/core'
+import React from 'react'
 
 
 const useStyles = makeStyles({
-    row: {
-        width: "100%"
-    },
+    row: { width: "100%" },
     columnHeader: {
-        color: "#e6a824",
         fontWeight: "700",
+        color: "#e6a824",
+        fontSize: "14px",
         padding: "8px",
-        fontSize: "14px"
     },
     emptyCell: {
         maxWidth: "20px",
@@ -23,32 +21,17 @@ const useStyles = makeStyles({
     }
 })
 
-
 const OutflowHeaders = (props) => {
 
     const classes = useStyles()
 
     return (
-            <TableRow
-                className={classes.row}
-            >
-                <TableCell 
-                    className={classes.emptyCell}>
-                </TableCell>
-                <TableCell 
-                    className={classes.columnHeader}
-                >
-                    Outflow
-                </TableCell>
-                <TableCell 
-                    className={classes.columnHeader} 
-                    align="right"
-                >
-                    Amount
-                </TableCell>
+            <TableRow className={classes.row} >
+                <TableCell className={classes.emptyCell}> </TableCell>
+                <TableCell className={classes.columnHeader} > Outflow </TableCell>
+                <TableCell className={classes.columnHeader} align="right" > Amount </TableCell>
             </TableRow>
     )
 }
 
-{/* </TableHead> */}
 export default OutflowHeaders
