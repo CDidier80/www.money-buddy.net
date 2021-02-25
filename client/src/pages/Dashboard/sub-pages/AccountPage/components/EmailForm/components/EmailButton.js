@@ -4,6 +4,7 @@ import React from 'react'
 
 const EmailButton = (props) => {
 
+    const overrides = {width: "20%", marginTop: "20px" }
     const {id: user_id, newEmail} = props
 
     const {
@@ -18,24 +19,16 @@ const EmailButton = (props) => {
             return
         }
         try {
-            const response = await UpdateEmail({userId: user_id, email: newEmail})
-            console.log("submit new email response: ", response)
-            if (response.status === 200) {
-                updateSnackbar('Email Address')
-            }
-        } catch (error) {
-            console.log(error)
-            errorSnackbar('Email Address')
-        }
+            const {status} = await UpdateEmail({userId: user_id, email: newEmail})
+            if (status === 200) updateSnackbar('Email Address')
+        } catch (error) { errorSnackbar('Email Address') }
     }
-
-    const overrides = {width: "20%", marginTop: "20px" }
 
     return (
         <ThemedButton
-            theme={props.theme} 
-            overrides={overrides}
             onClick={(e)=>submitNewEmail(e)}
+            overrides={overrides}
+            theme={props.theme} 
         >
             Submit
         </ThemedButton>
