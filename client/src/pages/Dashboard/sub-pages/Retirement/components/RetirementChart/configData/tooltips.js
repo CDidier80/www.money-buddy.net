@@ -1,3 +1,6 @@
+import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
+const { primaryDark, secondary } = moneyBuddyTheme.palette
+
 // for "Age xx" on tooltips
 const titleStyles = {
     titleMarginBottom: 8,
@@ -13,8 +16,8 @@ const bodyStyles = {
 
 // for tooltip entity
 const tooltipStyles = {
-    backgroundColor: "#0a6666",
-    borderColor: "#ffd781",
+    borderColor: secondary.transparent["6"],
+    backgroundColor: primaryDark.main,
     displayColors: false,
     caretPadding: 13,
     cornerRadius: 6,
