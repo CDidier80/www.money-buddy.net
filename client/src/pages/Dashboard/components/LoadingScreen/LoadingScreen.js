@@ -3,10 +3,6 @@ import DumbSidebar from "./DumbSidebar"
 import DumbNavbar from "./DumbNavbar"
 import React from 'react'
 
-// import "./styles/dashboard.css"
-// import "./styles/navbar.css"
-
-
 const LoadingScreen = (props) => {
 
     const smallScreen = window.innerWidth <= 600
@@ -26,10 +22,7 @@ const LoadingScreen = (props) => {
             <DumbNavbar />
             <main className="dash-main-flex dumb">
                 <DumbSidebar /> 
-                <div 
-                    className="subpage"
-                    style={dummySubpageStyle}
-                > </div>
+                <div className="subpage" style={dummySubpageStyle} > </div>
             </main>
         </div>
     )
