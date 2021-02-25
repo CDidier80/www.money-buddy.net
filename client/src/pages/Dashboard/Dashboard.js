@@ -174,8 +174,8 @@ const Dashboard = (props) => {
                 /> 
                 <div 
                     ref={subpageRef} 
-                    style={{backgroundColor: "white"}}
                     className={subpageClasses}
+                    style={{backgroundColor: "white"}}
                 > 
                     <Switch> 
                         <BudgetRoute 
@@ -186,7 +186,6 @@ const Dashboard = (props) => {
                             {...props}
                         />
                         <CashflowDevRoute 
-                            // path="/dashboard/cashflow" 
                             fromDashboard={{...cashflowProps}}
                             path="/dashboard/cashflow" 
                             ticker={ticker}
