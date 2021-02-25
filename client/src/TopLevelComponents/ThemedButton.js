@@ -1,5 +1,5 @@
-import { Button, makeStyles } from '@material-ui/core/'
 import { latoTextStyle } from '../modules/themeAndStyles'
+import { Button, makeStyles } from '@material-ui/core/'
 
 import React from 'react'
 
