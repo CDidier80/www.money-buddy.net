@@ -4,7 +4,6 @@ import EmailTextfield         from   "./EmailTextfield"
 import AccountPrompt          from   "./AccountPrompt"
 import SubmitButton           from   "./SubmitButton"
 import RememberMe             from   "./RememberMe"
-import Copyright              from   "./Copyright"
 import {useState}             from   "react"
 import React                  from   "react"
 
@@ -56,7 +55,6 @@ const FormControl = (props) => {
         email,
     }
 
-
     const propsAccountPrompt = {
         toggleSigningUp,
         ...forAll,
@@ -70,11 +68,10 @@ const FormControl = (props) => {
         <form className={classes.form} noValidate>
             <EmailTextfield    {...propsEmailField}    />
             <PasswordTextfield {...propsPasswordField} />
-            { isSigningUp && <ReenterPasswordField {...propsReenterField} /> }
+            {isSigningUp   &&  <ReenterPasswordField {...propsReenterField} />}
             <RememberMe        {...onlyClasses}        />
             <SubmitButton      {...propsSubmitButton}  />
             <AccountPrompt     {...propsAccountPrompt} />
-            {/* <Copyright /> */}
         </form>
     )
 }
