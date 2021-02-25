@@ -1,40 +1,34 @@
-import SidebarLink from './components/SidebarLink';
+import SidebarLink from './components/SidebarLink'
 import { useMediaQuery } from '@material-ui/core'
+import React, { useLayoutEffect } from 'react'
 import { navItems } from "./modules/navItems"
 import "./styles/sidebar.css"
-import React, {
-    useLayoutEffect,
-    useState
-} from 'react'
-
 
 const SideBar = (props) => {
     
     /* ---------------------- PROPS----------------------- */
 
     const { 
-        setSidebarClasses, 
-        setSubpageClasses,
+        ticker, 
+        setTicker, 
         userPreference, 
         sidebarClasses, 
-        setTicker, 
-        ticker, 
+        setSubpageClasses,
+        setSidebarClasses, 
     } = props.fromDashboard
 
     /* ---------------------- init MEDIA QUERY ----------------------- */
 
     const smallScreen = useMediaQuery('(max-width: 600px)', {noSsr: true})
 
-
     useLayoutEffect(() => {
-        const classes = generateClasses()
-        reassignSubpageClass(classes)
-        setSidebarClasses(classes)
         setTicker(ticker + 1)
+        setSidebarClasses(classes)
+        reassignSubpageClass(classes)
+        const classes = generateClasses()
     }, [smallScreen, userPreference])
 
     /* ---------------------- FUNCTIONS ----------------------- */
-
 
     const reassignSubpageClass = (classes) => {
         switch (classes) {
@@ -52,11 +46,7 @@ const SideBar = (props) => {
         }
     }
 
-    const autoSize = () => {
-        const cssClass = smallScreen ? `sidebar closed` : `sidebar`
-        return cssClass
-    }
-
+    const autoSize = () => smallScreen ? `sidebar closed` : `sidebar`
 
     const sizeWithPreference = () => {
         switch (true) {
@@ -66,8 +56,7 @@ const SideBar = (props) => {
                 return "sidebar"
             case smallScreen && userPreference === "open":
                 const screenShrinking = sidebarClasses === "sidebar" 
-                const classToReturn = screenShrinking ? "sidebar closed" : "sidebar mobile"
-                return classToReturn
+                return screenShrinking ? "sidebar closed" : "sidebar mobile"
             default:
                 console.log("switch statement found no true cases")
         }
