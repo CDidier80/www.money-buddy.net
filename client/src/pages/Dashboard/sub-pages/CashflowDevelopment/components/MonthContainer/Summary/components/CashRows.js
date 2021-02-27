@@ -1,4 +1,5 @@
 import React from 'react'
+import { makeCashRowStyles } from "../../styles/styles"
 import { 
     TableCell, 
     TableRow,
@@ -15,17 +16,7 @@ const CashRows = (props) => {
         endingCash
     } = props.fromSummaryTable
 
-
-    const useStyles = makeStyles({
-        cashTable: {
-            marginTop: "14px"
-        },
-        cell : {
-            borderBottom: "none"
-        }
-    })
-
-    const classes = useStyles()
+    const classes = makeCashRowStyles(props.theme)
 
     const cashRows = [
         {

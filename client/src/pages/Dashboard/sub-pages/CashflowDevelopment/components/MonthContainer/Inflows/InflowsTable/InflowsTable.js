@@ -1,42 +1,32 @@
-import React, { useState, useEffect } from 'react';
-import "../../../../../universal-functions/cellFormatting"
-import { offRowColor } from "../../../../../universal-functions/styleFunctions"
-import InflowRow from "../InflowRow/InflowRow"
-import InflowHeaders from "./components/InflowHeaders"
 import { 
-    AccordionDetails,
     Paper, 
     Table, 
     TableBody, 
     TableContainer, 
-    makeStyles
-} from '@material-ui/core/';
+    AccordionDetails,
+} from '@material-ui/core/'
+import React, { useState } from 'react'
+import InflowRow from "../InflowRow/InflowRow"
+import InflowHeaders from "./components/InflowHeaders"
+import "../../../../../universal-functions/cellFormatting"
+import { useInflowsTableStyles } from "../../styles/styles"
+import { pickColor } from "../../../../../universal-functions/styleFunctions"
 
 
 const InflowsTable = (props) => {
     
-    /* -------------------------- PROPS ------------------------- */
+    /* ------------- PROPS ------------ */
     
     const { monthlyInflows } = props.fromMonthContainer
     
-    /* ------------------------- STATE ------------------------- */
+    /* ------------ STATE ------------ */
 
     const [incomingDeletion, setIncomingDeletion] = useState(false)
 
 
-    /* ----------------------- FUNCTIONS ----------------------- */
+    /* ------------ STYLE ------------ */
 
-    const useStyles = makeStyles({
-        tableBody: {
-            overflow: "hidden"
-        },
-        tableContainer: {
-            margin: "auto",
-            padding: '4px'
-        },
-    })
-
-    const classes = useStyles()
+    const classes = useInflowsTableStyles(props.theme)
 
 
     return (
@@ -58,7 +48,7 @@ const InflowsTable = (props) => {
                         />
                         {monthlyInflows.map((row, index) => {
                             const {source, amount} = row
-                            const rowColor = offRowColor(index)
+                            const rowColor = pickColor(index)
                             const propsForInflowRow = {
                                 setIncomingDeletion,
                                 incomingDeletion,

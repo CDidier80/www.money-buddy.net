@@ -1,11 +1,10 @@
 import AccountPageLink from "./components/AccountPageLink"
-import LandingPageLink from "./components/LandingPageLink"
+import MoneyBuddyLink from "./components/MoneyBuddyLink"
 import SignOutLink from "./components/SignOutLink"
 import React, {useState, useEffect} from 'react'
 import Burger from "./components/Burger"
 
 const NavBar = (props) => {
-
 
     // const [size, setSize] = useState(`X: ${window.innerWidth}  Y: ${window.innerHeight}`)
 
@@ -22,19 +21,17 @@ const NavBar = (props) => {
     
     return (
         <nav className="dash-navbar">
-            <LandingPageLink />
-            <Burger 
-                {...props}
-            />
-            {/* <h2 style={{color:"white", fontSize:"25px"}}>{size}</h2> */}
-            <SignOutLink 
-                {...props}
-            />
-            <AccountPageLink 
-                {...props}
-            />
+            <MoneyBuddyLink  {...props} />
+            <Burger          {...props} />
+            <SignOutLink     {...props} />
+            <AccountPageLink {...props} />
         </nav>
     )
 }
 
 export default NavBar
+
+
+
+
+{/* <h2 style={{color:"white", fontSize:"25px"}}>{size}</h2> */}

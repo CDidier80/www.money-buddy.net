@@ -1,5 +1,5 @@
 import MonthContainer from "../MonthContainer/MonthContainer"
-import NextAndBackIcons from "./NextAndBackIcons"
+import PaginatingButtons from "./PaginatingButtons"
 import React, { useState, memo } from "react"
 import "./styles/paginator.css"
 
@@ -17,6 +17,7 @@ const PaginatingContainer = memo((props) => {
     /*  Props for children */
 
     const iconProps = {
+        theme: props.theme,
         incrementPagTicker,
         setDisplayRange,
         pagMemoTicker,
@@ -24,10 +25,8 @@ const PaginatingContainer = memo((props) => {
     }
 
     return (
-        <div
-            className="paginating-container"
-        >
-            <NextAndBackIcons 
+        <div className="paginating-container" >
+            <PaginatingButtons 
                 fromPaginatingContainer={{...iconProps}}
             />
             <div className="monthContainer-wrapper">
@@ -45,7 +44,6 @@ const PaginatingContainer = memo((props) => {
                             {...props}
                             key={`ABC${index}`}
                             className="month-container"
-                            displayRange={displayRange}
                             fromPaginatingContainer={{...monthContainerProps}}
                         />
                     )
@@ -53,12 +51,9 @@ const PaginatingContainer = memo((props) => {
             </div>
         </div>
     )
-}, (prevProps, nextProps) => {
-        const { showPopup: prevPop} = prevProps.fromCashflowDevelopment
-        const { showPopup: nextPop} = nextProps.fromCashflowDevelopment
-        return prevPop !== nextPop
-    }
-)
+}, ({fromCashflowDevelopment: prev}, {fromCashflowDevelopment: now}) => (
+    prev.showPopup !== now.showPopup
+))    
 
 export default PaginatingContainer
 

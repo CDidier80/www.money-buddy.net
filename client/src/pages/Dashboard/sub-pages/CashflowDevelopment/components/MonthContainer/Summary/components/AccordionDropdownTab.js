@@ -1,36 +1,17 @@
+import { 
+    Typography,
+    AccordionSummary,
+} from '@material-ui/core'
 import React from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import { 
-    makeStyles,
-    AccordionSummary,
-    Typography,
-} from '@material-ui/core';
+import { useSummaryDropdownStyles } from "../../styles/styles"
 
 
 
 
 const AccordionDropdownTab = (props) => {
 
-    const useStyles = makeStyles({
-        heading: {
-            fontWeight: "700",
-            margin: "0 auto",
-            paddingLeft: "27px",
-            fontSize: "18px",
-            fontFamily: "Lato, sans-serif",
-            color: "black",
-            textShadow: `
-                0 0 1px lightgray;
-            `
-        },
-        expandMoreIcon : {
-            color:"#22c1c3",
-            fontSize: "18px",
-            paddingLeft: "0"
-        }
-    })
-
-    const classes = useStyles()
+    const classes = useSummaryDropdownStyles(props.theme)
 
     return (
         <AccordionSummary

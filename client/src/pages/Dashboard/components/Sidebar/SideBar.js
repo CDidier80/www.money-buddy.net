@@ -1,6 +1,6 @@
 import SidebarLink from './components/SidebarLink'
 import { useMediaQuery } from '@material-ui/core'
-import React, { useLayoutEffect } from 'react'
+import React, { useLayoutEffect, useState } from 'react'
 import { navItems } from "./modules/navItems"
 import "./styles/sidebar.css"
 
@@ -11,11 +11,14 @@ const SideBar = (props) => {
     const { 
         ticker, 
         setTicker, 
-        userPreference, 
+        coloredLinks,
         sidebarClasses, 
+        userPreference, 
         setSubpageClasses,
         setSidebarClasses, 
-    } = props.fromDashboard
+    } = props
+
+    const [selectedLinkIndex, setSelectedLinkIndex] = useState(1)
 
     /* ---------------------- init MEDIA QUERY ----------------------- */
 
@@ -28,38 +31,25 @@ const SideBar = (props) => {
         setTicker(ticker + 1)
     }, [smallScreen, userPreference])
 
+    const cssPairedClasses = {
+        "sidebar"        : "subpage sidebar-open", 
+        "sidebar closed" : "subpage sidebar-closed",
+        "sidebar mobile" : "subpage mobile"
+    }
+
     /* ---------------------- FUNCTIONS ----------------------- */
 
-    const reassignSubpageClass = (classes) => {
-        switch (classes) {
-            case "sidebar":
-                setSubpageClasses("subpage sidebar-open")
-                return
-            case "sidebar closed":
-                setSubpageClasses("subpage sidebar-closed")
-                return
-            case "sidebar mobile":
-                setSubpageClasses("subpage mobile")
-                return
-            default: 
-                console.log("no matching cases")
-        }
-    }
+    const reassignSubpageClass = (classes) => setSubpageClasses(cssPairedClasses[classes])
 
     const autoSize = () => smallScreen ? `sidebar closed` : `sidebar`
 
     const sizeWithPreference = () => {
-        switch (true) {
-            case userPreference === "closed":
-                return "sidebar closed"
-            case !smallScreen: 
-                return "sidebar"
-            case smallScreen && userPreference === "open":
+            if(userPreference === "closed") return "sidebar closed"
+            if(!smallScreen) return "sidebar"
+            if(smallScreen && userPreference === "open") {
                 const screenShrinking = sidebarClasses === "sidebar" 
                 return screenShrinking ? "sidebar closed" : "sidebar mobile"
-            default:
-                console.log("switch statement found no true cases")
-        }
+            } 
     }
 
 
@@ -71,17 +61,20 @@ const SideBar = (props) => {
 
 
     return (
-        <aside 
-            className={sidebarClasses} 
-        >
+        <aside className={sidebarClasses} >
             <ul className="list" >
-                {navItems.map((navItem, index) => 
-                    <SidebarLink 
-                        key={`${index}-SideBarLink`} 
-                        navItem={navItem} 
-                        {...props}
-                    />
-                )}
+                {navItems.map((navItem, index) => {
+                    const linkIsSelected = (selectedLinkIndex === index) && coloredLinks
+                    const linkProps = {
+                        lastClicked: linkIsSelected,
+                        key: `${index}-SideBarLink`,
+                        setSelectedLinkIndex,
+                        ...props, 
+                        navItem,
+                        index,
+                    }
+                    return  <SidebarLink {...linkProps} />
+                })}
             </ul>
         </aside>
     )

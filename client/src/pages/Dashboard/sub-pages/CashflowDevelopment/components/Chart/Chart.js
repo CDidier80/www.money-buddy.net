@@ -1,11 +1,6 @@
-import {
-    labels,
-    tooltips,
-    configureAxes,
-    universalProperties,
-} from "./chartData"
 import "./styles/chart.css"
 import { Line } from 'react-chartjs-2'
+import { configureChart } from "./modules/configureChart"
 import React, { useEffect, useState, memo } from 'react';
 
 const Chart = memo((props) => {
@@ -17,8 +12,6 @@ const Chart = memo((props) => {
         outflows, 
         cashReserves
     } = props.fromCashflowDevelopment
-
-    const { callback: toCurrency } = props.currencyChartCallback
 
     /* -------------------------- STATE ------------------------- */
 
@@ -50,36 +43,9 @@ const Chart = memo((props) => {
 
 /* ----------------------- PROPS FOR CHART ---------------------- */
 
-const chartData = {
+    const configDatasets = {inflowDataset, outflowDataset, cashDataset}
 
-    labels : [...labels],
-    datasets: [
-        {
-            fill: false,
-            label: 'Inflows',
-            data: inflowDataset,
-            ...universalProperties,
-            borderColor: '#005f61',
-        },
-        {
-            fill: false,
-            label: 'Outflows',
-            data: outflowDataset,
-            ...universalProperties,
-            borderColor: 'rgb(192,87,75)',
-        },
-        {
-            fill: true,
-            data: cashDataset,
-            ...universalProperties,
-            label: 'Cash Available',
-            borderColor: 'rgba(40,211,236,.6)',
-        }
-]}
-const options = {
-    tooltips: tooltips,
-    scales: configureAxes(toCurrency)
-}
+    const { chartData, options } = configureChart(configDatasets)
 /* ----------------------- JSX ----------------------- */
 
     return ( !loaded ? <div></div> :
@@ -93,6 +59,8 @@ const options = {
             />
         </div>
     )
-}, (prevProps, nextProps) => prevProps.fromCashflowDevelopment.showPopup !== nextProps.fromCashflowDevelopment.showPopup)
+}, ({fromCashflowDevelopment: prev}, {fromCashflowDevelopment: next}) => 
+    prev.showPopup !== next.showPopup
+)
 
 export default Chart

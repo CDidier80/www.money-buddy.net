@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import FlowRows from "./FlowRows"
 import CashRows from "./CashRows"
+import { makeSummaryTableStyles } from "../../styles/styles"
 import { 
     AccordionDetails,
     Paper, 
@@ -15,7 +16,6 @@ import {
 
 const SummaryTable = (props) => {
 
-    // console.log(props)
     
     {/* ---------------- PROPS ---------------- */}
     
@@ -26,13 +26,13 @@ const SummaryTable = (props) => {
         cashReserves
     } = props.fromCashflowDevelopment
 
-    const { monthIndex } = props.fromPaginatingContainer
-
+    
     const { 
         totalInflow, 
         totalOutflow 
     } = props.fromMonthContainer
     
+    const { monthIndex } = props.fromPaginatingContainer
 
     {/* ---------------- STATE ------------------*/}
     
@@ -80,24 +80,8 @@ const SummaryTable = (props) => {
 
     {/* ---------------- FUNCTIONS ------------------*/}
 
-    const useStyles = makeStyles({
-        details :{
-            margin: "auto",
-            textAlign: "center",
-            padding: "0",
-        },
-        tableContainter :{
-            margin: "auto",
-            width: "100%",
-            padding: "5px"
-        },
-        row: {
-            maxWidth: "95%"
-        }
-        
-    })
 
-    const classes = useStyles()
+    const classes = makeSummaryTableStyles(props.theme)
 
     const format = (value) => {
 

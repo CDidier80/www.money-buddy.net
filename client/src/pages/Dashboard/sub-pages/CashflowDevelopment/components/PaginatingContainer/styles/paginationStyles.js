@@ -1,53 +1,44 @@
-// export const staticStyles = {
-//     iconContainer: {
-//         width: "150px",
-//         display: "flex",
-//         marginTop: "20px", 
-//         justifyContent: "space-evenly"
-//     },
-//     svg: {
-//         fontSize: "17px"
-//     }
-// }
+import { makeStyles } from '@material-ui/core/styles'
+import cyan from '@material-ui/core/colors/cyan'
 
-export const staticStyles = {
-    iconContainer: {
-        width: "100%",
-        display: "flex",
-        marginTop: "20px", 
-        justifyContent: "space-evenly"
-    },
 
-    svg: {
-        fontSize: "17px"
-    },
-    emptySpacer: {
-        width: "263px"
-    },
-    fabWrapper: {
-        width: "263px"
-    }
 
-}
 
-export const staticFab = {
-    minHeight: "0", 
-    minHeight: "0",
-    maxWidth: "30px",
-    maxHeight: "30px",
-}
+export const useFabStyles = ({theme, displayRange}) => {
 
-export const fabDisabledStyle = {
-    backgroundColor: "#c5c5c5c4",
-    '&:hover': {
+    const { gradient1 } = theme.gradients
+
+    const disabled = {
         backgroundColor: "#c5c5c5c4",
-    },
-} 
+    } 
+    
+    const enabled = {
+        backgroundImage: gradient1,
+    }
+    
+    const checkDisabledStyle = range => range[0] === displayRange[0] ? disabled : enabled
+    
+    const [backStyle, nextStyle] = [
+        checkDisabledStyle([0,1,2]), 
+        checkDisabledStyle([9,10,11])
+    ]
 
-export const fabEnabledStyle = {
-    backgroundImage: "linear-gradient(180deg, #099c9c9c, #c48b118f)",
-    '&:hover': {
-        // backgroundColor: cyan[200],
-        backgroundImage: "linear-gradient(180deg, #099c9c, #c48b11)",
-    },
+    const useStyles = makeStyles(theme => ({
+        svg: {fontSize: "17px"},
+        fab: {
+            color: theme.palette.common.white,
+            backgroundColor: cyan[100],
+            maxHeight: "30px",
+            maxWidth: "30px",
+            minHeight: "0", 
+            minHeight: "0",
+        },
+        back: {
+            ...backStyle,
+            marginRight: "18px"
+        },
+        next: { ...nextStyle },
+    }))
+
+    return useStyles(theme)
 }

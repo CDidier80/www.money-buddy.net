@@ -10,7 +10,8 @@ import {
 import React, { useState } from 'react';
 import IncomeRow from "../IncomeRow/IncomeRow"
 import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
-import { offRowColor } from "../../../../universal-functions/styleFunctions"
+import { pickColor } from "../../../../universal-functions/styleFunctions"
+import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
 
 
 const IncomeTable = (props) => {
@@ -26,31 +27,26 @@ const IncomeTable = (props) => {
 
     
     /* ----------------------- MEDIA QUERY ------------------------ */
+    const nssr = {noSsr: true}
     
-    const small = useMediaQuery('(max-width: 725px)', {noSsr: true})
-    const verySmall = useMediaQuery('(max-width: 460px)', {noSsr: true})
-    const onlyTwoCells = useMediaQuery('(max-width: 390px)', {noSsr: true})
+    const small = useMediaQuery('(max-width: 725px)', nssr)
+    const verySmall = useMediaQuery('(max-width: 460px)', nssr)
+    const onlyTwoCells = useMediaQuery('(max-width: 390px)', nssr)
 
     
     const createTextStyle = () => {
-        let fontSize 
+        let fontSize = {}
         let styleObject = {
             paddingLeft: 0,
             paddingRight: 0
         }
-        switch (true) {
-            case verySmall: 
-                fontSize = {fontSize: "10px"}
-                break
-            case small: 
-                fontSize = {fontSize: "12px"}
-                break 
-            default: 
-                fontSize =  {}
-        }
+        if (verySmall) (fontSize = {fontSize: "10px"})
+        if (small)     (fontSize = {fontSize: "12px"})
         return {...styleObject, ...fontSize}
     }
     
+    
+    // const { offRowColor, rowColor } = moneyBuddyTheme
 
     const padding  = verySmall ? { padding: "6px" } : {}
     const overflow = verySmall ? { overflowX: "hidden" } : {}
@@ -61,7 +57,6 @@ const IncomeTable = (props) => {
             accordionDetails: {
                 ...padding,
                 ...overflow
-    
             },
             table: {
                 minWidth: "270px",
@@ -71,7 +66,6 @@ const IncomeTable = (props) => {
                 maxWidth: "890px",
                 margin: "auto",
                 ...overflow
-    
             },
         })
     })
@@ -107,7 +101,7 @@ const IncomeTable = (props) => {
                         {newIncomes.map((income, index) => {
                             const { source, amount } = income
                             const monthly = Math.round(amount / 12)
-                            const rowColor = offRowColor(index)
+                            const rowColor = pickColor(index)
                             const propsForRows = {
                                 setIncomingDeletion,
                                 arrayIndex: index,

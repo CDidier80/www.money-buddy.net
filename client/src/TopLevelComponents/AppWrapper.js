@@ -1,6 +1,6 @@
 import React from 'react'
 import { SnackbarProvider } from 'notistack'
-import { ThemeProvider } from '@material-ui/core/'
+import { ThemeProvider, withTheme } from '@material-ui/core/'
 import { moneyBuddyTheme } from '../modules/themeAndStyles'
 
 const AppWrapper = ({children}) => {
@@ -19,4 +19,4 @@ const AppWrapper = ({children}) => {
     )
 }
 
-export default AppWrapper
+export default withTheme(AppWrapper)

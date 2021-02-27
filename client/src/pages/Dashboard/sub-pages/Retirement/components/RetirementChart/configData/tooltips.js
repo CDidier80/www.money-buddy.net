@@ -1,4 +1,5 @@
 import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
+import { currencyFormat } from "../../../../../../../modules/clientFunctions"
 const { primaryDark, secondary } = moneyBuddyTheme.palette
 
 // for "Age xx" on tooltips
@@ -36,13 +37,7 @@ export const tooltips = {
             const { datasetIndex } = tooltipItem
             const currentIndex = tooltipItem.index
             const dollars = data.datasets[datasetIndex].data[currentIndex]
-            const currencyTooltip = dollars.toLocaleString('en-US', { 
-                maximumFractionDigits: 0,
-                maximumFractionDigits: 0,
-                style: 'currency', 
-                currency: 'USD',
-            })
-            return currencyTooltip
+            return currencyFormat(dollars)
         },
         title: (tooltipItem, data) => `Age: ${tooltipItem[0]["label"]}`
     }
