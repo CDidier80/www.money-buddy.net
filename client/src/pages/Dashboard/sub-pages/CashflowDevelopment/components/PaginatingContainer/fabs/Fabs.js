@@ -5,16 +5,36 @@ import React from 'react'
 
 const Fabs = (props) => {
 
-    const { fromPaginatingContainer: pc} = props
+    const { fromPaginatingContainer: FPC } = props
+
+    /* functions */
 
     const [
         paginate, 
         backDisabled, 
         nextDisabled,
-    ] = usePagination(pc)
+    ] = usePagination(FPC)
+
+    /* props for children */
+
+    const { theme, displayRange } = FPC
+
+    const fabProps = {
+        displayRange,
+        paginate, 
+        theme
+    }
     
-    const propsNext = { disableOn: nextDisabled, paginate}
-    const propsBack = { disableOn: backDisabled, paginate}
+    const propsNext = { 
+        disableOn: nextDisabled, 
+        direction: "next", 
+        ...fabProps
+}
+    const propsBack = { 
+        disableOn: backDisabled, 
+        direction: "back", 
+        ...fabProps
+}
     
     const wrapProps = {
         style: {
