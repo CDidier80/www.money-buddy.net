@@ -1,7 +1,8 @@
 import { formatToCurrency } from "../../../../modules/cellFunctions"
-import { makeStyles, TableRow, TableCell} from '@material-ui/core'
+import OutflowCell from "./components/OutflowCell"
 import IconCell from "../Cells/IconCell/IconCell"
 import React, {useEffect, useState} from 'react'
+import { TableRow } from '@material-ui/core'
 
 const OutflowRow = (props) => {
 
@@ -11,11 +12,11 @@ const OutflowRow = (props) => {
         amount, 
         outflow,
         rowColor,
-        outflowIndex,
-        incomingDeletion, 
-        setIncomingDeletion,
+        // outflowIndex,
+        // incomingDeletion, 
+        // setIncomingDeletion,
     } = props.fromOutflowsTable
-    const { flowcategoryIndex } = props.fromOutflowsAccordion
+    // const { flowcategoryIndex } = props.fromOutflowsAccordion
     const { showOutflowDeleteIcons } = props.fromFlowcategoryAccordion
 
 
@@ -36,25 +37,11 @@ const OutflowRow = (props) => {
         }
     }, [showOutflowDeleteIcons, showUndoIcon])
 
-    /* ----------------------- FUNCTIONS ---------------------- */
-
-    const useStyles = makeStyles({
-        cell : {
-            padding: "8px",
-            color: "black",
-            fontWeight: 500,
-            fontSize: "12px",
-            overflowWrap: "break-word",
-        },
-        row: { backgroundColor: rowColor },
-    })
-
-    const classes = useStyles()
-
 
     /* -------------------- PROPS FOR CHILDREN ------------------- */
 
     const propsForIconCell= {
+        ...props,
         showUndoIcon,
         iconShouldShow, 
         setShowUndoIcon,
@@ -65,24 +52,18 @@ const OutflowRow = (props) => {
 
     return (
         <TableRow
-            className={classes.row}
+            style={{ backgroundColor: rowColor }}
         >
-            <IconCell 
-                {...props}
-                fromOutflowRow={{...propsForIconCell}}
-            />
-            <TableCell
-                className={classes.cell}
-                align="right"
-            >
-                {outflow}
-            </TableCell>
-            <TableCell 
-                className={classes.cell}
-                align="right"
-            >
-                {formatToCurrency(amount)}
-            </TableCell>
+            <IconCell fromOutflowRow={{...propsForIconCell}} />
+
+            <OutflowCell rowColor={rowColor} >
+                { outflow } 
+            </OutflowCell>
+
+            <OutflowCell rowColor={rowColor} >
+                { formatToCurrency(amount) }
+            </OutflowCell>
+
         </TableRow>
     )
 }
