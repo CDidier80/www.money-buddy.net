@@ -4,19 +4,20 @@ import { Redirect, Route } from 'react-router-dom'
 const ProtectedRoute = (props) => {
 
     const { 
+        denyAccess, 
         authenticated, 
         verifyTokenValid, 
-        revokeClearAndRedirect 
     } = props.fromApp
 
     const [routeLoaded, setRouteLoaded] = useState(false)
+
 
     useEffect(() => {
         let routeMounted = true
         const safelyRenderRoute = async () => {
             const safeToRender = await verifyTokenValid()
             if (!safeToRender) {
-                revokeClearAndRedirect()
+                denyAccess()
                 return
             }
             routeMounted && setRouteLoaded(true)
