@@ -8,8 +8,7 @@ import React from 'react'
 const DirectionalFab = (props) => {
 
     const {
-        fromPaginatingContainer: fPC,
-        displayRange,
+        displayRange, 
         disableOn, 
         direction, 
         paginate,
@@ -21,19 +20,16 @@ const DirectionalFab = (props) => {
         displayRange: displayRange
      }
 
-     console.log(fabStyleProps)
-
     const classes = useFabStyles(fabStyleProps)
 
     const fabProps = {
-        className: classes[`fab ${direction}`],
+        className: `${classes["fab"]} ${classes[direction]}`,
         onClick: (e) => paginate(e, direction),
         "aria-label": direction,
         disabled: disableOn,
     }
 
-    const svg = { className: svg }
-
+    const svg = { className: classes.svg }
 
     const icon = direction === "next" ? 
         <ArrowForwardIosRoundedIcon {...svg} /> : 
