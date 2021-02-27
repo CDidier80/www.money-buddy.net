@@ -1,5 +1,5 @@
 import React from 'react'
-
+import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
 export const RandomizeButton = (props) => {
 
     const {
@@ -13,13 +13,15 @@ export const RandomizeButton = (props) => {
         setLoaded(false)
         incrementTicker(tick + 1)
     }
+
+    const buttonProps = {
+        onClick: (e) => rerender(e),
+        overrides: {width: "10vw", minWidth: "100px"} 
+    }
     
     return (
-        <button 
-            onClick={(e) => rerender(e)}
-            className="regenerate-button"
-        >
+        <ThemedButton {...buttonProps} >
             Randomize
-        </button>
+        </ThemedButton>
     )
 }
