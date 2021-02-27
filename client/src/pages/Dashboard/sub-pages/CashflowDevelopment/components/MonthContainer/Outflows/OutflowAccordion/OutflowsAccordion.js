@@ -1,8 +1,8 @@
 import FlowcategoryAccordion from "../FlowcategoryAccordion/FlowategoryAccordion"
-import AccordionDropdownTab from "./components/AccordionDropdownTab"
-import CategoryPopup from "../FlowcategoryPopups/FlowcategoryPopup"
-import { makeStyles, Accordion, } from '@material-ui/core'
+import OutflowsDropdown from "./components/OutflowsDropdown"
+import { useOutflowsAccordionStyles } from "../../styles/styles"
 import React, { useState, useEffect } from 'react'
+import {  Accordion } from '@material-ui/core'
 
 
 const OutflowsAccordion = (props) => {
@@ -25,14 +25,8 @@ const OutflowsAccordion = (props) => {
 
     /* ----------------------- FUNCTIONS ------------------------ */
 
-    const useStyles = makeStyles({
-        root: {
-            padding: "3px 3px 6px 3px",
-            marginTop: "5px",
-        }
-    })
     
-    const classes = useStyles()
+    const { root } = useOutflowsAccordionStyles(props.theme)
 
 
     const handleExpansion = (e) => {
@@ -43,26 +37,20 @@ const OutflowsAccordion = (props) => {
 
     return (
             <div>
-                { showAddFlowcategoryPanel && 
-                    <CategoryPopup 
-                        toggleAddFlowcategoryPanel={toggleAddFlowcategoryPanel}
-                        {...props} 
-                    />
-                }
                 <Accordion 
-                    className={classes.root}
+                    className={root}
                     onChange={(e)=>handleExpansion(e)}
                 >
-                    <AccordionDropdownTab opened={opened} />
-                    {newFlowcategories.map((flowcategory, index) => {
-                        const flowcategoryAccordionProps = {
-                            rerenderOutflowsAccordian,
-                            flowcategoryIndex: index,
-                            renderOutflowsAccordion,
-                            showDeleteIcons,
-                            flowcategory,
-                            memoTicker
-                        }
+                    <OutflowsDropdown opened={opened} />
+                        { newFlowcategories.map((flowcategory, index) => {
+                            const flowcategoryAccordionProps = {
+                                rerenderOutflowsAccordian,
+                                flowcategoryIndex: index,
+                                renderOutflowsAccordion,
+                                showDeleteIcons,
+                                flowcategory,
+                                memoTicker
+                            }
                         return (
                             <FlowcategoryAccordion 
                                 fromOutflowsAccordion={{...flowcategoryAccordionProps}}
