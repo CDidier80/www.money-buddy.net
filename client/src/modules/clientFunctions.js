@@ -1,3 +1,8 @@
+const taggedLog = (varObj) => {
+    const name = Object.keys(varObj)[0]
+    console.log(`${name}: `, varObj[name])
+}
+
 export const currencyFormat = (value) => {
 
     let formattedValue = value.toLocaleString('en-US', { 
@@ -6,9 +11,7 @@ export const currencyFormat = (value) => {
         minimumFractionDigits: 0,
         maximumFractionDigits: 0, 
     })
-    if (value < 0){
-        formattedValue = "-" + formattedValue
-    }
+
     return formattedValue
 }
 
@@ -51,3 +54,10 @@ export const dollarFormat = (value, i) => {
 }
 
 export const ternary = (condition, return1, return2) => condition ? return1 : return2
+
+export class Helpers {
+    static taggedLog (varObj) {
+        const name = Object.keys(varObj)[0]
+        console.log(`${name}: `, varObj[name])
+    }
+}
