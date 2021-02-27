@@ -1,62 +1,38 @@
 import React from 'react'
+import { makeFlowRowsStyles } from "../../styles/styles"
 import { 
     TableCell, 
     TableRow,
-    Paper,
-    TableContainer,
     TableBody,
     Table,
-    makeStyles
 } from '@material-ui/core';
 
 
 const FlowRows = (props) => {
 
     const {
+        netCashflow,
         monthlyInflow,
         monthlyOutflow,
-        netCashflow
     } = props.fromSummaryTable
 
 
-    const useStyles = makeStyles({
-        tableContainter: {
-            margin: "auto",
-            width: "100%",
-            padding: "5px"
-        },
-        row: {
-            backgroundColor: "rgb(180, 255, 255)"
-        },
-        inflowCell : {
-            borderBottom: "none",
-            backgroundColor: "rgba(159, 255, 159, .4)"
-        },
-        outflowCell : {
-            backgroundColor: "rgba(255, 176, 176, .4)"
-        },
-        netCashflowCell: {
-            backgroundColor: "rgba(180, 255, 255, .4)",
-            borderBottom: "none"
-        }
-    })
-
-    const classes = useStyles()
+    const classes = makeFlowRowsStyles(props.theme)
 
     const flowRows = [
         {
-            description: "Total Inflows",
             number: monthlyInflow,
+            description: "Total Inflows",
             className: classes.inflowCell
         },
         {
-            description: "Total Outflows",
             number: monthlyOutflow,
+            description: "Total Outflows",
             className: classes.outflowCell
         },
         {
-            description: "Net Cashflow",
             number: netCashflow,
+            description: "Net Cashflow",
             className : classes.netCashflowCell
         },
     ]
@@ -72,7 +48,6 @@ const FlowRows = (props) => {
             >
                 {flowRows.map((row) => {
                     const {description, number, className} = row
-                    // console.log(description, number, className)
                     return (
                         <TableRow 
                             key={`${description}${number}`}
