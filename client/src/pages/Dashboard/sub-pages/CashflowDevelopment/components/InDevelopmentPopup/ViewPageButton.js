@@ -1,43 +1,31 @@
+import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
+import { DialogActions, makeStyles } from '@material-ui/core'
+import { useButtonWrapperFonts } from "./modalStyles"
 import React from 'react'
-import { DialogActions, makeStyles, Button } from '@material-ui/core'
 
-const ViewPageButton = ({toggleShowPopup}) => {
+const ViewPageButton = ({toggleShowPopup, theme}) => {
 
-    const useStyles = makeStyles({
-        buttonWrapper: {
-            margin: "0 auto",
-            textAlign: "center",
-            justifyContent: "center"
-        },
-        button: {
-            fontSize: "13px",
+    const { buttonWrapper } = useButtonWrapperFonts(theme)
+
+    const closePopup = (e) => (e.preventDefault(), toggleShowPopup(false))
+    
+
+    const buttonProps = {
+        onClick: (e) => closePopup(e),
+        overrides: { 
             fontWeight: "700",
-            fontFamily: "Lato, sans-serif",
-            color: "#e6a824",
-            "&:hover" : {
-                backgroundColor: "#06fbff4b"
-            }
+            fontSize: "14px",
+            width: "70%"
         },
-    })
-
-    const classes = useStyles()
-
-    const closePopup = (e) => {
-        e.preventDefault()
-        toggleShowPopup(false)
     }
 
     return (
         <DialogActions 
-            className={classes.buttonWrapper}
+            className={buttonWrapper}
         >
-            <Button 
-                onClick={(e) => closePopup(e)} 
-                className={classes.button}
-                color="primary"
-            >
+            <ThemedButton {...buttonProps} >
                 View Page
-            </Button>
+            </ThemedButton>
         </DialogActions>
     )
 }
