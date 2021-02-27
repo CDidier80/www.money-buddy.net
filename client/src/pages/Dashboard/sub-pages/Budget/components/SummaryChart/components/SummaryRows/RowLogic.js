@@ -78,7 +78,7 @@ const RowLogic = (props) => {
     const useRowStyles = makeStyles(({palette: p}) => ({
         0: { backgroundColor: p.primaryDark.main   },
         1: { backgroundColor: p.secondaryDark.main },
-        2: { backgroundColor: "rgb(54, 127, 171)" }
+        2: { backgroundColor: p.net.main }
     }))
 
     const rowColors = useRowStyles(props.theme)
