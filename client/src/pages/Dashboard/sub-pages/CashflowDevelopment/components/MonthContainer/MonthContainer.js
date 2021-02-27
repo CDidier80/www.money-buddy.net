@@ -7,9 +7,9 @@ const MonthContainer = (props) => {
     /* -------------------------- PROPS ------------------------- */
 
     const { 
+        cashReserves,
         inflows: inflowsDataset,
         outflows: outflowsDataset, 
-        cashReserves
     } = props.fromCashflowDevelopment
 
     const { 
@@ -19,8 +19,8 @@ const MonthContainer = (props) => {
     } = props.fromPaginatingContainer
 
     const { 
+        inflows,
         flowcategories, 
-        inflows
     } = thisMonth
 
     /* -------------------------- STATE ------------------------- */
@@ -34,7 +34,7 @@ const MonthContainer = (props) => {
     
     /* -------------------------- useEffects ------------------------- */
 
-             /* useEffect #1: -- init local copies of cashflow info -- */
+    /* useEffect #1: -- init local copies of cashflow info -- */
 
     const dependencyArray = [
         newFlowcategories, 
