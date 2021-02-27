@@ -5,13 +5,10 @@ export const currencyFormat = (value) => {
         style: 'currency', 
         currency: 'USD',
     })
-    if (value < 0){
-        formattedValue = "-" + formattedValue
-    }
+
     return formattedValue
 }
 
-/* -- version that will not attach "-" to negative numbers -- */
 
 export const currencyAbsValue = (value) => {
     let formattedValue = value.toLocaleString('en-US', { 
@@ -33,8 +30,6 @@ export const currencyChartCallback = {
         style: 'currency', 
         currency: 'USD',
     })
-    if (value < 0){
-        formattedValue = "-" + formattedValue
-    }
+
     return formattedValue
 }}
