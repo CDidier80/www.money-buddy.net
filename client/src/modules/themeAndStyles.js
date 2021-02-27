@@ -32,11 +32,21 @@ const makeTransparentVariants = (rgb) => ({
 const primaryMain = 'rgba(34, 39, 195)'
 const primaryDark = 'rgba(24, 20, 93)'
 const primaryBright = 'rgba(81, 125, 222)'
+const primaryLightest = "rgba(235, 247, 255)"
+const primaryTeal = "rgba(51, 255, 255)"
 // pink/orange tone
 const secondaryMain = 'rgba(255, 57, 57)'
 const secondaryBright = 'rgba(255, 124, 110)'  
+const secondaryLightest = 'rgba(255, 245, 245)'  
 const secondaryDark = 'rgba(124, 27, 29)'  
+const secondaryMedium = "rgba(191,51,51)"
 const secondaryWrapper = 'rgba(239, 84, 84)'  
+
+
+// other 
+const net = "rgba(54, 127, 171)" // a light blue with gray tones
+const linkHover = "#ffd95d"
+
 
 
 export const moneyBuddyTheme = createMuiTheme({
@@ -86,6 +96,14 @@ export const moneyBuddyTheme = createMuiTheme({
     },
 
     palette: {
+
+
+        /** 
+        * ----------------------------------------
+        *               PRIMARY 
+        * ----------------------------------------
+        */
+
         primary: {
             main: primaryMain,
             transparent: makeTransparentVariants(primaryMain)
@@ -99,10 +117,28 @@ export const moneyBuddyTheme = createMuiTheme({
             main: primaryBright,
             transparent: makeTransparentVariants(primaryBright)
         },
+        primaryLightest: {
+            main: primaryLightest,
+            transparent: makeTransparentVariants(primaryLightest)
+        },
+        primaryTeal: {
+            main: primaryTeal,
+            transparent: makeTransparentVariants(primaryTeal)
+        },
 
+
+        /** 
+        * ----------------------------------------
+        *               SECONDARY 
+        * ----------------------------------------
+        */
         secondary: {
             main: secondaryMain,
             transparent: makeTransparentVariants(secondaryMain)
+        },
+        secondaryMedium: {
+            main: secondaryMedium,
+            transparent: makeTransparentVariants(secondaryMedium)
         },
         secondaryBright : {
             main: secondaryBright,
@@ -118,7 +154,29 @@ export const moneyBuddyTheme = createMuiTheme({
         },
         contrastThreshold: 3,
         tonalOffset: 0.2,
+
+
+        /** 
+        * ----------------------------------------
+        *            OTHER COLORS 
+        * ----------------------------------------
+        */
+
+        net: {
+            main: net,
+            transparent: makeTransparentVariants(net)
+        },
+    
+        linkHover: {
+            main: linkHover,
+            transparent: makeTransparentVariants(linkHover)
+        },
     },
+
+    
+
+    rowColor: primaryLightest,
+    offRowColor: secondaryLightest,
 
     lato: {
         textRendering: "optimizeLegibility !important",
