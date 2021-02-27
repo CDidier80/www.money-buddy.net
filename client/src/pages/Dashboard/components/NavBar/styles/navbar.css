@@ -21,7 +21,6 @@
     transition: color .3s ease-in-out;
     padding-right: 1.25rem!important;
     text-align: -webkit-match-parent;
-    text-shadow: 0 1px 1px #265455;
     box-sizing: border-box;
     text-decoration: none;
     letter-spacing: 1px;
@@ -36,7 +35,7 @@
 }
 
 .sign-out-link:hover {
-    color: #ffcc5d;
+    color: #ffd95d;
 }
 
 .account-icon:hover{
