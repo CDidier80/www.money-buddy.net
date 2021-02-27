@@ -5,8 +5,6 @@ import React from "react";
 
 const UnauthenticatedLinks = (props) => {
 
-    console.log(props)
-
     const nssr = { noSsr: true }
     const { navlink } = makeNavlinkStyles(props.theme)
     const maxWidth465 = useMediaQuery('(max-width: 465px)', nssr)
@@ -41,8 +39,6 @@ const UnauthenticatedLinks = (props) => {
         ...currentRuleset,
 
     }
-
-    console.log(styles)
 
     return (
         <>
