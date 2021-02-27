@@ -6,9 +6,9 @@ import  React, { useState, useEffect }   from  "react"
 import  { gradientWrapper }      from  "./modules/styles"
 import  { withRouter }           from  "react-router-dom"
 import  { CheckSessionService }  from  "./Services/UserService"
+import  { Helpers }              from  "./modules/clientFunctions"
 import  Routes                   from  "./TopLevelComponents/Routes"
 import  AppWrapper               from  "./TopLevelComponents/AppWrapper"
-
 
 const App = (props) => {
 
@@ -20,7 +20,7 @@ const App = (props) => {
 
     /*------------ JSON WEB TOKEN FUNCTIONS ------------*/
 
-        const revokeClearAndRedirect = () => {
+        const denyAccess = () => {
             setAuth(false)
             localStorage.clear()
             props.history.push("/login")
@@ -31,18 +31,17 @@ const App = (props) => {
             try {
                 const { status } = await CheckSessionService()
                 return (status === 200) ? true : false
-                } catch (error) {revokeClearAndRedirect()}
+                } catch (error) {denyAccess()}
         }
+
+        const restoreSession = async () => {
+            const tokenExists = localStorage.getItem("token")
+            const tokenIsValid = tokenExists && await verifyTokenValid()
+            const validUserLacksAuthorization = tokenIsValid && !authenticated
+            if (validUserLacksAuthorization) setAuth(true)
+        }  
     
-        useEffect(() => {
-            const restoreSession = async () => {
-                if (!authenticated && localStorage.getItem("token")) {
-                    const validUserLacksAuthorization = await verifyTokenValid()
-                    if (validUserLacksAuthorization) setAuth(true)
-                } 
-            }        
-            restoreSession()
-        })
+        useEffect(() => restoreSession())
 
 
     /* --------------- PROPS FOR CHILDREN ---------------*/
@@ -50,13 +49,14 @@ const App = (props) => {
     const propsForRoutes = {
         setAuth,
         userInfo,
+        denyAccess,
         setUserInfo,
         authenticated, 
         currencyFormat,
         gradientWrapper,
         verifyTokenValid,
+        helpers: Helpers,
         currencyChartCallback,
-        revokeClearAndRedirect,
     }
 
     /* ---------------------- JSX ----------------------*/
