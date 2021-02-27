@@ -1,32 +1,14 @@
 import { 
     TableRow,
     TableCell, 
-    makeStyles, 
 } from '@material-ui/core'
 import React from 'react'
+import { useInflowHeadersStyles } from "../../../styles/styles"
 
 
-const useStyles = makeStyles({
-    row: {
-        width: "100%"
-    },
-    columnHeader: {
-        fontWeight: "bold",
-        color: "#22c1c3",
-        fontSize: "14px",
-        padding: "8px",
-    },
-    emptyCell: {
-        maxWidth: "20px",
-        minWidth: "20px", 
-        padding: "0px"
-    }
-})
+const InflowHeaders = ({theme}) => {
 
-
-const InflowHeaders = (props) => {
-
-    const classes = useStyles()
+    const classes = useInflowHeadersStyles(theme)
 
     return (
             <TableRow
@@ -51,5 +33,4 @@ const InflowHeaders = (props) => {
     )
 }
 
-{/* </TableHead> */}
 export default InflowHeaders
