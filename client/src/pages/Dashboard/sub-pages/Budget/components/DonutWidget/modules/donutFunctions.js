@@ -1,6 +1,8 @@
+import { moneyBuddyTooltips } from "../../../../../../../modules/moneyBuddyTooltips"
+import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
 import { paletteFromTwoColors, backgroundColors} from "./colors"
-import { createTooltips } from "./tooltips"
 
+const { secondary: s } = moneyBuddyTheme.palette
 
 const divideMonthlyFromAnnual = (categoryTotals) => {
     let annuals   = []
@@ -102,12 +104,21 @@ const responsiveLegend = (mq) => {
 }
 
 
+const titleCallback = ({0: item}, {labels}) => `${labels[item.index]}`
+
+const strongerTooltipBorder = () => ({
+    borderColor: s.transparent[9],
+    borderWidth: 3,
+
+})
+
+
 export const createOptions = (mediaQueries) => {
     const optionsObject = {
         layout: { padding: { left: 0, right: 0, top: 2, bottom: 6 } },
         legend: {...responsiveLegend(mediaQueries)},
         animation: { animateScale: true },
-        tooltips: createTooltips(),
+        tooltips: moneyBuddyTooltips(titleCallback, strongerTooltipBorder),
         responsive: true,
     }
     return optionsObject
