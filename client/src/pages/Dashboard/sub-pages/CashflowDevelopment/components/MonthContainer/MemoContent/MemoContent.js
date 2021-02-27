@@ -6,15 +6,13 @@ import React, { memo } from 'react'
 const MemoContent = memo((props) => {
     return (
         <>
-            <SummaryAccordion {...props}  />
-            <InflowsAccordion {...props}  />
+            <SummaryAccordion  {...props} />
+            <InflowsAccordion  {...props} />
             <OutflowsAccordion {...props} />
         </>
     )
-},(prevProps, nextProps) => {
-    const {pagMemoTicker: prevTick} = prevProps.fromPaginatingContainer
-    const {pagMemoTicker: nextTick} = nextProps.fromPaginatingContainer
-    return (prevTick !== nextTick)
+},({fromPaginatingContainer: prev}, {fromPaginatingContainer: next}) => {
+    return (prev.pagMemoTicker !== next.pagMemoTicker)
 })
 
 export default MemoContent
