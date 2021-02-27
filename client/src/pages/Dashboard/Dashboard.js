@@ -9,6 +9,9 @@ import SideBar                        from "./components/Sidebar/SideBar"
 import NavBar                         from "./components/NavBar/NavBar"
 import { useDashboardStyles }         from "./sub-pages/styles/styles"
 import { withTheme }                  from '@material-ui/core'
+import "./components/NavBar/styles/navbar.css"
+import "./sub-pages/styles/subpage.css"
+import "./dashboard.css"
 import { 
     Route, 
     Switch, 
@@ -19,10 +22,6 @@ import React, {
     createRef, 
     useState, 
 } from 'react'
-
-import "./components/NavBar/styles/navbar.css"
-import "./sub-pages/styles/subpage.css"
-import "./dashboard.css"
 
 
 const Dashboard = (props) => {
@@ -60,17 +59,14 @@ const Dashboard = (props) => {
     
     const initSubpageClass = smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed"
     const [subpageClasses, setSubpageClasses] = useState(initSubpageClass)
+    const [coloredLinks, setColoredLinks] = useState(true)
+    const [coloredAccountIcon, setColoredAccountIcon] = useState(false)
 
 
 
     /* -------------------------- useEffects ------------------------- */
 
-    /* #1: ---- verify token validity ---- */
-
-    // useEffect(() => verifyTokenValid(), [])
-
-
-    /* #2: - async calls on first render - */
+    /* #1: - async calls on first render - */
     
     useEffect(() => {
         let componentMounted = true
@@ -89,7 +85,7 @@ const Dashboard = (props) => {
         }
         /* - verify token before requesting user data - */
         initializeDashboard()
-        return () => componentMounted = false
+        return () => (componentMounted = false)
     }, [])
 
 
@@ -112,7 +108,6 @@ const Dashboard = (props) => {
             }
         })
         componentMounted && setLoaded(childrenShouldRender ? true : false)
-
     }, [...renderDependencies])
 
 
@@ -120,20 +115,28 @@ const Dashboard = (props) => {
 
     const propsNavbar = {
         ticker,
+        ...props,
         setTicker,
+        id: userId,
         userPreference,
+        setColoredLinks,
         setUserPreference,
+        coloredAccountIcon,
+        setColoredAccountIcon,
     }
 
     const propsSidebar = {
         ticker,
         setTicker,
+        coloredLinks,
         userPreference, 
         sidebarClasses, 
         subpageClasses,
+        setColoredLinks,
         setUserPreference,
         setSubpageClasses,
         setSidebarClasses,
+        setColoredAccountIcon,
     }
 
     const budgetHooks = {
@@ -163,15 +166,9 @@ const Dashboard = (props) => {
     return( !loaded ? <LoadingScreen /> :
 
         <div className={classes.dashboard}>
-            <NavBar 
-                {...props}
-                fromDashboard={{...propsNavbar}}
-            />
+            <NavBar {...propsNavbar} />
             <main className="dash-main-flex">
-                <SideBar 
-                    {...props} 
-                    fromDashboard={{...propsSidebar}}
-                /> 
+                <SideBar {...propsSidebar} /> 
                 <div 
                     ref={subpageRef} 
                     className={subpageClasses}
