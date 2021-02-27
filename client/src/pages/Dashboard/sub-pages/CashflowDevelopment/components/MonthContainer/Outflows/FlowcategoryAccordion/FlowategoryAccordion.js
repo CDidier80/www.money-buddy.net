@@ -1,73 +1,53 @@
-import React, { useState, useEffect, memo } from 'react';
-import CategoryDeletePopup from "../FlowcategoryPopups/FlowcategoryDeletePopup"
-import OutflowsTable from "../OutflowsTable/OutflowsTable"
-import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import { 
     Accordion,
     AccordionDetails,
-    makeStyles
 } from '@material-ui/core'
-import ButtonsAddDel from './components/ButtonsAddDel';
-
+import React, { useState, useEffect, memo } from 'react'
+import OutflowsTable from "../OutflowsTable/OutflowsTable"
+import { useFlowcategoryAccordionStyles } from "../../styles/styles"
+import FlowcategoryDropdown from "./components/FlowcategoryDropdown"
 
 
 const FlowcategoryAccordion = memo((props) => {
 
-    const {memoTicker} = props.fromOutflowsAccordion
+    const { memoTicker } = props.fromOutflowsAccordion
 
     /* -------------------------- STATE ------------------------- */
 
     const [lengthOfOutflows, setOuflowsLength] = useState(0)
     const [render,rerenderOutflowCategory] = useState(false)
-    const [showFlowcategoryDeletePopup, toggleFlowcategoryDeletePopup ]= useState(false)
     const [showOutflowDeleteIcons, toggleOutflowDeleteIcons] = useState(false)
+    const [showFlowcategoryDeletePopup, toggleFlowcategoryDeletePopup ]= useState(false)
 
     /* ------------------------ FUNCTIONS ----------------------- */
 
-    useEffect(() => {
-    }, [lengthOfOutflows])
-
-
-    const useStyles = makeStyles({
-        accordionDetails: {
-            padding: "10px 3px 0 3px",
-        },
-        categoryWrapper: {
-            width: "100%",
-            margin: "0 auto",
-
-        },
-        accordion: {
-            // marginBottom: "10px",
-            width: "100%",
-        },
-    })
+    useEffect(() => { }, [lengthOfOutflows])
     
-    const classes = useStyles()
+    const classes = useFlowcategoryAccordionStyles(props.theme)
 
 
-    const categoryDeletePopupProps = {
-        showFlowcategoryDeletePopup,
-        rerenderOutflowCategory,
-        toggleFlowcategoryDeletePopup,
-        render
-    }
+    // const categoryDeletePopupProps = {
+    //     toggleFlowcategoryDeletePopup,
+    //     showFlowcategoryDeletePopup,
+    //     rerenderOutflowCategory,
+    //     render
+    // }
 
-    const buttonsAddDelProps = {
-        lengthOfOutflows,
-        setOuflowsLength,
-        toggleOutflowDeleteIcons,
-        showOutflowDeleteIcons
-    }
+    // const buttonsAddDelProps = {
+    //     toggleOutflowDeleteIcons,
+    //     showOutflowDeleteIcons,
+    //     lengthOfOutflows,
+    //     setOuflowsLength,
+    // }
 
     const accordionDropdownTabProps = {
+        toggleFlowcategoryDeletePopup,
         showFlowcategoryDeletePopup, 
-        toggleFlowcategoryDeletePopup
     }
 
     const outflowsTableProps = {
-        showOutflowDeleteIcons,
         rerenderOutflowCategory,
+        showOutflowDeleteIcons,
         render
     }
 
@@ -76,21 +56,11 @@ const FlowcategoryAccordion = memo((props) => {
             className={classes.accordionDetails}
         >
             <div className={classes.categoryWrapper}>
-                {showFlowcategoryDeletePopup && 
-                    <CategoryDeletePopup 
-                        {...props}
-                        fromFlowcategoryAccordion={{...categoryDeletePopupProps}}
-                    />
-                }
                 <Accordion className={classes.accordion}>
-                    <AccordionDropdownTab 
+                    <FlowcategoryDropdown 
                         {...props}
                         fromFlowcategoryAccordion={{...accordionDropdownTabProps}}
                     />
-                    {/* <ButtonsAddDel 
-                        {...props}
-                        fromFlowcategoryAccordion={{...buttonsAddDelProps}}
-                    /> */}
                     <OutflowsTable 
                         {...props} 
                         fromFlowcategoryAccordion={{...outflowsTableProps}}
@@ -99,14 +69,9 @@ const FlowcategoryAccordion = memo((props) => {
             </div>
         </AccordionDetails>
     )
-}, (prevProps, nextProps) => {
-    const {memoTicker: prevMemoTicker} = prevProps.fromOutflowsAccordion
-    const {memoTicker: nextMemoTicker} = nextProps.fromOutflowsAccordion
-    if (nextMemoTicker == 1) {
-        return false
-    } else {
-        return (prevMemoTicker !== nextMemoTicker) 
-    }
+}, ({fromOutflowsAccordion: prev}, {fromOutflowsAccordion: next}) => {
+    if (next.memoTicker == 1) return false
+    return (prev.memoTicker !== next.memoTicker) 
 })
 
 export default FlowcategoryAccordion
