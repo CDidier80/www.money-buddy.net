@@ -1,19 +1,17 @@
+import { makeStyles, withTheme } from '@material-ui/core/styles'
 import LandingNavBar from "./components/Navbar/LandingNavBar"
 import MobileNavBar from "./components/Navbar/MobileNavBar"
 import ShapesContainer from "./components/ShapesContainer"
 import Canvas from "./components/ParticleCanvas/Canvas"
-import { makeStyles, withTheme } from '@material-ui/core/styles'
+import React, { useState } from "react"
 import Hero from "./components/Hero"
 import "./styles/landingPage.css"
 import "./styles/shapes.css"
 import "./styles/navbar.css"
 import "./styles/hero.css"
-import React, { useState } from "react"
 
 
 const LandingPage = (props) => {
-
-    console.log(props)
 
     const [tick, setTick] = useState(0)
 
