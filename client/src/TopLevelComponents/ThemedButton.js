@@ -8,7 +8,6 @@ const ThemedButton = (props) => {
     const { theme, children, onClick } = props
 
     const useStyles = makeStyles(theme => {
-        const { primary } = theme.palette
         const buttonStyles = {
             button: {
                 width: "100%",
