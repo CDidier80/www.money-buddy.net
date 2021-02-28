@@ -12,6 +12,7 @@
 }
 
 .summary-container {
+    align-items: center;
     background-color: white;
     flex-direction: column;
     border-radius: 4px;
