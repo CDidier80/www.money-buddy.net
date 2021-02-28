@@ -11,6 +11,7 @@ export const TableWrapper = (props) => {
 
     const useStyles = makeStyles({
         tableContainer: {
+            maxWidth: "425px",
             overflow: "hidden",
             flexGrow: "2",
         },
