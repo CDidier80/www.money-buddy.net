@@ -1,4 +1,4 @@
-import ButtonGroupToggler from "./components/ButtonGroupToggler/ButtonGroupToggler"
+import ButtonGroupToggler from "./components/buttons/ButtonGroupToggler"
 import GradientWrapper from "../../../../../../TopLevelComponents/GradientWrapper"
 import SummaryTable from "./components/SummaryTable/SummaryTable"
 import React, { useState } from 'react'
