@@ -5,7 +5,7 @@ const buttons = {
     padding: "0 5px 0 5px",
     borderRadius: "0px",
     fontWeight: "700",
-    fontSize: "9px",
+    fontSize: "11px",
 }
 
 export const useStyles = makeStyles(({palette: p}) => ({
