@@ -5,48 +5,29 @@ import {
 import React from 'react'
 import DelButton from "./DelButton"
 import AddButton from "./AddButton"
-import { usePrimaryStyles, useSecondaryStyles } from "./styles"
+import { useButtonStyles } from "./buttonStyles"
 
 
 const AddDelButtonGroup = (props) => {
 
-    const primaryClasses = usePrimaryStyles(props)
-    const secondaryClasses = useSecondaryStyles(props)
-    const classes = props.variant === "secondary" ? 
-        secondaryClasses : 
-        primaryClasses
 
+    const classes = useButtonStyles(props.theme, props)
 
-    let padding = {}
-    let fontSize = "9px"
+    const propsAddButton = { addButton: classes.addButton, ...props, }
 
-    if (props.fromIncomeAccordion.smallerButtons) {
-        // padding = { padding: "8px 16px 8px 16px" }
-        fontSize = "8px"
-    }
+    const propsDelButton = { classes, ...props }
 
-    const buttonStyles = {
-        fontSize: fontSize,
-        ...padding,
+    const propsButtonGroup = {
+        "aria-label": "button-group",
+        color: "primary",
+        variant: "text"
     }
 
     return (
         <AccordionDetails className={classes.buttonGroup}>
-            <ButtonGroup 
-                aria-label="button group"
-                color="primary" 
-                variant="text" 
-            >
-                <AddButton 
-                    addButton={classes.addButton}
-                    buttonStyles={buttonStyles}
-                    {...props} 
-                />
-                <DelButton 
-                    buttonStyles={buttonStyles}
-                    classes={classes}
-                    {...props} 
-                />
+            <ButtonGroup {...propsButtonGroup}  >
+                <AddButton {...propsAddButton} />
+                <DelButton {...propsDelButton} />
             </ButtonGroup>
         </AccordionDetails>
     )
