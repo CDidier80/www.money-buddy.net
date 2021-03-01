@@ -74,32 +74,16 @@ const createLegend = (fontSize, boxWidth) => ({
 })
 
 
-const responsiveLegend = (mq) => {
+const responsiveLegend = ({mq1, mq2, mq3, mq4, mq5, mq6, mq7}) => {
     let args = [11, 15]
-    switch (true) {
-        case mq.min_width_1800px:
-            args = [24, 40]
-            break
-        case mq.min_width_1400px:
-            args = [18, 40]
-            break
-        case mq.min_width_1100px:
-            args = [14, 25]
-            break
-        case mq.min_width_887px:
-            args = [12, 25]
-            break
-        case mq.min_width_800px:
-            args = [18, 25]
-            break
-        case mq.min_width_622px:
-            args = [14, 15]
-            break
-        case mq.min_width_515px:
-            args = [12, 15]
-            break
-        default:
-    } 
+    if (mq7) (args = [12, 15])
+    if (mq6) (args = [14, 15])
+    if (mq5) (args = [18, 25])
+    if (mq4) (args = [12, 25])
+    if (mq3) (args = [14, 25])
+    if (mq2) (args = [18, 40])
+    if (mq1) (args = [24, 40])
+
     return createLegend(args[0], args[1])
 }
 
@@ -109,7 +93,6 @@ const titleCallback = ({0: item}, {labels}) => `${labels[item.index]}`
 const strongerTooltipBorder = () => ({
     borderColor: s.transparent[9],
     borderWidth: 3,
-
 })
 
 
