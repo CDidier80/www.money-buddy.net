@@ -1,8 +1,9 @@
 
-import Form from "./components/Form/Form"
-import "./styles/signInSignUp.css"
+import ClearLocalsButton from "../../TopLevelComponents/ClearLocalsButton"
 import makeLandingStyles from "./styles/styles"
 import { withTheme } from '@material-ui/core/'
+import Form from "./components/Form/Form"
+import "./styles/signInSignUp.css"
 import React from 'react';
 
 const SignInSignUpPage = (props) => {
@@ -14,9 +15,11 @@ const SignInSignUpPage = (props) => {
 
     return (
         <div className={classes.signInSignUpPage}>
+            <ClearLocalsButton />
             <Form {...props} />
         </div>
     )
 }
 
 export default withTheme(SignInSignUpPage)
+
