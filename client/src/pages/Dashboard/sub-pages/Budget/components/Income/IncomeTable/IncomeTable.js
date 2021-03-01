@@ -2,7 +2,6 @@ import {
     Paper, 
     Table, 
     TableBody, 
-    makeStyles, 
     useMediaQuery,
     TableContainer, 
     AccordionDetails
@@ -11,8 +10,7 @@ import React, { useState } from 'react';
 import IncomeRow from "../IncomeRow/IncomeRow"
 import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
 import { pickColor } from "../../../../universal-functions/styleFunctions"
-import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
-import useIncomeStyle from "../incomeStyles"
+import { useIncomeTableStyles } from "../styles/useIncomeStyles"
 
 
 const IncomeTable = (props) => {
@@ -81,7 +79,7 @@ const IncomeTable = (props) => {
         onlyTwoCells: onlyTwoCells
     }
 
-    const classes = useIncomeStyle('IncomeTable')
+    const classes = useIncomeTableStyles()
 
     return (
         <AccordionDetails
