@@ -19,32 +19,16 @@ const DoughnutChart = (props) => {
 
     /* ---------------------- init MEDIA QUERIES ----------------------- */
     
-    const mq6 = useMediaQuery('(min-width:1800px)')
-    const mq1 = useMediaQuery('(min-width:1400px)')
-    const mq2 = useMediaQuery('(min-width:1100px)')
-    const mq5 = useMediaQuery('(min-width:887px)' )
-    const mq3 = useMediaQuery('(min-width:800px)' )
-    const mq4 = useMediaQuery('(min-width:622px)' )
+    const mq1 = useMediaQuery('(min-width:1800px)')
+    const mq2 = useMediaQuery('(min-width:1400px)')
+    const mq3 = useMediaQuery('(min-width:1100px)')
+    const mq4 = useMediaQuery('(min-width:887px)' )
+    const mq5 = useMediaQuery('(min-width:800px)' )
+    const mq6 = useMediaQuery('(min-width:622px)' )
     const mq7 = useMediaQuery('(min-width:515px)' )
 
-    const mq1Ref = useRef("")
-    const mq2Ref = useRef("")
-    const mq3Ref = useRef("")
-    const mq4Ref = useRef("")
-    const mq5Ref = useRef("")
-    const mq6Ref = useRef("")
-    const mq7Ref = useRef("")
+    const mediaQueries = { mq1, mq2, mq3, mq4, mq5, mq6, mq7 }
 
-    useEffect(() => {
-        mq1Ref.current = mq1
-        mq2Ref.current = mq2
-        mq3Ref.current = mq3
-        mq4Ref.current = mq4
-        mq5Ref.current = mq5
-        mq6Ref.current = mq6
-        mq7Ref.current = mq7
-    })
-    
     const headerRef = useRef()
     
     
@@ -74,17 +58,6 @@ const DoughnutChart = (props) => {
 
     const DATA = createData(categoryNames, categoryTotals, monthly)
 
-    const queryRefs = {
-        min_width_1800px: mq6Ref.current,
-        min_width_1400px: mq1Ref.current,
-        min_width_1100px: mq2Ref.current,
-        min_width_887px:  mq5Ref.current,
-        min_width_800px:  mq3Ref.current,
-        min_width_622px:  mq4Ref.current,
-        min_width_515px:  mq7Ref.current
-    }
-
-
     return ( 
         <GradientWrapper
             theme={props.theme}
@@ -104,7 +77,7 @@ const DoughnutChart = (props) => {
                     <Doughnut 
                         data={DATA}
                         maintainAspectRatio={false}
-                        options={createOptions(queryRefs)}
+                        options={createOptions(mediaQueries)}
                     />
                 </div>
             </div>
