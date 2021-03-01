@@ -1,43 +1,20 @@
 import ClearLocalsButton from "../../TopLevelComponents/ClearLocalsButton"
-import { makeStyles, withTheme } from '@material-ui/core/styles'
 import LandingNavBar from "./components/Navbar/LandingNavBar"
 import MobileNavBar from "./components/Navbar/MobileNavBar"
 import ShapesContainer from "./components/ShapesContainer"
-import Canvas from "./components/ParticleCanvas/Canvas"
-import React, { useState } from "react"
+import { useLandingPageStyles } from "./styles/styleHooks"
+import { withTheme } from '@material-ui/core/styles'
 import Hero from "./components/Hero"
 import "./styles/landingPage.css"
 import "./styles/shapes.css"
 import "./styles/navbar.css"
 import "./styles/hero.css"
+import React from "react"
 
 
 const LandingPage = (props) => {
 
-    const [tick, setTick] = useState(0)
-
-    const { primary, secondary } = props.theme.palette
-
-    const handleClick = (e) => {
-        console.log("clicked")
-        setTick(tick + 1)
-    }
-
-    const useStyles = makeStyles({
-        landingPage: {
-            width: `100%`,
-            height: `100vh`,
-            'overflow-x': "hidden",
-            fontWeight: 400,
-            lineHeight: 1.5,
-            backgroundImage: `linear-gradient(45deg, ${primary.main} 20%, ${secondary.main})`,
-            textRendering: `optimizeLegibility!important`,
-            '-webkit-font-smoothing': `antialiased!important`,
-        },
-    })
-
-    const classes = useStyles()
-
+    const classes = useLandingPageStyles(props.theme)
 
     return (
         <div className={classes.landingPage}>
@@ -52,8 +29,6 @@ const LandingPage = (props) => {
                     {...props}
                 />
             </main>
-                {/* <button style={{position: "absolute", zIndex: 44444444}} onClick={(e) => handleClick(e)}>rerender</button>
-                <Canvas tick={tick}/> */}
         </div>
     )
 }
