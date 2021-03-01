@@ -1,6 +1,7 @@
 import GradientWrapper from "../../../../../../TopLevelComponents/GradientWrapper"
 import { createData, createOptions } from "./modules/donutFunctions"
-import { useMediaQuery, withTheme } from '@material-ui/core'
+import useMediaQueries from "./styles/useMediaQueries"
+import { withTheme } from '@material-ui/core'
 import { Doughnut } from 'react-chartjs-2'
 import "./styles/donutStyles.css"
 import React, { 
@@ -16,19 +17,7 @@ const DoughnutChart = (props) => {
 
     const { categoryNames, categoryTotals} = props.fromBudget
     const { budgetRef } = props
-
-    /* ---------------------- init MEDIA QUERIES ----------------------- */
     
-    const mq1 = useMediaQuery('(min-width:1800px)')
-    const mq2 = useMediaQuery('(min-width:1400px)')
-    const mq3 = useMediaQuery('(min-width:1100px)')
-    const mq4 = useMediaQuery('(min-width:887px)' )
-    const mq5 = useMediaQuery('(min-width:800px)' )
-    const mq6 = useMediaQuery('(min-width:622px)' )
-    const mq7 = useMediaQuery('(min-width:515px)' )
-
-    const mediaQueries = { mq1, mq2, mq3, mq4, mq5, mq6, mq7 }
-
     const headerRef = useRef()
     
     
@@ -54,7 +43,7 @@ const DoughnutChart = (props) => {
         window.addEventListener("resize", handleDimensions)
         handleDimensions()
         return () => window.removeEventListener("resize", handleDimensions)
-    }, [])
+    }, [width])
 
     const DATA = createData(categoryNames, categoryTotals, monthly)
 
@@ -72,12 +61,12 @@ const DoughnutChart = (props) => {
                     Distribution of Spending
                 </h3>
                 <div 
-                    style={{width: width}}
+                    style={{width: width, "flex-grow":1}}
                 >
                     <Doughnut 
                         data={DATA}
                         maintainAspectRatio={false}
-                        options={createOptions(mediaQueries)}
+                        options={createOptions(useMediaQueries())}
                     />
                 </div>
             </div>
