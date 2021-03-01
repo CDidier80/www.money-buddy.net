@@ -1,12 +1,11 @@
-import { useIncomeHeaderStyles } from "../../styles"
-import useIncomeStyles from "../../../incomeStyles"
+import { useIncomeHeaderStyles } from "../../../styles/useIncomeStyles"
 import { TableCell } from '@material-ui/core'
 import React from 'react'
 
 
 const HeaderCell = (props) => {
 
-    const { headerCell } = useIncomeStyles("HeaderCell")
+    const { headerCell } = useIncomeHeaderStyles()
     const styleOverrides = props.overrides || {}
 
     return (
