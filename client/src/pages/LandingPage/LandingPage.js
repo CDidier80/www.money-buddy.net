@@ -1,3 +1,4 @@
+import ClearLocalsButton from "../../TopLevelComponents/ClearLocalsButton"
 import { makeStyles, withTheme } from '@material-ui/core/styles'
 import LandingNavBar from "./components/Navbar/LandingNavBar"
 import MobileNavBar from "./components/Navbar/MobileNavBar"
@@ -40,6 +41,7 @@ const LandingPage = (props) => {
 
     return (
         <div className={classes.landingPage}>
+            <ClearLocalsButton />
             <LandingNavBar 
                 {...props}
             />
