@@ -1,4 +1,4 @@
-import { useEmptyCellStyles } from "../../styles"
+import { useEmptyCellStyles } from "../../../styles/useIncomeStyles"
 import { TableCell } from '@material-ui/core'
 import React from 'react'
 
