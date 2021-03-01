@@ -43,7 +43,7 @@ const DoughnutChart = (props) => {
         window.addEventListener("resize", handleDimensions)
         handleDimensions()
         return () => window.removeEventListener("resize", handleDimensions)
-    }, [width])
+    }, [])
 
     const DATA = createData(categoryNames, categoryTotals, monthly)
 
