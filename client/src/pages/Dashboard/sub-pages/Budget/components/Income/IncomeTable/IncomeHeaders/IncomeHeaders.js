@@ -1,5 +1,5 @@
+import CellButtonGroup from "./buttongroup/CellButtonGroup"
 import { TableRow  } from '@material-ui/core'
-import CellButtonGroup from "./buttons/CellButtonGroup"
 import HeaderCell from "./cells/HeaderCell"
 import EmptyCell from "./cells/EmptyCell"
 import React from 'react';
