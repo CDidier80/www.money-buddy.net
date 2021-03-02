@@ -1,9 +1,8 @@
 import {
     Grid,
     Paper,
-    MuiThemeProvider,
+    withTheme,
 } from '@material-ui/core/'
-import theme from "../styles/theme"
 import React from 'react'
 
 
@@ -29,7 +28,6 @@ const FormBody = (props) => {
     }
 
     return (
-        <MuiThemeProvider theme={theme}>
             <div className="form-wrapper" >
                 <Grid 
                     className={classes.root}
@@ -48,8 +46,7 @@ const FormBody = (props) => {
                     </Grid>
                 </Grid>
             </div>
-        </MuiThemeProvider>
     )
 }
 
-export default FormBody
+export default withTheme(FormBody)

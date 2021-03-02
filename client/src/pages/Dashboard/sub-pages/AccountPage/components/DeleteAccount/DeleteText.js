@@ -1,28 +1,26 @@
 import { Typography, makeStyles } from '@material-ui/core/'
 import React from 'react'
 
-const DeleteText = (props) => {
-
-    const { setDeleteTriggered, formFont } = props
+const DeleteText = ({ setDeleteTriggered, formFont }) => {
 
     const useStyles = makeStyles({
         deleteText: {
-        padding: "15px",
-        color: "#D22323",
-        backgroundColor: "white",
-        fontSize: "18px",
-        cursor: "pointer",
-        ...formFont
+            backgroundColor: "white",
+            cursor: "pointer",
+            color: "#D22323",
+            fontSize: "18px",
+            padding: "15px",
+            ...formFont
     }})
 
     const classes = useStyles()
 
     return (
         <Typography 
+            onClick={()=>setDeleteTriggered(true)}
             className={classes.deleteText}
             component="h1" 
             variant="h5"
-            onClick={()=>setDeleteTriggered(true)}
         >
             Delete Account
         </Typography>

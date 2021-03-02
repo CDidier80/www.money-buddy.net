@@ -1,22 +1,15 @@
 import FlowcategoryAccordion from "../FlowcategoryAccordion/FlowategoryAccordion"
-import AccordionDropdownTab from "./components/AccordionDropdownTab"
-import CategoryPopup from "../FlowcategoryPopups/FlowcategoryPopup"
-import React, { 
-    useState, 
-    useEffect 
-} from 'react'
-import { 
-    makeStyles,
-    Accordion,
-} from '@material-ui/core'
+import OutflowsDropdown from "./components/OutflowsDropdown"
+import { useOutflowsAccordionStyles } from "../../styles/styles"
+import React, { useState, useEffect } from 'react'
+import {  Accordion } from '@material-ui/core'
 
 
 const OutflowsAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { newFlowcategories, } = props.fromMonthContainer
-    
+    const { newFlowcategories } = props.fromMonthContainer
 
     /* -------------------------- STATE ------------------------- */
 
@@ -25,66 +18,44 @@ const OutflowsAccordion = (props) => {
     const [showDeleteIcons, toggleDeleteIcons] = useState(false)
     const [memoTicker, incrementMemoTicker] = useState(0)
     const [opened, toggleOpened] = useState(false)
-    // must keep -- optimizes performance
-
 
     /* ------------------------ useEffect ----------------------- */
 
-    useEffect(() => {
-    }, [renderOutflowsAccordion])
-
+    useEffect(() => { }, [renderOutflowsAccordion])
 
     /* ----------------------- FUNCTIONS ------------------------ */
 
-    const useStyles = makeStyles({
-        root: {
-            marginTop: "5px",
-            padding: "3px 3px 6px 3px",
-        }
-    })
     
-    const classes = useStyles()
+    const { root } = useOutflowsAccordionStyles(props.theme)
 
 
     const handleExpansion = (e) => {
-        toggleOpened(!opened)
         incrementMemoTicker(memoTicker + 1)
-        console.log("changed")
+        toggleOpened(!opened)
     }
 
 
     return (
             <div>
-                { showAddFlowcategoryPanel && 
-                    <CategoryPopup 
-                        {...props} 
-                        toggleAddFlowcategoryPanel={toggleAddFlowcategoryPanel}
-                    />
-                }
                 <Accordion 
-                    className={classes.root}
+                    className={root}
                     onChange={(e)=>handleExpansion(e)}
                 >
-                    <AccordionDropdownTab 
-                        opened={opened}
-                    />
-                    {/* <ButtonsAddDelete 
-                        fromOutflowsAccordion={{...buttonsAddDeleteProps}}
-                    /> */}
-                    {newFlowcategories.map((flowcategory, index) => {
-                        const flowcategoryAccordionProps = {
-                            rerenderOutflowsAccordian,
-                            flowcategoryIndex: index,
-                            renderOutflowsAccordion,
-                            showDeleteIcons,
-                            flowcategory,
-                            memoTicker
-                        }
+                    <OutflowsDropdown opened={opened} />
+                        { newFlowcategories.map((flowcategory, index) => {
+                            const flowcategoryAccordionProps = {
+                                rerenderOutflowsAccordian,
+                                flowcategoryIndex: index,
+                                renderOutflowsAccordion,
+                                showDeleteIcons,
+                                flowcategory,
+                                memoTicker
+                            }
                         return (
                             <FlowcategoryAccordion 
+                                fromOutflowsAccordion={{...flowcategoryAccordionProps}}
                                 key={`${20000 + index}`}
                                 {...props} 
-                                fromOutflowsAccordion={{...flowcategoryAccordionProps}}
                             />
                         )
                     })}

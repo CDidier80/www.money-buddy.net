@@ -1,6 +1,7 @@
 import blueGrey from '@material-ui/core/colors/blueGrey'
-import { IconButton } from '@material-ui/core'
+import { useBurgerStyles } from "../styles/navbarStyles"
 import MenuIcon from '@material-ui/icons/Menu'
+import { IconButton } from '@material-ui/core'
 import React from 'react'
 
 
@@ -13,39 +14,32 @@ const Burger = (props) => {
         setTicker,
         userPreference,
         setUserPreference,
-    } = props.fromDashboard
+    } = props
 
+    const iconStyle = { margin: "6px 0 0 6px" }
 
     /* ------------- click handler ----------- */
-
+    
     const handleBurger = (e) => {
-        e.preventDefault()
-        switch (userPreference) {
-            case "open":   
-                setUserPreference("closed")
-                break
-            case "closed":
-                setUserPreference("open")
-                break
-            case "": 
-                const smallScreen = window.innerWidth <= 600
-                setUserPreference(smallScreen ? "open" : "closed")
-        }
+        setUserPreference( 
+            ((userPreference === "") && (window.innerWidth <= 600 ? "open" : "closed")) || 
+            (userPreference === "open" && "closed" || "open")
+        )
         setTicker(ticker + 1)
     }
 
-    const iconStyle = {margin: "6px 0 0 6px"}
+    const { burgerWrapper, burger } = useBurgerStyles(props.theme)
 
     return (
         <IconButton 
-            className="hamburger-iconbutton-wrapper" 
-            onClick={(e)=>handleBurger(e)} 
             style={iconStyle}
+            className={burgerWrapper}
+            onClick={(e)=>handleBurger(e)} 
         >
             <MenuIcon 
                 htmlColor={blueGrey[50]}
-                className="hamburger" 
                 fontSize="default" 
+                className={burger}
             />
         </IconButton> 
     )

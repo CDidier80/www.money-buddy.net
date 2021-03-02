@@ -1,22 +1,20 @@
+import GradientWrapper from "../../../../TopLevelComponents/GradientWrapper"
 import PasswordForm from "./components/PasswordForm/PasswordForm"
-import { MuiThemeProvider, makeStyles } from '@material-ui/core/'
 import DeletePopup from './components/DeleteAccount/DeletePopup'
+import useSnackbars from "../../../../customHooks/useSnackbars"
 import DeleteText from './components/DeleteAccount/DeleteText'
+import { withTheme, makeStyles } from '@material-ui/core/'
 import EmailForm from "./components/EmailForm/EmailForm"
 import { withSnackbar, useSnackbar  } from 'notistack'
-import {theme} from "./styles/MoneyBuddyTheme"
 import useStyles from "./styles/useStyles"
 import React, { useState } from 'react'
 import "./styles/accountPage.css"
 
 const AccountPage = (props) => {
 
-    console.log(props)
-
     /* ------------------------ PROPS ------------------------ */
     
     const { id: user_id } = props
-    const { gradientWrapper } = props.fromDashboard
     
     /* ------------------------ STATE ------------------------ */
     
@@ -24,39 +22,23 @@ const AccountPage = (props) => {
     
     /* ------------------------ SNACKBARS ------------------------ */
 
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
-
-    const errorVariant = {variant: 'Error'}
-    const successVariant = { variant: 'Success', iconVariant: "Success" }
-
-
-    const errorSnackbar = (variable) => {
-        enqueueSnackbar(`Failed to Change ${variable}`, errorVariant)
-    }
-    
-    const mismatch = (variableOne, variableTwo) => {
-        enqueueSnackbar(`${variableOne} doesn't match ${variableTwo}`, errorVariant)
-    }
-    
-    const updateSnackbar = (variable) => enqueueSnackbar(
-        `Successfully Updated ${variable}`, successVariant
-        ) 
+    const {
+        invalidSnackbar,
+        updateSnackbar,
+        errorSnackbar,
+        mismatch,
+    } = useSnackbars()
     
     /* ------------------------ STYLES ------------------------ */
 
-    const classes = useStyles()
+    const gradientOverrides = {
+        padding: "7px",
+        maxWidth: "600px",
+        minWidth: "415",
+        margin: "30px auto"
+    }
 
-    const useGradientClass = makeStyles({
-        gradientWrapper: {
-            ...gradientWrapper,
-            padding: "7px",
-            maxWidth: "600px",
-            margin: "30px auto"
-        }
-    })
-
-    const gradientClass = useGradientClass()
-
+    const classes = useStyles(props.theme)
 
     /* ------------------------ FUNCTIONS ------------------------ */
 
@@ -82,7 +64,7 @@ const AccountPage = (props) => {
         updateSnackbar,
     }
     
-    const fromProps = {
+    const formProps = {
         formFont,
         updateField,
         ...snackbars,
@@ -91,20 +73,21 @@ const AccountPage = (props) => {
 
 
     return (
-        <MuiThemeProvider theme={theme}>
-            <div>
-                <div className={gradientClass.gradientWrapper}>
+            <GradientWrapper 
+                theme={props.theme}
+                overrides={gradientOverrides}
+            >
                     <div 
                         className="account-page" 
                         className={classes.paper}
                     >
                         <PasswordForm 
                             {...props}
-                            fromAccountPage={{...fromProps}}
+                            fromAccountPage={{...formProps}}
                         />
                         <EmailForm 
                             {...props}
-                            fromAccountPage={{...fromProps}}
+                            fromAccountPage={{...formProps}}
                         />
                         <DeleteText
                             formFont={formFont}
@@ -118,13 +101,12 @@ const AccountPage = (props) => {
                             />
                         )}
                     </div>
-                </div>
-            </div>
-        </MuiThemeProvider>
+
+            </GradientWrapper>
     )
 }
 
-export default withSnackbar(AccountPage)
+export default withSnackbar(withTheme(AccountPage))
 
 
 

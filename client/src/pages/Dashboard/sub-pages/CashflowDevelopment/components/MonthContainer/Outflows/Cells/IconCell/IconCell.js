@@ -1,11 +1,10 @@
+import { 
+    TableCell, 
+    makeStyles, 
+} from '@material-ui/core'
 import React from 'react'
 import DeleteOutflowIcon from "./components/DeleteOutlowIcon"
 import UndoIconButton from "./components/UndoIconButton"
-
-import { 
-    makeStyles, 
-    TableCell, 
-} from '@material-ui/core'
 
 
 const IconCell = (props) => {
@@ -27,15 +26,13 @@ const IconCell = (props) => {
     return (
         <TableCell 
             size="small" 
-            className={classes.iconCell}
             style={{width: "30px"}}
+            className={classes.iconCell}
         >
             {iconShouldShow && ( showOutflowDeleteIcons ? 
                 <DeleteOutflowIcon {...props} />
                 :
-                <UndoIconButton 
-                    {...props} 
-                />
+                <UndoIconButton {...props} />
             )}
         </TableCell>
     )

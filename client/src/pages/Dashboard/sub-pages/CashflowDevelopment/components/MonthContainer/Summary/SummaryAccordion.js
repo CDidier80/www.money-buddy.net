@@ -1,10 +1,8 @@
-import React, { useState, useEffect } from 'react'
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
+import { makeSummaryAccordionStyles } from "../styles/styles"
+import { makeStyles, Accordion } from '@material-ui/core'
 import SummaryTable from "./components/SummaryTable"
-import { 
-    makeStyles,
-    Accordion,
-} from '@material-ui/core';
+import React, { useState } from 'react'
 
 
 
@@ -12,47 +10,26 @@ import {
 const SummaryAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
-    // console.log("props:", props)
     const { thisMonth } = props.fromPaginatingContainer
-    // console.log("fromMonthContainer", props.fromMonthContainer)
 
     /* -------------------------- STATE ------------------------- */
     // const [showAddCategoryPanel, toggleAddCategoryPanel] = useState(false)
     // const [showDeleteIcons, toggleDeleteIcons] = useState(false)
     const [opened, toggleOpened] = useState(true)
 
-    {/*  useEffect  */}
-
-    // useEffect(() => {
-    // }, [])
-
-    {/*  FUNCTIONS  */}
-    // const setDeleteIcons = (e) => {
-    //     e.preventDefault()
-    //     toggleDeleteIcons(!showDeleteIcons)
-    // }
 
     const handleExpansion = (e) => {
         toggleOpened(!opened)
     }
 
-
-    const useStyles = makeStyles({
-
-        accordion: {
-            marginBottom: "4px",
-        }
-    })
-
-    const classes = useStyles()
+    const { accordion } = makeSummaryAccordionStyles(props.theme)
 
     return (
         <div>
             <Accordion 
-                className={classes.accordion}
+                className={accordion}
                 onChange={(e)=>handleExpansion(e)}
                 expanded={opened}
-
             >
                 <AccordionDropdownTab 
                     opened={opened}

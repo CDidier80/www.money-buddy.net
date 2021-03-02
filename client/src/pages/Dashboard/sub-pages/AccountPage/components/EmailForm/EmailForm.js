@@ -10,11 +10,11 @@ const EmailForm = (props) => {
 
     const useStyles = makeStyles(theme => ({
         form: {
-            width: '100%', // Fix IE 11 issue.
-            marginTop: theme.spacing(1),
             backgroundColor: "rgba(255,255,255)",
+            marginTop: theme.spacing(1),
             marginBottom: "20px",
-            ...props.formFont
+            ...props.formFont,
+            width: '100%', 
         }
     }))
 
@@ -23,7 +23,7 @@ const EmailForm = (props) => {
 
     return (
         <>
-            <EmailHeader />
+            <EmailHeader theme={props.theme}/>
             <form 
                 className={classes.form} 
                 noValidate
@@ -32,7 +32,6 @@ const EmailForm = (props) => {
                     {...props}
                     setNewEmail={setNewEmail}
                 />
-                
                 <EmailButton 
                     {...props}
                     newEmail={newEmail}

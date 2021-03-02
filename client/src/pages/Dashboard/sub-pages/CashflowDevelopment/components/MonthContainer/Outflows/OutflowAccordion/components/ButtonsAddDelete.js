@@ -1,12 +1,10 @@
-import React from 'react'
 import { 
-    makeStyles,
     Button,
+    makeStyles,
     ButtonGroup,
     AccordionDetails,
 } from '@material-ui/core';
-
-
+import React from 'react'
 
 const ButtonsAddDelete = (props) => {
 
@@ -24,18 +22,18 @@ const ButtonsAddDelete = (props) => {
             margin: "0 auto"
         },
         button: {
-            fontSize: "9px",
-            fontWeight: "700",
             fontFamily: "Lato, sans-serif",
+            padding: "0 5px 0 5px",
+            fontWeight: "700",
             color: "#e6a824",
-            padding: "0 5px 0 5px"
+            fontSize: "9px",
         },
         deleteButton: {
             fontSize: "9px",
             fontWeight: "700",
+            padding: "0 5px 0 5px",
             fontFamily: "Lato, sans-serif",
             color: showDeleteIcons ? "#22c1c3" : "#e6a824",
-            padding: "0 5px 0 5px"
         },
     })
 

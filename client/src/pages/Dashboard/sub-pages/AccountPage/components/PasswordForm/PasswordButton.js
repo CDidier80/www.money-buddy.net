@@ -1,3 +1,4 @@
+import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
 import { UpdatePassword } from "../../../../../../Services/UserService"
 import React from 'react'
 
@@ -38,13 +39,16 @@ const PasswordButton = (props) => {
         }
     }
 
+    const overrides = { width: "20%", marginTop: "20px"}
+
     return (
-        <button 
-            className="submitButton account-page"
+        <ThemedButton
+            theme={props.theme}
+            overrides={overrides}
             onClick={(e)=>submitNewPassword(e)}
         >
             Submit
-        </button>
+        </ThemedButton>
     )
 }
 

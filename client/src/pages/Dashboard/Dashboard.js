@@ -1,36 +1,36 @@
-import CashflowDevRoute               from "./components/MemoRoutes/CashflowDevRoute"
-import RetirementRoute                from "./components/MemoRoutes/RetirementRoute"
-import LoadingScreen                  from "./components/LoadingScreen/LoadingScreen"
-import AccountPage                    from "./sub-pages/AccountPage/AccountPage"
-import BudgetRoute                    from "./components/MemoRoutes/BudgetRoute"
-import { ReadEntireCashflow }         from "../../Services/CashflowService"
-import { ReadEntireBudget }           from "../../Services/BudgetService"
-import SideBar                        from "./components/Sidebar/SideBar"
-import NavBar                         from "./components/NavBar/NavBar"
-import { Switch, Route, withRouter }  from 'react-router-dom'
+import CashflowDevRoute        from "./components/MemoRoutes/CashflowDevRoute"
+import RetirementRoute         from "./components/MemoRoutes/RetirementRoute"
+import LoadingScreen           from "./components/LoadingScreen/LoadingScreen"
+import AccountPage             from "./sub-pages/AccountPage/AccountPage"
+import BudgetRoute             from "./components/MemoRoutes/BudgetRoute"
+import { ReadEntireCashflow }  from "../../Services/CashflowService"
+import { ReadEntireBudget }    from "../../Services/BudgetService"
+import SideBar                 from "./components/Sidebar/SideBar"
+import NavBar                  from "./components/NavBar/NavBar"
+import { useDashboardStyles }  from "./sub-pages/styles/styles"
+import { withTheme }           from '@material-ui/core'
 import "./components/NavBar/styles/navbar.css"
-import "./styles/dashboard.css"
-import "./styles/subpage.css"
+import "./sub-pages/styles/subpage.css"
+import "./dashboard.css"
+import { 
+    Route, 
+    Switch, 
+    withRouter 
+}  from 'react-router-dom'
 import React, { 
-    createRef, 
     useEffect, 
+    createRef, 
     useState, 
 } from 'react'
 
 
 const Dashboard = (props) => {
 
-
     const smallScreen = window.innerWidth <= 600
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { 
-        userInfo, 
-        validSession,
-        gradientWrapper, 
-        verifyTokenValid, 
-    } = props.fromApp
+    const { userInfo, gradientWrapper, } = props.fromApp
     const { id: userId } = userInfo
 
 
@@ -59,17 +59,14 @@ const Dashboard = (props) => {
     
     const initSubpageClass = smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed"
     const [subpageClasses, setSubpageClasses] = useState(initSubpageClass)
+    const [coloredLinks, setColoredLinks] = useState(true)
+    const [coloredAccountIcon, setColoredAccountIcon] = useState(false)
 
 
 
     /* -------------------------- useEffects ------------------------- */
 
-    /* #1: ---- verify token validity ---- */
-
-    useEffect(() => verifyTokenValid(), [])
-
-
-    /* #2: - async calls on first render - */
+    /* #1: - async calls on first render - */
     
     useEffect(() => {
         let componentMounted = true
@@ -87,9 +84,9 @@ const Dashboard = (props) => {
             }
         }
         /* - verify token before requesting user data - */
-        validSession && initializeDashboard()
-        return () => componentMounted = false
-    }, [validSession])
+        initializeDashboard()
+        return () => (componentMounted = false)
+    }, [])
 
 
     /* #2: --- block ui until state loads --- */
@@ -111,7 +108,6 @@ const Dashboard = (props) => {
             }
         })
         componentMounted && setLoaded(childrenShouldRender ? true : false)
-
     }, [...renderDependencies])
 
 
@@ -119,20 +115,28 @@ const Dashboard = (props) => {
 
     const propsNavbar = {
         ticker,
+        ...props,
         setTicker,
+        id: userId,
         userPreference,
+        setColoredLinks,
         setUserPreference,
+        coloredAccountIcon,
+        setColoredAccountIcon,
     }
 
     const propsSidebar = {
         ticker,
         setTicker,
+        coloredLinks,
         userPreference, 
         sidebarClasses, 
         subpageClasses,
+        setColoredLinks,
         setUserPreference,
         setSubpageClasses,
         setSidebarClasses,
+        setColoredAccountIcon,
     }
 
     const budgetHooks = {
@@ -156,24 +160,19 @@ const Dashboard = (props) => {
     }
 
     const subpageRef = createRef()
+    const classes = useDashboardStyles(props.theme)
 
 
     return( !loaded ? <LoadingScreen /> :
 
-        <div className="dashboard">
-            <NavBar 
-                {...props}
-                fromDashboard={{...propsNavbar}}
-            />
+        <div className={classes.dashboard}>
+            <NavBar {...propsNavbar} />
             <main className="dash-main-flex">
-                <SideBar 
-                    {...props} 
-                    fromDashboard={{...propsSidebar}}
-                /> 
+                <SideBar {...propsSidebar} /> 
                 <div 
                     ref={subpageRef} 
-                    style={{backgroundColor: "white"}}
                     className={subpageClasses}
+                    style={{backgroundColor: "white"}}
                 > 
                     <Switch> 
                         <BudgetRoute 
@@ -197,10 +196,10 @@ const Dashboard = (props) => {
                         <Route 
                             {...props} 
                             path="/dashboard/account" 
-                            component={(props) => ( 
+                            component={() => ( 
                                 <AccountPage 
-                                fromDashboard={{...accountProps}} 
-                                id={userId} 
+                                    fromDashboard={{...accountProps}} 
+                                    id={userId} 
                                     {...props} 
                                 /> 
                             )} 
@@ -212,4 +211,4 @@ const Dashboard = (props) => {
     )
 }
 
-export default withRouter(Dashboard)
+export default withRouter(withTheme(Dashboard))

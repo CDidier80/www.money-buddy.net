@@ -1,10 +1,10 @@
-import React from 'react'
 import { 
     Button,
+    makeStyles,
     ButtonGroup,
     AccordionDetails,
-    makeStyles
 } from '@material-ui/core'
+import React from 'react'
 
 
 
@@ -12,42 +12,34 @@ const ButtonsAddDel = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-
-    const { 
-        flowcategoryIndex: fci, 
-    } = props.fromOutflowsAccordion
-
-
-
     const {
-
+        showOutflowDeleteIcons,
         toggleOutflowDeleteIcons,
-        showOutflowDeleteIcons
     } = props.fromFlowcategoryAccordion
+    
+    const { flowcategoryIndex: fci, } = props.fromOutflowsAccordion
 
-
-    {/* FUNCTIONS */}
+    /* --------- FUNCTIONS ---------*/
 
     const useStyles = makeStyles({
         button: {
-            fontSize: "9px",
-            fontWeight: "700",
             fontFamily: "Lato, sans-serif",
+            padding: "0 5px 0 5px",
+            fontWeight: "700",
             color: "#e6a824",
-            padding: "0 5px 0 5px"
+            fontSize: "9px",
         },
         deleteButton: {
-            fontSize: "9px",
-            fontWeight: "700",
-            fontFamily: "Lato, sans-serif",
             color: showOutflowDeleteIcons ? "#22c1c3" : "#e6a824",
-            padding: "0 5px 0 5px"
+            fontFamily: "Lato, sans-serif",
+            padding: "0 5px 0 5px",
+            fontWeight: "700",
+            fontSize: "9px",
         },
     })
 
 
     const classes = useStyles()
-
 
 
     const handleOutflowDeleteIcons = (e) => {
@@ -58,16 +50,13 @@ const ButtonsAddDel = (props) => {
 
     return (
         <AccordionDetails>
-            <ButtonGroup className={classes.buttonGroup} 
+            <ButtonGroup 
                 variant="text" 
                 color="primary" 
+                className={classes.buttonGroup} 
                 aria-label="text primary button group"
             >
-                <Button 
-                    className={classes.button}
-                >
-                    Add Outflow
-                </Button>
+                <Button className={classes.button} > Add Outflow </Button>
                 <Button 
                     className={classes.deleteButton}
                     onClick={(e) => handleOutflowDeleteIcons(e)}

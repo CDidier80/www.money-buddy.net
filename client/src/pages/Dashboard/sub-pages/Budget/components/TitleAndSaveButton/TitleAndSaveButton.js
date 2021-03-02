@@ -1,21 +1,15 @@
-import React from 'react'
+import Header from "../../../../components/reuseable/Header"
 import SaveBudgetButton from "./components/SaveBudgetButton"
+import React from 'react'
 
 const TitleAndSaveButton = (props) => {
 
     const { userMadeChanges } = props.fromBudget
 
     return (
-        <div className="header-and-button-wrapper">
-            <div className="page-header-wrapper">
-                <h1 className="page-header">BUDGET</h1>
-            </div>
-            {userMadeChanges && 
-                <SaveBudgetButton 
-                    {...props} 
-                />
-            }
-        </div>
+        <Header text="BUDGET" >
+            { userMadeChanges && <SaveBudgetButton {...props} /> }
+        </Header>
     )
 }
 

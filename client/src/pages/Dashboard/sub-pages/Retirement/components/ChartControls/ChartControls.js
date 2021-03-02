@@ -39,7 +39,6 @@ const ChartControls = (props) => {
     } = props.fromRetirement
 
 
-
     /* ----------------- Section 1 ----------------- */
 
     const milestonesSection = {

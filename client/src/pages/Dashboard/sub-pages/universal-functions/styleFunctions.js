@@ -1,1 +1,4 @@
-export const offRowColor = (index) => (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
+import { moneyBuddyTheme } from "../../../../modules/themeAndStyles"
+const { rowColor, offRowColor} = moneyBuddyTheme
+
+export const pickColor = (index) => (index % 2 === 0) ? rowColor : offRowColor

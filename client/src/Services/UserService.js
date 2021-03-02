@@ -75,8 +75,9 @@ export const DeleteUser = async (body, params) => {
 export const CheckSessionService = async (body, params) => {
     try{
         log(CheckSessionService, body, params)
+        if(!localStorage.getItem("token")) return false
         const response = await ApiClient.get('users/session')
-        return response.status
+        return response
     } catch (error) {
         errorLog(CheckSessionService, error)
     }

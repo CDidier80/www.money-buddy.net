@@ -6,7 +6,6 @@ import {generateDataSets} from "./configData/data"
 import { tooltips } from "./configData/tooltips"
 import LineChart from "./components/LineChart"
 
-
 const ChartLogic = (props) => {
 
     /* -------------------------------- PROPS -------------------------------- */
@@ -16,6 +15,7 @@ const ChartLogic = (props) => {
         currentAge, 
         lifespanAge, 
     } = props.fromRetirement
+
     const { callback: toCurrency } = props.fromApp.currencyChartCallback
     const savingsForecast = calculateSavingsForecast({...props.fromRetirement})
 
@@ -26,8 +26,29 @@ const ChartLogic = (props) => {
     const [width, setWidth] = useState(window.innerWidth - 200)
 
     const setChartWrapperSize = (e) => {
-        setHeight(window.innerHeight / 2)
-        setWidth(window.innerWidth - 200)
+
+        const {
+            clientWidth: subpageWidth, 
+            clientHeight: subpageHeight 
+        } = props.retirementRef.current
+        
+        if (subpageWidth < 900 && window.innerHeight > 700){
+            setHeight(subpageWidth *.7)
+            setWidth(subpageWidth *.95)
+        } else {
+            setHeight(window.innerHeight * .75)
+            setWidth(subpageWidth *.95)
+        }
+        
+        if (window.innerHeight < 700) {
+            setHeight(window.innerHeight * .7)
+            setWidth(subpageWidth *.85)
+        }
+
+        if (window.innerHeight < 500) {
+            setHeight(window.innerHeight * .6)
+            setWidth(subpageWidth *.85)
+        }
     }
     
     useLayoutEffect(() => {

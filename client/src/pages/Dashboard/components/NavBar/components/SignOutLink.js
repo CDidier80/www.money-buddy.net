@@ -1,9 +1,11 @@
+import { useSignoutLinkStyles } from "../styles/navbarStyles"
 import { Link } from 'react-router-dom'
 import React from 'react'
 
+
 const SignOutLink = (props) => {
 
-    const {setAuth, setUserInfo} = props.fromApp
+    const { setAuth, setUserInfo } = props.fromApp
 
     const logOut = (e) => {
         setAuth(false)
@@ -12,10 +14,13 @@ const SignOutLink = (props) => {
         props.history.push("/")
     }
 
+
+    const { link } = useSignoutLinkStyles(props.theme)
+
     return (
         <Link 
-            className="sign-out-link" 
             onClick={()=>logOut()}
+            className={link}
             to="#"
         >
             Sign Out

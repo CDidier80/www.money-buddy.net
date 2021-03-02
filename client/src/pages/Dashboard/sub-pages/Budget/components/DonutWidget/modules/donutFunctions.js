@@ -1,6 +1,8 @@
+import { moneyBuddyTooltips } from "../../../../../../../modules/moneyBuddyTooltips"
+import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
 import { paletteFromTwoColors, backgroundColors} from "./colors"
-import { createTooltips } from "./tooltips"
 
+const { secondary: s } = moneyBuddyTheme.palette
 
 const divideMonthlyFromAnnual = (categoryTotals) => {
     let annuals   = []
@@ -26,18 +28,28 @@ const makeMoreColors = (categoryNames) => {
 }
 
 
+const noExpenseData = (monthlies, annuals) => {
+    const monthliesTotal = monthlies.reduce((runningTotal, subtotal) => (runningTotal + subtotal), 0)
+    const annualsTotal = annuals.reduce((runningTotal, subtotal) => (runningTotal + subtotal), 0)
+    return (annualsTotal === 0 && monthliesTotal === 0) 
+}
+
 export const createData = (categoryNames, categoryTotals, monthly) => {
     const [monthlies, annuals] = divideMonthlyFromAnnual(categoryTotals)
-    const needMoreColors = (backgroundColors.length < categoryNames.length )
+    const [data, labels] = noExpenseData(monthlies, annuals) ? 
+        [[1, 1, 1], Array(3).fill("Add some expenses")] :
+        [(monthly ? monthlies : annuals), categoryNames] 
+
+    const needMoreColors = backgroundColors.length < categoryNames.length 
     const backgroundColorData = needMoreColors ? 
-                                makeMoreColors(backgroundColors) : 
-                                backgroundColors
+        makeMoreColors(backgroundColors) : 
+        backgroundColors
     const donutDataObject = {
-        labels: categoryNames,
+        labels: labels,
         datasets: [
-                {
-                    backgroundColor: backgroundColorData,
-                data: monthly ? monthlies : annuals,
+            {
+                backgroundColor: backgroundColorData,
+                data: data,
                 hoverBackgroundColor: [],
             }
         ]
@@ -62,34 +74,26 @@ const createLegend = (fontSize, boxWidth) => ({
 })
 
 
-const responsiveLegend = (mq) => {
+const responsiveLegend = ({mq1, mq2, mq3, mq4, mq5, mq6, mq7}) => {
     let args = [11, 15]
-    switch (true) {
-        case mq.min_width_1800px:
-            args = [24, 40]
-            break
-        case mq.min_width_1400px:
-            args = [18, 40]
-            break
-        case mq.min_width_1100px:
-            args = [14, 25]
-            break
-        case mq.min_width_887px:
-            args = [12, 25]
-            break
-        case mq.min_width_800px:
-            args = [18, 25]
-            break
-        case mq.min_width_622px:
-            args = [14, 15]
-            break
-        case mq.min_width_515px:
-            args = [12, 15]
-            break
-        default:
-    } 
+    if (mq7) (args = [12, 15])
+    if (mq6) (args = [14, 15])
+    if (mq5) (args = [18, 25])
+    if (mq4) (args = [12, 25])
+    if (mq3) (args = [14, 25])
+    if (mq2) (args = [18, 40])
+    if (mq1) (args = [24, 40])
+
     return createLegend(args[0], args[1])
 }
+
+
+const titleCallback = ({0: item}, {labels}) => `${labels[item.index]}`
+
+const strongerTooltipBorder = () => ({
+    borderColor: s.transparent[9],
+    borderWidth: 3,
+})
 
 
 export const createOptions = (mediaQueries) => {
@@ -97,7 +101,7 @@ export const createOptions = (mediaQueries) => {
         layout: { padding: { left: 0, right: 0, top: 2, bottom: 6 } },
         legend: {...responsiveLegend(mediaQueries)},
         animation: { animateScale: true },
-        tooltips: createTooltips(),
+        tooltips: moneyBuddyTooltips(titleCallback, strongerTooltipBorder),
         responsive: true,
     }
     return optionsObject

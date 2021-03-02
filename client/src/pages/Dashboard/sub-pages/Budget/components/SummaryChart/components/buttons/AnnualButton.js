@@ -13,7 +13,7 @@ const AnnualButton = (props) => {
 
     }
 
-    const classes = useStyles()
+    const classes = useStyles(props.theme)
     const annualButtonStyle = !monthly ? classes.activeButton : classes.inactiveButton
 
     return (

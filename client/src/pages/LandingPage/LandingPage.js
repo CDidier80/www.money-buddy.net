@@ -1,6 +1,8 @@
 import LandingNavBar from "./components/Navbar/LandingNavBar"
 import MobileNavBar from "./components/Navbar/MobileNavBar"
 import ShapesContainer from "./components/ShapesContainer"
+import { useLandingPageStyles } from "./styles/styleHooks"
+import { withTheme } from '@material-ui/core/styles'
 import Hero from "./components/Hero"
 import "./styles/landingPage.css"
 import "./styles/shapes.css"
@@ -11,8 +13,10 @@ import React from "react"
 
 const LandingPage = (props) => {
 
+    const classes = useLandingPageStyles(props.theme)
+
     return (
-        <div className="landingPage">
+        <div className={classes.landingPage}>
             <LandingNavBar 
                 {...props}
             />
@@ -27,7 +31,7 @@ const LandingPage = (props) => {
     )
 }
 
-export default LandingPage
+export default withTheme(LandingPage)
 
 
 

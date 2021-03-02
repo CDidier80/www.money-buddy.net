@@ -13,25 +13,25 @@ const PasswordForm = (props) => {
     const [reenteredNewPassword, setReenteredNewPassword ] = useState("")
 
     const buttonProps = {
+        reenteredNewPassword,
         newPassword,
-        reenteredNewPassword
     }
 
     const useStyles = makeStyles(theme => ({
         form: {
-            width: '100%', // Fix IE 11 issue.
-            marginTop: theme.spacing(1),
             backgroundColor: "rgba(255,255,255)",
+            marginTop: theme.spacing(1),
             marginBottom: "20px",
-            ...props.formFont
+            ...props.formFont,
+            width: '100%', 
         }
     }))
 
-    const classes = useStyles
+    const classes = useStyles(props.theme)
 
     return (
         <>
-            <Header />
+            <Header {...props}/>
             <form 
                 className={classes.form} 
                 noValidate

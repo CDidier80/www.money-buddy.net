@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core'
 
 const IncomeSourceCell = (props) => {
 
-    {/*  PROPS  */}
+    /*  PROPS  */
 
     const { 
         userMadeChanges,
@@ -24,13 +24,13 @@ const IncomeSourceCell = (props) => {
     const { defaultValue, } = props.fromIncomeRow
 
 
-    {/*  STATE  */}
+    /*  STATE  */
 
     const [ newText, updateText ] = useState("")
     const [ focused, setFocus ] = useState(false)
 
 
-    {/* FUNCTIONS */}
+    /* FUNCTIONS */
 
     useEffect(() => {
         updateText(defaultValue)

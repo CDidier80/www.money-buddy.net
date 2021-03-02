@@ -41,7 +41,8 @@ const IncomeRow = (props) => {
     const [ showUndoIcon, setShowUndoIcon ] = useState(false)
 
     /* -------------- MEDIA QUERIES (del/undo icon----------------- */
-        const smallerIcons = useMediaQuery('(max-width: 393px)', { noSsr: true })
+
+    const smallerIcons = useMediaQuery('(max-width: 393px)', { noSsr: true })
 
     /* -------------------------- useEffect -------------------------- */
 
@@ -65,9 +66,7 @@ const IncomeRow = (props) => {
             if (valueIsNew){
                 setCellAmountHistory([...cellAmountHistory, amount])
                 nextLength = lengthOfStack + 1
-            } else {
-                nextLength = lengthOfStack
-            }
+            } else { nextLength = lengthOfStack }
         }
         renderUndoIcon(nextLength)
     }, [amount, incomingDeletion])

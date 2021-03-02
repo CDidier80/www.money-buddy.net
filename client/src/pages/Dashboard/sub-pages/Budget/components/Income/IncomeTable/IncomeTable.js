@@ -2,7 +2,6 @@ import {
     Paper, 
     Table, 
     TableBody, 
-    makeStyles, 
     useMediaQuery,
     TableContainer, 
     AccordionDetails
@@ -10,7 +9,8 @@ import {
 import React, { useState } from 'react';
 import IncomeRow from "../IncomeRow/IncomeRow"
 import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
-import { offRowColor } from "../../../../universal-functions/styleFunctions"
+import { pickColor } from "../../../../universal-functions/styleFunctions"
+import { useIncomeTableStyles } from "../styles/useIncomeStyles"
 
 
 const IncomeTable = (props) => {
@@ -26,53 +26,49 @@ const IncomeTable = (props) => {
 
     
     /* ----------------------- MEDIA QUERY ------------------------ */
+    const nssr = {noSsr: true}
     
-    const small = useMediaQuery('(max-width: 725px)', {noSsr: true})
-    const verySmall = useMediaQuery('(max-width: 460px)', {noSsr: true})
-    const onlyTwoCells = useMediaQuery('(max-width: 390px)', {noSsr: true})
+    const small = useMediaQuery('(max-width: 725px)', nssr)
+    const verySmall = useMediaQuery('(max-width: 460px)', nssr)
+    const onlyTwoCells = useMediaQuery('(max-width: 390px)', nssr)
 
     
     const createTextStyle = () => {
-        let fontSize 
+        let fontSize = {}
         let styleObject = {
             paddingLeft: 0,
             paddingRight: 0
         }
-        switch (true) {
-            case verySmall: 
-                fontSize = {fontSize: "10px"}
-                break
-            case small: 
-                fontSize = {fontSize: "12px"}
-                break 
-            default: 
-                fontSize =  {}
-        }
+        if (verySmall) (fontSize = {fontSize: "10px"})
+        if (small)     (fontSize = {fontSize: "12px"})
         return {...styleObject, ...fontSize}
     }
     
+    // const { offRowColor, rowColor } = moneyBuddyTheme
 
-    const padding  = verySmall ? { padding: "6px" } : {}
-    const overflow = verySmall ? { overflowX: "hidden" } : {}
+    // const padding  = verySmall ? { padding: "6px" } : {}
+    // const overflow = verySmall ? { overflowX: "hidden" } : {}
 
-    const useStyles = makeStyles({
-        accordionDetails: {
-            ...padding,
-            ...overflow
+    // const useStyles = makeStyles( theme => {
+        
+    //    return ({
+    //         accordionDetails: {
+    //             ...padding,
+    //             ...overflow
+    //         },
+    //         table: {
+    //             minWidth: "270px",
+    //             ...overflow
+    //         },
+    //         tableContainer: {
+    //             maxWidth: "890px",
+    //             margin: "auto",
+    //             ...overflow
+    //         },
+    //     })
+    // })
 
-        },
-        table: {
-            minWidth: "270px",
-            ...overflow
-        },
-        tableContainer: {
-            maxWidth: "890px",
-            margin: "auto",
-            ...overflow
-
-        },
-    })
-    const classes = useStyles()
+    // const classes = useStyles(props.theme)
 
     const textSize = small ? createTextStyle() : {}
 
@@ -82,6 +78,8 @@ const IncomeTable = (props) => {
         textSize: textSize,
         onlyTwoCells: onlyTwoCells
     }
+
+    const classes = useIncomeTableStyles()
 
     return (
         <AccordionDetails
@@ -103,7 +101,7 @@ const IncomeTable = (props) => {
                         {newIncomes.map((income, index) => {
                             const { source, amount } = income
                             const monthly = Math.round(amount / 12)
-                            const rowColor = offRowColor(index)
+                            const rowColor = pickColor(index)
                             const propsForRows = {
                                 setIncomingDeletion,
                                 arrayIndex: index,

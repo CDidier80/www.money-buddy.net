@@ -5,7 +5,7 @@ import React from 'react'
 
 
 
-const LoadingScreen = () => {
+const LoadingScreen = (props) => {
 
     const smallScreen = window.innerWidth <= 600
 
@@ -17,17 +17,16 @@ const LoadingScreen = () => {
         width: smallScreen ? widthWhenSidebarClosed : widthWhenSidebarClosed
     }
 
+    const classes = useDashboardStyles(props.theme)
+
     return (
-        <div className="dashboard dumb">
+        <div className={classes.dashboard}>
             <DumbNavbar />
-        <main className="dash-main-flex dumb">
-            <DumbSidebar /> 
-            <div 
-                className="subpage"
-                style={dummySubpageStyle}
-            > </div>
-        </main>
-    </div>
+            <main className="dash-main-flex dumb">
+                <DumbSidebar /> 
+                <div className="subpage" style={dummySubpageStyle} > </div>
+            </main>
+        </div>
     )
 }
 

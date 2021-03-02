@@ -1,4 +1,4 @@
-import emailValidityCheck from "./emailValidition/emailValidationFunctions"
+import emailValidityCheck from "../../../../../modules/emailValidition/emailValidationFunctions"
 import { LogInUser } from '../../../../../Services/UserService'
 import initializeAccount from "./modelFunctions"
 
@@ -19,8 +19,7 @@ export const signup = async (props) => {
         if (!emailValidityCheck(email)){
             return false
         }
-        const response = await initializeAccount(email, password)
-        const {data: user, status} = response
+        const [user, status] = await initializeAccount(email, password)
         if (status === 200) {
             setUserInfo(user)
             setAuth(true)

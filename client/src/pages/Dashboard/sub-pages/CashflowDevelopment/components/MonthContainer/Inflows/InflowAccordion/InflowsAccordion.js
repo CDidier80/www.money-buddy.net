@@ -1,12 +1,8 @@
-import React, { useState, useEffect } from 'react'
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
+import { useInflowsAccordionStyles } from "../../styles/styles"
 import InflowsTable from "../InflowsTable/InflowsTable"
-import { 
-    makeStyles,
-    Accordion,
-} from '@material-ui/core';
-
-
+import { Accordion } from '@material-ui/core'
+import React, { useState } from 'react'
 
 
 const InflowsAccordion = (props) => {
@@ -22,14 +18,7 @@ const InflowsAccordion = (props) => {
     }
 
 
-    const useStyles = makeStyles({
-        accordion: {
-            marginTop: "5px",
-            padding: "3px"
-        }
-    })
-
-    const classes = useStyles()
+    const { accordion } = useInflowsAccordionStyles(props.theme)
 
     /* --------------------- PROPS FOR CHILDREN --------------------- */
 
@@ -41,7 +30,7 @@ const InflowsAccordion = (props) => {
     return (
         <div>
             <Accordion 
-                className={classes.accordion}
+                className={accordion}
                 onChange={(e)=>handleExpansion(e)}
             >
                 <AccordionDropdownTab expanded={opened}/>

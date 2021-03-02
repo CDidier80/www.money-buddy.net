@@ -1,62 +1,41 @@
 .dash-navbar {
-    -webkit-tap-highlight-color: transparent;
-    text-rendering: optimizeLegibility!important;
-    -webkit-font-smoothing: antialiased!important;
-    color: #fff;
-    box-sizing: border-box;
-    background-color: rgba(0,0,0,.5);
     box-shadow: 2px 0 3px rgba(255, 234, 234, 0.5);
-    height: 66px;
-    width: 100%;
-    min-width: 320px;
-    padding: 0 17px;
-    display: flex;
+    -webkit-font-smoothing: antialiased!important;
+    text-rendering: optimizeLegibility!important;
+    -webkit-tap-highlight-color: transparent;
     justify-content: flex-start;
+    letter-spacing: .001em;
+    box-sizing: border-box;
     align-items: center;
     font-weight: 600;
-    letter-spacing: .001em;
-}
-
-.title-link {   
-    display: block;
-    color: #22c1c3;
-    text-decoration: none;
-    font-size: 26px;
-}
-
-span.money {
-    color: #fdbb2d;
-    font-size: 24px;
+    min-width: 320px;
+    padding: 0 17px;
+    color: #fff;
+    display: flex;
+    height: 66px;
+    width: 100%;
 }
 
 .sign-out-link {
-    box-sizing: border-box;
-    text-align: -webkit-match-parent;
-    margin-bottom: 0;
-    display: block;
-    color: #ffffff;
     padding-left: 1.25rem!important;
-    padding-right: 1.25rem!important;
     transition: color .3s ease-in-out;
+    padding-right: 1.25rem!important;
+    text-align: -webkit-match-parent;
+    box-sizing: border-box;
     text-decoration: none;
     letter-spacing: 1px;
-    padding: 1rem;
-    font-weight: 700;
-    text-shadow: 
-    /* 1px 1px 0 black; */
-    0 1px 1px #265455;
-    font-size: 1rem;
     justify-self: right;
     margin-left: auto;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0;
+    font-size: 1rem;
+    display: block;
+    padding: 1rem;
 }
 
 .sign-out-link:hover {
-    color: #ffcc5d;
-}
-
-
-.account-icon {
-    
+    color: #ffd95d;
 }
 
 .account-icon:hover{

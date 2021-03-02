@@ -1,12 +1,12 @@
-import DonutLargeIcon from '@material-ui/icons/DonutLarge'
-import LocalAtmIcon from '@material-ui/icons/LocalAtm'
+import DonutLargeIcon from '@material-ui/icons/DonutLarge';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
+import HomeIcon from '@material-ui/icons/Home';
 import StarIcon from '@material-ui/icons/Star'
-import HomeIcon from '@material-ui/icons/Home'
-import { Link } from 'react-router-dom'
-import React from 'react'
+import { Link } from 'react-router-dom';
+import React from 'react';
 
 
-const DumbSidebar = () => {
+const DumbSidebar = (props) => {
 
     const navItems = [
             { 

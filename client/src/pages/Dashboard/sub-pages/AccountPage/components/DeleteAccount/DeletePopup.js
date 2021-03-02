@@ -1,40 +1,19 @@
-import { makeStyles } from '@material-ui/styles';
-import React, { useState } from 'react';
-import { DeleteUser} from "../../../../../../Services/UserService"
+import DeleteAccountButton from "./DeleteAccountButton"
+import ReturnButton from "./ReturnButton"
+import React from 'react'
 
 const DeletePopup = (props) => {
 
-    const {userId, history, setDeleteTriggered} = props
-
-
-
-    const deleteAccount = async (e) => {
-        e.preventDefault()
-        console.log(userId)
-        await DeleteUser({userId})
-        history.push("/")
-    }
-
     return (
         <div 
-            className="customBackdrop" 
-            onClick={(e) => setDeleteTriggered(false)} 
+            className="custom-backdrop" 
+            onClick={() => props.setDeleteTriggered(false)} 
         >
             <div className="popup">
                 <p className="warning">Warning: This action is irreversible.</p>
                 <div className="button-container">
-                    <button 
-                        onClick={(e)=>deleteAccount(e)}
-                        className="submitButton delete-account-button"
-                    >
-                        Delete Account
-                    </button>
-                    <button 
-                        className="submitButton return"
-                        onClick={() => setDeleteTriggered(false)}
-                    >
-                        Return
-                    </button>
+                    <DeleteAccountButton {...props} />
+                    <ReturnButton {...props} />
                 </div>
             </div>
         </div>

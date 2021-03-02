@@ -1,55 +1,61 @@
 // import { makeStyles } from '@material-ui/core/'
 // import useMediaQuery from '@material-ui/core/useMediaQuery';
-import theme from "./theme"
-
-
-
-export const formFont = {
-    fontFamily: "Lato,sans-serif",
-    textRendering: "optimizeLegibility!important",
-    WebkitFontSmoothing: "antialiased!important"
-}
+import { moneyBuddyTheme, latoTextStyle } from "../../../../../modules/themeAndStyles"
+const { primary, secondary, secondaryDark } = moneyBuddyTheme.palette
+const { shadow1 } = moneyBuddyTheme.boxShadows
 
 export const staticStyles = {
 
     header: {
         color: "black",
-        ...formFont
+        marginTop: "8px",
+        ...latoTextStyle
     },
     paperRoot: {
         borderRadius: "12px",
-        ...formFont
+        ...latoTextStyle
     },
     paper: {
-        margin: theme.spacing(8, 4),
-        display: 'flex',
+        backgroundColor: "rgba(255,255,255,.4)",
+        margin: moneyBuddyTheme.spacing(8, 4),
         flexDirection: 'column',
         alignItems: 'center',
-        backgroundColor: "rgba(255,255,255,.4)",
-        ...formFont
+        display: 'flex',
+        ...latoTextStyle
     },
     avatar: {
-        margin: theme.spacing(1),
-        background: "linear-gradient(90deg, #22c1c3, #fdbb2d)",
+        boxShadow: shadow1,
+        margin: moneyBuddyTheme.spacing(1),
+        background: `linear-gradient(
+            90deg, 
+            ${primary.main}, 
+            ${secondary.main})`,
     },
     form: {
         width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(1),
+        marginTop: moneyBuddyTheme.spacing(1),
         backgroundColor: "rgba(255,255,255)",
-        ...formFont
+        ...latoTextStyle
     },
     rememberMe: {
         color: "black",
-        ...formFont
+        ...latoTextStyle
     },
     prompt: {
-        width: "100%",
         textAlign: "center",
         fontWeight: "300",
-        fontSize: "14px",
+        fontSize: "16px",
         paddingTop: "5px",
         cursor: "Pointer",
-        ...formFont
+        ...latoTextStyle,
+        width: "100%",
+        marginTop: "5px",
+        color: "black",
+        transition: "scale .6s, color: .6s",
+        "&:hover": {
+            color: secondaryDark.main,
+            transform: "scale(1.06, 1.06)"
+        }
     }
 }
 

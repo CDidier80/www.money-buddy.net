@@ -1,17 +1,18 @@
 import React from 'react'
+import { useSnackbar, withSnackbar } from 'notistack'
 import { UpdateEntireBudget} from "../../../../../../../Services/BudgetService"
-import { useSnackbar, withSnackbar } from 'notistack';
+import ThemedButton from "../../../../../../../TopLevelComponents/ThemedButton"
 
 
 const SavePageButton = (props) => {
 
-    {/*  PROPS  */}
+    /*  PROPS  */
 
     const {
-        setIncomes,
-        setCategories,
         budgetId,
-        setBudgetId
+        setIncomes,
+        setBudgetId,
+        setCategories,
     } = props.budgetHooks
 
     const {
@@ -21,9 +22,9 @@ const SavePageButton = (props) => {
     } = props.fromBudget
 
 
-    {/*  FUNCTIONS  */}
+    /*  snackbars  */
 
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar()
+    const { enqueueSnackbar } = useSnackbar()
 
 
     const budgetSavedSnackbar = () => {
@@ -39,6 +40,7 @@ const SavePageButton = (props) => {
     }
 
 
+    /*  snackbars  */
 
     const sendBudgetToDB = async (payload) => {
         const newBudget = await UpdateEntireBudget(payload)
@@ -62,17 +64,30 @@ const SavePageButton = (props) => {
             budgetSavedSnackbar()
         } catch (error) {
             failedBudgetSaveSnackbar()
-            console.log("budget update failed: ", error)
+        }
+    }
+
+    const overrides = {
+        width: "100px",
+        height: "46px",
+        justifySelf: "flex-end",
+        padding: "8px 8px 8px 8px",
+        transition: "background-image 3s ease",
+        WebkitAnimation: "scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+        animation: "scale-in-ver-center 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both",
+        "&:hover": {
+            
         }
     }
 
     return (
-        <button 
+        <ThemedButton 
             className="save-page-button"
             onClick={(e) => saveBudget(e)}
+            overrides={overrides}
         >
             Save
-        </button>
+        </ThemedButton>
     )
 }
 

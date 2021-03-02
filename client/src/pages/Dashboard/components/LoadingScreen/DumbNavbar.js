@@ -1,16 +1,22 @@
-import AccountCircleIcon from '@material-ui/icons/AccountCircle'
-import blueGrey from '@material-ui/core/colors/blueGrey'
-import MenuIcon from '@material-ui/icons/Menu'
-import { IconButton } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { IconButton } from '@material-ui/core';
+import blueGrey from '@material-ui/core/colors/blueGrey';
+import { useMoneyBuddyLinkStyles } from "./dumbStyles"
+
+// import { logs, firstLogs } from "./logs"
 
 const DumbNavbar = () => {
 
+
+    const { titleLink, money } = useMoneyBuddyLinkStyles()
+
     return (
         <nav className="dash-navbar" >
-            <Link to="/" className="title-link">
-                <span className="money">Money</span>
+            <Link to="/" className={titleLink}>
+                <span className={money}>Money</span>
                 Buddy
             </Link> 
             <IconButton 

@@ -1,17 +1,22 @@
-import { SnackbarProvider } from 'notistack'
 import React from 'react'
+import { SnackbarProvider } from 'notistack'
+import { ThemeProvider, withTheme } from '@material-ui/core/'
+import { moneyBuddyTheme } from '../modules/themeAndStyles'
 
-const AppWrapper = (props) => {
+const AppWrapper = ({children}) => {
+
     return (
         <SnackbarProvider 
             maxSnack={3} 
             style={{fontWeight: "bold"}
         }>
-            <main className="app">
-                {props.children}
-            </main>
+            <ThemeProvider theme={moneyBuddyTheme}>
+                <main className="app">
+                    {children}
+                </main>
+            </ ThemeProvider>
         </SnackbarProvider>
     )
 }
 
-export default AppWrapper
+export default withTheme(AppWrapper)
