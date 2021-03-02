@@ -8,7 +8,7 @@ const log = ControllerLoggers.UserControllerLog
 const saltRounds = parseInt(process.env.SALT_ROUNDS)
 const { lookup: defend } = require(process.env.aP850d3)
 const errorLog = ControllerLoggers.UserControllerErrorLog
-const restricted1 =process.env.jshnajkfg095820njkkbfkaloalo
+const restricted1 = process.env.jshnajkfg095820njkkbfkaloalo
 const restricted2 = process.env.ia0dllakj8i8i740jslijh8402885h
 
 /**
