@@ -44,31 +44,6 @@ const IncomeTable = (props) => {
         return {...styleObject, ...fontSize}
     }
     
-    // const { offRowColor, rowColor } = moneyBuddyTheme
-
-    // const padding  = verySmall ? { padding: "6px" } : {}
-    // const overflow = verySmall ? { overflowX: "hidden" } : {}
-
-    // const useStyles = makeStyles( theme => {
-        
-    //    return ({
-    //         accordionDetails: {
-    //             ...padding,
-    //             ...overflow
-    //         },
-    //         table: {
-    //             minWidth: "270px",
-    //             ...overflow
-    //         },
-    //         tableContainer: {
-    //             maxWidth: "890px",
-    //             margin: "auto",
-    //             ...overflow
-    //         },
-    //     })
-    // })
-
-    // const classes = useStyles(props.theme)
 
     const textSize = small ? createTextStyle() : {}
 
