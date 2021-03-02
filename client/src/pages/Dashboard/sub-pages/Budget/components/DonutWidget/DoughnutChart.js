@@ -43,7 +43,7 @@ const DoughnutChart = (props) => {
         window.addEventListener("resize", handleDimensions)
         handleDimensions()
         return () => window.removeEventListener("resize", handleDimensions)
-    }, [])
+    }, [width])
 
     const DATA = createData(categoryNames, categoryTotals, monthly)
 
@@ -61,7 +61,7 @@ const DoughnutChart = (props) => {
                     Distribution of Spending
                 </h3>
                 <div 
-                    style={{width: width, flexGrow:1}}
+                    style={{width: width}}
                 >
                     <Doughnut 
                         data={DATA}
