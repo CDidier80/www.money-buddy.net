@@ -14,7 +14,9 @@ const {
 const CreateBudget = async (req, res) => {
     log(CreateBudget, req)
     try {
+        console.log('Begin creating budget. Wait for confirmation...')
         const budget = await Budget.create(req.body)
+        console.log("Budget.create(req.body) returned a budget")
         res.send(budget)
     } catch (error) {
         errorLog(CreateBudget, error) 
@@ -26,11 +28,13 @@ const GetOneBudget = async (req, res) => {
     log(GetOneBudget, req)
     try {
         const { userId } = req.body
+        console.log("Finding user's budget. Wait for confirmation...")
         const budget = await Budget.findOne({
             where: {
                 user_id: userId
             }
         })
+        console.log("Budget found.")
         res.send(budget)
     } catch (error) {
         errorLog(GetOneBudget, error) 
@@ -41,19 +45,29 @@ const GetOneBudget = async (req, res) => {
 const ReadEntireBudget = async (req, res) => {
     log(ReadEntireBudget, req)
     try {
+        console.log('Searching request body payload for userId')
         const { userId } = req.body
+        userId && console.log("Found userId.")
+        console.log("Finding user's budget. Await confirmation...")
         const budget = await Budget.findOne({
             where: {
                 user_id: userId
             }, 
         })
+        console.log("Budget found.")
+
         const { id: budgetId } = budget
+        console.log("Finding incomes. Await confirmation...")
+
         const incomes = await Income.findAll({
             where: {
                 budget_id: budgetId
             },
             attributes: [ "id", "source", "amount" ]
         })
+        console.log("Incomes found.")
+        console.log("Searching for categories. Await confirmation...")
+
         let categories = await Category.findAll({
             raw: true,
             where: { 
@@ -61,6 +75,9 @@ const ReadEntireBudget = async (req, res) => {
             }, 
             attributes: [ "id", "name" ]
         })
+        console.log("Categories found.")
+        console.log("Searching for expenses. Await confirmation...")
+
         for (let i = 0; i<=categories.length -1; i++) {
             const { id: categoryId  } = categories[i]
             const expenses = await Expense.findAll({
@@ -71,11 +88,14 @@ const ReadEntireBudget = async (req, res) => {
             })
             categories[i] = {...categories[i], expenses: expenses}
         }
+        console.log("Expenses found.")
+
         const entireBudget = {
             budgetId,
             incomes,
             categories
         }
+        console.log("sending entire budget to client.")
         res.send(entireBudget)
     } catch (error) {
         errorLog(ReadEntireBudget, error)
@@ -100,7 +120,7 @@ const UpdateEntireBudget = async (req, res) => {
                 budget_id: budgetId 
             }
         })
-
+        console.log("original incomes and categories destroyed. Creating new.")
         const newIncomes = await Promise.all(incomes.map(async (income) => {
             const incomeToCreate = {
                 budgetId, 

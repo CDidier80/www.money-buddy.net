@@ -1,6 +1,6 @@
 exports.ControllerLoggers = {
     UserControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in UserController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -8,7 +8,7 @@ exports.ControllerLoggers = {
     },
 
     UserControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: UserController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -16,7 +16,7 @@ exports.ControllerLoggers = {
     },
 
     BudgetControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in BudgetController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -24,7 +24,7 @@ exports.ControllerLoggers = {
     },
 
     BudgetControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: BudgetController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -32,7 +32,7 @@ exports.ControllerLoggers = {
     },   
     
     IncomeControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in IncomeController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -40,7 +40,7 @@ exports.ControllerLoggers = {
     },
 
     IncomeControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: IncomeController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -48,7 +48,7 @@ exports.ControllerLoggers = {
     }, 
 
     CategoryControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in CategoryController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -56,7 +56,7 @@ exports.ControllerLoggers = {
     },
 
     CategoryControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: CategoryController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -64,7 +64,7 @@ exports.ControllerLoggers = {
     }, 
 
     ExpenseControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in ExpenseController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -72,7 +72,7 @@ exports.ControllerLoggers = {
     },
 
     ExpenseControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: ExpenseController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -80,7 +80,7 @@ exports.ControllerLoggers = {
     }, 
 
     CashflowControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in CashflowController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -88,7 +88,7 @@ exports.ControllerLoggers = {
     },
 
     CashflowControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: CashflowController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -96,7 +96,7 @@ exports.ControllerLoggers = {
     }, 
 
     MonthControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in MonthController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -104,7 +104,7 @@ exports.ControllerLoggers = {
     },
 
     MonthControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: MonthController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -112,7 +112,7 @@ exports.ControllerLoggers = {
     }, 
 
     InflowControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in InflowController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -120,7 +120,7 @@ exports.ControllerLoggers = {
     },
 
     InflowControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: InflowController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -128,7 +128,7 @@ exports.ControllerLoggers = {
     }, 
 
     FlowcategoryControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in FlowcategoryController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -136,7 +136,7 @@ exports.ControllerLoggers = {
     },
 
     FlowcategoryControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: FlowcategoryController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
@@ -144,7 +144,7 @@ exports.ControllerLoggers = {
     }, 
 
     OutflowControllerLog : (controllerFunction, req) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`Request arrived in OutflowController.js => controller function: ${controllerFunction.name} => carrying req.body: `, req.body,  " and params: ", req.params)
         } 
@@ -152,7 +152,7 @@ exports.ControllerLoggers = {
     },
 
     OutflowControllerErrorLog : (controllerFunction, error) => {
-        const show = false
+        const show = true
         if (show){
             console.log(`TRY{}CATCH{} ERROR --> FILE: OutflowController.js -->  FUNCTION: ${controllerFunction.name}  --> MESSAGE:`, error)
         }
