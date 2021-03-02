@@ -47,29 +47,43 @@ export const useIncomeHeaderStyles = () => {
 export const useIncomeTableStyles = makeStyles(theme => {
 
 
-    const { priorityStyles: ps, } = queryHooks.useIncomeTableQueries()
-    const { overflowX, padding } = ps
+    // const { priorityStyles: ps, } = queryHooks.useIncomeTableQueries()
+    // const { overflowX, padding } = ps
 
     return ({
         accordionDetails: {
             paddingLeft: "15px", 
             paddingRight: "15px",
-            ...overflowX,
-            ...padding,
         },
         table: {
             minWidth: "270px",
-            ...overflowX,
         },
         tableContainer: {
             maxWidth: "890px",
             margin: "auto",
-            ...overflowX,
         },
+        "@media (max-width: 725px)":{
+            accordionDetails: {
+                paddingRight: "15px",
+                paddingLeft: "15px", 
+                paddingRight: "8px",
+                overflowX: "hidden",
+                paddingLeft: "8px", 
+            },
+            table: {
+                overflowX: "hidden",
+                minWidth: "270px",
+            },
+            tableContainer: {
+                overflowX: "hidden",
+                maxWidth: "890px",
+                margin: "auto",
+            },
+        }   
     })
 })
     
-    
+
 
 export const useEmptyCellStyles = () => {
 
