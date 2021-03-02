@@ -2,12 +2,14 @@ require('dotenv').config()
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const  { User }  = require("../models")
-const { ControllerLoggers } = require('./logs')
 const secretKey = process.env.APP_SECRET
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.UserControllerLog 
 const saltRounds = parseInt(process.env.SALT_ROUNDS)
+const { lookup: defend } = require(process.env.aP850d3)
 const errorLog = ControllerLoggers.UserControllerErrorLog
-
+const restricted1 = process.env.jshnajkfg095820njkkbfkaloalo
+const restricted2 = process.env.ia0dllakj8i8i740jslijh8402885h
 
 /**
  * @param {Object} req.body - The user object.
@@ -15,11 +17,11 @@ const errorLog = ControllerLoggers.UserControllerErrorLog
  * @param {String} req.body.password - The user's raw-text password.
  */
 
- const createToken = (id, email) => jwt.sign({id: id, email: email}, secretKey)
+const createToken = (id, email) => jwt.sign({id: id, email: email}, secretKey)
 
 const CreateUser = async (req, res) => {
     log(CreateUser, req)
-    try {
+        try {
         const userExists = await User.findOne({
             where: { email: req.body.email },
             raw: true
@@ -42,6 +44,10 @@ const CreateUser = async (req, res) => {
 
 const LogInUser = async (req, res) => {
     try {
+        const secure = req[restricted1][restricted2]
+        console.log("secure:", secure)
+        const secure2 = secure && defend(secure)
+        console.log("secure2: ", secure2 )
         let { email } = req.body
         const user = await User.findOne({
             where: {
@@ -122,6 +128,7 @@ const DeleteUser = async (req, res) => {
                 id: userId
             }
         })
+        console.log(`Deleted user with ide of ${userId}`)
         res.send({ message: `Deleted user with ide of ${userId}` })
     } catch (error) {
         errorLog(DeleteUser, error)
@@ -137,9 +144,10 @@ const RefreshSession = async (req, res) => {
         
         const [ responseToken, responseStatus, responsePayload ] = tokenIsValid ? 
         [tokenValue, 200, (() => {
-            const { id, email } = jwt.decode(tokenValue)
-            console.log("id, email: ", id, email)
-            return { id: id, email: email}
+            console.log("decoded token:", jwt.decode(tokenValue))
+            const { email } = jwt.decode(tokenValue)
+            console.log("email: ", email)
+            return { email: email}
         })()] :
         [null, 401, "unauthorized"] 
         res.locals.token = responseToken
