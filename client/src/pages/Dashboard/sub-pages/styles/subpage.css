@@ -22,9 +22,19 @@
     flex-grow: 1;
 }
 
+
+@media (max-width: 600px) {
+    .subpage.sidebar-closed, .subpage.sidebar-open{
+        max-width: calc(100vw - 49px - 20px);
+        padding-top: 8px;
+    }
+}
+
 @media (max-width: 500px) {
     .subpage.sidebar-closed, .subpage.sidebar-open{
         max-width: calc(100vw - 49px - 20px);
         padding: 20px 15px 20px 5px;
+        padding-top: 8px;
+
     }
 }
