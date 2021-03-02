@@ -15,7 +15,7 @@ const AccountPageLink = (props) => {
         setColoredAccountIcon,
     } = props
 
-    const { accountLink } = useAccountLinkStyles(theme, coloredAccountIcon)
+    const { accountLink, iconButton } = useAccountLinkStyles(theme, coloredAccountIcon)
 
     const goToAccountPage = () => {
         setColoredLinks(false)
@@ -26,6 +26,7 @@ const AccountPageLink = (props) => {
     return (
         <IconButton 
             onClick={goToAccountPage}
+            className={iconButton}
         >
            <AccountCircleIcon                     
                 htmlColor={blueGrey[50]}
