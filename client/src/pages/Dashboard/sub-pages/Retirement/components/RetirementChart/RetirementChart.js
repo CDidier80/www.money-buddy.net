@@ -27,8 +27,6 @@ const ChartLogic = (props) => {
 
     const setChartWrapperSize = (e) => {
 
-        console.log(props.retirementRef.current)
-
         const {
             clientWidth: subpageWidth, 
             clientHeight: subpageHeight 
