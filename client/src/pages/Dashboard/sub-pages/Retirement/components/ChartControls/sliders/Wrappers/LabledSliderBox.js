@@ -37,7 +37,7 @@ const LabledSliderBox = (props) => {
                 <SliderComponent {...newProps} />
             </div>
             <div className="label-wrapper">
-                <p>{label}</p>
+                <p className="label">{label}</p>
             </div>
         </div>
     )
