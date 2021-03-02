@@ -1,8 +1,7 @@
+import { useDashboardStyles } from "../../../Dashboard/sub-pages/styles/styles"
 import DumbSidebar from "./DumbSidebar"
 import DumbNavbar from "./DumbNavbar"
 import React from 'react'
-
-
 
 
 const LoadingScreen = (props) => {
