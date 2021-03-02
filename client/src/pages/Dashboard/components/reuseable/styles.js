@@ -17,6 +17,11 @@ export const makeHeaderStyles = makeStyles(theme => {
         },
         header: {
             color: theme.palette.primaryDark.main
+        },
+        "@media (max-width: 600px)":{
+            header:{
+                fontSize: "24px"
+            }
         }
     }
     return headerStyles
