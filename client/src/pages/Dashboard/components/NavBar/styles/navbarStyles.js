@@ -25,7 +25,6 @@ export const useBurgerStyles = makeStyles(({palette: p}) => {
     return({
         burgerWrapper: {
             textDecoration: "none",
-            fontSize: "26px",
             display: "block",
             color: "white",
         },
@@ -37,7 +36,14 @@ export const useBurgerStyles = makeStyles(({palette: p}) => {
             "&:hover": {
                 color: p.secondary.main
             }
+        },
+        '@media (max-width: 430px)': {
+            burgerWrapper: {
+              fontSize: "18px",
+              padding: "5px",
+            }
         }
+
 
     })
 })
@@ -46,9 +52,9 @@ export const useSignoutLinkStyles = makeStyles(({palette: p}) => {
     return({
         link: {
             transition: "color .3s ease-in-out",
-            paddingRight: "1.25rem!important",
+            paddingRight: "1.25rem",
             textAlign: "-webkit-match-parent",
-            paddingLeft: "1.25rem!important",
+            paddingLeft: "1.25rem",
             boxSizing: "border-box",
             textDecoration: "none",
             letterSpacing: "1px",
@@ -62,8 +68,16 @@ export const useSignoutLinkStyles = makeStyles(({palette: p}) => {
             padding: "1rem",
             "&:hover": {
                 color: p.secondary.main
-            }
+            },
         },
+        '@media (max-width: 430px)': {
+            link: {
+              fontSize: "14px",
+              padding: "5px",
+              paddingRight: "5px", 
+              paddingLeft: "5px"
+            }
+        }
     })
 })
 

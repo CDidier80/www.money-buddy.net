@@ -2,7 +2,6 @@ import {
     Paper, 
     Table, 
     TableBody, 
-    makeStyles, 
     useMediaQuery,
     TableContainer, 
     AccordionDetails
@@ -11,7 +10,7 @@ import React, { useState } from 'react';
 import IncomeRow from "../IncomeRow/IncomeRow"
 import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
 import { pickColor } from "../../../../universal-functions/styleFunctions"
-import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
+import { useIncomeTableStyles } from "../styles/useIncomeStyles"
 
 
 const IncomeTable = (props) => {
@@ -45,32 +44,31 @@ const IncomeTable = (props) => {
         return {...styleObject, ...fontSize}
     }
     
-    
     // const { offRowColor, rowColor } = moneyBuddyTheme
 
-    const padding  = verySmall ? { padding: "6px" } : {}
-    const overflow = verySmall ? { overflowX: "hidden" } : {}
+    // const padding  = verySmall ? { padding: "6px" } : {}
+    // const overflow = verySmall ? { overflowX: "hidden" } : {}
 
-    const useStyles = makeStyles( theme => {
+    // const useStyles = makeStyles( theme => {
         
-       return ({
-            accordionDetails: {
-                ...padding,
-                ...overflow
-            },
-            table: {
-                minWidth: "270px",
-                ...overflow
-            },
-            tableContainer: {
-                maxWidth: "890px",
-                margin: "auto",
-                ...overflow
-            },
-        })
-    })
+    //    return ({
+    //         accordionDetails: {
+    //             ...padding,
+    //             ...overflow
+    //         },
+    //         table: {
+    //             minWidth: "270px",
+    //             ...overflow
+    //         },
+    //         tableContainer: {
+    //             maxWidth: "890px",
+    //             margin: "auto",
+    //             ...overflow
+    //         },
+    //     })
+    // })
 
-    const classes = useStyles(props.theme)
+    // const classes = useStyles(props.theme)
 
     const textSize = small ? createTextStyle() : {}
 
@@ -80,6 +78,8 @@ const IncomeTable = (props) => {
         textSize: textSize,
         onlyTwoCells: onlyTwoCells
     }
+
+    const classes = useIncomeTableStyles()
 
     return (
         <AccordionDetails

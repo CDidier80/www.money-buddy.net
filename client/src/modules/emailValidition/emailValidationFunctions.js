@@ -46,7 +46,7 @@ const checkATvalid = (textInput) => {
 }
 
 
-const emailValidityCheck = (textInput) => {
+export const emailValidityCheck = (textInput) => {
     let valid = true
     const validityChecks = [validateEmailExtension, checkATvalid]
     validityChecks.forEach(check => {

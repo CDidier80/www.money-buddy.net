@@ -6,8 +6,6 @@ const {
     ReadBudgetExpenses 
 } = controller
 
-console.log("EXPENSE ROUTER CONNECTED")
-
 Router.post('/create',        CreateExpense)
 Router.get('/getone',         GetOneExpense)
 Router.get('/budgetexpenses', ReadBudgetExpenses)

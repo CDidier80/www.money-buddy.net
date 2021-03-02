@@ -1,5 +1,7 @@
+import { emailValidityCheck } from "../../../../../../../modules/emailValidition/emailValidationFunctions"
 import ThemedButton from "../../../../../../../TopLevelComponents/ThemedButton"
 import { UpdateEmail } from "../../../../../../../Services/UserService"
+import useSnackbars from "../../../../../../../customHooks/useSnackbars"
 import React from 'react'
 
 const EmailButton = (props) => {
@@ -10,7 +12,8 @@ const EmailButton = (props) => {
     const {
         errorSnackbar,
         updateSnackbar,
-    } = props.fromAccountPage
+        invalidSnackbar,
+    } = useSnackbars()
 
     const submitNewEmail = async (e) => {
         e.preventDefault()
@@ -19,6 +22,10 @@ const EmailButton = (props) => {
             return
         }
         try {
+            if (!emailValidityCheck(newEmail)){
+                invalidSnackbar('Email Address')
+                return false
+            }
             const {status} = await UpdateEmail({userId: user_id, email: newEmail})
             if (status === 200) updateSnackbar('Email Address')
         } catch (error) { errorSnackbar('Email Address') }

@@ -1,6 +1,6 @@
 import { ButtonGroup, makeStyles } from '@material-ui/core'
-import MonthlyButton from "../buttons/MonthlyButton"
-import AnnualButton from "../buttons/AnnualButton"
+import MonthlyButton from "./MonthlyButton"
+import AnnualButton from "./AnnualButton"
 import React from 'react'
 
 
@@ -8,7 +8,7 @@ const ButtonGroupToggler = (props) => {
 
     const useStyles = makeStyles({
         buttonGroup: {
-            margin: "10px auto 0 auto",
+            margin: "13px auto 0 auto",
             justifyContent: "center",
             alignItems: "center",
             textAlign: "center",

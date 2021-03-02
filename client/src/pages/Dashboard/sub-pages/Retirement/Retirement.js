@@ -1,8 +1,12 @@
-import RetirementChart     from  "./components/RetirementChart/RetirementChart"
-import ChartControls       from  "./components/ChartControls/ChartControls"
-import Header              from  "../../components/reuseable/Header"
-import React, { useState } from  "react"
+import RetirementChart  from  "./components/RetirementChart/RetirementChart"
+import ChartControls    from  "./components/ChartControls/ChartControls"
+import Header           from  "../../components/reuseable/Header"
+import React, { 
+    useState, 
+    useRef 
+} from  "react"
 import "./styles/retirement.css"
+
 
 const Retirement = (props) => {
 
@@ -57,13 +61,16 @@ const Retirement = (props) => {
         }
     }
 
+    const retirementRef = useRef()
+
     return (
-        <div className="retirement">
+        <div className="retirement" ref={retirementRef}>
             <Header
                 {...headerProps}
             />
             <RetirementChart 
                 {...props}
+                retirementRef={retirementRef}
                 fromRetirement={{...hookValues}}
             />
             <ChartControls 
