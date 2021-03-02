@@ -1,4 +1,3 @@
-import ClearLocalsButton from "../../TopLevelComponents/ClearLocalsButton"
 import LandingNavBar from "./components/Navbar/LandingNavBar"
 import MobileNavBar from "./components/Navbar/MobileNavBar"
 import ShapesContainer from "./components/ShapesContainer"
@@ -18,7 +17,6 @@ const LandingPage = (props) => {
 
     return (
         <div className={classes.landingPage}>
-            <ClearLocalsButton />
             <LandingNavBar 
                 {...props}
             />
