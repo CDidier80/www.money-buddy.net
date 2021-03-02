@@ -61,7 +61,7 @@ const DoughnutChart = (props) => {
                     Distribution of Spending
                 </h3>
                 <div 
-                    style={{width: width, "flex-grow":1}}
+                    style={{width: width, flexGrow:1}}
                 >
                     <Doughnut 
                         data={DATA}
