@@ -44,16 +44,8 @@ export const useIncomeHeaderStyles = () => {
 } 
 
 
-
-
-
-export const useIncomeNumberCellStyles = () => {
-
-
-
-}
-
 export const useIncomeTableStyles = makeStyles(theme => {
+
 
     const { priorityStyles: ps, } = queryHooks.useIncomeTableQueries()
     const { overflowX, padding } = ps
@@ -78,9 +70,6 @@ export const useIncomeTableStyles = makeStyles(theme => {
 })
     
     
-    
-
-
 
 export const useEmptyCellStyles = () => {
 
