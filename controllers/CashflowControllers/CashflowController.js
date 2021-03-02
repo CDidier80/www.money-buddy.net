@@ -114,7 +114,10 @@ const GetOneCashflow = async (req, res) => {
 const ReadEntireCashflow = async (req, res) => {
     log(ReadEntireCashflow, req)
     try {
+        console.log("extracting user id from request body. Await confirmation...")
         const { userId } = req.body
+        console.log('user id found')
+        console.log("Finding user cashflows. Await confirmation...")
         const entireCashflow = await Cashflow.findOne({
             where: {
                 user_id: userId
@@ -143,7 +146,8 @@ const ReadEntireCashflow = async (req, res) => {
                 },
             ]
         })
-            
+        console.log("user cashflows found.")
+        console.log("sending cashflows to client")
         res.send(entireCashflow)
     } catch (error) {
         errorLog(ReadEntireCashflow, error)
