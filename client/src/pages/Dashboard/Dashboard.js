@@ -163,7 +163,7 @@ const Dashboard = (props) => {
     const classes = useDashboardStyles(props.theme)
 
 
-    return( !loaded ? <LoadingScreen /> :
+    return( !loaded ? <LoadingScreen {...props}/> :
 
         <div className={classes.dashboard}>
             <NavBar {...propsNavbar} />
