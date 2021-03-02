@@ -22,8 +22,24 @@ const ChartLogic = (props) => {
 
     /* ------------------------- Listen to Window Size ------------------------ */
 
-    const [height, setHeight] = useState(window.innerHeight / 2)
-    const [width, setWidth] = useState(window.innerWidth - 200)
+    const setInitialWidth = () => {
+        if(window.innerWidth < 700) {
+            return (window.innerWidth * .85)
+        } else {
+            return (window.innerWidth -200)
+        }
+    }
+
+    const setInitialHeight = () => {
+        if(window.innerWidth < 700) {
+            return (window.innerWidth * .75)
+        } else {
+            return (window.innerWidth -300)
+        }
+    }
+
+    const [height, setHeight] = useState(()=>setInitialHeight)
+    const [width, setWidth] = useState(() => setInitialWidth)
 
     const setChartWrapperSize = (e) => {
 
@@ -53,6 +69,7 @@ const ChartLogic = (props) => {
     
     useLayoutEffect(() => {
         window.addEventListener("resize", setChartWrapperSize)
+        // setChartWrapperSize()
         return () => window.removeEventListener("resize", setChartWrapperSize)
     }, [])
     

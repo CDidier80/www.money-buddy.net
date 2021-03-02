@@ -58,16 +58,18 @@ const Retirement = (props) => {
         text: "RETIREMENT",
         overrides: {
             marginBottom: "20px"
-        }
+        },
+        // "@media (max-width: 600px)":{
+        //     overrides
+        // }
+
     }
 
     const retirementRef = useRef()
 
     return (
         <div className="retirement" ref={retirementRef}>
-            <Header
-                {...headerProps}
-            />
+            <Header {...headerProps} />
             <RetirementChart 
                 {...props}
                 retirementRef={retirementRef}

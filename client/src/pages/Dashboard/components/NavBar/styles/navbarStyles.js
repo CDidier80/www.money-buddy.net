@@ -17,6 +17,14 @@ export const useMoneyBuddyLinkStyles = makeStyles(({palette: p}) => {
             marginRight: "2px",
             fontSize: "26px",
         },
+        "@media (max-width: 600px)": {
+            titleLink: {
+                fontSize: "20px",
+            },
+            money: {
+                fontSize: "20px",
+            },
+        }
     })
 })
 
@@ -41,6 +49,9 @@ export const useBurgerStyles = makeStyles(({palette: p}) => {
             burgerWrapper: {
               fontSize: "18px",
               padding: "5px",
+            },
+            burder: {
+                fontSize: "18px",
             }
         }
 
@@ -72,11 +83,11 @@ export const useSignoutLinkStyles = makeStyles(({palette: p}) => {
         },
         '@media (max-width: 430px)': {
             link: {
-              fontSize: "14px",
+              fontSize: "13px",
               padding: "5px",
               paddingRight: "5px", 
               paddingLeft: "5px"
-            }
+            },
         }
     })
 })
@@ -86,6 +97,9 @@ export const useAccountLinkStyles = (theme, iconSelected) => {
     
     const useStyles = makeStyles(({palette: p}) => {
         return({
+            iconButton:{
+
+            },
             accountLink: {
                 transition: "color .3s ease-in-out",
                 color: iconSelected ? p.secondary.main : "white",
@@ -93,6 +107,15 @@ export const useAccountLinkStyles = (theme, iconSelected) => {
                     color: p.secondary.main
                 }
             },
+            '@media (max-width: 430px)': {
+                iconButton:{
+                    padding: "7px",
+                    paddingRight: "0px"
+                },
+                link: {
+                  paddingLeft: "0px"
+                },
+            }
         })
     })
 

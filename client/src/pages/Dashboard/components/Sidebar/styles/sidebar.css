@@ -20,5 +20,15 @@
     transition: all 0.3s ease;
     min-width: 100px;
     overflow: hidden;
-    width: 100px;
+    width: 150px;
+    position: absolute;
+    left: 0px; top: 66px;
+    z-index: 10000990900099090909000;
+    background-image: linear-gradient(
+        180deg, 
+        rgba(24, 20, 93, .98), 
+        rgba(239, 84, 84, .98)
+    );
+    height: 100%;
 }
+

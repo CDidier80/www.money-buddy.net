@@ -32,13 +32,16 @@
 }
 
 
-/* 
+
 @media (max-width: 600px) {
     .budget {
-        position: static;
-        max-width: calc(100vh - 49px)
+        padding-top:0px;
     }
-} */
+    .top-flex {
+        margin-top: 7px;
+
+    }
+}
 
 
 @-webkit-keyframes scale-in-ver-center {
