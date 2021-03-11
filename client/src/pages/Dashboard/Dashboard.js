@@ -32,7 +32,7 @@ const Dashboard = (props) => {
 
     const { userInfo, gradientWrapper, } = props.fromApp
     const { id: userId } = userInfo
-    const { fromApp } = props
+    const { fromApp, theme } = props
 
 
     /* -------------------------- STATE ------------------------- */
@@ -151,9 +151,10 @@ const Dashboard = (props) => {
     }
 
     const cashflowProps = {
+        theme,
         months,
-        setMonths,
         ticker, 
+        setMonths,
         ...fromApp,
         cashflowId,
         setCashflowId,
