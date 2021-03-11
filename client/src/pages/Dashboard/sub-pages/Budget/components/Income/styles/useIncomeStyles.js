@@ -1,29 +1,9 @@
-import * as queryHooks from "./useIncomeQueries"
 import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
 import { makeStyles } from '@material-ui/core'
 
 const { palette: p, lato } = moneyBuddyTheme
 
-
-
 export const useIncomeHeaderStyles = () => {
-
-    const {
-        Parser, 
-        queriesObject,
-        priorityStyles: ps, 
-    } = queryHooks.useIncomeHeaderQueries()
-
-    const {
-        width,
-        padding, 
-        fontSize, 
-        "&:last-child": lastCell, 
-    } = ps
-
-    const {maxWidth480px} = queriesObject
-
-    const textAlignCenter = Parser.addStyleOnQuery(maxWidth480px, {textAlign: "center"})
 
     const useStyles = makeStyles(theme => {
     
@@ -31,12 +11,47 @@ export const useIncomeHeaderStyles = () => {
             headerCell: {
                 color: p.primaryDark.main,
                 fontWeight: "bold",
-                ...textAlignCenter,
-                ...lastCell,
-                ...fontSize,
-                ...padding,
-                ...width,
+                fontSize: "18px"
             },
+            "@media (max-width: 1600px)":{
+                headerCell: { fontSize: "16px", }
+            }, 
+            "@media (max-width: 1200px)":{
+                headerCell: { fontSize: "14px", }
+            }, 
+            "@media (max-width: 725px)":{
+                headerCell: {
+                    padding: "6px 5px 6px 16px",
+                    fontSize: "11px",
+                }
+            }, 
+            "@media (max-width: 480px)":{
+                headerCell: {
+                    "&:last-child": {
+                        textAlign: "center",
+                        paddingRight: 0,
+                        width: "75px",
+                    },
+                    padding: "6px 0px 6px 0px",
+                    paddingRight: "0",
+                    textAlign: "center",
+                }
+            }, 
+            "@media (max-width: 410px)":{
+                headerCell: {
+                    "&:last-child": {
+                        textAlign: "center",
+                        paddingRight: 0,
+                        width: "55px",
+                    }
+                }
+            }, 
+            "@media (max-width: 390px)":{
+                headerCell: {
+                    fontSize: "12px",
+                    width: "70px"
+                }
+            }, 
         })
     })
 
@@ -45,23 +60,13 @@ export const useIncomeHeaderStyles = () => {
 
 
 export const useIncomeTableStyles = makeStyles(theme => {
-
-
-    // const { priorityStyles: ps, } = queryHooks.useIncomeTableQueries()
-    // const { overflowX, padding } = ps
-
     return ({
         accordionDetails: {
             paddingLeft: "15px", 
             paddingRight: "15px",
         },
-        table: {
-            minWidth: "270px",
-        },
-        tableContainer: {
-            maxWidth: "890px",
-            margin: "auto",
-        },
+        table: { minWidth: "270px", },
+        tableContainer: { margin: "auto", },
         "@media (max-width: 725px)":{
             accordionDetails: {
                 paddingRight: "15px",
@@ -79,82 +84,130 @@ export const useIncomeTableStyles = makeStyles(theme => {
                 maxWidth: "890px",
                 margin: "auto",
             },
-        }   
+        },   
+        "@media (min-width: 1200px)":{
+            accordionDetails: {
+                paddingRight: "25px",
+                paddingLeft: "25px", 
+            },
+        } 
     })
 })
     
 
-
 export const useEmptyCellStyles = () => {
-
-    const smallerWidths = queryHooks.useEmptyCellQueries()
-
     const useStyles = makeStyles(theme => {
         return({
             emptyCell: {
                 maxWidth: "36px",
                 minWidth: "36px", 
                 padding: "0px",
-                ...smallerWidths,
-            }
+            },
+            "@media (min-width: 1200px)":{
+                emptyCell: {
+                    maxWidth: "20px",
+                    minWidth: "20px", 
+                    width: "20px"
+                },
+            } 
         })
     })
-
     return useStyles()
-    
 }
 
 
-// const useIncomeHeaderStyles = makeStyles(theme => {
+export const useIncomeNumberCellStyles = (rowColor) => {
+    const useStyles = makeStyles(theme => {
+        return({
+            cell: {
+                backgroundColor: rowColor,
+                fontSize: "18px"
+            },
+            input: { 
+                backgroundColor: rowColor, 
+                fontSize: "18px",
+                border: "0px",
+            },
+            "@media (max-width: 1600px)":{
+                cell:  { fontSize: "16px" },
+                input: { fontSize: "16px" },
+            }, 
+            "@media (max-width: 1200px)":{
+                cell:  { fontSize: "14px" },
+                input: { fontSize: "14px" },
+            }, 
+            "@media (max-width: 725px)": {
+                cell: {
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                    fontSize: "12px"
+                },
+                input: { 
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                    fontSize: "12px"
+                },
+            },
+            "@media (max-width: 460px)":{
+                cell: { fontSize: "10px" },
+                input: { fontSize: "10px" },
+            },
+            "@media (max-width: 390px)":{
+                input: { 
+                    backgroundColor: rowColor, 
+                    textAlign: "center",
+                    border: "0px",
+                },
+            } 
+        })
+    })
+    return useStyles()
+}
 
-
-//     // const [{
-//     //     maxWidth725px,
-//     //     maxWidth480px,
-//     //     maxWidth410px,
-//     //     maxWidth390px,
-//     // }, Parser] = useIncomeQueries(styleHookKey)
-
-//     // const {
-//     //     padding, 
-//     //     fontSize, 
-//     //     "&:last-child": lastCell
-//     // } = Rules.incomeHeaderRules
-    
-//     // const fontRules = [
-//     //     [maxWidth725px, fontSize.maxWidth725px],
-//     //     [maxWidth390px, fontSize.maxWidth390px]
-//     // ]
-
-//     // const paddingRules = [
-//     //     [maxWidth725px, padding.maxWidth725px],
-//     //     [maxWidth480px, padding.maxWidth480px],
-//     // ]
-
-
-//     // const lastChildRules = [
-//     //     [maxWidth480px, lastCell.maxWidth480px],
-//     //     [maxWidth410px, lastCell.maxWidth410px],
-//     // ]
-    
-
-//     // const [
-//     //     fontStyle, 
-//     //     paddingStyle, 
-//     //     lastChildStyle,
-//     // ] = Parser.getPriorityStyles([fontRules, paddingRules, lastChildRules])
-
-//     const {priorityStyles: ps} = useIncomeQueries(styleHookKey)
-//     const {padding, fontSize, "&:last-child": lastCell, width} = ps
-
-//     return ({
-//         headerCell: {
-//             color: p.primaryDark.main,
-//             fontWeight: "bold",
-//             ...lastCell,
-//             ...fontSize,
-//             ...padding,
-//             ...width,
-//         },
-//     })
-// })
+export const useIncomeSourceCellStyles = (rowColor) => {
+    const useStyles = makeStyles(theme => {
+        return({
+            cell: {
+                backgroundColor: rowColor,
+                fontSize: "18px"
+            },
+            input: { 
+                backgroundColor: rowColor, 
+                fontSize: "18px",
+                border: "0px",
+            },
+            "@media (max-width: 1600px)":{
+                cell:  { fontSize: "16px" },
+                input: { fontSize: "16px" },
+            }, 
+            "@media (max-width: 1200px)":{
+                cell:  { fontSize: "14px" },
+                input: { fontSize: "14px" },
+            }, 
+            "@media (max-width: 725px)": {
+                cell: {
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                    fontSize: "12px"
+                },
+                input: { 
+                    paddingLeft: 0,
+                    paddingRight: 0,
+                    fontSize: "12px"
+                },
+            },
+            "@media (max-width: 460px)":{
+                cell: { fontSize: "10px" },
+                input: { fontSize: "10px" },
+            },
+            "@media (max-width: 390px)":{
+                input: { 
+                    backgroundColor: rowColor, 
+                    textAlign: "center",
+                    border: "0px",
+                },
+            } 
+        })
+    })
+    return useStyles()
+}

@@ -1,6 +1,7 @@
 import { TableCell } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
-import { makeStyles } from '@material-ui/core'
+import { useIncomeSourceCellStyles } from "../styles/useIncomeStyles"
+
 
 const IncomeSourceCell = (props) => {
 
@@ -18,7 +19,6 @@ const IncomeSourceCell = (props) => {
     const { 
         arrayIndex, 
         rowColor,
-        textSize,
     } = props.fromIncomeTable
 
     const { defaultValue, } = props.fromIncomeRow
@@ -37,19 +37,7 @@ const IncomeSourceCell = (props) => {
     }, [defaultValue])
 
 
-    const useStyles = makeStyles({
-        cell: {
-            backgroundColor: rowColor,
-            ...textSize
-        },
-        input: { 
-            backgroundColor: rowColor, 
-            border: "0px",
-            ...textSize
-        }
-    })
-
-    const classes = useStyles()
+    const classes = useIncomeSourceCellStyles(rowColor)
     
 
     const updateNewIncomes = (value) => {
@@ -59,7 +47,6 @@ const IncomeSourceCell = (props) => {
         replacementArray[arrayIndex] = incomeObject
         setNewIncomes(replacementArray)
     }
-
 
     const handleText = (e) => {
         const { value } = e.target

@@ -32,6 +32,7 @@ const Dashboard = (props) => {
 
     const { userInfo, gradientWrapper, } = props.fromApp
     const { id: userId } = userInfo
+    const { fromApp } = props
 
 
     /* -------------------------- STATE ------------------------- */
@@ -72,6 +73,7 @@ const Dashboard = (props) => {
         let componentMounted = true
         const initializeDashboard = async () => {
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
+            console.log({cashflow})
             const budget = await ReadEntireBudget({ userId: userId }, null)
             if (componentMounted) {
                 const { budgetId: b, incomes: i, categories: c } = budget
@@ -151,6 +153,8 @@ const Dashboard = (props) => {
     const cashflowProps = {
         months,
         setMonths,
+        ticker, 
+        ...fromApp,
         cashflowId,
         setCashflowId,
     }
@@ -182,11 +186,9 @@ const Dashboard = (props) => {
                             ticker={ticker}
                             {...props}
                         />
-                        <CashflowDevRoute 
-                            fromDashboard={{...cashflowProps}}
+                        <CashflowDevRoute
+                            {...cashflowProps}
                             path="/dashboard/cashflow" 
-                            ticker={ticker}
-                            {...props}
                         />
                         <RetirementRoute 
                             path="/dashboard/retirement" 

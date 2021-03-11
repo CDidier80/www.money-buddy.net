@@ -9,6 +9,8 @@ import "./styles/CashFlow.css"
 
 const CashflowDevelopment = (props) => {
 
+    // console.log({props})
+
     /* ----------------------- STATE ----------------------- */
     
     const [inflows, setInflows] = useState("")
@@ -88,6 +90,7 @@ const CashflowDevelopment = (props) => {
     const chartProps = {
         inflows,
         outflows, 
+        ...props,
         showPopup,
         cashReserves,
     }
@@ -114,7 +117,6 @@ const CashflowDevelopment = (props) => {
                 fromCashflowDevelopment={{...headerProps}}
             />
             <Chart 
-                {...props.fromApp}
                 fromCashflowDevelopment={{...chartProps}}
             />
             <PaginatingContainer 

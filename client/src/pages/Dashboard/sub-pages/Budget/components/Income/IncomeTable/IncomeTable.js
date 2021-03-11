@@ -26,32 +26,14 @@ const IncomeTable = (props) => {
 
     
     /* ----------------------- MEDIA QUERY ------------------------ */
-    const nssr = {noSsr: true}
-    
-    const small = useMediaQuery('(max-width: 725px)', nssr)
-    const verySmall = useMediaQuery('(max-width: 460px)', nssr)
-    const onlyTwoCells = useMediaQuery('(max-width: 390px)', nssr)
 
-    
-    const createTextStyle = () => {
-        let fontSize = {}
-        let styleObject = {
-            paddingLeft: 0,
-            paddingRight: 0
-        }
-        if (verySmall) (fontSize = {fontSize: "10px"})
-        if (small)     (fontSize = {fontSize: "12px"})
-        return {...styleObject, ...fontSize}
-    }
-    
-
-    const textSize = small ? createTextStyle() : {}
+    const onlyTwoCells = useMediaQuery('(max-width: 390px)', {noSsr: true})
 
     const propsHeaders = {
         annualToggled,
         setAnnualToggled,
-        textSize: textSize,
-        onlyTwoCells: onlyTwoCells
+        // textSize: textSize,
+        // onlyTwoCells: onlyTwoCells
     }
 
     const classes = useIncomeTableStyles()
@@ -83,7 +65,6 @@ const IncomeTable = (props) => {
                                 incomingDeletion,
                                 annualToggled,
                                 onlyTwoCells,
-                                textSize, 
                                 rowColor,
                                 monthly,
                                 source,

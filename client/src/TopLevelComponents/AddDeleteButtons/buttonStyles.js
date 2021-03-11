@@ -4,33 +4,15 @@ import { makeStyles } from '@material-ui/core/'
 export const useButtonStyles = (theme, props) => {
 
     const { palette: p, lato } = theme
-    const responsiveStyleKey = (
-        (props.fromIncomeAccordion.smallerButtons === true && "smaller") || "normal"
-    )
+
     const variant = props.variant || "primary"
-
-    /**
-     *       Responsive Style Alternatives
-     * ==========================================
-     */
-
-    const responsiveStyles = {
-        smaller: {
-            letterSpacing: ".2px", 
-            fontSize: "8px",
-        },
-        normal: {
-            fontSize: '9px'
-        },
-
-    }
 
     // responsive styles are deconstructed into buttonConstants
     const buttonConstants = {
-        ...responsiveStyles[responsiveStyleKey],
+        ...lato,
+        fontSize: "13px",
         padding: "0 5px 0 5px",
         fontWeight: "700",
-        ...lato
     }
 
 
@@ -44,10 +26,10 @@ export const useButtonStyles = (theme, props) => {
         },
 
         secondary: {
-            delButtonIconsToggled:  p.secondary.main,
-            addButton:              p.secondary.main,
-            buttonGroup:            p.secondary.main,
-            delButtonNoIcons:       p.primaryDark.main,
+            delButtonIconsToggled:  p.primaryDark.main,
+            addButton:              p.secondaryDark.main,
+            buttonGroup:            p.secondaryDark.main,
+            delButtonNoIcons:       p.secondaryDark.main,
         },
     }
 
@@ -56,8 +38,7 @@ export const useButtonStyles = (theme, props) => {
             buttonGroup: {
                 margin: "auto auto 5px auto",
                 color: colors[variant]["buttonGroup"],
-                padding: "0 14px 0 14px",
-                maxWidth: "890px",
+                padding: "0 26px 0 26px",
             },
             
             addButton: {
@@ -74,6 +55,42 @@ export const useButtonStyles = (theme, props) => {
                 color: colors[variant]["delButtonNoIcons"],
                 ...buttonConstants,
             },
+
+            "@media (max-width: 1600px)":{
+                delButtonIconsToggled: { fontSize: "12px" },
+                delButtonNoIcons: { fontSize: "12px" },
+                buttonGroup: { 
+                    fontSize: "12px",                     
+                    padding: "0 23px 0 23px", 
+                },
+                addButton: { fontSize: "12px" },
+            }, 
+
+            "@media (max-width: 1200px)":{
+                delButtonIconsToggled: { fontSize: "10px" },
+                delButtonNoIcons: { fontSize: "10px" },
+                buttonGroup: { fontSize: "10px" },
+                addButton: { fontSize: "10px" },
+            }, 
+            
+            "@media (max-width:725px)": {
+                delButtonIconsToggled: {
+                    letterSpacing: ".2px", 
+                    fontSize: "8px",
+                },
+                delButtonNoIcons: {
+                    letterSpacing: ".2px", 
+                    fontSize: "8px",
+                },
+                buttonGroup: {
+                    letterSpacing: ".2px", 
+                    fontSize: "8px",
+                },
+                addButton: {
+                    letterSpacing: ".2px", 
+                    fontSize: "8px",
+                },
+            }
         })
     })
 

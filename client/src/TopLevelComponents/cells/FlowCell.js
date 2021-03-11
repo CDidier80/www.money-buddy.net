@@ -1,10 +1,9 @@
 import { TableCell } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import { filterNumbers, formatToCurrency } from "./modules/cellFunctions"
-import { useIncomeNumberCellStyles } from "../styles/useIncomeStyles"
 
 
-const IncomeNumberCell = (props) => {
+const FlowCell = (props) => {
 
     /* -------------------- PROPS -------------------- */
 
@@ -74,7 +73,7 @@ const IncomeNumberCell = (props) => {
         return false
     }
 
-
+    
     return (
         <TableCell className={classes.cell}>
             <form 
@@ -96,4 +95,4 @@ const IncomeNumberCell = (props) => {
     )
 }
 
-export default IncomeNumberCell
+export default FlowCell

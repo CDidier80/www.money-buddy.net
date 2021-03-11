@@ -2,8 +2,8 @@ import {
     insertionSort, 
     findGapInNumbers, 
     divideDefaultsAndUserSources, 
-} from "../../../../../../universal-functions/sortingFunctions"
-import AddDeleteButtonGroup from "../../../../../../../../../TopLevelComponents/AddDeleteButtons/AddDelButtonGroup"
+} from "../../../../../universal-functions/sortingFunctions"
+import AddDeleteButtonGroup from "../../../../../../../../TopLevelComponents/AddDeleteButtons/AddDelButtonGroup"
 import React from 'react'
 
 const AddDeleteButtons = (props) => {
@@ -19,13 +19,13 @@ const AddDeleteButtons = (props) => {
 
 
     const {
-        smallerButtons,
         lengthOfIncomes,
         setLengthOfIncomes,
         showIncomeDeleteIcons,
         toggleIncomeDeleteIcons,
     } = props.fromIncomeAccordion
     
+
     const addIncome = (e) => {
         e.preventDefault() 
 
@@ -58,7 +58,6 @@ const AddDeleteButtons = (props) => {
         }   
     }
 
-    
 
     const handleDeleteIncomeIcons = (e) => {
         e.preventDefault()
@@ -67,7 +66,7 @@ const AddDeleteButtons = (props) => {
 
     const deleteButtonProps = {
         deleteHandler: handleDeleteIncomeIcons,
-        deleteText: "Delete Income"
+        deleteText: showIncomeDeleteIcons ? "Cancel Delete" : "Delete Income" 
     }
 
     const addButtonProps = {
@@ -77,17 +76,16 @@ const AddDeleteButtons = (props) => {
 
     const otherProps = {
         iconsDisplayed: showIncomeDeleteIcons,
-        smallerButtons: smallerButtons,
         variant: "primary",
     }
 
     return (
-            <AddDeleteButtonGroup 
-                {...deleteButtonProps}
-                {...addButtonProps}
-                {...otherProps}
-                {...props}
-            />
+        <AddDeleteButtonGroup 
+            {...deleteButtonProps}
+            {...addButtonProps}
+            {...otherProps}
+            {...props}
+        />
     )
 }
 
