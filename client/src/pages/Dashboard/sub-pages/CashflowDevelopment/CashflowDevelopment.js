@@ -9,8 +9,6 @@ import "./styles/CashFlow.css"
 
 const CashflowDevelopment = (props) => {
 
-    // console.log({props})
-
     /* ----------------------- STATE ----------------------- */
     
     const [inflows, setInflows] = useState("")
@@ -45,16 +43,15 @@ const CashflowDevelopment = (props) => {
 
     useEffect(() => {
         if (
-            inflows      !== ""  |
-            outflows     !== ""  |
-            newMonths    !== ""  |
+            inflows      !== ""  ||
+            outflows     !== ""  ||
+            newMonths    !== ""  ||
             cashReserves !== "" 
         ){
             setLoaded(true)
         }
     }, [loadDependencies] 
 )
-
 
     /* ----------------------- FUNCTIONS ----------------------- */
 
@@ -82,25 +79,26 @@ const CashflowDevelopment = (props) => {
 //     /* ----------------------- PROPS FOR CHILDREN ----------------------- */
 
     const headerProps = {
-        tick,
-        setLoaded, 
         incrementTicker,
+        setLoaded, 
+        tick,
     }
 
     const chartProps = {
-        inflows,
-        outflows, 
-        ...props,
-        showPopup,
         cashReserves,
+        showPopup,
+        ...props,
+        outflows, 
+        inflows,
     }
 
-    const paginatingContainerProps = {
-        inflows,
-        outflows, 
-        newMonths,
+    const pagContainerProps = {
+        cashReserves,
         showPopup,
-        cashReserves
+        newMonths,
+        ...props,
+        outflows, 
+        inflows,
     }
 
     /* -------------------------- JSX -------------------------- */
@@ -113,16 +111,9 @@ const CashflowDevelopment = (props) => {
                     toggleShowPopup={toggleShowPopup}
                 />
             )}
-            <CashflowHeader 
-                fromCashflowDevelopment={{...headerProps}}
-            />
-            <Chart 
-                fromCashflowDevelopment={{...chartProps}}
-            />
-            <PaginatingContainer 
-                {...props}
-                fromCashflowDevelopment={{...paginatingContainerProps}}
-            />
+            <CashflowHeader {...headerProps} />
+            <Chart {...chartProps} />
+            <PaginatingContainer {...pagContainerProps} />
         </div>
     )
 }
