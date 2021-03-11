@@ -1,7 +1,7 @@
 import { TableCell } from '@material-ui/core';
 import React, { useState, useEffect } from 'react';
 import { filterNumbers, formatToCurrency } from "./modules/cellFunctions"
-import { makeStyles } from '@material-ui/core'
+import { useIncomeNumberCellStyles } from "../styles/useIncomeStyles"
 
 
 const IncomeNumberCell = (props) => {
@@ -20,7 +20,6 @@ const IncomeNumberCell = (props) => {
     const { 
         arrayIndex, 
         rowColor,
-        textSize,
     } = props.fromIncomeTable
 
     const { 
@@ -45,27 +44,10 @@ const IncomeNumberCell = (props) => {
     }, [defaultValue])
 
 
-    
     /* ------------------- FUNCTIONS ------------------- */
 
-    const alignment = props.onlyTwoCells ? {textAlign: "center"} : {}
 
-    const useStyles = makeStyles({
-        cell: {
-            backgroundColor: rowColor,
-            ...textSize,
-            // ...alignment
-        },
-        input: { 
-            backgroundColor: rowColor, 
-            border: "0px",
-            ...textSize,
-            ...alignment
-
-        }
-    })
-
-    const classes = useStyles()
+    const classes = useIncomeNumberCellStyles(rowColor)
 
 
     const updateIncomes = (value) => {
