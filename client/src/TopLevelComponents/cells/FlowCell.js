@@ -1,6 +1,7 @@
-import { TableCell } from '@material-ui/core';
-import React, { useState, useEffect } from 'react';
-import { filterNumbers, formatToCurrency } from "./modules/cellFunctions"
+import { useFlowNumberCellStyles, useFlowSourceCellStyles } from "./useCellStyles"
+import { filterNumbers, currencyFormat } from "../../modules/clientFunctions"
+import React, { useState, useEffect } from 'react'
+import { TableCell } from '@material-ui/core'
 
 
 const FlowCell = (props) => {
@@ -8,84 +9,69 @@ const FlowCell = (props) => {
     /* -------------------- PROPS -------------------- */
 
     const { 
-        userMadeChanges, 
-        toggleChanges, 
-        setNewIncomes,
-        updateBudget,
-        newIncomes, 
-        tick
-    } = props.fromBudget
-
-    const { 
-        arrayIndex, 
-        rowColor,
-    } = props.fromIncomeTable
-
-    const { 
         defaultValue,
-        isAnnual, 
-    } = props.fromIncomeRow
+        numberCell,
+        rowColor,
+        onSubmit,
+        align,
+    } = props
 
 
     /* -------------------- STATE -------------------- */
 
-    const [ newText, updateText ] = useState("")
     const [ rawNumber, updateRawNumber] = useState(0)
+    const [ newText, updateText ] = useState("")
     const [ focused, setFocus ] = useState(false)
     
 
     /* ------------------- useEffect ------------------- */
 
     useEffect(() => {
-        const currency = formatToCurrency(defaultValue)
-        updateRawNumber(defaultValue)
-        updateText(currency)
+        if(numberCell) {
+            const currency = currencyFormat(defaultValue)
+            updateRawNumber(defaultValue)
+            updateText(currency)
+        } else {
+            updateText(defaultValue)
+        }
     }, [defaultValue])
 
 
     /* ------------------- FUNCTIONS ------------------- */
 
-
-    const classes = useIncomeNumberCellStyles(rowColor)
-
-
-    const updateIncomes = (value) => {
-        let numValue = parseInt(value)
-        numValue = isAnnual ? numValue : Math.round(numValue * 12)
-        let replacementArray = [...newIncomes]
-        let incomeObject = newIncomes[arrayIndex]
-        incomeObject.amount = numValue
-        replacementArray[arrayIndex] = incomeObject
-        setNewIncomes(replacementArray)
+    const handleText = (e) => {
+        const { value } = e.target
+        updateText(value)
     }
 
+    /* ------------------- STYLES ------------------- */
 
-    const submit = (e) => {
-        // console.log(e.target)
-        e.preventDefault()
-        document.activeElement.blur()
-        // setCellHistory([...cellHistory, rawNumber])
-        updateIncomes(rawNumber)
-        updateText(formatToCurrency(rawNumber))
-        !userMadeChanges && toggleChanges(true)
-        updateBudget(tick + 1)
-        setFocus(false)
-        return false
-    }
+    const numberClasses = useFlowNumberCellStyles(rowColor)
+    const sourceClasses = useFlowSourceCellStyles(rowColor)
+    const classes = numberCell ? numberClasses : sourceClasses
 
     
     return (
         <TableCell className={classes.cell}>
             <form 
-                onSubmit={(e) => submit(e)} 
+                onSubmit={(e) => onSubmit(e)} 
                 style={{backgroundColor: rowColor}}
             >
                 <input 
-                    onChange={(e) => filterNumbers(e, updateRawNumber)}
-                    className={`${classes.input} editable-cell income`}
-                    value={focused ? rawNumber : newText}  
+                    onChange={
+                        numberCell ?
+                            (e) => filterNumbers(e, updateRawNumber) :
+                            (e) => handleText(e)
+                    }
+                    value={
+                        numberCell ? 
+                        (focused ? rawNumber : newText) : 
+                        newText
+                    }  
                     onSelect={(e) => setFocus(true)}
-                    onBlur={(e) => submit(e)}
+                    onBlur={(e) => onSubmit(e)}
+                    className={classes.input}
+                    align={align || "right"}
                     name="text-input"
                     type="text" 
                 >
