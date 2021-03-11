@@ -110,6 +110,7 @@ const ExpenseAccordion = (props) => {
             >
                 <AccordionDropdownTab expanded={expanded} />
                 <ButtonsAddDelete 
+                    {...props}
                     fromExpenseAccordion={{...buttonsAddDeleteProps}}
                 />
                 {newCategories.map((category, index) => {
