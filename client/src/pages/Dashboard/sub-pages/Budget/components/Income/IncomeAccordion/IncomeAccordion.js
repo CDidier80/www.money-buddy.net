@@ -5,9 +5,8 @@ import {
 } from '@material-ui/core'
 import React, { useState, useLayoutEffect } from 'react';
 import GradientWrapper from "../../../../../../../TopLevelComponents/GradientWrapper"
-import AddDelButtonGroup from "./components/buttons/AddDelButtonGroup"
 import AccordionDropdownTab from "./components/AccordionDropdownTab"
-import AddDeleteButtons from "./components/buttons/AddDeleteButtons"
+import AddDeleteButtons from "./components/AddDeleteButtons"
 import IncomeTable from "../IncomeTable/IncomeTable"
 
 
@@ -103,10 +102,6 @@ const IncomeAccordion = (props) => {
                 <AccordionDropdownTab 
                     expanded={expanded}
                 />
-                {/* <AddDelButtonGroup 
-                    {...props}
-                    fromIncomeAccordion={{...addDelButtonGroupProps}}
-                /> */}
                 <AddDeleteButtons
                     {...props}
                     fromIncomeAccordion={{...addDelButtonGroupProps}}
