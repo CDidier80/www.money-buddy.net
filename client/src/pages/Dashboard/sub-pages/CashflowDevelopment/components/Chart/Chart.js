@@ -7,11 +7,7 @@ const Chart = memo((props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const {
-        inflows,
-        outflows, 
-        cashReserves
-    } = props.fromCashflowDevelopment
+    const { inflows, outflows, cashReserves } = props
 
     /* -------------------------- STATE ------------------------- */
 
@@ -43,7 +39,7 @@ const Chart = memo((props) => {
 
 /* ----------------------- PROPS FOR CHART ---------------------- */
 
-    const configDatasets = {inflowDataset, outflowDataset, cashDataset}
+    const configDatasets = { inflowDataset, outflowDataset, cashDataset }
 
     const { chartData, options } = configureChart(configDatasets)
 /* ----------------------- JSX ----------------------- */
@@ -59,8 +55,7 @@ const Chart = memo((props) => {
             />
         </div>
     )
-}, ({fromCashflowDevelopment: prev}, {fromCashflowDevelopment: next}) => 
-    prev.showPopup !== next.showPopup
+}, ({showPopup: prevPopup}, {showPopup: nextPopup}) => prevPopup !== nextPopup
 )
 
 export default Chart
