@@ -89,7 +89,7 @@ const FlowcategoryPopup = (props) => {
     const {
         setNewFlowcategories, 
         newFlowcategories, 
-    } = props.fromMonthContainer
+    } = props
 
     const [open, setOpen] = useState(true)
     const [text, setText] = useState("")
