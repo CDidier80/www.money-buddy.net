@@ -69,7 +69,8 @@ const createLegend = (fontSize, boxWidth) => ({
     position: "left",
     labels: {
         boxWidth: boxWidth,
-        fontSize: fontSize
+        fontSize: fontSize,
+        fontColor: "black"
     }
 })
 
