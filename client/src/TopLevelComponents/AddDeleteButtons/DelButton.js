@@ -16,7 +16,9 @@ const DelButton = (props) => {
         delButtonNoIcons: dbni,
      } = classes
 
-    const className = iconsDisplayed ? dbit : dbni
+    const className = iconsDisplayed ? 
+        classes.delButtonIconsToggled : 
+        classes.delButtonNoIcons
 
     return (
         <Button 
