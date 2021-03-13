@@ -16,12 +16,12 @@ const useStyles = makeStyles({
         width: "33vw"
     },
     header: {
+        fontFamily: "Lato, sans-serif",
+        padding: "20 20 0 20px",
+        textAlign: "center",
         fontWeight: "700",
         fontSize: "20px",
-        fontFamily: "Lato, sans-serif",
         color: "#22c1c3",
-        padding: "20 20 0 20px",
-        textAlign: "center"
     },
     iconButtons: {
         marginTop: 0,
@@ -33,9 +33,9 @@ const useStyles = makeStyles({
         justifyContent: "center"
     },
     button: {
-        fontSize: "13px",
-        fontWeight: "700",
         fontFamily: "Lato, sans-serif",
+        fontWeight: "700",
+        fontSize: "13px",
         color: "#e6a824",
         "&:hover" : {
             backgroundColor: "#06fbff4b"
@@ -53,40 +53,34 @@ const Transition = forwardRef(function Transition(props, ref) {
 })
 
 
-
-
-
-
 const FlowcategoryDeletePopup = (props) => {
 
     const { 
-        toggleChanges, 
-        userMadeChanges,
-        updateCashflow,
-        tick
-    } = props.fromCashflow
+
+    } = props
 
     const {
-        setNewFlowcategories, 
-        newFlowcategories, 
-    } = props.fromMonthContainer
-
-    const { 
+        tick,
         category,
-        flowcategoryIndex
-    } = props.fromOutflowsAccordion
+        toggleChanges, 
+        updateCashflow,
+        userMadeChanges,
+        newFlowcategories, 
+        flowcategoryIndex,
+        setNewFlowcategories, 
+        toggleFlowcategoryDeletePopup,
+    } = props
 
     const {name} = category
 
-    const { toggleFlowcategoryDeletePopup } = props.fromCategoryAccordion
 
+    /*  STATE  */
 
-    {/*  STATE  */}
 
     const [open, setOpen] = useState(true)
 
 
-    {/*  FUNCTIONS  */}
+    /*  FUNCTIONS  */
 
     const classes = useStyles()
 
@@ -126,37 +120,8 @@ const FlowcategoryDeletePopup = (props) => {
                 aria-labelledby="alert-dialog-slide-title"
                 aria-describedby="alert-dialog-slide-description"
             >
-                <DialogContent className={classes.dialog}>
-                    <DialogTitle 
-                        id="alert-dialog-slide-title"
-                        disableTypography={true}
-                        className={classes.header}
-                    >
-                        Delete "
-                            <span 
-                                className={classes.span}
-                            >
-                                {name}
-                            </span>
-                            "?
-                    </DialogTitle>
-                    <DialogActions className={classes.buttonWrapper}>
-                        <Button 
-                            onClick={(e) => confirm(e)} 
-                            color="primary"
-                            className={classes.button}
-                        >
-                            Confirm
-                        </Button>
-                        <Button 
-                            onClick={(e) => closePopup(e)} 
-                            color="primary"
-                            className={classes.button}
-                        >
-                            Back
-                        </Button>
-                    </DialogActions>
-                </DialogContent>
+                <FlowcategoryPopupPrompt />
+                <ConfirmCloseButtons />
             </Dialog>
 
     )
