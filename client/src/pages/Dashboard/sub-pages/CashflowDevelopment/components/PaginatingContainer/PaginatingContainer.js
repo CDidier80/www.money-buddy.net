@@ -7,7 +7,7 @@ const PaginatingContainer = memo((props) => {
 
     /* Props */
 
-    const { newMonths } = props.fromCashflowDevelopment
+    const { newMonths } = props
 
     /*  State */
 
@@ -26,34 +26,26 @@ const PaginatingContainer = memo((props) => {
 
     return (
         <div className="paginating-container" >
-            <PaginatingButtons 
-                fromPaginatingContainer={{...iconProps}}
-            />
+            <PaginatingButtons {...iconProps} />
             <div className="monthContainer-wrapper">
-                {newMonths.map((month, index) => {
-                        const monthContainerProps = {
-                            incrementPagTicker,
-                            monthIndex: index,
-                            thisMonth: month,
-                            setDisplayRange,
-                            pagMemoTicker,
-                            displayRange,
-                        }
-                    return (
-                        <MonthContainer 
-                            {...props}
-                            key={`ABC${index}`}
-                            className="month-container"
-                            fromPaginatingContainer={{...monthContainerProps}}
-                        />
-                    )
-                    })}
+                { newMonths.map((month, index) => {
+                    const monthContainerProps = {
+                        className: "month-container",
+                        incrementPagTicker,
+                        key: `ABC${index}`,
+                        monthIndex: index,
+                        thisMonth: month,
+                        setDisplayRange,
+                        pagMemoTicker,
+                        displayRange,
+                        ...props,
+                    }
+                    return <MonthContainer {...monthContainerProps} />
+                })}
             </div>
         </div>
     )
-}, ({fromCashflowDevelopment: prev}, {fromCashflowDevelopment: now}) => (
-    prev.showPopup !== now.showPopup
-))    
+}, ({showPopup: prevShowPopup}, {showPopup: nowShowPopup}) => prevShowPopup !== nowShowPopup)    
 
 export default PaginatingContainer
 
