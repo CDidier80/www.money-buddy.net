@@ -17,7 +17,6 @@ const InflowsAccordion = (props) => {
         toggleOpened(!opened)
     }
 
-
     const { accordion } = useInflowsAccordionStyles(props.theme)
 
     /* --------------------- PROPS FOR CHILDREN --------------------- */
@@ -25,6 +24,7 @@ const InflowsAccordion = (props) => {
     const propsForInflowsTable = {
         showInflowDeleteIcons,
         toggleInflowDeleteIcons,
+        ...props,
     }
 
     return (
@@ -33,11 +33,8 @@ const InflowsAccordion = (props) => {
                 className={accordion}
                 onChange={(e)=>handleExpansion(e)}
             >
-                <AccordionDropdownTab expanded={opened}/>
-                <InflowsTable 
-                    {...props} 
-                    fromInflowsAccordion={{...propsForInflowsTable}}
-                />
+                <AccordionDropdownTab expanded={opened} />
+                <InflowsTable {...propsForInflowsTable} />
             </Accordion>
         </div>
     )
