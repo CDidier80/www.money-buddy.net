@@ -94,7 +94,6 @@ export const makeFlowRowsStyles = makeStyles(({palette: p}) => {
         inflowCell : {
             borderBottom: "none",
             color: "white",
-
             backgroundColor: p.primaryDark.main
         },
         outflowCell : {
