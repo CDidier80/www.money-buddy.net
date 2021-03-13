@@ -17,7 +17,7 @@ const InflowsTable = (props) => {
     
     /* ------------- PROPS ------------ */
     
-    const { monthlyInflows } = props.fromMonthContainer
+    const { monthlyInflows } = props
     
     /* ------------ STATE ------------ */
 
@@ -59,7 +59,7 @@ const InflowsTable = (props) => {
                             }   
                             return (
                                 <InflowRow 
-                                    fromInflowsTable={{...propsForInflowRow}}
+                                    {...propsForInflowRow}
                                     key={index + 2000}
                                     {...props}
                                 />
