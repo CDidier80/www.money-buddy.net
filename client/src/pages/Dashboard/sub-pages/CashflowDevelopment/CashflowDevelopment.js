@@ -9,8 +9,6 @@ import "./styles/CashFlow.css"
 
 const CashflowDevelopment = (props) => {
 
-    // console.log({props})
-
     /* ----------------------- STATE ----------------------- */
     
     const [inflows, setInflows] = useState("")
