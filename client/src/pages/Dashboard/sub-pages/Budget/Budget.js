@@ -85,7 +85,6 @@ const Budget = (props) => {
         ...forAll,
         newIncomes,
         setNewIncomes,
-        toggleChanges,
         userMadeChanges,
     }
 
