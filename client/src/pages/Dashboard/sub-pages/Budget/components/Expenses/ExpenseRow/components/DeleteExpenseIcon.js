@@ -6,16 +6,17 @@ const DeleteExpenseIcon = (props) => {
 
 
     const {
-        newCategories,
-        setNewCategories, 
+        tick,
         updateBudget, 
-        tick
+        newCategories,
+        toggleChanges,
+        setNewCategories, 
     } = props.fromBudget
 
     const { 
+        categoryIndex,
         renderExpAccordion,
         rerenderExpenseAccordian,
-        categoryIndex,
     } = props.fromExpenseAccordion
 
     const { expenseIndex, } = props.fromExpenseTable
@@ -46,14 +47,15 @@ const DeleteExpenseIcon = (props) => {
             categoriesArrayCopy[categoryIndex]['expenses'].splice(expenseIndex, 1)
             setNewCategories(categoriesArrayCopy)
 
-            // full budget rerender only necessary if expense is not $0
+            // if expense is 0$ no need to rerender budget
             if (expenseItem === 0) {
                 rerenderExpenseAccordian(!renderExpAccordion)
             } else {
                 updateBudget(tick + 1)
+                toggleChanges(true)
             }
         } catch (error) {
-            throw error
+            console.log(error)
         }
     }
 
