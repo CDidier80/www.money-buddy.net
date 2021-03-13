@@ -20,7 +20,7 @@ const FlowcategoryDeleteIcon = (props) => {
     const {
         toggleFlowcategoryDeletePopup,
         showFlowcategoryDeletePopup
-    } =  props.fromFlowcategoryAccordion
+    } =  props
     
     const classes = useStyles()
 
