@@ -22,6 +22,9 @@ const CashRows = (props) => {
             number: endingCash,
         },
     ]
+
+    const whiteText = { style: {color: 'white'}}
+
     
     return (
         <Table 
@@ -37,16 +40,17 @@ const CashRows = (props) => {
                             key={`${number}${description}`}
                             className={classes.cashRows}
                         >
-                            <TableCell className={classes.cell} >
-                                <h5 className="summary-text">
+                            <TableCell className={classes.cell} {...whiteText}>
+                                <h5 className="summary-text" {...whiteText}>
                                     { description } 
                                 </h5>
                             </TableCell>
                             <TableCell
                                 className={classes.cell}
                                 align="right"
+                                {...whiteText}
                             >
-                                <h5> { number } </h5>
+                                <h5 {...whiteText}> { number } </h5>
                             </TableCell>
                         </TableRow>
                     )

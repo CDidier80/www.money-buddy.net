@@ -37,6 +37,8 @@ const FlowRows = (props) => {
         },
     ]
 
+    const whiteText = { style: {color: 'white'}}
+
     return (
         <Table 
             // className={classes.table} 
@@ -54,8 +56,9 @@ const FlowRows = (props) => {
                         >
                             <TableCell
                                 className={className}
+                                {...whiteText}
                             >
-                                <h5 className="summary-text">
+                                <h5 className="summary-text" {...whiteText}>
                                     { description } 
                                 </h5>
                             </TableCell>
@@ -63,7 +66,7 @@ const FlowRows = (props) => {
                                 align="right"
                                 className={className}
                             >
-                                <h5>
+                                <h5 {...whiteText}>
                                     { number }
                                 </h5>
                             </TableCell>

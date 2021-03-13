@@ -86,11 +86,8 @@ const ExpenseRow = (props) => {
         const anIconWasActivated = (showExpenseDeleteIcons | showUndoIcon) == true 
         // console.log('an icon was activated', anIconWasActivated)
         if (anIconWasActivated && iconShouldShow == false) {
-            console.log("setting icon should should show to true")
-
                 setIconShouldShow(true)
         } else {
-            // console.log("setting icon should show to false")
             setIconShouldShow(false)
         }
     }, [showExpenseDeleteIcons, showUndoIcon])
