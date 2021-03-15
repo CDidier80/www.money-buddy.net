@@ -28,7 +28,7 @@ const EmailButton = (props) => {
                 return false
             }
 
-            if (userId === 20) {
+            if (user_id === 20) {
                 disabledForGuestSnackbar()
                 return
             }
