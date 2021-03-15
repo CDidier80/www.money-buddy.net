@@ -1,7 +1,6 @@
 import {  useSnackbar  } from 'notistack'
 
 
-
 export default function useSnackbars(){
     const { enqueueSnackbar } = useSnackbar()
 
@@ -24,9 +23,15 @@ export default function useSnackbars(){
     
     const updateSnackbar = (variable) => enqueueSnackbar(
         `Successfully Updated ${variable}`, successVariant
-        ) 
+    ) 
+
+    const disabledForGuestSnackbar = () => {
+        enqueueSnackbar("This action is disabled on guest account")
+        enqueueSnackbar("Sign up to enable all privileges")
+    }
 
     const snackbars = {
+        disabledForGuestSnackbar,
         invalidSnackbar,
         updateSnackbar,
         errorSnackbar,
