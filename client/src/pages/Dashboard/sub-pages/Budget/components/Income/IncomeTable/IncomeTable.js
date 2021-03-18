@@ -9,7 +9,7 @@ import {
 import React, { useState } from 'react';
 import IncomeRow from "../IncomeRow/IncomeRow"
 import IncomeHeaders from "./IncomeHeaders/IncomeHeaders"
-import { pickColor } from "../../../../universal-functions/styleFunctions"
+import { pickColor } from "../../../../../../../modules/themeAndStyles"
 import { useIncomeTableStyles } from "../styles/useIncomeStyles"
 
 
