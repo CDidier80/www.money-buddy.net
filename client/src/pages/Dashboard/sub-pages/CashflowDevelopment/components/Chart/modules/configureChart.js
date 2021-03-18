@@ -1,6 +1,5 @@
 import { moneyBuddyTooltips } from "../../../../../../../modules/moneyBuddyTooltips"
 import { makeCashflowDataset } from "./makeCashflowDataset"
-import { cashflowTooltips } from "./cashflowTooltips"
 import { configureAxes } from "./configureAxes"
 
 const titleCallback = (tooltipItem) => {
