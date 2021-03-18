@@ -21,7 +21,7 @@ const IncomeSourceCell = (props) => {
         rowColor,
     } = props.fromIncomeTable
 
-    const { defaultValue, } = props.fromIncomeRow
+    const { defaultValue } = props.fromIncomeRow
 
 
     /*  STATE  */
@@ -56,11 +56,10 @@ const IncomeSourceCell = (props) => {
     const submit = (e) => {
         e.preventDefault()
         document.activeElement.blur()
-        updateNewIncomes(newText)
-        if (!userMadeChanges) {
+        if(defaultValue !== newText){
             toggleChanges(true)
+            updateBudget(tick + 1)
         }
-        updateBudget(tick + 1)
         setFocus(false)
         return false
     }
