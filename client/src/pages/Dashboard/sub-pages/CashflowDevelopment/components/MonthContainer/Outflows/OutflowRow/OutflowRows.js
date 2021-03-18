@@ -1,4 +1,4 @@
-import { pickColor } from "../../../../../universal-functions/styleFunctions"
+import { pickColor } from "../../../../../../../../modules/themeAndStyles"
 import OutflowRow from "./OutflowRow"
 
 import React from 'react'
@@ -16,7 +16,6 @@ const OutflowRows = (props) => {
                     const propsForRows = {
                         // setIncomingDeletion,
                         outflowIndex: index,
-                        key: `${index * -1}`,
                         // incomingDeletion, 
                         rowColor,
                         outflow,
@@ -25,6 +24,7 @@ const OutflowRows = (props) => {
                     return (
                         <OutflowRow 
                             {...props}
+                            key={`${index * -1}`}
                             fromOutflowsTable={{...propsForRows}}
                         /> 
                     )
