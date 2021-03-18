@@ -31,10 +31,10 @@ const Chart = memo((props) => {
 
     useEffect(() => {
         if (
-            inflowDataset  !== ""  |
-            outflowDataset !== ""  |
+            inflowDataset  !== ""  &&
+            outflowDataset !== ""  &&
             cashDataset    !== "" 
-        ) { setLoaded(true) }
+        ) setLoaded(true) 
     }, [
         outflowDataset, 
         inflowDataset,
@@ -49,9 +49,7 @@ const Chart = memo((props) => {
 /* ----------------------- JSX ----------------------- */
 
     return ( !loaded ? <div></div> :
-        <div
-            className="cashflow-chart"
-        >
+        <div className="cashflow-chart" >
             <Line 
                 data={chartData} 
                 options={options}
