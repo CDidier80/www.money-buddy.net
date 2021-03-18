@@ -1,10 +1,8 @@
-import { latoTextStyle } from "../../../../modules/themeAndStyles"
-import useMediaQuery from '@material-ui/core/useMediaQuery'
-import { makeStyles, withTheme} from '@material-ui/core/'
+import { useLoginFormStyles } from "./styles/useStyles"
 import FormControl from "./components/FormControl"
-import { staticStyles } from "./styles/useStyles"
 import React, { useState, useEffect }from 'react'
 import LockedOut from './components/LockedOut'
+import { withTheme} from '@material-ui/core/'
 import FormBody from "./components/FormBody"
 import Header from "./components/Header"
 
@@ -21,36 +19,7 @@ const Form = (props) => {
             toggleSigningUp(signingUp ? true : false)
     }, [])
 
-
-    const medQuery = (style1, style2) => matches ? style1 : style2
-    const matches = useMediaQuery('(max-height:730px)')
-
-    const useStyles = makeStyles({
-        root: {
-            margin: medQuery("3vh auto 3vh auto", "0 auto"),
-            position: medQuery("relative", null),
-            paddingTop: medQuery("0","10vh"),
-            maxHeight: "830px",
-            minWidth: "300px",
-            maxWidth: "410px",
-            ...latoTextStyle,
-            height: '70%',
-            width: '50%',
-        },
-        paperRoot: {
-            maxHeight: medQuery("600px", null),
-            borderRadius: "12px",
-            ...latoTextStyle,
-        },
-        textfield: {
-            "& .MuiFilledInput-root": {
-                background: "rgb(black)"
-            }
-        },
-        ...staticStyles,
-    })
-
-    const classes = useStyles()
+    const classes = useLoginFormStyles()
 
     const propsFormBody = {
         child3: FormControl,

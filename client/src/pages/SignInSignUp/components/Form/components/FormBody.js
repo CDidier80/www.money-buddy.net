@@ -28,9 +28,9 @@ const FormBody = (props) => {
     }
 
     return (
-            <div className="form-wrapper" >
+            <div className={classes.formWrapper} >
                 <Grid 
-                    className={classes.root}
+                    className={classes.grid}
                     container 
                 >
                     <Grid 
