@@ -66,10 +66,12 @@ const IncomeNumberCell = (props) => {
         e.preventDefault()
         document.activeElement.blur()
         // setCellHistory([...cellHistory, rawNumber])
-        updateIncomes(rawNumber)
-        updateText(formatToCurrency(rawNumber))
-        !userMadeChanges && toggleChanges(true)
-        updateBudget(tick + 1)
+        if (rawNumber !== defaultValue){
+            updateIncomes(rawNumber)
+            updateText(formatToCurrency(rawNumber))
+            !userMadeChanges && toggleChanges(true)
+            updateBudget(tick + 1)
+        }
         setFocus(false)
         return false
     }
