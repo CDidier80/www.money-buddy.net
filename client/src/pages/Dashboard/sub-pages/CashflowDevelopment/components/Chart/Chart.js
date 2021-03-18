@@ -1,7 +1,7 @@
-import "./styles/chart.css"
-import { Line } from 'react-chartjs-2'
 import { configureChart } from "./modules/configureChart"
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react'
+import { Line } from 'react-chartjs-2'
+import "./styles/chart.css"
 
 const Chart = memo((props) => {
 
