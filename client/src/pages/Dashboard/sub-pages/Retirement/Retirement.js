@@ -62,7 +62,6 @@ const Retirement = (props) => {
         // "@media (max-width: 600px)":{
         //     overrides
         // }
-
     }
 
     const retirementRef = useRef()

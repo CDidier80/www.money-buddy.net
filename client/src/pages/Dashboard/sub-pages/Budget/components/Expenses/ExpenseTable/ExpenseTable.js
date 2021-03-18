@@ -14,7 +14,7 @@ import ExpenseHeaders from "./components/ExpenseHeaders"
 
 const ExpenseTable = (props) => {
 
-    {/*  PROPS */}
+    /*  PROPS */
 
     const { category } = props.fromExpenseAccordion
 
@@ -48,7 +48,6 @@ const ExpenseTable = (props) => {
                             const monthly = Math.round(amount/12)
                             const rowColor = (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
                             const propsForRows = {
-                                key: `${index * -1}`,
                                 expenseIndex: index,
                                 setIncomingDeletion,
                                 incomingDeletion, 
@@ -60,6 +59,7 @@ const ExpenseTable = (props) => {
                             return (
                                 <ExpenseRow 
                                     {...props}
+                                    key={`expense-row-${index}`}
                                     fromExpenseTable={{...propsForRows}}
                                 /> 
                             )
