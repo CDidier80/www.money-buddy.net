@@ -115,16 +115,18 @@ const ExpenseAccordion = (props) => {
                 />
                 {newCategories.map((category, index) => {
                     const categoryAccordionProps = {
-                        rerenderExpenseAccordian,
-                        categoryIndex: index,
-                        renderExpAccordion,
-                        showDeleteIcons,
-                        category,
+                        fromExpenseAccordion: {
+                            rerenderExpenseAccordian,
+                            categoryIndex: index,
+                            renderExpAccordion,
+                            showDeleteIcons,
+                            category,
+                        }
                     }
                     return (
                         <CategoryAccordion 
-                            fromExpenseAccordion={{...categoryAccordionProps}}
-                            key={`${20000 + index}`}
+                            key={`category-accordion-${index}`}
+                            {...categoryAccordionProps}
                             {...props} 
                         />
                     )
