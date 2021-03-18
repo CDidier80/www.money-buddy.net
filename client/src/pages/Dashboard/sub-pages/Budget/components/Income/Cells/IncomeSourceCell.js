@@ -8,7 +8,6 @@ const IncomeSourceCell = (props) => {
     /*  PROPS  */
 
     const { 
-        userMadeChanges,
         setNewIncomes, 
         toggleChanges, 
         updateBudget,
@@ -27,7 +26,6 @@ const IncomeSourceCell = (props) => {
     /*  STATE  */
 
     const [ newText, updateText ] = useState("")
-    const [ focused, setFocus ] = useState(false)
 
 
     /* FUNCTIONS */
@@ -61,7 +59,6 @@ const IncomeSourceCell = (props) => {
             toggleChanges(true)
             updateBudget(tick + 1)
         }
-        setFocus(false)
         return false
     }
 
@@ -74,7 +71,6 @@ const IncomeSourceCell = (props) => {
             >
                 <input 
                     className={`${classes.input} editable-cell income`}
-                    onSelect={(e) => setFocus(true)}
                     onChange={(e) => handleText(e)}
                     onBlur={(e) => submit(e)}
                     name="text-input"
