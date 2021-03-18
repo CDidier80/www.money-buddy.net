@@ -349,3 +349,6 @@ export const latoTextStyle = {
     textRendering: "optimizeLegibility !important",
     WebkitFontSmoothing: "antialiased !important"
 }
+
+
+export const pickColor = (index) => index % 2 === 0 ? primaryLightest : secondaryLightest
