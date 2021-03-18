@@ -22,87 +22,56 @@ const ChartLogic = (props) => {
 
     /* ------------------------- Listen to Window Size ------------------------ */
 
-    const setInitialWidth = () => {
-        if(window.innerWidth < 700) {
-            return (window.innerWidth * .85)
-        } else {
-            return (window.innerWidth -200)
-        }
-    }
 
-    const setInitialHeight = () => {
-        if(window.innerWidth < 700) {
-            return (window.innerWidth * .75)
-        } else {
-            return (window.innerWidth -300)
-        }
-    }
 
-    const [height, setHeight] = useState(()=>setInitialHeight)
-    const [width, setWidth] = useState(() => setInitialWidth)
-
-    const setChartWrapperSize = (e) => {
-
-        const {
-            clientWidth: subpageWidth, 
-            clientHeight: subpageHeight 
-        } = props.retirementRef.current
-        
-        if (subpageWidth < 900 && window.innerHeight > 700){
-            setHeight(subpageWidth *.7)
-            setWidth(subpageWidth *.95)
-        } else {
-            setHeight(window.innerHeight * .75)
-            setWidth(subpageWidth *.95)
-        }
-        
-        if (window.innerHeight < 700) {
-            setHeight(window.innerHeight * .7)
-            setWidth(subpageWidth *.85)
-        }
-
-        if (window.innerHeight < 500) {
-            setHeight(window.innerHeight * .6)
-            setWidth(subpageWidth *.85)
-        }
-    }
+    const calcChartWrapperHeight = () => window.innerWidth < 700 ? 
+        window.innerWidth * .75 :
+        window.innerWidth - 300
     
+
+    const [height, setHeight] = useState(()=>calcChartWrapperHeight())
+
+    const updateHeight = () => setHeight(calcChartWrapperHeight())
+
     useLayoutEffect(() => {
-        window.addEventListener("resize", setChartWrapperSize)
-        // setChartWrapperSize()
-        return () => window.removeEventListener("resize", setChartWrapperSize)
+        window.addEventListener("resize", updateHeight)
+        return () => window.removeEventListener("resize", updateHeight)
     }, [])
     
 
     /* ---------------------- CREATE CHART CONFIGURATION ---------------------- */
 
-    const chartData = {
-        labels: makeXAxisAgeLabels(lifespanAge, currentAge, endingAge),
-        datasets: generateDataSets(savingsForecast)
+    const propsLineChart = {
+        data: {
+            labels: makeXAxisAgeLabels(lifespanAge, currentAge, endingAge),
+            datasets: generateDataSets(savingsForecast)
+        },
+        options: {
+            scales: generateScales(toCurrency, fiveYearTicks),
+            maintainAspectRatio: false,
+            legend: { display: false },
+            tooltips: tooltips,
+            responsive: true,
+        }
     }
 
-    const options = {
-        scales: generateScales(toCurrency, fiveYearTicks),
-        maintainAspectRatio: false,
-        legend: { display: false },
-        tooltips: tooltips,
-        responsive: true,
+    const wrapperStyle = {
+        style: {
+            width: "90%",
+            height: height,
+            margin: "0 auto",
+            minWidth: "270px",
+            minHeight: "275px",
+            position: "relative",
+            maxHeight: window.innerHeight * .42,
+        }
     }
 
     /* ------------------ JSX ------------------ */
 
     return (
-        <div 
-            className="retirement-chart-wrapper"
-            style={{
-                height: height,
-                width: width,
-            }}
-        >
-            <LineChart 
-                options={options}
-                data={chartData}
-            />
+        <div {...wrapperStyle} >
+            <LineChart {...propsLineChart} />
         </div>
     )
 }
