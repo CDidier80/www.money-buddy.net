@@ -57,6 +57,7 @@ const IncomeSourceCell = (props) => {
         e.preventDefault()
         document.activeElement.blur()
         if(defaultValue !== newText){
+            updateNewIncomes(newText)
             toggleChanges(true)
             updateBudget(tick + 1)
         }
