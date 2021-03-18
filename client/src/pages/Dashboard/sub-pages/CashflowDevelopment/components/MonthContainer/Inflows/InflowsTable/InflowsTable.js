@@ -10,7 +10,7 @@ import InflowRow from "../InflowRow/InflowRow"
 import InflowHeaders from "./components/InflowHeaders"
 import "../../../../../universal-functions/cellFormatting"
 import { useInflowsTableStyles } from "../../styles/styles"
-import { pickColor } from "../../../../../universal-functions/styleFunctions"
+import { pickColor } from "../../../../../../../../modules/themeAndStyles"
 
 
 const InflowsTable = (props) => {
