@@ -46,6 +46,7 @@ const Chart = memo((props) => {
     const configDatasets = {inflowDataset, outflowDataset, cashDataset}
 
     const { chartData, options } = configureChart(configDatasets)
+    
 /* ----------------------- JSX ----------------------- */
 
     return ( !loaded ? <div></div> :
