@@ -15,9 +15,20 @@ export const RandomizeButton = (props) => {
         incrementTicker(tick + 1)
     }
 
+    const mediaQueries = {
+        "@media (max-width: 730px)": {
+            button: {
+                minWidth: "65px",
+                fontSize: "11px",
+                maxHeight: "40px"
+            }
+        }
+    }
+
     const buttonProps = {
         onClick: (e) => rerender(e),
-        overrides: {width: "10vw", minWidth: "100px"} 
+        jssOverrides: { width: "10vw", minWidth: "100px" },
+        mediaQueries
     }
     
     return (
