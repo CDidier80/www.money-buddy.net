@@ -1,8 +1,3 @@
-const taggedLog = (varObj) => {
-    const name = Object.keys(varObj)[0]
-    console.log(`${name}: `, varObj[name])
-}
-
 export const currencyFormat = (value) => {
 
     let formattedValue = value.toLocaleString('en-US', { 

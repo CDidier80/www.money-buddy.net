@@ -9,6 +9,7 @@ import React, { useState } from 'react';
 import { useStyles } from "./styles/useStyles"
 import ExpenseRow from "../ExpenseRow/ExpenseRow"
 import ExpenseHeaders from "./components/ExpenseHeaders"
+import { pickColor } from "../../../../../../../modules/themeAndStyles"
 
 
 
@@ -46,7 +47,7 @@ const ExpenseTable = (props) => {
                         {expenses.map((expenseObj, index) => {
                             const { expense, amount } = expenseObj
                             const monthly = Math.round(amount/12)
-                            const rowColor = (index % 2 === 0) ? "rgb(245, 255, 255)" : "rgba(255, 253, 245)"
+                            const rowColor = pickColor(index)
                             const propsForRows = {
                                 expenseIndex: index,
                                 setIncomingDeletion,

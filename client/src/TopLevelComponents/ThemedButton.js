@@ -7,6 +7,10 @@ const ThemedButton = (props) => {
 
     const { theme, children, onClick } = props
 
+    const mediaQueries = props.mediaQueries || {}
+    const jssOverrides = props.jssOverrides || {}
+    const style = props.overrides || {}
+
     const useStyles = makeStyles(theme => {
         const buttonStyles = {
             button: {
@@ -19,19 +23,24 @@ const ThemedButton = (props) => {
                 padding: "8px 8px 8px 8px",
                 background: theme.gradients.gradient1,
                 boxShadow: theme.boxShadows.buttonShadow,
-            }
+                ...jssOverrides
+            },
+            ...mediaQueries
         }
         return buttonStyles
     })
 
     const classes = useStyles(theme)
 
+
+    const buttonProps = {
+        className: classes.button,
+        onClick,
+        style,
+    }
+
     return (
-        <Button
-            onClick={onClick}
-            className={classes.button}
-            style={props.overrides && props.overrides}
-        >
+        <Button {...buttonProps}>
             { children }
         </Button>
     )

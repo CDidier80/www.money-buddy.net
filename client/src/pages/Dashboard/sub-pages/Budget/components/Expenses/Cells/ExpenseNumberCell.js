@@ -7,27 +7,27 @@ const ExpenseNumberCell = (props) => {
     {/*  PROPS */}
 
     const { 
-        defaultValue,
         isAnnual, 
+        defaultValue,
     } = props.fromExpenseRow
 
     const { 
-        newCategories,
-        setNewCategories, 
-        toggleChanges,
-        userMadeChanges,
+        tick,
         updateBudget, 
-        tick
+        toggleChanges,
+        newCategories,
+        userMadeChanges,
+        setNewCategories, 
     } = props.fromBudget
 
     const { 
+        category,
         categoryIndex,
-        category
     } = props.fromExpenseAccordion
 
     const {
+        rowColor,
         expenseIndex,
-        rowColor
     } = props.fromExpenseTable
 
 
@@ -59,16 +59,15 @@ const ExpenseNumberCell = (props) => {
 
 
     const submit = (e) => {
-        // console.log(e.target)
         e.preventDefault()
         document.activeElement.blur()
         // setCellHistory([...cellHistory, rawNumber])
-        updateNewCategories(rawNumber)
-        updateText(formatToCurrency(rawNumber))
-        if (!userMadeChanges) {
+        if (rawNumber !== defaultValue){
+            updateNewCategories(rawNumber)
+            updateText(formatToCurrency(rawNumber))
+            updateBudget(tick + 1)
             toggleChanges(true)
         }
-        updateBudget(tick + 1)
         setFocus(false)
         return false
     }

@@ -43,18 +43,21 @@ const Chart = memo((props) => {
 
 /* ----------------------- PROPS FOR CHART ---------------------- */
 
-    const configDatasets = {inflowDataset, outflowDataset, cashDataset}
+    const configDatasets = { inflowDataset, outflowDataset, cashDataset }
 
     const { chartData, options } = configureChart(configDatasets)
+
+    const chartProps = {
+        data: chartData,
+        options: options,
+        className: "line-component"
+    }
+    
 /* ----------------------- JSX ----------------------- */
 
     return ( !loaded ? <div></div> :
         <div className="cashflow-chart" >
-            <Line 
-                data={chartData} 
-                options={options}
-                className="line-component"
-            />
+            <Line {...chartProps} />
         </div>
     )
 }, ({fromCashflowDevelopment: prev}, {fromCashflowDevelopment: next}) => 
