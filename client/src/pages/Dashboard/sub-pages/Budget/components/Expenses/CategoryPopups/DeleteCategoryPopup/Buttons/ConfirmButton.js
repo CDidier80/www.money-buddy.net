@@ -3,9 +3,9 @@ import React from 'react'
 
 const ConfirmButton = (props) => {
 
-    const { categoryIndex, toggleCategoryDeletePopup } = props.fromCategoryAccordion
+    const { toggleCategoryDeletePopup } = props.fromCategoryAccordion
 
-
+    const { categoryIndex } = props.fromExpenseAccordion
     const { 
         tick,
         updateBudget,
@@ -14,6 +14,8 @@ const ConfirmButton = (props) => {
         userMadeChanges,
         setNewCategories, 
     } = props.fromBudget
+
+    console.log(props)
 
     const confirm = (e) => {
         e.preventDefault()
