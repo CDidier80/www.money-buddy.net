@@ -27,7 +27,6 @@ const includesExtension = (textInput) => {
 const validateEmailExtension = (textInput) => {
     const periodCount = checkPeriodCount(textInput)
     if (periodCount != 1) {
-        console.log("invalid email: incorrect extension")
         return false
     } 
     const validExtension = includesExtension(textInput)
@@ -38,7 +37,6 @@ const validateEmailExtension = (textInput) => {
 const checkATvalid = (textInput) => {
     const ATindex = textInput.indexOf("@")
     if (!(ATindex > 0)) {
-        console.log("invalid email address: @")
         return false
     } else {
         return true

@@ -1,8 +1,8 @@
 import AccountPageLink from "./components/AccountPageLink"
 import MoneyBuddyLink from "./components/MoneyBuddyLink"
 import SignOutLink from "./components/SignOutLink"
-import React, {useState, useEffect} from 'react'
 import Burger from "./components/Burger"
+import React from 'react'
 
 const NavBar = (props) => {
 
