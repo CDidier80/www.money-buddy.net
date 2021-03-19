@@ -15,7 +15,6 @@ const ConfirmButton = (props) => {
         setNewCategories, 
     } = props.fromBudget
 
-    console.log(props)
 
     const confirm = (e) => {
         e.preventDefault()

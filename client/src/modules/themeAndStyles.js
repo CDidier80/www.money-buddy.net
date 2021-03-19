@@ -214,10 +214,10 @@ export const moneyBuddyTheme = createMuiTheme({
         },
 
         MuiInput: {
-            backgroundColor: "rgba(0,0,0,0)",
-            "&:-internal-autofill-selected": {
-                color: "blue",
-            },
+            // backgroundColor: "rgba(0,0,0,0)",
+            // "&:-internal-autofill-selected": {
+            //     color: "blue",
+            // },
         },
 
         MuiOutlinedInput : {
