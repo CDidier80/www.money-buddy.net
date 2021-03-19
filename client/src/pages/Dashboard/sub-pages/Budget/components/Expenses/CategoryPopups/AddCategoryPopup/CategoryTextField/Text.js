@@ -7,12 +7,8 @@ const Text = (props) => {
     
     const updateText = (e) => {
         const { value } = e.target
-        if (value.length < 40) {
-            setText(value)
-        }
-        if (error){
-            setError(false)
-        }
+        if (value.length < 40) setText(value)
+        if (error) setError(false)
     }
 
     return (
