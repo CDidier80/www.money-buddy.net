@@ -64,7 +64,6 @@ const Dashboard = (props) => {
     const [coloredAccountIcon, setColoredAccountIcon] = useState(false)
 
 
-
     /* -------------------------- useEffects ------------------------- */
 
     /* #1: - async calls on first render - */
