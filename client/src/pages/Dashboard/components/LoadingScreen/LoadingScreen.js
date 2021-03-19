@@ -1,3 +1,4 @@
+import SpinningDollar from "../../../../TopLevelComponents/SpinningDollar/SpinningDollar"
 import { useDashboardStyles } from "../../../Dashboard/sub-pages/styles/styles"
 import DumbSidebar from "./DumbSidebar"
 import DumbNavbar from "./DumbNavbar"
@@ -11,8 +12,11 @@ const LoadingScreen = (props) => {
     const widthWhenSidebarOpened = "calc(100vw - 155px - 40px)"
 
     const dummySubpageStyle = {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center", 
         backgroundColor: "white",
-        width: smallScreen ? widthWhenSidebarClosed : widthWhenSidebarClosed
+        width: smallScreen ? widthWhenSidebarClosed : widthWhenSidebarClosed,
     }
 
     const classes = useDashboardStyles(props.theme)
@@ -22,7 +26,9 @@ const LoadingScreen = (props) => {
             <DumbNavbar />
             <main className="dash-main-flex dumb">
                 <DumbSidebar /> 
-                <div className="subpage" style={dummySubpageStyle} > </div>
+                <div style={dummySubpageStyle} > 
+                    <SpinningDollar />
+                </div>
             </main>
         </div>
     )
