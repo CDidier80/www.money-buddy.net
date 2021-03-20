@@ -26,7 +26,7 @@ export const signup = async (props) => {
         }
         return true
     } catch (error) {
-        throw error
+        console.log(error)
     }
 }
 
@@ -47,7 +47,7 @@ export const signin = async (props) => {
             history.push('/dashboard')
         } 
     } catch (error) {
-        throw error
+        console.log(error)
     }
 }
 

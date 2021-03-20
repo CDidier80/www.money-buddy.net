@@ -24,9 +24,9 @@ const DumbNavbar = () => {
                 style={{margin: "6px 0 0 6px"}
             }>
                 <MenuIcon 
-                    htmlColor={blueGrey[50]}
                     className="hamburger" 
                     fontSize="default" 
+                    htmlColor={blueGrey[50]}
                 />
             </IconButton> 
 
@@ -41,8 +41,8 @@ const DumbNavbar = () => {
             >
                 <AccountCircleIcon                     
                     className="account-icon" 
-                    htmlColor={blueGrey[50]}
                     fontSize="default" 
+                    htmlColor={blueGrey[50]}
                 />
             </IconButton> 
         </nav>

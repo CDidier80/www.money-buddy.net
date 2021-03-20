@@ -1,13 +1,13 @@
 import React, { memo } from 'react';
 import { Route } from 'react-router-dom'
-import CashflowDevelopment from "../../sub-pages/CashflowDevelopment/CashflowDevelopment"
+import Markets from "../../sub-pages/Markets/Markets"
 
-const CashflowDevRoute = memo((props) => {
+const MarketsRoute = memo((props) => {
     
     return (
         <Route 
             component={ () => ( 
-                <CashflowDevelopment {...props}/> 
+                <Markets {...props}/> 
         )} 
     />
     )
@@ -15,4 +15,4 @@ const CashflowDevRoute = memo((props) => {
     return (prevProps.ticker !== nextProps.ticker)
 })
 
-export default CashflowDevRoute
+export default MarketsRoute

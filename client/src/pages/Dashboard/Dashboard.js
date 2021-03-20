@@ -64,7 +64,6 @@ const Dashboard = (props) => {
     const [coloredAccountIcon, setColoredAccountIcon] = useState(false)
 
 
-
     /* -------------------------- useEffects ------------------------- */
 
     /* #1: - async calls on first render - */
@@ -167,7 +166,7 @@ const Dashboard = (props) => {
     const classes = useDashboardStyles(props.theme)
 
 
-    return( !loaded ? <LoadingScreen {...props}/> :
+    return( !loaded ? <LoadingScreen /> :
 
         <div className={classes.dashboard}>
             <NavBar {...propsNavbar} />
