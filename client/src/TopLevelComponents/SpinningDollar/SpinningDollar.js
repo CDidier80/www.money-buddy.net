@@ -5,7 +5,6 @@ const SpinningDollar = () => {
     return (
         <div className="spinner">
             <div className="rim"></div>
-            <div className="rim"></div>
             <div className="dollar">$</div>
         </div>
     )
