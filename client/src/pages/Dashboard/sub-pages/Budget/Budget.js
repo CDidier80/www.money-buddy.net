@@ -19,10 +19,7 @@ const Budget = (props) => {
 
     /* ----------------------- PROPS ------------------------ */
 
-    const { 
-        incomes, 
-        categories, 
-    } = props.budgetHooks
+    const { incomes, categories } = props.budgetHooks
     
 
     /* ----------------------- STATE ------------------------ */
@@ -45,14 +42,13 @@ const Budget = (props) => {
     useEffect(() => {
         const catState = initNamesTotals(categories)
         const incomeState = initIncomeTotals(incomes)
-
-        setBudgetLoaded(true)
         setNewIncomes(incomes)
         setTotalIncome(incomeState)
         setNewCategories(categories)
         setCategoryNames(catState[0])
         setTotalExpenses(catState[2])
         setCategoryTotals(catState[1])
+        setBudgetLoaded(true)
     }, [])
 
 
@@ -85,7 +81,6 @@ const Budget = (props) => {
         ...forAll,
         newIncomes,
         setNewIncomes,
-        toggleChanges,
         userMadeChanges,
     }
 

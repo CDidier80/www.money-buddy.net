@@ -5,15 +5,14 @@ import "./editableCell.css"
 
 const ExpenseTextCell = (props) => {
     
-    {/*  PROPS  */}
+    /*  PROPS  */
 
     const { 
-        newCategories,
-        setNewCategories, 
-        toggleChanges,
-        userMadeChanges,
+        tick,
         updateBudget, 
-        tick
+        newCategories,
+        toggleChanges,
+        setNewCategories, 
     } = props.fromBudget
 
     const { category } = props.fromExpenseAccordion
@@ -26,12 +25,11 @@ const ExpenseTextCell = (props) => {
     } = props.fromExpenseRow
 
 
-    {/*  STATE  */}
+    /*  STATE  */
 
     const [ newText, updateText ] = useState("")
-    const [ focused, setFocus ] = useState(false)
 
-    {/* FUNCTIONS */}
+    /* FUNCTIONS */
 
     useEffect(() => {
         updateText(defaultValue)
@@ -56,12 +54,11 @@ const ExpenseTextCell = (props) => {
     const submit = (e) => {
         e.preventDefault()
         document.activeElement.blur()
-        updateNewCategories(newText)
-        if (!userMadeChanges) {
+        if (newText !== defaultValue) {
+            updateNewCategories(newText)
+            updateBudget(tick + 1)
             toggleChanges(true)
         }
-        updateBudget(tick + 1)
-        setFocus(false)
         return false
     }
 
@@ -70,17 +67,18 @@ const ExpenseTextCell = (props) => {
 
     return (
         <TableCell>
-            <form onSubmit={(e) => submit(e)}
-            style={backgroundColor}>
-                <input 
+            <form 
+                onSubmit={(e) => submit(e)}
                 style={backgroundColor}
-                    name="text-input"
-                    type="text" 
-                    value={newText} 
+            >
+                <input 
                     className="editable-cell expense"
-                    onSelect={(e) => setFocus(true)}
                     onChange={(e) => handleText(e)}
                     onBlur={(e) => submit(e)}
+                    style={backgroundColor}
+                    name="text-input"
+                    value={newText} 
+                    type="text" 
                 >
                 </input>
             </form>

@@ -1,7 +1,7 @@
-import "./styles/chart.css"
-import { Line } from 'react-chartjs-2'
 import { configureChart } from "./modules/configureChart"
-import React, { useEffect, useState, memo } from 'react';
+import React, { useEffect, useState, memo } from 'react'
+import { Line } from 'react-chartjs-2'
+import "./styles/chart.css"
 
 const Chart = memo((props) => {
 
@@ -27,10 +27,10 @@ const Chart = memo((props) => {
 
     useEffect(() => {
         if (
-            inflowDataset  !== ""  |
-            outflowDataset !== ""  |
+            inflowDataset  !== ""  &&
+            outflowDataset !== ""  &&
             cashDataset    !== "" 
-        ) { setLoaded(true) }
+        ) setLoaded(true) 
     }, [
         outflowDataset, 
         inflowDataset,
@@ -42,17 +42,18 @@ const Chart = memo((props) => {
     const configDatasets = { inflowDataset, outflowDataset, cashDataset }
 
     const { chartData, options } = configureChart(configDatasets)
+
+    const chartProps = {
+        data: chartData,
+        options: options,
+        className: "line-component"
+    }
+    
 /* ----------------------- JSX ----------------------- */
 
     return ( !loaded ? <div></div> :
-        <div
-            className="cashflow-chart"
-        >
-            <Line 
-                data={chartData} 
-                options={options}
-                className="line-component"
-            />
+        <div className="cashflow-chart" >
+            <Line {...chartProps} />
         </div>
     )
 }, ({showPopup: prevPopup}, {showPopup: nextPopup}) => prevPopup !== nextPopup

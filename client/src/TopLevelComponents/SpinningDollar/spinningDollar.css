@@ -1,0 +1,47 @@
+.spinner {
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+}
+  
+.dollar {
+    font-size: 5vmax;
+    font-family: sans-serif;
+    transform: translate(-50%, -50%);
+    color: rgba(0, 13, 189, 0.727);
+    text-shadow: 
+        -1px 1px 0 #d66969ec, 
+        -2px 2px 0 #ff9696d5, 
+        -3px 3px 0 #92b8ff5d;
+    animation: spin 4s linear infinite reverse;
+}
+
+.rim {
+    width: 10vmax;
+    height: 10vmax;
+    font-size: 10vmax;
+    position: absolute;
+    border-radius: 50%;
+    border: 10px solid transparent;
+    border-top-color: rgba(239, 84, 84);
+    border-bottom-color: rgba(0, 13, 189, 0.727);
+    animation: spin 1.2s linear infinite;
+}
+
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+        border-width: .3em;
+    }
+    50% {
+        transform: rotate(180deg);
+        border-width: .15em;
+    }
+    100% {
+        transform: rotate(360deg);
+        border-width: .3em;
+    }
+}
+  

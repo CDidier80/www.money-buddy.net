@@ -13,6 +13,7 @@ const EmailButton = (props) => {
         errorSnackbar,
         updateSnackbar,
         invalidSnackbar,
+        disabledForGuestSnackbar,
     } = useSnackbars()
 
     const submitNewEmail = async (e) => {
@@ -25,6 +26,11 @@ const EmailButton = (props) => {
             if (!emailValidityCheck(newEmail)){
                 invalidSnackbar('Email Address')
                 return false
+            }
+
+            if (user_id === 20) {
+                disabledForGuestSnackbar()
+                return
             }
             const {status} = await UpdateEmail({userId: user_id, email: newEmail})
             if (status === 200) updateSnackbar('Email Address')

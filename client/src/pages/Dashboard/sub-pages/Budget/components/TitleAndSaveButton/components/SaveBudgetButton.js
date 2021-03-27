@@ -2,6 +2,7 @@ import React from 'react'
 import { useSnackbar, withSnackbar } from 'notistack'
 import { UpdateEntireBudget} from "../../../../../../../Services/BudgetService"
 import ThemedButton from "../../../../../../../TopLevelComponents/ThemedButton"
+import useSnackbars from '../../../../../../../customHooks/useSnackbars'
 
 
 const SavePageButton = (props) => {
@@ -22,22 +23,11 @@ const SavePageButton = (props) => {
     } = props.fromBudget
 
 
-    /*  snackbars  */
+    const {
+        budgetSavedSnackbar, 
+        failedBudgetSaveSnackbar 
+    } = useSnackbars()
 
-    const { enqueueSnackbar } = useSnackbar()
-
-
-    const budgetSavedSnackbar = () => {
-        enqueueSnackbar(`Budget Saved`, {
-            variant: 'Success', 
-            iconVariant: "Success"
-        })
-    }
-    
-
-    const failedBudgetSaveSnackbar = () => {
-        enqueueSnackbar(`Failed to Save Changes`, {variant: 'Error'})
-    }
 
 
     /*  snackbars  */
@@ -59,8 +49,8 @@ const SavePageButton = (props) => {
                 incomes: newIncomes,
                 categories: newCategories,
             }
-            await sendBudgetToDB(payload)
             toggleChanges(false)
+            await sendBudgetToDB(payload)
             budgetSavedSnackbar()
         } catch (error) {
             failedBudgetSaveSnackbar()

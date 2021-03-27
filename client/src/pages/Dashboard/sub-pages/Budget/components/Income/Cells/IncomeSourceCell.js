@@ -8,7 +8,6 @@ const IncomeSourceCell = (props) => {
     /*  PROPS  */
 
     const { 
-        userMadeChanges,
         setNewIncomes, 
         toggleChanges, 
         updateBudget,
@@ -21,13 +20,12 @@ const IncomeSourceCell = (props) => {
         rowColor,
     } = props.fromIncomeTable
 
-    const { defaultValue, } = props.fromIncomeRow
+    const { defaultValue } = props.fromIncomeRow
 
 
     /*  STATE  */
 
     const [ newText, updateText ] = useState("")
-    const [ focused, setFocus ] = useState(false)
 
 
     /* FUNCTIONS */
@@ -56,12 +54,11 @@ const IncomeSourceCell = (props) => {
     const submit = (e) => {
         e.preventDefault()
         document.activeElement.blur()
-        updateNewIncomes(newText)
-        if (!userMadeChanges) {
+        if(defaultValue !== newText){
+            updateNewIncomes(newText)
             toggleChanges(true)
+            updateBudget(tick + 1)
         }
-        updateBudget(tick + 1)
-        setFocus(false)
         return false
     }
 
@@ -73,8 +70,7 @@ const IncomeSourceCell = (props) => {
                 onSubmit={(e) => submit(e)}
             >
                 <input 
-                    className={`${input} editable-cell income`}
-                    onSelect={(e) => setFocus(true)}
+                    className={`${classes.input} editable-cell income`}
                     onChange={(e) => handleText(e)}
                     onBlur={(e) => submit(e)}
                     name="text-input"

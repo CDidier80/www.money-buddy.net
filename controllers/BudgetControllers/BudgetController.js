@@ -83,61 +83,111 @@ const ReadEntireBudget = async (req, res) => {
 }
 
 
-const UpdateEntireBudget = async (req, res) => {
 
+class BudgetUpdater {
+    constructor({body}){
+        this.budgetId = body.budgetId
+        this.incomes = body.incomes
+        this.categories = body.categories
+        this.defaultIncome = {
+            budgetId: this.budgetId,
+            source: "income source #1", 
+            amount: 0
+        }
+        this.defaultExpense = { expense: "expense #1", amount: 0 }
+        this.defaultCategory = { name: "Category", budgetId: this.budgetId }
+        this.newIncomeEntries = this.incomes.map(income => ({
+            budgetId: this.budgetId,
+            source: income.source, 
+            amount: income.amount
+        }))
+        this.updatedBudget = { budgetId: this.budgetId }
+    }
+
+
+    destroy = () => {
+        Income.destroy({
+            where: { budget_id: this.budgetId }
+        })
+        Category.destroy({
+            where: { budget_id: this.budgetId }
+        })
+    }
+
+    addIncomesToDB = async () => (this.updatedBudget.incomes = await (this.incomes.length ? 
+        Income.bulkCreate(this.newIncomeEntries) :
+        this.addDefaultIncome())
+    )
+
+    addDefaultIncome = async () => {
+        const oneDefaultIncome = await Income.create(this.defaultIncome)
+        return [oneDefaultIncome] 
+    }
+
+    addDefaultCategory = async () => {
+        const { id: newCategoryId, name} = await Category.create(this.defaultCategory)
+        const oneDefaultExpense = await Expense.create({
+            ...this.defaultExpense, 
+            categoryId: newCategoryId
+        })
+        this.updatedBudget.categories = [{
+            expenses: [oneDefaultExpense],
+            categoryId: newCategoryId, 
+            name, 
+        }]
+    }
+
+    addExpenses = async (expenses, newCategoryId) => {
+        return await Expense.bulkCreate(
+            expenses.map(expense => ({
+                categoryId: newCategoryId,
+                expense: expense.expense, 
+                amount: expense.amount
+            }))
+        )
+    }
+
+    makeCategoriesAndExpenses = async () => {
+        this.categories.length ? 
+            this.updatedBudget.categories = await Promise.all(
+                    this.categories.map(async ({ name, expenses }) => {
+                        try {
+                            const { id: newCategoryId } = await Category.create({ name: name, budgetId: this.budgetId })
+                            const newExpenses = await this.addExpenses(expenses, newCategoryId)
+                            return { categoryId: newCategoryId, name, expenses: [...newExpenses] }
+                            
+                        } catch (error) {
+                            console.log(error)
+                        }
+                })
+            )
+        :
+        (await (async() => await this.addDefaultCategory())())
+    }
+
+    updateBudget = async () => {
+        this.destroy()
+        await this.addIncomesToDB()
+        await this.makeCategoriesAndExpenses()
+        console.log(this.updatedBudget)
+    }
+
+    getUpdatedBudget = () => this.updatedBudget
+}
+
+
+const UpdateEntireBudget = async (req, res) => {
     log(UpdateEntireBudget, req)
     try {
-        const { budgetId, incomes, categories } = req.body
-
-        Income.destroy({
-            where: { 
-                budget_id: budgetId 
-            }
-        })
-        
-        Category.destroy({
-            where: { 
-                budget_id: budgetId 
-            }
-        })
-
-        const newIncomes = await Promise.all(incomes.map(async (income) => {
-            const incomeToCreate = {
-                budgetId, 
-                source: income.source, 
-                amount: income.amount
-            }
-            const newIncome = await Income.create(incomeToCreate)
-            return newIncome
-        }))
-
-        const newCategoriesWithExpenses = await Promise.all(categories.map(async (category) => {
-            const { name, expenses } = category
-            const newCategory = await Category.create({ name:name, budgetId })
-            const { id: newCategoryId} = newCategory
-            const newExpenses = await Promise.all(expenses.map( async (expense) => {
-                const expenseToCreate = {
-                    categoryId: newCategoryId,
-                    expense: expense.expense, 
-                    amount: expense.amount
-                }
-                const newExpense = await Expense.create(expenseToCreate)
-                return newExpense
-            }))
-            return { categoryId: newCategoryId, name, expenses: [...newExpenses] }
-        }))
-
-        const entireBudget = {
-            budgetId : budgetId,
-            incomes: [...newIncomes],
-            categories: [...newCategoriesWithExpenses]
-        }
-
-        res.send(entireBudget)
+        const updater = new BudgetUpdater(req)
+        await updater.updateBudget()
+        const updatedBudget = updater.getUpdatedBudget()
+        res.send(updatedBudget)
     } catch (error) {
         errorLog(UpdateEntireBudget, error)
     }
 }
+
 
 module.exports = {
     CreateBudget,

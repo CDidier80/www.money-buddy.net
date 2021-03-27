@@ -214,10 +214,10 @@ export const moneyBuddyTheme = createMuiTheme({
         },
 
         MuiInput: {
-            backgroundColor: "rgba(0,0,0,0)",
-            "&:-internal-autofill-selected": {
-                color: "blue",
-            },
+            // backgroundColor: "rgba(0,0,0,0)",
+            // "&:-internal-autofill-selected": {
+            //     color: "blue",
+            // },
         },
 
         MuiOutlinedInput : {
@@ -349,3 +349,6 @@ export const latoTextStyle = {
     textRendering: "optimizeLegibility !important",
     WebkitFontSmoothing: "antialiased !important"
 }
+
+
+export const pickColor = (index) => index % 2 === 0 ? primaryLightest : secondaryLightest

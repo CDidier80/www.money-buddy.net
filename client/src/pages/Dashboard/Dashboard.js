@@ -64,7 +64,6 @@ const Dashboard = (props) => {
     const [coloredAccountIcon, setColoredAccountIcon] = useState(false)
 
 
-
     /* -------------------------- useEffects ------------------------- */
 
     /* #1: - async calls on first render - */
@@ -73,7 +72,6 @@ const Dashboard = (props) => {
         let componentMounted = true
         const initializeDashboard = async () => {
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
-            console.log({cashflow})
             const budget = await ReadEntireBudget({ userId: userId }, null)
             if (componentMounted) {
                 const { budgetId: b, incomes: i, categories: c } = budget
@@ -152,8 +150,8 @@ const Dashboard = (props) => {
 
     const cashflowProps = {
         theme,
-        months,
         ticker, 
+        months,
         setMonths,
         ...fromApp,
         cashflowId,

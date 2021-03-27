@@ -1,4 +1,5 @@
 import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
+import useSnackbars from "../../../../../../customHooks/useSnackbars"
 import { UpdatePassword } from "../../../../../../Services/UserService"
 import React from 'react'
 
@@ -7,15 +8,16 @@ const PasswordButton = (props) => {
     const {id: user_id} = props
 
     const {
-        mismatch,
-        errorSnackbar,
-        updateSnackbar
-    } = props.fromAccountPage
-
-    const {
         newPassword,
         reenteredNewPassword
     } = props.fromPasswordForm
+
+    const { 
+        mismatch,
+        errorSnackbar,
+        updateSnackbar,
+        disabledForGuestSnackbar,         
+    } = useSnackbars()
 
 
     const submitNewPassword = async (e) => {
@@ -25,6 +27,9 @@ const PasswordButton = (props) => {
             return
         } else if (newPassword !== reenteredNewPassword){
             mismatch('New Password', 'Reentered Password')
+            return
+        } else if (user_id === 20) {
+            disabledForGuestSnackbar()
             return
         } else {
             try {
