@@ -70,7 +70,7 @@ const IncomeSourceCell = (props) => {
                 onSubmit={(e) => submit(e)}
             >
                 <input 
-                    className={`${classes.input} editable-cell income`}
+                    className={`${input} editable-cell income`}
                     onChange={(e) => handleText(e)}
                     onBlur={(e) => submit(e)}
                     name="text-input"
