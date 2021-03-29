@@ -1,8 +1,8 @@
 .spinner {
-    position: relative;
     display: flex;
-    justify-content: center;
     align-items: center;
+    position: relative;
+    justify-content: center;
 }
   
 .dollar {
@@ -14,7 +14,7 @@
         -1px 1px 0 #d66969ec, 
         -2px 2px 0 #ff9696d5, 
         -3px 3px 0 #92b8ff5d;
-    animation: spinnerOne 4s linear infinite reverse;
+    animation: spin 4s linear infinite reverse;
 }
 
 .rim {
@@ -26,12 +26,11 @@
     border: 10px solid transparent;
     border-top-color: rgba(239, 84, 84);
     border-bottom-color: rgba(0, 13, 189, 0.727);
-    animation: spinnerOne 1.2s linear infinite;
+    animation: spin 1.2s linear infinite;
 }
-  
 
 
-@keyframes spinnerOne {
+@keyframes spin {
     0% {
         transform: rotate(0deg);
         border-width: .3em;
@@ -43,36 +42,6 @@
     100% {
         transform: rotate(360deg);
         border-width: .3em;
-    }
-}
-  
-@keyframes spinnerTwo {
-    0% {
-        transform: rotate(0deg);
-        border-width: 1px;
-    }
-    50% {
-        transform: rotate(180deg);
-        border-width: 10px;
-    }
-    100% {
-        transform: rotate(360deg);
-        border-width: 1px;
-    }
-}
-  
-@keyframes dollarSpin {
-    0% {
-        transform: rotate(0deg) translate(-50%, -50%);
-        border-width: 3px;
-    }
-    50% {
-        transform: rotate(180deg) translate(-50%, -50%);
-        border-width: 10px;
-    }
-    100% {
-        transform: rotate(360deg) translate(-50%, -50%);
-        border-width: 3px;
     }
 }
   

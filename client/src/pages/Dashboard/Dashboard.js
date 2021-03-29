@@ -150,9 +150,9 @@ const Dashboard = (props) => {
 
     const cashflowProps = {
         theme,
+        ticker, 
         months,
         setMonths,
-        ticker, 
         ...fromApp,
         cashflowId,
         setCashflowId,
