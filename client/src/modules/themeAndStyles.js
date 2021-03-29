@@ -173,10 +173,22 @@ export const moneyBuddyTheme = createMuiTheme({
         },
     },
 
-    
+
+    /** 
+    * ----------------------------------------
+    *            ROW COLORS
+    * ----------------------------------------
+    */
 
     rowColor: primaryLightest,
     offRowColor: secondaryLightest,
+
+
+    /** 
+    * ----------------------------------------
+    *                  FONT
+    * ----------------------------------------
+    */
 
     lato: {
         textRendering: "optimizeLegibility !important",
@@ -351,4 +363,4 @@ export const latoTextStyle = {
 }
 
 
-export const pickColor = (index) => index % 2 === 0 ? primaryLightest : secondaryLightest
+export const pickColor = index => index % 2 === 0 ? primaryLightest : secondaryLightest
