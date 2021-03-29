@@ -35,7 +35,7 @@ const IncomeSourceCell = (props) => {
     }, [defaultValue])
 
 
-    const classes = useIncomeSourceCellStyles(rowColor)
+    const { input, cell } = useIncomeSourceCellStyles(rowColor)
     
 
     const updateNewIncomes = (value) => {
@@ -64,13 +64,13 @@ const IncomeSourceCell = (props) => {
 
 
     return (
-        <TableCell className={classes.cell}>
+        <TableCell className={cell}>
             <form 
                 style={{backgroundColor: rowColor}}
                 onSubmit={(e) => submit(e)}
             >
                 <input 
-                    className={`${classes.input} editable-cell income`}
+                    className={`${input} editable-cell income`}
                     onChange={(e) => handleText(e)}
                     onBlur={(e) => submit(e)}
                     name="text-input"

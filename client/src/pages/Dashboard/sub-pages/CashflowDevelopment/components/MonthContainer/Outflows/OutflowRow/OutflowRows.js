@@ -5,7 +5,7 @@ import React from 'react'
 
 const OutflowRows = (props) => {
 
-    const { outflows } = props.fromOutflowsAccordion.flowcategory
+    const { outflows } = props
 
     return (
         <>
@@ -18,6 +18,7 @@ const OutflowRows = (props) => {
                         outflowIndex: index,
                         // incomingDeletion, 
                         rowColor,
+                        ...props,
                         outflow,
                         amount, 
                     }

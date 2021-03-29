@@ -7,11 +7,7 @@ const Chart = memo((props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const {
-        inflows,
-        outflows, 
-        cashReserves
-    } = props.fromCashflowDevelopment
+    const { inflows, outflows, cashReserves } = props
 
     /* -------------------------- STATE ------------------------- */
 
@@ -60,8 +56,7 @@ const Chart = memo((props) => {
             <Line {...chartProps} />
         </div>
     )
-}, ({fromCashflowDevelopment: prev}, {fromCashflowDevelopment: next}) => 
-    prev.showPopup !== next.showPopup
+}, ({showPopup: prevPopup}, {showPopup: nextPopup}) => prevPopup !== nextPopup
 )
 
 export default Chart

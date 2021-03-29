@@ -11,8 +11,6 @@ const MemoContent = memo((props) => {
             <OutflowsAccordion {...props} />
         </>
     )
-},({fromPaginatingContainer: prev}, {fromPaginatingContainer: next}) => {
-    return (prev.pagMemoTicker !== next.pagMemoTicker)
-})
+},({pagMemoTicker: prevTicker}, {pagMemoTicker: nextTicker}) => prevTicker !== nextTicker)
 
 export default MemoContent

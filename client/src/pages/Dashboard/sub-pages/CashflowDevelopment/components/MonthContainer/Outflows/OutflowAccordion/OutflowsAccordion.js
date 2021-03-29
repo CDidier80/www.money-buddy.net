@@ -9,7 +9,7 @@ const OutflowsAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
 
-    const { newFlowcategories } = props.fromMonthContainer
+    const { newFlowcategories } = props
 
     /* -------------------------- STATE ------------------------- */
 
@@ -47,16 +47,14 @@ const OutflowsAccordion = (props) => {
                                 rerenderOutflowsAccordian,
                                 flowcategoryIndex: index,
                                 renderOutflowsAccordion,
+                                key: `${20000 + index}`,
                                 showDeleteIcons,
                                 flowcategory,
-                                memoTicker
+                                memoTicker,
+                                ...props,
                             }
                         return (
-                            <FlowcategoryAccordion 
-                                fromOutflowsAccordion={{...flowcategoryAccordionProps}}
-                                key={`${20000 + index}`}
-                                {...props} 
-                            />
+                            <FlowcategoryAccordion {...flowcategoryAccordionProps} />
                         )
                     })}
                 </Accordion>

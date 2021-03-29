@@ -12,7 +12,7 @@ const InflowButtonsAddDel = (props) => {
     const {
         showInflowDeleteIcons,
         toggleInflowDeleteIcons,
-    } = props.fromInflowsAccordion
+    } = props.Accordion
 
     const useStyles = makeStyles({
         button: {

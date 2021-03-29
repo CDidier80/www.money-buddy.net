@@ -10,7 +10,7 @@ import React, { useState } from 'react'
 const SummaryAccordion = (props) => {
 
     /* -------------------------- PROPS ------------------------- */
-    const { thisMonth } = props.fromPaginatingContainer
+    const { thisMonth, theme } = props
 
     /* -------------------------- STATE ------------------------- */
     // const [showAddCategoryPanel, toggleAddCategoryPanel] = useState(false)
@@ -22,7 +22,7 @@ const SummaryAccordion = (props) => {
         toggleOpened(!opened)
     }
 
-    const { accordion } = makeSummaryAccordionStyles(props.theme)
+    const { accordion } = makeSummaryAccordionStyles(theme)
 
     return (
         <div>

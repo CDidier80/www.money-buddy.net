@@ -24,15 +24,15 @@ const SummaryTable = (props) => {
         inflows,
         outflows, 
         cashReserves
-    } = props.fromCashflowDevelopment
+    } = props
 
     
     const { 
         totalInflow, 
         totalOutflow 
-    } = props.fromMonthContainer
+    } = props
     
-    const { monthIndex } = props.fromPaginatingContainer
+    const { monthIndex } = props
 
     {/* ---------------- STATE ------------------*/}
     

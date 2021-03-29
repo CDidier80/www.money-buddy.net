@@ -1,21 +1,18 @@
-import { TableRow, TableCell, makeStyles} from '@material-ui/core/'
-import { formatToCurrency } from "../../../../modules/cellFunctions"
-import React, {useEffect, useState} from 'react'
+import FlowCell from "../../../../../../../../TopLevelComponents/cells/FlowCell"
+import { TableRow, makeStyles } from '@material-ui/core/'
 import IconCell from "../Cells/IconCell/IconCell"
+import React, {useEffect, useState} from 'react'
 
 const InflowRow = (props) => {
 
     /* -- PROPS -- */
-
-    const { 
-        showInflowDeleteIcons,
-    } = props.fromInflowsAccordion
-
+ 
     const {
         source, 
         amount,
-        rowColor
-    } = props.fromInflowsTable
+        rowColor,
+        showInflowDeleteIcons,
+    } = props
 
     /* -- STATE -- */
 
@@ -35,21 +32,7 @@ const InflowRow = (props) => {
     }, [showInflowDeleteIcons, showUndoIcon])
 
 
-
-    const useStyles = makeStyles({
-        row: {
-            backgroundColor: rowColor
-        },
-        cell : {
-            overflowWrap: "break-word",
-            fontSize: "12px",
-            fontWeight: 500,
-            padding: "8px",
-            color: "black"
-        }
-    })
-
-    const classes = useStyles()
+    const classes = (makeStyles({ row: { backgroundColor: rowColor }}))()
 
     const propsForIconCell = {
         setIconShouldShow,
@@ -58,26 +41,27 @@ const InflowRow = (props) => {
         showUndoIcon,
     }
 
-    return (
-        <TableRow
-            className={classes.row}
-        >
-            <IconCell 
-                fromInflowRow={{...propsForIconCell}}
-            />
-            <TableCell 
-                className={classes.cell}
-                align="right"
-            >
-                {source}
-            </TableCell>
+    const propsSourceCell = {
+        defaultValue: source,
+        numberCell: false,
+        rowColor,
+        onSubmit: () => {},
+        align: "right"
+    }
 
-            <TableCell 
-                className={classes.cell}
-                align="right"
-            >
-                {formatToCurrency(amount)}
-            </TableCell>
+    const propsNumberCell = {
+        defaultValue: amount,
+        numberCell: true,
+        rowColor,
+        onSubmit: () => {},
+        align: "right"
+    }
+
+    return (
+        <TableRow className={classes.row} >
+            <IconCell {...propsForIconCell} />
+            <FlowCell {...propsSourceCell}  />
+            <FlowCell {...propsNumberCell}  />
         </TableRow>
     )
 }

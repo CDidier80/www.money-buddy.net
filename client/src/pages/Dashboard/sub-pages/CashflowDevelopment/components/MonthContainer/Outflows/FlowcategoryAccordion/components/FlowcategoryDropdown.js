@@ -10,12 +10,9 @@ import { useFlowcategoryDropdownStyles } from "../../../styles/styles"
 
 const FlowcategoryDropdown = (props) => {
 
-    const { 
-        flowcategory,
-        showDeleteIcons,
-    } = props.fromOutflowsAccordion
+    const { theme, flowcategory, showDeleteIcons, } = props
 
-    const classes = useFlowcategoryDropdownStyles(props.theme)
+    const classes = useFlowcategoryDropdownStyles(theme)
 
     return (
         <AccordionSummary

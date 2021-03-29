@@ -7,7 +7,7 @@ export const RandomizeButton = (props) => {
         tick,
         setLoaded, 
         incrementTicker,
-    } = props.fromCashflowDevelopment
+    } = props
 
     const rerender = (e) => {
         e.preventDefault()

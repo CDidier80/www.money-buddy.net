@@ -5,7 +5,13 @@ import React from 'react'
 
 const Fabs = (props) => {
 
-    const { fromPaginatingContainer: FPC } = props
+    const {     
+        theme,    
+        displayRange,
+        pagMemoTicker,
+        setDisplayRange,
+        incrementPagTicker 
+    } = props
 
     /* functions */
 
@@ -13,11 +19,14 @@ const Fabs = (props) => {
         paginate, 
         backDisabled, 
         nextDisabled,
-    ] = usePagination(FPC)
+    ] = usePagination({
+        displayRange,
+        pagMemoTicker,
+        setDisplayRange,
+        incrementPagTicker
+    })
 
     /* props for children */
-
-    const { theme, displayRange } = FPC
 
     const fabProps = {
         displayRange,

@@ -13,7 +13,7 @@ const IconCell = (props) => {
     const { 
         iconShouldShow, 
         showInflowDeleteIcons 
-    } = props.fromInflowRow
+    } = props
 
 
     const useStyles = makeStyles({

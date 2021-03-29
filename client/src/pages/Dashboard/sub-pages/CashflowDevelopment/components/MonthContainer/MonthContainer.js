@@ -7,20 +7,20 @@ const MonthContainer = (props) => {
     /* -------------------------- PROPS ------------------------- */
 
     const { 
-        cashReserves,
-        inflows: inflowsDataset,
-        outflows: outflowsDataset, 
-    } = props.fromCashflowDevelopment
-
-    const { 
+        theme,
         thisMonth,
         monthIndex,
         displayRange,
-    } = props.fromPaginatingContainer
+        cashReserves,
+        inflows: inflowsDataset,
+        outflows: outflowsDataset, 
+    } = props
 
     const { 
         inflows,
         flowcategories, 
+        totalInflows,
+        totalOutflows
     } = thisMonth
 
     /* -------------------------- STATE ------------------------- */
@@ -51,12 +51,12 @@ const MonthContainer = (props) => {
     }, [])
 
 
-             /* useEffect #2: -- recalculate totals on outflow/inflow changes -- */
+    /* useEffect #2: -- recalculate totals on outflow/inflow changes -- */
 
     useEffect(() => {
         if (!dependencyArray.includes("")){
-            const newTotalInflow = thisMonth.totalInflows
-            const newTotalOutflow = thisMonth.totalOutflows
+            const newTotalInflow = totalInflows
+            const newTotalOutflow = totalOutflows
             setTotalInflow(newTotalInflow)
             setTotalOutflow(newTotalOutflow)
             setNewFlowcategories(flowcategories)
@@ -68,7 +68,7 @@ const MonthContainer = (props) => {
     ])
 
 
-            /* useEffect #3: --- ensure all state set before rendering children --- */
+    /* useEffect #3: --- ensure all state set before rendering children --- */
 
     useEffect(() => {
         let childrenShouldRender = true
@@ -84,12 +84,13 @@ const MonthContainer = (props) => {
     /* --------------------- FUNCTION --------------------- */
 
     const display = displayRange.includes(monthIndex) ? "block" : 'none'
-    const {monthContainer} = makeMonthContainerStyles(props.theme)
+    const { monthContainer } = makeMonthContainerStyles(theme)
 
     /* --------------------- PROPS FOR CHILDREN --------------------- */
 
 
     const memoProps = {
+        ...props,
         totalOutflow,
         totalInflow,
         setTotalInflow,
@@ -100,16 +101,15 @@ const MonthContainer = (props) => {
         setNewFlowcategories
     }
 
+    const divProps = {
+        className: monthContainer, 
+        style: {display: display}
+    }
+
 
     return ( !loaded ? <div></div> :
-            <div 
-                className={monthContainer}
-                style={{display: display}}
-            >
-                <MemoContent 
-                    {...props}
-                    fromMonthContainer={{...memoProps}}
-                />
+            <div {...divProps} >
+                <MemoContent {...memoProps} />
             </div>
     )
 }

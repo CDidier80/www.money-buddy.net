@@ -8,12 +8,12 @@ const DeleteOutflowIcon = (props) => {
     const {
         updateCashflow, 
         tick,
-    } = props.fromCashflowDevelopment
+    } = props
 
     const {
         newFlowcategories,
         setNewFlowcategories, 
-    } = props.fromMonthContainer
+    } = props
 
     const { 
         renderOutflowAccordion,

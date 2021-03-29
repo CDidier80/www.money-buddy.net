@@ -1,16 +1,11 @@
-import { 
-    Accordion,
-    AccordionDetails,
-} from '@material-ui/core'
 import React, { useState, useEffect, memo } from 'react'
 import OutflowsTable from "../OutflowsTable/OutflowsTable"
-import { useFlowcategoryAccordionStyles } from "../../styles/styles"
+import FlowcategoryWrapper from "./components/FlowcategoryWrapper"
 import FlowcategoryDropdown from "./components/FlowcategoryDropdown"
-
 
 const FlowcategoryAccordion = memo((props) => {
 
-    const { memoTicker } = props.fromOutflowsAccordion
+    const { memoTicker, theme } = props
 
     /* -------------------------- STATE ------------------------- */
 
@@ -23,7 +18,6 @@ const FlowcategoryAccordion = memo((props) => {
 
     useEffect(() => { }, [lengthOfOutflows])
     
-    const classes = useFlowcategoryAccordionStyles(props.theme)
 
 
     // const categoryDeletePopupProps = {
@@ -43,35 +37,29 @@ const FlowcategoryAccordion = memo((props) => {
     const accordionDropdownTabProps = {
         toggleFlowcategoryDeletePopup,
         showFlowcategoryDeletePopup, 
+        ...props
     }
 
     const outflowsTableProps = {
         rerenderOutflowCategory,
         showOutflowDeleteIcons,
-        render
+        ...props,
+        render,
     }
 
     return ( memoTicker == 0 ? <div></div> :
-        <AccordionDetails 
-            className={classes.accordionDetails}
-        >
-            <div className={classes.categoryWrapper}>
-                <Accordion className={classes.accordion}>
-                    <FlowcategoryDropdown 
-                        {...props}
-                        fromFlowcategoryAccordion={{...accordionDropdownTabProps}}
-                    />
-                    <OutflowsTable 
-                        {...props} 
-                        fromFlowcategoryAccordion={{...outflowsTableProps}}
-                    />
-                </Accordion>
-            </div>
-        </AccordionDetails>
+        <FlowcategoryWrapper theme={theme} >
+            <FlowcategoryDropdown {...accordionDropdownTabProps} />
+            <OutflowsTable {...outflowsTableProps} />
+        </FlowcategoryWrapper>
     )
-}, ({fromOutflowsAccordion: prev}, {fromOutflowsAccordion: next}) => {
-    if (next.memoTicker == 1) return false
-    return (prev.memoTicker !== next.memoTicker) 
+    
+}, ({memoTicker: prevTicker}, {memoTicker: nextTicker}) => {
+    if (nextTicker == 1){
+        return false
+    } else {
+        return prevTicker !== nextTicker
+    }
 })
 
 export default FlowcategoryAccordion
