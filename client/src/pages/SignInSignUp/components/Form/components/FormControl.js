@@ -1,14 +1,18 @@
+import ThemedButton           from   "../../../../../TopLevelComponents/ThemedButton"
 import ReenterPasswordField   from   "./ReenterPasswordField"
 import PasswordTextfield      from   "./PasswordTextfield"
 import EmailTextfield         from   "./EmailTextfield"
 import AccountPrompt          from   "./AccountPrompt"
-import SubmitButton           from   "./SubmitButton"
 import RememberMe             from   "./RememberMe"
 import {useState}             from   "react"
 import React                  from   "react"
 
+const { signup, signin } = require("../modules/formFunctions") 
+
 
 const FormControl = (props) => {
+
+    /* Props */
 
     const { 
         toggleSigningUp, 
@@ -19,12 +23,53 @@ const FormControl = (props) => {
         classes, 
     } = props
 
+
+    /* State */
+
     const [reenteredPassword, setReenterPassword] = useState("")
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
 
+
+    /* Functions */
+
+    const signUp = async (e) => {
+        e.preventDefault()
+        if (isSigningUp) {
+            const args = {
+                reenteredPassword,
+                setUserInfo, 
+                password, 
+                setAuth, 
+                email
+            }
+            const signedUp = await signup(args)
+            signedUp && history.push('/dashboard')
+        }
+    }
+    
+    
+    const signIn = async (e) => {
+        e.preventDefault()
+        console.log("reached")
+        const args = {
+            history: history,
+            setUserInfo, 
+            password,
+            setAuth, 
+            email, 
+        }
+        await signin(args)
+    }
+
+    const submitForm = isSigningUp ? signUp : signIn
+
+
+    /* Props for Children */
+
     const forAll = {
         isSigningUp,
+        submitForm,
         classes,
     }
 
@@ -42,17 +87,8 @@ const FormControl = (props) => {
 
     const propsReenterField = {
         setReenterPassword,
-        reenteredPassword
-    }
-
-    const propsSubmitButton = {
         reenteredPassword,
-        setUserInfo,
         ...forAll,
-        password,
-        setAuth,
-        history,
-        email,
     }
 
     const propsAccountPrompt = {
@@ -60,19 +96,19 @@ const FormControl = (props) => {
         ...forAll,
     }
 
-    const onlyClasses = {
-        classes
-    }
+    const onlyClasses = { classes }
 
     return (
-        <form className={classes.form} noValidate>
+        <>
             <EmailTextfield    {...propsEmailField}    />
             <PasswordTextfield {...propsPasswordField} />
             {isSigningUp   &&  <ReenterPasswordField {...propsReenterField} />}
             <RememberMe        {...onlyClasses}        />
-            <SubmitButton      {...propsSubmitButton}  />
+            <ThemedButton onClick={(e)=>submitForm(e)} >
+                {isSigningUp ? "Confirm and Sign Up": "Sign In"}
+            </ThemedButton>
             <AccountPrompt     {...propsAccountPrompt} />
-        </form>
+        </>
     )
 }
 
