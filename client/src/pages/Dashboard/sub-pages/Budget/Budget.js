@@ -20,7 +20,6 @@ const Budget = (props) => {
     /* ----------------------- PROPS ------------------------ */
 
     const { incomes, categories } = props.budgetHooks
-    
 
     /* ----------------------- STATE ------------------------ */
 
