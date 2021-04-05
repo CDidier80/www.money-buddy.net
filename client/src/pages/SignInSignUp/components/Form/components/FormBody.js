@@ -4,7 +4,7 @@ import {
     withTheme,
 } from '@material-ui/core/'
 import React from 'react'
-
+import FormWrapper from "./FormWrapper.tsx"
 
 const FormBody = (props) => {
 
@@ -17,7 +17,6 @@ const FormBody = (props) => {
         classes,
     } = props
 
-    
     const forFormControl = {
         ...forSubmit,
     }
@@ -28,24 +27,11 @@ const FormBody = (props) => {
     }
 
     return (
-            <div className={classes.formWrapper} >
-                <Grid 
-                    className={classes.grid}
-                    container 
-                >
-                    <Grid 
-                        className={classes.paperRoot}
-                        component={Paper} 
-                        square 
-                    >
-                        <div   className={classes.paper} >
-                            <LockedOut classes={classes} />
-                            <Header        {...forHeader} />
-                            <FormControl {...forFormControl} />
-                        </div>
-                    </Grid>
-                </Grid>
-            </div>
+        <FormWrapper classes={classes}>
+            <LockedOut classes={classes} />
+            <Header        {...forHeader} />
+            <FormControl {...forFormControl} />
+        </FormWrapper>
     )
 }
 
