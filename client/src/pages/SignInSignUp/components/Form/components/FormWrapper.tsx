@@ -16,25 +16,25 @@ interface Props {
 
 const FormWrapper: FC<Props> = (props): ReactElement => {
 
-    const { classes, children } = props
+    const { formWrapper, grid, paperRoot, paper } = props.classes
 
     return (
-        <div className={classes.formWrapper} >
-        <Grid 
-            className={classes.grid}
-            container  
-        >
+        <div className={formWrapper} >
             <Grid 
-                className={classes.paperRoot}
-                component={Paper} 
-                square 
+                className={grid}
+                container  
             >
-                <div   className={classes.paper} >
-                    {children}
-                </div>
+                <Grid 
+                    className={paperRoot}
+                    component={Paper} 
+                    square 
+                >
+                    <div className={paper} >
+                        { props.children }
+                    </div>
+                </Grid>
             </Grid>
-        </Grid>
-    </div>
+        </div>
     )
 }
 
