@@ -10,7 +10,6 @@ export const useLoginFormStyles = () => {
     const medQuery = (style1, style2) => matches ? style1 : style2
     const matches = useMediaQuery('(max-height:730px)')
 
-
     return (makeStyles({
 
         formWrapper: {
@@ -33,6 +32,7 @@ export const useLoginFormStyles = () => {
             width: '50%',
         },
         paperRoot: {
+            width: "100%",
             borderRadius: "12px",
             ...latoTextStyle,
         },
