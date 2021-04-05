@@ -7,10 +7,8 @@ import React from 'react';
 
 const SignInSignUpPage = (props) => {
 
-
     const useLandingStyles = makeLandingStyles(props.theme)
     const classes = useLandingStyles()
-
 
     return (
         <div className={classes.signInSignUpPage}>
