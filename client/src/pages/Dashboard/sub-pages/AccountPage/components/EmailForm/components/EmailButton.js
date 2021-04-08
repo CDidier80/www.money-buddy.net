@@ -1,6 +1,6 @@
 import { emailValidityCheck } from "../../../../../../../modules/emailValidition/emailValidationFunctions"
 import ThemedButton from "../../../../../../../TopLevelComponents/ThemedButton"
-import { UpdateEmail } from "../../../../../../../Services/UserService"
+import { UpdateEmail } from "../../../../../../../Services/UserService.ts"
 import useSnackbars from "../../../../../../../customHooks/useSnackbars"
 import React from 'react'
 

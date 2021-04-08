@@ -1,9 +1,9 @@
-import { CreateUser }            from  "../../../../../Services/UserService"
-import { CreateBudget }          from  "../../../../../Services/BudgetService"
-import { CreateIncome }          from  "../../../../../Services/IncomeService"
-import { CreateCategory }        from  "../../../../../Services/CategoryService"
-import { CreateExpense }         from  "../../../../../Services/ExpenseService"
-import { CreateEntireCashflow }  from  "../../../../../Services/CashflowService"
+import { CreateUser }            from  "../../../../../Services/UserService.ts"
+import { CreateBudget }          from  "../../../../../Services/BudgetService.ts"
+import { CreateIncome }          from  "../../../../../Services/IncomeService.ts"
+import { CreateCategory }        from  "../../../../../Services/CategoryService.ts"
+import { CreateExpense }         from  "../../../../../Services/ExpenseService.ts"
+import { CreateEntireCashflow }  from  "../../../../../Services/CashflowService.ts"
 import { defaultCategories }     from  "../../../../../exports/defaultCategories"
 
 
