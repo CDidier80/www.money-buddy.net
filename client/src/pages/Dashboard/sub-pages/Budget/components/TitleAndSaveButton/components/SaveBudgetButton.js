@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSnackbar, withSnackbar } from 'notistack'
-import { UpdateEntireBudget} from "../../../../../../../Services/BudgetService.ts"
+import { UpdateEntireBudget} from "../../../../../../../api_services/BudgetService.ts"
 import ThemedButton from "../../../../../../../TopLevelComponents/ThemedButton"
 import useSnackbars from '../../../../../../../customHooks/useSnackbars'
 

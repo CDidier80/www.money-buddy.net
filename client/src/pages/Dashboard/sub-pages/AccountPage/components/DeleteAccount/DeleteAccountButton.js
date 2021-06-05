@@ -1,6 +1,6 @@
 import ThemedButton from '../../../../../../TopLevelComponents/ThemedButton'
 import useSnackbars from "../../../../../../customHooks/useSnackbars"
-import { DeleteUser} from "../../../../../../Services/UserService.ts"
+import { DeleteUser} from "../../../../../../api_services/UserService.ts"
 import React from 'react'
 
 const DeleteAccountButton = (props) => {
