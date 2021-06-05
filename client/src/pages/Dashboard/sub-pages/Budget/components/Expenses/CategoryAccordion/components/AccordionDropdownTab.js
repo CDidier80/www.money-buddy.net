@@ -1,13 +1,11 @@
-import React from 'react'
-import CategoryDeleteIcon from "./CategoryDeleteIcon"
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
+import CategoryDeleteIcon from "./CategoryDeleteIcon"
+import React from 'react'
 import { 
+    makeStyles,
     Typography, 
     AccordionSummary,
-    makeStyles
-} from '@material-ui/core';
-
-
+} from '@material-ui/core'
 
 const AccordionDropdownTab = (props) => {
 
@@ -20,7 +18,7 @@ const AccordionDropdownTab = (props) => {
     const useStyles = makeStyles(theme => {
 
 
-        const { secondary, secondaryDark } = theme.palette
+        const { secondaryDark } = theme.palette
         
         return ({
             flexWrapper: {

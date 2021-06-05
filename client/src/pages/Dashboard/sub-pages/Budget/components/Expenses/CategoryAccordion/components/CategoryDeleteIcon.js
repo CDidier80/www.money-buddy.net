@@ -1,7 +1,6 @@
-import React from 'react'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import { IconButton, makeStyles } from '@material-ui/core';
-
+import React from 'react'
 
 const useStyles = makeStyles({
     iconButton: {

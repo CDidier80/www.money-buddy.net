@@ -77,17 +77,17 @@ const ExpenseNumberCell = (props) => {
     return (
         <TableCell>
             <form onSubmit={(e) => submit(e)}
-            style={backgroundColor}
+                style={backgroundColor}
             >
                 <input 
-                    style={backgroundColor}
-                    name="text-input"
                     type="text" 
-                    value={focused ? rawNumber : newText } 
-                    className="editable-cell expense"
-                    onSelect={(e) => setFocus(true)}
-                    onChange={(e) => filterNumbers(e, updateRawNumber)}
+                    name="text-input"
+                    style={backgroundColor}
                     onBlur={(e) => submit(e)}
+                    onSelect={(e) => setFocus(true)}
+                    className="editable-cell expense"
+                    value={focused ? rawNumber : newText } 
+                    onChange={(e) => filterNumbers(e, updateRawNumber)}
                 >
                 </input>
             </form>

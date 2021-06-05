@@ -19,7 +19,7 @@ const Text = (props) => {
             margin="dense"
             id="category-name"
             onChange={(e)=>updateText(e)}
-            label={(error ? "This name already exists" : "category name")}
+            label={ (error ? "This name already exists" : "category name") }
             // helperText={`This category already exists`}
         />
     )

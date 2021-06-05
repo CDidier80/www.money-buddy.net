@@ -17,17 +17,13 @@ const ExpenseTable = (props) => {
 
     /*  PROPS */
 
-    const { category } = props.fromExpenseAccordion
+    const { category, category: { expenses } } = props.fromExpenseAccordion
 
-    const { expenses } = category
-
-
-     {/*  STATE */}
+    /*  STATE */
 
     const [incomingDeletion, setIncomingDeletion] = useState(false)
 
-
-    {/*  FUNCTIONS */}
+    /*  FUNCTIONS */
 
     const classes = useStyles()
 
@@ -38,21 +34,20 @@ const ExpenseTable = (props) => {
                 component={Paper}
             >
                 <Table 
-                    className={classes.table} 
                     size="small" 
+                    className={classes.table} 
                     aria-label="a dense table"
-                >
+                    >
                     <TableBody>
                         <ExpenseHeaders {...props} />
                         {expenses.map((expenseObj, index) => {
                             const { expense, amount } = expenseObj
                             const monthly = Math.round(amount/12)
-                            const rowColor = pickColor(index)
                             const propsForRows = {
+                                rowColor: pickColor(index),
                                 expenseIndex: index,
                                 setIncomingDeletion,
                                 incomingDeletion, 
-                                rowColor,
                                 expense,
                                 monthly,
                                 amount, 

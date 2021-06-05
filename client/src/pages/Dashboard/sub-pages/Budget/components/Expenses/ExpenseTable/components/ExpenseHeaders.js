@@ -25,27 +25,26 @@ const useStyles = makeStyles( ({palette: p}) => {
 
 const ExpenseHeaders = (props) => {
 
-    const classes = useStyles()
-
+    const { emptyCell, columnHeader } = useStyles()
 
     return (
-        // <TableHead>
             <TableRow>
                 <TableCell 
-                    className={classes.emptyCell}>
+                    className={ emptyCell }>
                 </TableCell>
                 <TableCell 
-                    className={classes.columnHeader}>
-                        Expense
+                    className={ columnHeader }
+                >
+                    Expense
                 </TableCell>
                 <TableCell 
-                    className={classes.columnHeader} 
+                    className={ columnHeader } 
                     align="right"
                 >
                     Monthly Average
                 </TableCell>
                 <TableCell 
-                    className={classes.columnHeader} 
+                    className={ columnHeader } 
                     align="right"
                 >
                     Annual
@@ -55,5 +54,3 @@ const ExpenseHeaders = (props) => {
 }
 
 export default ExpenseHeaders
-
-{/* </TableHead> */}

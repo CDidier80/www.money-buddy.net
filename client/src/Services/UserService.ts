@@ -41,7 +41,7 @@ export const ReadUser: Service = async (body,  params) =>  {
 }
 
 
-export const UpdatePassword: Service= async (body, params) =>  {
+export const UpdatePassword: Service = async (body, params) =>  {
     try {
         log(UpdatePassword, body, params)
         const response: AxiosResponse<any> = await ApiClient.put(`users/password`, body)

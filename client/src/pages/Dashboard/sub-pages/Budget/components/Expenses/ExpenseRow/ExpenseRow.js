@@ -12,8 +12,6 @@ import {
 } from '@material-ui/core'
 
 
-
-
 const ExpenseRow = (props) => {
 
     

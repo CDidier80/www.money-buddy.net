@@ -20,3 +20,5 @@ const DialogWrapper = ({children, onClick, open}) => {
 }
 
 export default DialogWrapper
+
+

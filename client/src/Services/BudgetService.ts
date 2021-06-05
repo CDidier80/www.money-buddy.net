@@ -5,7 +5,6 @@ const { ServiceLoggers } = require('./logs')
 const log = ServiceLoggers.BudgetServiceLog
 const errorLog = ServiceLoggers.BudgetServiceErrorLog
 
-
 export const CreateBudget: Service = async (body, params) => {
     try {
         log(CreateBudget, body, params)
@@ -15,7 +14,6 @@ export const CreateBudget: Service = async (body, params) => {
         errorLog(CreateBudget, error)
     }
 }
-
 
 export const ReadBudget: Service = async (body,  params) => {
     try {
@@ -27,7 +25,6 @@ export const ReadBudget: Service = async (body,  params) => {
     }
 }
 
-
 export const ReadEntireBudget: Service = async (body,  params) => {
     try {
         log(ReadEntireBudget, body, params)
@@ -37,7 +34,6 @@ export const ReadEntireBudget: Service = async (body,  params) => {
         errorLog(ReadEntireBudget, error)
     }
 }
-
 
 export const UpdateEntireBudget: Service = async (body,  params) => {
     try {

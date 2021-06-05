@@ -10,11 +10,11 @@ export const staticStyles = {
         paddingTop: 0
     },
     button: {
-        fontSize: "9px",
-        fontWeight: "700",
         fontFamily: "Lato, sans-serif",
+        padding: "0 5px 0 5px",
+        fontWeight: "700",
         color: "#d29000",
-        padding: "0 5px 0 5px"
+        fontSize: "9px",
     },
 }
 

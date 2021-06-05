@@ -5,7 +5,6 @@ const { ServiceLoggers } = require('./logs')
 const log = ServiceLoggers.ExpenseServiceLog
 const errorLog = ServiceLoggers.ExpenseServiceErrorLog
 
-
 export const CreateExpense: Service = async (body, params) =>  {
     try {
         log(CreateExpense, body, params)
@@ -16,7 +15,6 @@ export const CreateExpense: Service = async (body, params) =>  {
     }
 }
 
-
 export const GetOneExpense: Service = async (body,  params) =>  {
     try {
         log(GetOneExpense, body, params)
@@ -26,7 +24,6 @@ export const GetOneExpense: Service = async (body,  params) =>  {
         errorLog.log(GetOneExpense, error)
     }
 }
-
 
 export const ReadBudgetExpenses: Service = async (body,  params) =>  {
     try {

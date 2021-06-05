@@ -91,14 +91,15 @@ const ButtonsAddDel = (props) => {
 
     return (
         <AccordionDetails>
-            <ButtonGroup className={classes.buttonGroup} 
-                variant="text" 
-                color="primary" 
+            <ButtonGroup 
                 aria-label="text primary button group"
+                className={classes.buttonGroup} 
+                color="primary" 
+                variant="text" 
             >
                 <Button 
-                    className={classes.button}
-                    onClick={(e) => addExpense(e)}
+                    onClick={ (e) => addExpense(e) }
+                    className={ classes.button }
                 >
                     Add Expense
                 </Button>
@@ -106,7 +107,7 @@ const ButtonsAddDel = (props) => {
                     className={currentClass}
                     onClick={(e) => handleExpenseDeleteIcons(e)}
                 >
-                    {showExpenseDeleteIcons ? "Cancel Delete" : "Delete Expense"}
+                    { showExpenseDeleteIcons ? "Cancel Delete" : "Delete Expense" }
                 </Button>
             </ButtonGroup>
         </AccordionDetails>

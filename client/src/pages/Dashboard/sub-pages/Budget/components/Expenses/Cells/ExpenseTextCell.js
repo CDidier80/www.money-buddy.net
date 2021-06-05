@@ -24,7 +24,6 @@ const ExpenseTextCell = (props) => {
         categoryIndex, 
     } = props.fromExpenseRow
 
-
     /*  STATE  */
 
     const [ newText, updateText ] = useState("")
@@ -38,13 +37,12 @@ const ExpenseTextCell = (props) => {
 
     const updateNewCategories = (value) => {
         let categoriesArrayCopy = [...newCategories]
-        let categoryCopy = {...category}
+        let categoryCopy = { ...category }
         categoryCopy["expenses"][expenseIndex]['expense'] = value
         categoriesArrayCopy[categoryIndex] = categoryCopy
         setNewCategories(categoriesArrayCopy)
         updateBudget(tick + 1)
     }
-
 
     const handleText = (e) => {
         const { value } = e.target
@@ -63,7 +61,6 @@ const ExpenseTextCell = (props) => {
     }
 
     const backgroundColor = {backgroundColor:rowColor}
-
 
     return (
         <TableCell>
