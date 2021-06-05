@@ -34,3 +34,25 @@ export const CreateEntireCashflow: Service = async (body,  params) =>  {
         errorLog(CreateEntireCashflow, error)
     }
 }
+
+// import { ApiService } from './ApiService'
+
+// const CashflowApiService = new ApiService({
+//     modelName: 'Cashflow',
+//     routeExtension: '/cashflow', 
+//     showLogs: false,
+//     useInterceptors: true
+// })
+
+// CashflowApiService.addGetRequest = {
+//     requestName: 'getCashflowStatistics',
+//     controllerPathExtension: 'stats'
+// }
+
+// const exampleRequest = async (body, params) => {
+//     const cashflow = await CashflowApiService.get.one(body, params)
+//     const cashflows = await CashflowApiService.get.all(body, params)
+//     const stats = await CashflowApiService.get.cashflowStatistics(body, params)
+// }
+
+// export default CashflowApiService

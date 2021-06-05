@@ -2,6 +2,8 @@ import { Service } from "./types"
 import ApiClient from "./ApiClient"
 import { AxiosResponse } from "axios"
 const { ServiceLoggers } = require('./logs')
+// import { ApiService } from './ApiService'
+
 const log = ServiceLoggers.BudgetApiLog
 const errorLog = ServiceLoggers.BudgetServiceErrorLog
 
@@ -15,7 +17,7 @@ export const CreateBudget: Service = async (body, params) => {
     }
 }
 
-export const ReadBudget: Service = async (body,  params) => {
+export const ReadBudget: Service = async (body, params) => {
     try {
         log(ReadBudget, body, params)
         const response: AxiosResponse<any> = await ApiClient.get(`budgets/getone`, body)
@@ -25,7 +27,7 @@ export const ReadBudget: Service = async (body,  params) => {
     }
 }
 
-export const ReadEntireBudget: Service = async (body,  params) => {
+export const ReadEntireBudget: Service = async (body, params) => {
     try {
         log(ReadEntireBudget, body, params)
         const response: AxiosResponse<any> = await ApiClient.post(`budgets/entirebudget`, body)
@@ -35,7 +37,7 @@ export const ReadEntireBudget: Service = async (body,  params) => {
     }
 }
 
-export const UpdateEntireBudget: Service = async (body,  params) => {
+export const UpdateEntireBudget: Service = async (body, params) => {
     try {
         log(UpdateEntireBudget, body, params)
         const response: AxiosResponse<any> = await ApiClient.put(`budgets/update`, body)
@@ -44,3 +46,15 @@ export const UpdateEntireBudget: Service = async (body,  params) => {
         errorLog(UpdateEntireBudget, error)
     }
 }
+
+
+
+
+// const BudgetApiService = new ApiService({
+//     modelName: 'Budget',
+//     routeExtension: '/budget', 
+//     showLogs: false,
+//     useInterceptors: true
+// })
+
+// export default BudgetApiService
