@@ -2,8 +2,8 @@ import { Service } from "./types"
 import ApiClient from "./ApiClient"
 import { AxiosResponse } from 'axios'
 const { ServiceLoggers } = require('./logs')
-const log = ServiceLoggers.IncomeServiceLog
-const errorLog = ServiceLoggers.IncomeServiceLog
+const log = ServiceLoggers.IncomeApiLog
+const errorLog = ServiceLoggers.IncomeApiLog
 
 
 export const CreateIncome: Service = async (body, params) => {

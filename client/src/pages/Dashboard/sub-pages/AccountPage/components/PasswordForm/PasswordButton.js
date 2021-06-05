@@ -1,6 +1,6 @@
 import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
 import { UpdatePassword } from "../../../../../../api_services/user-api-service.ts"
-import useSnackbars from "../../../../../../customHooks/useSnackbars"
+import useSnackbars from "../../../../../../custom_hooks/useSnackbars"
 import React from 'react'
 
 const PasswordButton = (props) => {

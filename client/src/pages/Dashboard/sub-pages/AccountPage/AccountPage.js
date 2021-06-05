@@ -1,7 +1,7 @@
 import GradientWrapper from "../../../../TopLevelComponents/GradientWrapper"
 import PasswordForm from "./components/PasswordForm/PasswordForm"
 import DeletePopup from './components/DeleteAccount/DeletePopup'
-import useSnackbars from "../../../../customHooks/useSnackbars"
+import useSnackbars from "../../../../custom_hooks/useSnackbars"
 import DeleteText from './components/DeleteAccount/DeleteText'
 import { withTheme, makeStyles } from '@material-ui/core/'
 import EmailForm from "./components/EmailForm/EmailForm"

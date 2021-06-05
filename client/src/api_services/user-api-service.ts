@@ -2,8 +2,8 @@ import { Service } from "./types"
 import ApiClient from "./ApiClient"
 import { AxiosResponse } from "axios"
 const { ServiceLoggers } = require('./logs')
-const log = ServiceLoggers.UserServiceLog
-const errorLog = ServiceLoggers.UserServiceErrorLog
+const log = ServiceLoggers.UserApiLog
+const errorLog = ServiceLoggers.UserApiErrorLog
 
 
 export const CreateUser: Service = async (body, params) =>  {

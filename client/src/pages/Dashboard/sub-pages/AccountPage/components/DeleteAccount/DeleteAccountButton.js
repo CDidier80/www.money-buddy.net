@@ -1,5 +1,5 @@
 import ThemedButton from '../../../../../../TopLevelComponents/ThemedButton'
-import useSnackbars from "../../../../../../customHooks/useSnackbars"
+import useSnackbars from "../../../../../../custom_hooks/useSnackbars"
 import { DeleteUser} from "../../../../../../api_services/user-api-service.ts"
 import React from 'react'
 

@@ -1,9 +1,9 @@
-import { CreateUser }            from  "../../../../../api_services/UserService.ts"
-import { CreateBudget }          from  "../../../../../api_services/BudgetService.ts"
-import { CreateIncome }          from  "../../../../../api_services/IncomeService.ts"
-import { CreateCategory }        from  "../../../../../api_services/CategoryService.ts"
-import { CreateExpense }         from  "../../../../../api_services/ExpenseService.ts"
-import { CreateEntireCashflow }  from  "../../../../../api_services/CashflowService.ts"
+import { CreateUser }            from  "../../../../../api_services/user-api-service"
+import { CreateBudget }          from  "../../../../../api_services/budget-api-service.ts"
+import { CreateIncome }          from  "../../../../../api_services/income-api-service"
+import { CreateCategory }        from  "../../../../../api_services/category-api-service"
+import { CreateExpense }         from  "../../../../../api_services/expense-api-service"
+import { CreateEntireCashflow }  from  "../../../../../api_services/cashflow-api-service.ts"
 import { defaultCategories }     from  "../../../../../exports/defaultCategories"
 
 

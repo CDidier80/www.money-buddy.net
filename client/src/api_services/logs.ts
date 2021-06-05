@@ -9,17 +9,17 @@ interface LoggerTypes {
 } 
 
 export const ServiceLoggers: LoggerTypes = {
-    UserServiceLog : (serviceFunction, body, params) => {
+    UserApiLog : (serviceFunction, body, params) => {
         const show: boolean = false
-        show && console.log(`Request arrived in UserService.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
+        show && console.log(`Request arrived in UserApi.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
     },
 
-    UserServiceErrorLog : (serviceFunction, error) => {
+    UserApiErrorLog : (serviceFunction, error) => {
         const show = false
-        show && console.log(`TRY{}CATCH{} ERROR --> FILE: UserService.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
+        show && console.log(`TRY{}CATCH{} ERROR --> FILE: UserApi.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
     },
 
-    BudgetServiceLog : (serviceFunction, body, params) => {
+    BudgetApiLog : (serviceFunction, body, params) => {
         const show: boolean = false
         show && console.log(`Request arrived in BudgetService.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
     },
@@ -30,14 +30,14 @@ export const ServiceLoggers: LoggerTypes = {
          
     },
 
-    IncomeServiceLog : (serviceFunction, body, params) => {
+    IncomeApiLog : (serviceFunction, body, params) => {
         const show: boolean = false
-        show && console.log(`Request arrived in IncomeService.ts => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
+        show && console.log(`Request arrived in IncomeApi.ts => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
     },
 
-    IncomeServiceErrorLog : (serviceFunction, error) => {
+    IncomeApiErrorLog : (serviceFunction, error) => {
         const show: boolean = false
-        show && console.log(`TRY{}CATCH{} ERROR --> FILE: IncomeService.ts -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
+        show && console.log(`TRY{}CATCH{} ERROR --> FILE: IncomeApi.ts -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
     },
 
     CategoryServiceLog : (serviceFunction, body, params) => {
@@ -50,27 +50,24 @@ export const ServiceLoggers: LoggerTypes = {
         show && console.log(`TRY{}CATCH{} ERROR --> FILE: CategoryService.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
     },
 
-    ExpenseServiceLog : (serviceFunction, body, params) => {
+    ExpenseApiLog : (serviceFunction, body, params) => {
         const show: boolean = false
-        show && console.log(`Request arrived in ExpenseService.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
+        show && console.log(`Request arrived in ExpenseApi.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
     },
     
-    ExpenseServiceErrorLog : (serviceFunction, error) => {
+    ExpenseApiErrorLog : (serviceFunction, error) => {
         const show: boolean = false
-        show && console.log(`TRY{}CATCH{} ERROR --> FILE: ExpenseService.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
+        show && console.log(`TRY{}CATCH{} ERROR --> FILE: ExpenseApi.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
     },
 
-    CashflowServiceLog : (serviceFunction, body, params) => {
+    CashflowApiLog : (serviceFunction, body, params) => {
         const show: boolean = false
-        show && console.log(`Request arrived in CashflowService.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
+        show && console.log(`Request arrived in CashflowApi.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
     },
 
-    CashflowServiceErrorLog : (serviceFunction, error) => {
+    CashflowApiErrorLog : (serviceFunction, error) => {
         const show: boolean = false
-        show && console.log(`TRY{}CATCH{} ERROR --> FILE: CashflowService.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
-
+        show && console.log(`TRY{}CATCH{} ERROR --> FILE: CashflowApi.js -->  FUNCTION: ${serviceFunction.name} --> MESSAGE: `, error)
     },
-
-
 }
 

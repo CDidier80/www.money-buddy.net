@@ -2,9 +2,8 @@ import { Service } from "./types"
 import ApiClient from "./ApiClient"
 import { AxiosResponse } from "axios"
 const { ServiceLoggers } = require('./logs')
-const log = ServiceLoggers.CashflowServiceLog
-const errorLog = ServiceLoggers.CashflowServiceErrorLog
-
+const log = ServiceLoggers.CashflowApiLog
+const errorLog = ServiceLoggers.CashflowApiErrorLog
 
 export const ReadEntireCashflow: Service = async (body,  params) =>  {
     try {
@@ -16,7 +15,6 @@ export const ReadEntireCashflow: Service = async (body,  params) =>  {
     }
 }
 
-
 export const UpdateEntireCashflow: Service = async (body,  params) =>  {
     try {
         log(UpdateEntireCashflow, body, params)
@@ -26,7 +24,6 @@ export const UpdateEntireCashflow: Service = async (body,  params) =>  {
         errorLog(UpdateEntireCashflow, error)
     }
 }
-
 
 export const CreateEntireCashflow: Service = async (body,  params) =>  {
     try {
