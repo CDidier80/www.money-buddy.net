@@ -5,7 +5,7 @@ import {
 import  React, { useState, useEffect }   from  "react"
 import  { gradientWrapper }      from  "./modules/styles"
 import  { withRouter }           from  "react-router-dom"
-import  { CheckSessionService }  from  "./api_services/UserService.ts"
+import  { CheckSessionService }  from  "./api_services/user-api-service.ts"
 import  { Helpers }              from  "./modules/clientFunctions"
 import  Routes                   from  "./TopLevelComponents/Routes"
 import  AppWrapper               from  "./TopLevelComponents/AppWrapper"

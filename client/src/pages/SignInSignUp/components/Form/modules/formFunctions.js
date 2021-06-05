@@ -1,5 +1,5 @@
 import emailValidityCheck from "../../../../../modules/emailValidition/emailValidationFunctions"
-import { LogInUser } from '../../../../../api_services/UserService.ts'
+import { LogInUser } from '../../../../../api_services/user-api-service.ts'
 import initializeAccount from "./modelFunctions"
 
 

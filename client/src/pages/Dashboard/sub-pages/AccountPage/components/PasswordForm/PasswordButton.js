@@ -1,5 +1,5 @@
 import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
-import { UpdatePassword } from "../../../../../../api_services/UserService.ts"
+import { UpdatePassword } from "../../../../../../api_services/user-api-service.ts"
 import useSnackbars from "../../../../../../customHooks/useSnackbars"
 import React from 'react'
 
