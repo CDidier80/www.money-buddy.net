@@ -6,25 +6,24 @@ export const usePagination = (props) => {
         displayRange,
         pagMemoTicker,
         setDisplayRange,
-        incrementPagTicker,
+        incrementPagTicker
     } = props
 
     const [backDisabled, setBackDisabled] = useState(true)
     const [nextDisabled, setNextDisabled] = useState(false)
 
-    const enableAndDisableButtons = (nextDisplayRange) => (
-        setNextDisabled(nextDisplayRange[2] == 11),
-        setBackDisabled(nextDisplayRange[0] == 0)
-    )
+    const enableAndDisableButtons = (nextDisplayRange) => {
+        setNextDisabled(nextDisplayRange[2] === 11)
+        setBackDisabled(nextDisplayRange[0] === 0)
+    }
     
-    const showNextThreeMonths = (monthIndex) => [monthIndex + 1, monthIndex + 2, monthIndex + 3]
+    const showNextThreeMonths = monthIndex => [monthIndex + 1, monthIndex + 2, monthIndex + 3]
     
-    const showPrevThreeMonths = (monthIndex) => [monthIndex - 3, monthIndex - 2, monthIndex - 1]
+    const showPrevThreeMonths = monthIndex => [monthIndex - 3, monthIndex - 2, monthIndex - 1]
     
-    const setNextRange = (next) => next === "next" ? 
-        showNextThreeMonths(displayRange[2]) : 
-        showPrevThreeMonths(displayRange[0])
-
+    const setNextRange = (next) => next === 'next' 
+        ? showNextThreeMonths(displayRange[2]) 
+        : showPrevThreeMonths(displayRange[0])
 
     const paginate = (e, next) => {
         e.preventDefault()
@@ -35,5 +34,4 @@ export const usePagination = (props) => {
     }
 
     return [ paginate, backDisabled, nextDisabled ]
-
 }

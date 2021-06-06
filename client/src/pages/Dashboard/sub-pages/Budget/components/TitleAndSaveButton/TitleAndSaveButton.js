@@ -8,7 +8,7 @@ const TitleAndSaveButton = (props) => {
 
     return (
         <Header text="BUDGET" >
-            { userMadeChanges && <SaveBudgetButton {...props} /> }
+            { userMadeChanges && <SaveBudgetButton { ...props } /> }
         </Header>
     )
 }

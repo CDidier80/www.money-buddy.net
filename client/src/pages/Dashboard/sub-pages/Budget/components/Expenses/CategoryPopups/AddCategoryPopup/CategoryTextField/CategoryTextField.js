@@ -4,8 +4,8 @@ import Text from "./Text"
 
 const CategoryTextfield = (props) => {
     return (
-        <TextfieldForm {...props} >
-            <Text {...props} />
+        <TextfieldForm { ...props } >
+            <Text { ...props } />
         </TextfieldForm>
     )
 }

@@ -6,7 +6,7 @@ import React from 'react'
 const CashflowHeader = (props) => (
 
         <Header text="CASHFLOWS" >
-            <RandomizeButton {...props} />
+            <RandomizeButton { ...props } />
         </Header>
     
 )

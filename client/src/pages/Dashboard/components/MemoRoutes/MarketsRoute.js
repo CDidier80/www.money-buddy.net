@@ -7,7 +7,7 @@ const MarketsRoute = memo((props) => {
     return (
         <Route 
             component={ () => ( 
-                <Markets {...props}/> 
+                <Markets { ...props }/> 
         )} 
     />
     )

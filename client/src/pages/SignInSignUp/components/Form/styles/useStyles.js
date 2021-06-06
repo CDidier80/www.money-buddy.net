@@ -1,14 +1,10 @@
 import { makeStyles } from '@material-ui/core/'
-import useMediaQuery from '@material-ui/core/useMediaQuery';
-import { moneyBuddyTheme, latoTextStyle } from "../../../../../modules/themeAndStyles"
+import { moneyBuddyTheme, latoTextStyle } from '../../../../../modules/themeAndStyles'
 const { primary, secondary, secondaryDark } = moneyBuddyTheme.palette
 const { shadow1 } = moneyBuddyTheme.boxShadows
 
 
 export const useLoginFormStyles = () => {
-
-    const medQuery = (style1, style2) => matches ? style1 : style2
-    const matches = useMediaQuery('(max-height:730px)')
 
     return (makeStyles({
 

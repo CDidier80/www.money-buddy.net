@@ -23,7 +23,7 @@ const OutflowRows = (props) => {
                     }
                     return (
                         <OutflowRow 
-                            {...props}
+                            { ...props }
                             key={`${index * -1}`}
                             fromOutflowsTable={{...propsForRows}}
                         /> 

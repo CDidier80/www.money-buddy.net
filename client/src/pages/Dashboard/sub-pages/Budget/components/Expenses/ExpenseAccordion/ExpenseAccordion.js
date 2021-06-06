@@ -99,7 +99,7 @@ const ExpenseAccordion = (props) => {
         >
             { showAddCategoryPanel && 
                 <CategoryPopup 
-                    {...props} 
+                    { ...props } 
                     toggleAddCategoryPanel={toggleAddCategoryPanel}
                 />
             }
@@ -110,7 +110,7 @@ const ExpenseAccordion = (props) => {
             >
                 <AccordionDropdownTab expanded={expanded} />
                 <ButtonsAddDelete 
-                    {...props}
+                    { ...props }
                     fromExpenseAccordion={{...buttonsAddDeleteProps}}
                 />
                 {newCategories.map((category, index) => {
@@ -127,7 +127,7 @@ const ExpenseAccordion = (props) => {
                         <CategoryAccordion 
                             key={`category-accordion-${index}`}
                             {...categoryAccordionProps}
-                            {...props} 
+                            { ...props } 
                         />
                     )
                 })}

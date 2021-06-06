@@ -1,10 +1,6 @@
-import {
-    Grid,
-    Paper,
-    withTheme,
-} from '@material-ui/core/'
 import React from 'react'
-import FormWrapper from "./FormWrapper.tsx"
+import { withTheme, } from '@material-ui/core/'
+import FormWrapper from './FormWrapper.tsx'
 
 const FormBody = (props) => {
 
@@ -29,7 +25,7 @@ const FormBody = (props) => {
     return (
         <FormWrapper classes={classes}>
             <LockedOut classes={classes} />
-            <Header        {...forHeader} />
+            <Header {...forHeader} />
             <FormControl {...forFormControl} />
         </FormWrapper>
     )

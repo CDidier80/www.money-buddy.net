@@ -10,8 +10,8 @@ const OutflowTable = (props) => {
     return (
         <TableWrapper>
             <TableBody>
-                <OutflowHeaders {...props} />
-                <OutflowRows    {...props} />
+                <OutflowHeaders { ...props } />
+                <OutflowRows    { ...props } />
             </TableBody>
         </TableWrapper>
     )

@@ -17,11 +17,11 @@ const LandingPage = (props) => {
 
     return (
         <div className={classes.landingPage}>
-            <LandingNavBar {...props} />
+            <LandingNavBar { ...props } />
             <main className="main">
                 <ShapesContainer />
                 <Hero />
-                <MobileNavBar {...props} />
+                <MobileNavBar { ...props } />
             </main>
         </div>
     )

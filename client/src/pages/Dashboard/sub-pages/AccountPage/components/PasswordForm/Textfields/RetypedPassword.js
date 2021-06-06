@@ -11,7 +11,7 @@ const RetypedPassword = (props) => {
     return (
         <PasswordField 
         {...passwordFieldProps}
-            {...props}
+            { ...props }
         />
     )
 }

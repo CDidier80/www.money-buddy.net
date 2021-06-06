@@ -1,21 +1,13 @@
 import { usePagination } from './usePagination'
-import DirectionalFab from "./DirectionalFab"
+import DirectionalFab from './DirectionalFab'
 import React from 'react'
 
-
-const Fabs = (props) => {
-
-    const { fromPaginatingContainer: FPC } = props
-
-    /* functions */
+const Fabs = ({ fromPaginatingContainer: FPC }) => {
 
     const [
         paginate, 
         backDisabled, 
-        nextDisabled,
     ] = usePagination(FPC)
-
-    /* props for children */
 
     const { theme, displayRange } = FPC
 
@@ -24,28 +16,21 @@ const Fabs = (props) => {
         paginate, 
         theme
     }
-    
-    const propsNext = { 
-        disableOn: nextDisabled, 
-        direction: "next", 
-        ...fabProps
-}
-    const propsBack = { 
-        disableOn: backDisabled, 
-        direction: "back", 
-        ...fabProps
-}
-    
-    const wrapProps = {
-        style: {
-            width: "263px"    
-        } 
-    }
 
     return (
-        <div {...wrapProps} >
-            <DirectionalFab {...propsBack} />
-            <DirectionalFab {...propsNext} />
+        <div style={{ width: '263px'}} >
+            <DirectionalFab {...{ 
+                disableOn: backDisabled, 
+                direction: 'back', 
+                ...fabProps
+            }} />
+            <DirectionalFab 
+                {...{ 
+                disableOn: backDisabled, 
+                direction: 'back', 
+                ...fabProps
+                }} 
+            />
         </div>
     )
 }

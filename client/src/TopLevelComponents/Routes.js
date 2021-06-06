@@ -14,21 +14,21 @@ const Routes = (props) => {
                 exact path="/"      
                 component={ () => (
                     <LandingPage 
-                        {...props}
+                        { ...props }
                     />
                 )}
             />
             <Route 
                 path="/login"        
                 component={ () => ( 
-                    <SignInSignUpPage {...props} />
+                    <SignInSignUpPage { ...props } />
                 )}
             />
             <ProtectedRoute
-                {...props}
+                { ...props }
                 path="/dashboard"        
             >
-                <Dashboard {...props} />
+                <Dashboard { ...props } />
             </ProtectedRoute> 
         </Switch>
     )

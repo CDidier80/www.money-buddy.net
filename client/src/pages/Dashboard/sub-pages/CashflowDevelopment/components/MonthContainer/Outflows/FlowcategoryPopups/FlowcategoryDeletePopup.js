@@ -49,7 +49,7 @@ const useStyles = makeStyles({
 
 
 const Transition = forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />;
+    return <Slide direction="up" ref={ref} { ...props } />;
 })
 
 

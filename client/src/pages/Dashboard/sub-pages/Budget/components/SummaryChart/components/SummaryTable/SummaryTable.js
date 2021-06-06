@@ -6,8 +6,8 @@ import React from 'react'
 const SummaryTable = (props) => {
 
     return (
-        <TableWrapper {...props} >
-            <SummaryRows {...props} />
+        <TableWrapper { ...props } >
+            <SummaryRows { ...props } />
         </TableWrapper>
     )
 }

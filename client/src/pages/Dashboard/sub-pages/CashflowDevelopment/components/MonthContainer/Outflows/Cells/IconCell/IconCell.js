@@ -30,9 +30,9 @@ const IconCell = (props) => {
             className={classes.iconCell}
         >
             {iconShouldShow && ( showOutflowDeleteIcons ? 
-                <DeleteOutflowIcon {...props} />
+                <DeleteOutflowIcon { ...props } />
                 :
-                <UndoIconButton {...props} />
+                <UndoIconButton { ...props } />
             )}
         </TableCell>
     )

@@ -10,7 +10,7 @@ const CategoryDeletePopup = (props) => {
 
     const classes = useModalStyles(props.theme)
 
-    const [open, setOpen] = useState(true)
+    const [open, ] = useState(true)
 
     const handleDialogClick = e => {
         e.stopPropagation()

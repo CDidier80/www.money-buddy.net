@@ -62,21 +62,21 @@ const CategoryAccordion = (props) => {
             <div className={classes.categoryWrapper}>
                 {showCategoryDeletePopup && 
                     <CategoryDeletePopup 
-                        {...props}
+                        { ...props }
                         fromCategoryAccordion={{...categoryDeletePopupProps}}
                     />
                 }
                 <Accordion className={classes.accordion}>
                     <AccordionDropdownTab 
-                        {...props}
+                        { ...props }
                         fromCategoryAccordion={{...accordionDropdownTabProps}}
                     />
                     <ButtonsAddDel 
-                        {...props}
+                        { ...props }
                         fromCategoryAccordion={{...buttonsAddDelProps}}
                     />
                     <ExpenseTable 
-                        {...props} 
+                        { ...props } 
                         fromCategoryAccordion={{...expenseTableProps}}
                     />
                 </Accordion>

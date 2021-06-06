@@ -54,7 +54,7 @@ const AccordionDropdownTab = (props) => {
 
         {showDeleteIcons &&
             <CategoryDeleteIcon 
-                {...props}
+                { ...props }
             />
         }
         

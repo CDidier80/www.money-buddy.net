@@ -31,7 +31,6 @@ export const useFabStyles = ({theme, displayRange}) => {
             maxHeight: "30px",
             maxWidth: "30px",
             minHeight: "0", 
-            minHeight: "0",
         },
         back: {
             ...backStyle,

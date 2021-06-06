@@ -27,7 +27,7 @@ const FlowcategoryDropdown = (props) => {
             aria-controls="panel1a-content"
             id="panel1a-header"
         >
-            {showDeleteIcons && <FlowcategoryDeleteIcon {...props} /> }
+            {showDeleteIcons && <FlowcategoryDeleteIcon { ...props } /> }
             
             <div className={classes.flexWrapper}>
                 <Typography 

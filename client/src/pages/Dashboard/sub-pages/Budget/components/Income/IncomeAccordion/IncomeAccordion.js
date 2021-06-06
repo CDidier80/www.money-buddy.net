@@ -103,11 +103,11 @@ const IncomeAccordion = (props) => {
                     expanded={expanded}
                 />
                 <AddDeleteButtons
-                    {...props}
+                    { ...props }
                     fromIncomeAccordion={{...addDelButtonGroupProps}}
                 />
                 <IncomeTable 
-                    {...props}
+                    { ...props }
                     fromIncomeAccordion={{...incomeTableProps}}
                 />
             </Accordion>

@@ -7,7 +7,7 @@ const CashflowDevRoute = memo((props) => {
     return (
         <Route 
             component={ () => ( 
-                <CashflowDevelopment {...props}/> 
+                <CashflowDevelopment { ...props }/> 
         )} 
     />
     )

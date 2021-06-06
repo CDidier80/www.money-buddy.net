@@ -61,11 +61,11 @@ const AddDelButtonGroup = (props) => {
             >
                 <AddButton 
                     addButton={classes.addButton}
-                    {...props} 
+                    { ...props } 
                 />
                 <DelButton 
                     deleteButton={classes.deleteButton}
-                    {...props} 
+                    { ...props } 
                 />
             </ButtonGroup>
         </AccordionDetails>

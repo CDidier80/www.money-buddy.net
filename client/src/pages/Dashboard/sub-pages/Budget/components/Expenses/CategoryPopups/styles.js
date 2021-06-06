@@ -1,39 +1,37 @@
 import { makeStyles, withStyles, TextField } from '@material-ui/core'
 
 export const useModalStyles = makeStyles( theme => {
-
-    const { palette, lato } = theme
-    const { primary, secondary } = palette
+    const { palette: { primary, secondary }, lato } = theme
 
     return ({
         dialog: {
-            minWidth: "280px",
-            width: "33vw"
+            minWidth: '280px',
+            width: '33vw'
         },
         header: {
-            padding: "20 20 0 20px",
+            padding: '20 20 0 20px',
             color: primary.main,
-            textAlign: "center",
-            fontWeight: "700",
-            fontSize: "20px",
-            ...lato,
+            textAlign: 'center',
+            fontWeight: '700',
+            fontSize: '20px',
+            ...lato
         },
         iconButtons: {
             paddingTop: 0,
-            marginTop: 0,
+            marginTop: 0
         },
         buttonWrapper: {
-            margin: "0 auto",
-            textAlign: "center",
-            justifyContent: "center"
+            margin: '0 auto',
+            textAlign: 'center',
+            justifyContent: 'center'
         },
         button: {
             ...lato,
-            fontSize: "13px",
+            fontSize: '13px',
             color: secondary.main,
-            "&:hover" : {
-                backgroundColor: "#06fbff4b"
-            },
+            '&:hover' : {
+                backgroundColor: '#06fbff4b'
+            }
         },
         span: { }
     })
@@ -41,21 +39,19 @@ export const useModalStyles = makeStyles( theme => {
 
 
 export const makeAddCategoryStyles = makeStyles(theme => {
-
-    const { lato, palette } = theme
-    const { primary, secondary } = palette
+    const { lato, palette: { primary } } = theme
 
     return({
         dialog: {
-            minWidth: "280px",
-            width: "33vw"
+            minWidth: '280px',
+            width: '33vw'
         },
         header: {
             ...lato,
-            fontSize: "20px",
-            fontWeight: "700",
+            fontSize: '20px',
+            fontWeight: '700',
             color: primary.main,
-            padding: "20 20 0 20px",
+            padding: '20 20 0 20px'
         },
         iconButtons: {
             marginTop: 0,
@@ -63,8 +59,8 @@ export const makeAddCategoryStyles = makeStyles(theme => {
         },
         button: {
             ...lato,
-            fontSize: "12px",
-            fontWeight: "700",
+            fontSize: '12px',
+            fontWeight: '700'
         }
     })
 })
@@ -72,35 +68,33 @@ export const makeAddCategoryStyles = makeStyles(theme => {
 
 
 export const StyledTextField = withStyles( theme => {
-    
     const { lato, palette } = theme
-    const { primary, secondary, secondaryDark, secondaryBright, primaryBright } = palette
+    const { primary, secondaryBright } = palette
+
     return ({
         root: {
             ...lato, 
-            marginBottom: "20px", 
-            padding: "0, 5px, 0, 5px", 
+            marginBottom: '20px', 
+            padding: '0, 5px, 0, 5px', 
             '& label': {
                 color: secondaryBright.main,
-                fontSize: "15px"
+                fontSize: '15px'
             },
             '& label.Mui-focused': {
                 color: secondaryBright.main,
             },
             '& error': {
                 borderBottomColor: secondaryBright.main,
-                
             },
             '& .MuiInput-underline:after': {
                 borderBottomColor: primary.main,            
                 '& Mui-error': {
-                    borderBottomColor: "red"
+                    borderBottomColor: 'red'
                 }
             },
             '& .MuiInput-underline Mui-error:after': {
-                borderBottomColor: 'green',
-            },
-
-        },
+                borderBottomColor: 'green'
+            }
+        }
     })
 })(TextField)

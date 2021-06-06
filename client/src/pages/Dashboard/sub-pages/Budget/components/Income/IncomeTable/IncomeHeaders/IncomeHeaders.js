@@ -13,14 +13,14 @@ const IncomeHeaders = (props) => {
             <TableRow>
                 <EmptyCell />
                 
-                <HeaderCell {...props} label="Income Source" />
+                <HeaderCell { ...props } label="Income Source" />
                 
                 {props.onlyTwoCells ? 
-                    <CellButtonGroup {...props} />
+                    <CellButtonGroup { ...props } />
                 :
                     <>
-                        <HeaderCell {...props} label="Monthly Average" />    
-                        <HeaderCell {...props} label="Annual" />  
+                        <HeaderCell { ...props } label="Monthly Average" />    
+                        <HeaderCell { ...props } label="Annual" />  
                     </>
                 }
             </TableRow>

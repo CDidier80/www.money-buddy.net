@@ -44,7 +44,7 @@ const InflowsTable = (props) => {
                         className={classes.tableBody}
                     >
                         <InflowHeaders 
-                            {...props}
+                            { ...props }
                         />
                         {monthlyInflows.map((row, index) => {
                             const {source, amount} = row
@@ -61,7 +61,7 @@ const InflowsTable = (props) => {
                                 <InflowRow 
                                     fromInflowsTable={{...propsForInflowRow}}
                                     key={index + 2000}
-                                    {...props}
+                                    { ...props }
                                 />
                             )
                         })}

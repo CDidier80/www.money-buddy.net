@@ -6,8 +6,8 @@ import { DialogActions } from '@material-ui/core'
 const ButtonWrapper = (props) => {
     return (
         <DialogActions >
-            <ConfirmButton {...props} />
-            <CancelButton  {...props} />
+            <ConfirmButton { ...props } />
+            <CancelButton  { ...props } />
         </DialogActions>
     )
 }

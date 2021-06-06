@@ -7,7 +7,7 @@ const BudgetRoute = memo((props) => {
     return (
         <Route 
             component={ () => ( 
-                <Budget {...props}/> 
+                <Budget { ...props }/> 
         )} 
     />
     )

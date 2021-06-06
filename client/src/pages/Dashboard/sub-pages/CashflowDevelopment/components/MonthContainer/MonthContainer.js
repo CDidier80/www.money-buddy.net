@@ -107,7 +107,7 @@ const MonthContainer = (props) => {
                 style={{display: display}}
             >
                 <MemoContent 
-                    {...props}
+                    { ...props }
                     fromMonthContainer={{...memoProps}}
                 />
             </div>

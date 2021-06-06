@@ -85,7 +85,7 @@ const RowLogic = (props) => {
 
     /* ----------------- JSX -----------------*/
 
-    return <RowsJsx {...props} data={data} rowColors={rowColors} />
+    return <RowsJsx { ...props } data={data} rowColors={rowColors} />
 }
 
 

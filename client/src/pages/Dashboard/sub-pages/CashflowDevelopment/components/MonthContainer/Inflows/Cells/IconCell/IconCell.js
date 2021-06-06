@@ -32,10 +32,10 @@ const IconCell = (props) => {
             style={{width: "30px"}}
         >
             {iconShouldShow && ( showInflowDeleteIcons ? 
-                <DeleteInflowIcon {...props} />
+                <DeleteInflowIcon { ...props } />
                 :
                 <UndoIconButton 
-                    {...props} 
+                    { ...props } 
                 />
             )}
         </TableCell>

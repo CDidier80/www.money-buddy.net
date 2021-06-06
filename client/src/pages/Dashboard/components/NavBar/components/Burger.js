@@ -1,5 +1,5 @@
 import blueGrey from '@material-ui/core/colors/blueGrey'
-import { useBurgerStyles } from "../styles/navbarStyles"
+import { useBurgerStyles } from '../styles/navbarStyles'
 import MenuIcon from '@material-ui/icons/Menu'
 import { IconButton } from '@material-ui/core'
 import React from 'react'
@@ -7,23 +7,19 @@ import React from 'react'
 
 const Burger = (props) => {
 
-    /* ---------- PROPS---------- */
-
     const { 
         ticker,
         setTicker,
         userPreference,
-        setUserPreference,
+        setUserPreference
     } = props
 
-    const iconStyle = { margin: "6px 0 0 6px" }
-
-    /* ------------- click handler ----------- */
+    const iconStyle = { margin: '6px 0 0 6px' }
     
     const handleBurger = (e) => {
         setUserPreference( 
-            ((userPreference === "") && (window.innerWidth <= 600 ? "open" : "closed")) || 
-            (userPreference === "open" && "closed" || "open")
+            ((userPreference === '') && (window.innerWidth <= 600 ? 'open' : 'closed')) || 
+            (userPreference === 'open' && 'closed' || 'open')
         )
         setTicker(ticker + 1)
     }
@@ -38,8 +34,8 @@ const Burger = (props) => {
         >
             <MenuIcon 
                 htmlColor={blueGrey[50]}
-                fontSize="default" 
-                className={burger}
+                fontSize='default' 
+                className={ burger }
             />
         </IconButton> 
     )

@@ -9,7 +9,7 @@ const ParticleGroup = (props) => {
             {particleGroup.map((particle, index) => {
                 <Particle
                     index={index}
-                    {...props}
+                    { ...props }
                 />
             })}
         </>

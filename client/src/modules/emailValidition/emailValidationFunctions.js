@@ -1,11 +1,10 @@
-import emailExtensions from "./emailExtensions"
-
+import emailExtensions from './emailExtensions'
 
 const checkPeriodCount = (textInput) => {
     const length = textInput.length
     let periodCount = 0
     for (let i=0; i <= length -1 ;  i++){
-        if (textInput.charAt(i) === ".") {
+        if (textInput.charAt(i) === '.') {
             periodCount += 1
         }
     }
@@ -13,7 +12,7 @@ const checkPeriodCount = (textInput) => {
 }
 
 const includesExtension = (textInput) => {
-    const periodIndex = textInput.indexOf(".")
+    const periodIndex = textInput.indexOf('.')
     const extensionStartIndex = periodIndex + 1
     const extension = (textInput.substring(extensionStartIndex)).toUpperCase()
     if (extension in emailExtensions) {
@@ -23,22 +22,17 @@ const includesExtension = (textInput) => {
     }
 }
 
-
 const validateEmailExtension = (textInput) => {
     const periodCount = checkPeriodCount(textInput)
-    if (periodCount != 1) {
-        console.log("invalid email: incorrect extension")
-        return false
-    } 
+    if (periodCount !== 1) return false
     const validExtension = includesExtension(textInput)
     return validExtension
 }
 
-
 const checkATvalid = (textInput) => {
-    const ATindex = textInput.indexOf("@")
+    const ATindex = textInput.indexOf('@')
     if (!(ATindex > 0)) {
-        console.log("invalid email address: @")
+        console.log('invalid email address: @')
         return false
     } else {
         return true

@@ -65,7 +65,7 @@ const App = (props) => {
             <AppWrapper>
                 {!pageIsLoaded ? 
                     <div></div> : 
-                    <Routes {...props} fromApp={{...propsForRoutes}} /> 
+                    <Routes { ...props } fromApp={{...propsForRoutes}} /> 
                 }
             </AppWrapper>
     )

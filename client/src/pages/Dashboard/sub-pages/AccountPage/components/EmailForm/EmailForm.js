@@ -29,11 +29,11 @@ const EmailForm = (props) => {
                 noValidate
             >
                 <EmailTextfield 
-                    {...props}
+                    { ...props }
                     setNewEmail={setNewEmail}
                 />
                 <EmailButton 
-                    {...props}
+                    { ...props }
                     newEmail={newEmail}
                 />
             </form>

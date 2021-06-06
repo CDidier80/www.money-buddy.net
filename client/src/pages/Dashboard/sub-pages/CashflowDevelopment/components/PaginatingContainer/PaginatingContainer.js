@@ -41,7 +41,7 @@ const PaginatingContainer = memo((props) => {
                         }
                     return (
                         <MonthContainer 
-                            {...props}
+                            { ...props }
                             key={`ABC${index}`}
                             className="month-container"
                             fromPaginatingContainer={{...monthContainerProps}}

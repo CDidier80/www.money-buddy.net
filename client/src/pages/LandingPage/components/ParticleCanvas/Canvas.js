@@ -74,7 +74,7 @@ const Canvas = (props) => {
             <canvas 
                 style={canvasStyle}
                 ref={canvasRef} 
-                {...props}
+                { ...props }
             >
             </canvas>
         )

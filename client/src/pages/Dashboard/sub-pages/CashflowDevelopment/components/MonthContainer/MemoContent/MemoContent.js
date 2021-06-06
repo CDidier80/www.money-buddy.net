@@ -6,9 +6,9 @@ import React, { memo } from 'react'
 const MemoContent = memo((props) => {
     return (
         <>
-            <SummaryAccordion  {...props} />
-            <InflowsAccordion  {...props} />
-            <OutflowsAccordion {...props} />
+            <SummaryAccordion  { ...props } />
+            <InflowsAccordion  { ...props } />
+            <OutflowsAccordion { ...props } />
         </>
     )
 },({fromPaginatingContainer: prev}, {fromPaginatingContainer: next}) => {

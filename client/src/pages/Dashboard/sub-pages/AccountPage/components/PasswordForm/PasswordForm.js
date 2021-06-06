@@ -31,21 +31,21 @@ const PasswordForm = (props) => {
 
     return (
         <>
-            <Header {...props}/>
+            <Header { ...props }/>
             <form 
                 className={classes.form} 
                 noValidate
             >
                 <NewPassword 
-                    {...props}
+                    { ...props }
                     setNewPassword={setNewPassword}
                 />
                 <RetypedPassword 
-                    {...props}
+                    { ...props }
                     setReenteredNewPassword={setReenteredNewPassword}
                 />
                 <PasswordButton 
-                    {...props} 
+                    { ...props } 
                     fromPasswordForm={{...buttonProps}}
                 />
             </form>

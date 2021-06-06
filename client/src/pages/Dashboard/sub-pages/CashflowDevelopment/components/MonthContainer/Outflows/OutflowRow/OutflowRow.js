@@ -6,27 +6,16 @@ import { TableRow } from '@material-ui/core'
 
 const OutflowRow = (props) => {
 
-    /* -------------------------- PROPS ------------------------- */
-
     const {
         amount, 
         outflow,
-        rowColor,
-        // outflowIndex,
-        // incomingDeletion, 
-        // setIncomingDeletion,
+        rowColor
     } = props.fromOutflowsTable
-    // const { flowcategoryIndex } = props.fromOutflowsAccordion
+    
     const { showOutflowDeleteIcons } = props.fromFlowcategoryAccordion
-
-
-    /* -------------------------- STATE ------------------------- */
 
     const [ showUndoIcon, setShowUndoIcon ] = useState(false)
     const [ iconShouldShow, setIconShouldShow ] = useState(false)
-
-    /* -------------------------- useEffects ------------------------- */
-
 
     useEffect(() => {
         const anIconWasActivated = (showOutflowDeleteIcons | showUndoIcon) == true 
@@ -38,17 +27,13 @@ const OutflowRow = (props) => {
     }, [showOutflowDeleteIcons, showUndoIcon])
 
 
-    /* -------------------- PROPS FOR CHILDREN ------------------- */
-
-    const propsForIconCell= {
+    const propsForIconCell = {
         ...props,
         showUndoIcon,
         iconShouldShow, 
         setShowUndoIcon,
         setIconShouldShow 
     }
-
-    /* ----------------------- JSX ---------------------- */
 
     return (
         <TableRow

@@ -12,7 +12,7 @@ const SignInSignUpPage = (props) => {
 
     return (
         <div className={classes.signInSignUpPage}>
-            <Form {...props} />
+            <Form { ...props } />
         </div>
     )
 }

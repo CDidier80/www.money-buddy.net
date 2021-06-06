@@ -28,21 +28,12 @@ const Dashboard = (props) => {
 
     const smallScreen = window.innerWidth <= 600
 
-    /* -------------------------- PROPS ------------------------- */
-
     const { userInfo, gradientWrapper, } = props.fromApp
     const { id: userId } = userInfo
     const { fromApp, theme } = props
 
-
-    /* -------------------------- STATE ------------------------- */
-
-    /* ---------- forcible rerenders -------- */
-
     const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
-    
-    /*  ------ financial info ------*/
 
     const [months, setMonths] = useState("")
     const [incomes, setIncomes] = useState("")
@@ -50,23 +41,14 @@ const Dashboard = (props) => {
     const [cashflowId, setCashflowId] = useState("")
     const [categories, setCategories] = useState("")
 
-    /* --------- sidebar control ------- */
-
     const [userPreference, setUserPreference] = useState("")
     const initSidebarClass = smallScreen ? "sidebar closed" : "sidebar"
     const [sidebarClasses, setSidebarClasses] = useState(initSidebarClass)
-    
-    /* --------- subpage control ------- */
-    
+        
     const initSubpageClass = smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed"
     const [subpageClasses, setSubpageClasses] = useState(initSubpageClass)
     const [coloredLinks, setColoredLinks] = useState(true)
     const [coloredAccountIcon, setColoredAccountIcon] = useState(false)
-
-
-    /* -------------------------- useEffects ------------------------- */
-
-    /* #1: - async calls on first render - */
     
     useEffect(() => {
         let componentMounted = true
@@ -83,13 +65,9 @@ const Dashboard = (props) => {
                 setMonths(m)
             }
         }
-        /* - verify token before requesting user data - */
         initializeDashboard()
         return () => (componentMounted = false)
     }, [])
-
-
-    /* #2: --- block ui until state loads --- */
 
     const renderDependencies = [
         months,
@@ -108,7 +86,7 @@ const Dashboard = (props) => {
             }
         })
         componentMounted && setLoaded(childrenShouldRender ? true : false)
-    }, [...renderDependencies])
+    }, renderDependencies)
 
 
     /* --------------------- PROPS FOR CHILDREN --------------------- */
@@ -183,7 +161,7 @@ const Dashboard = (props) => {
                             exact path="/dashboard/" 
                             subpageRef={subpageRef}
                             ticker={ticker}
-                            {...props}
+                            { ...props }
                         />
                         <CashflowDevRoute
                             {...cashflowProps}
@@ -192,16 +170,16 @@ const Dashboard = (props) => {
                         <RetirementRoute 
                             path="/dashboard/retirement" 
                             ticker={ticker}
-                            {...props}
+                            { ...props }
                         />
                         <Route 
-                            {...props} 
+                            { ...props } 
                             path="/dashboard/account" 
                             component={() => ( 
                                 <AccountPage 
                                     fromDashboard={{...accountProps}} 
                                     id={userId} 
-                                    {...props} 
+                                    { ...props } 
                                 /> 
                             )} 
                         />

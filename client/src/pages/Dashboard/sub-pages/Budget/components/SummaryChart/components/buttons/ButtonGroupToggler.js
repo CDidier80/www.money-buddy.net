@@ -28,8 +28,8 @@ const ButtonGroupToggler = (props) => {
             className={classes.buttonGroup} 
             aria-label="text primary button group"
         >
-            <MonthlyButton {...props} />
-            <AnnualButton  {...props} />
+            <MonthlyButton { ...props } />
+            <AnnualButton  { ...props } />
         </ButtonGroup>
     )
 }

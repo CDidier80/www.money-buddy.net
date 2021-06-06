@@ -9,14 +9,9 @@ import React, { useState } from 'react'
 
 const SummaryAccordion = (props) => {
 
-    /* -------------------------- PROPS ------------------------- */
     const { thisMonth } = props.fromPaginatingContainer
 
-    /* -------------------------- STATE ------------------------- */
-    // const [showAddCategoryPanel, toggleAddCategoryPanel] = useState(false)
-    // const [showDeleteIcons, toggleDeleteIcons] = useState(false)
     const [opened, toggleOpened] = useState(true)
-
 
     const handleExpansion = (e) => {
         toggleOpened(!opened)
@@ -35,12 +30,10 @@ const SummaryAccordion = (props) => {
                     opened={opened}
                     month={thisMonth.month}
                 />
-                <SummaryTable {...props} />
+                <SummaryTable { ...props } />
             </Accordion>
         </div>
     )
 }
 
 export default SummaryAccordion
-
-

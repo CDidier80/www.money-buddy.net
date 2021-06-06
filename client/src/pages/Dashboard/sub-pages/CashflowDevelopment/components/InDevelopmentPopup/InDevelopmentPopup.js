@@ -11,7 +11,7 @@ const InDevelopmentPopup = (props) => {
             <DialogWrapper>
                 <PopupHeader />
                 <Message     />
-                <ViewPageButton {...props} />
+                <ViewPageButton { ...props } />
             </DialogWrapper>
     )
 }

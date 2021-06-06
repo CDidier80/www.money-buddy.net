@@ -137,11 +137,9 @@
     .navlink.mobile:hover {
         color: #03eba5;
     }
-
 }
 
 @media (min-width: 770px) {
-
     .mobile-navbar {
         display: none;
     }
@@ -149,14 +147,12 @@
 
 
 @media (max-width: 465px) {
-
     .navlink {
         font-size: 21px;
     }
 }
 
 @media (max-width: 320px) {
-
     .navlink {
         font-size: 18px;
         padding-right: 0;

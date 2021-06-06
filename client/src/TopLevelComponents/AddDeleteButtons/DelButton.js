@@ -10,12 +10,7 @@ const DelButton = (props) => {
         deleteText, 
         classes
      } = props
-
-    const { 
-        delButtonIconsToggled: dbit, 
-        delButtonNoIcons: dbni,
-     } = classes
-
+     
     const className = iconsDisplayed ? 
         classes.delButtonIconsToggled : 
         classes.delButtonNoIcons

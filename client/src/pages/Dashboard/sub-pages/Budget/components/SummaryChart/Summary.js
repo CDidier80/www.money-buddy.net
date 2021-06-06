@@ -23,7 +23,7 @@ const Summary = (props) => {
             <div className="summary-container">
                 <h3 className="widget-header">Summary</h3>
                 <SummaryTable 
-                    {...props}
+                    { ...props }
                     fromSummary={{...childrenProps}}
                 />
                 <ButtonGroupToggler 

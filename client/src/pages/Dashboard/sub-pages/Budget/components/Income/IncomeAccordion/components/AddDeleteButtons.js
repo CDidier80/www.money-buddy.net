@@ -57,7 +57,7 @@ const AddDeleteButtons = (props) => {
             {...deleteButtonProps}
             {...addButtonProps}
             {...otherProps}
-            {...props}
+            { ...props }
         />
     )
 }

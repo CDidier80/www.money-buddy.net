@@ -70,12 +70,12 @@ const Retirement = (props) => {
         <div className="retirement" ref={retirementRef}>
             <Header {...headerProps} />
             <RetirementChart 
-                {...props}
+                { ...props }
                 retirementRef={retirementRef}
                 fromRetirement={{...hookValues}}
             />
             <ChartControls 
-                {...props}
+                { ...props }
                 fromRetirement={{...hookSetters, ...hookValues}}
             />
             

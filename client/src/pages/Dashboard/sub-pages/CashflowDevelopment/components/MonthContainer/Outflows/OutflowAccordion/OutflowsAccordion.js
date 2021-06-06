@@ -4,14 +4,9 @@ import { useOutflowsAccordionStyles } from "../../styles/styles"
 import React, { useState, useEffect } from 'react'
 import {  Accordion } from '@material-ui/core'
 
-
 const OutflowsAccordion = (props) => {
 
-    /* -------------------------- PROPS ------------------------- */
-
     const { newFlowcategories } = props.fromMonthContainer
-
-    /* -------------------------- STATE ------------------------- */
 
     const [showAddFlowcategoryPanel, toggleAddFlowcategoryPanel] = useState(false)
     const [renderOutflowsAccordion, rerenderOutflowsAccordian ] = useState(false)
@@ -19,27 +14,20 @@ const OutflowsAccordion = (props) => {
     const [memoTicker, incrementMemoTicker] = useState(0)
     const [opened, toggleOpened] = useState(false)
 
-    /* ------------------------ useEffect ----------------------- */
-
     useEffect(() => { }, [renderOutflowsAccordion])
 
-    /* ----------------------- FUNCTIONS ------------------------ */
-
-    
     const { root } = useOutflowsAccordionStyles(props.theme)
-
 
     const handleExpansion = (e) => {
         incrementMemoTicker(memoTicker + 1)
         toggleOpened(!opened)
     }
 
-
     return (
             <div>
                 <Accordion 
-                    className={root}
-                    onChange={(e)=>handleExpansion(e)}
+                    className={ root }
+                    onChange={ (e)=>handleExpansion(e) }
                 >
                     <OutflowsDropdown opened={opened} />
                         { newFlowcategories.map((flowcategory, index) => {
@@ -53,9 +41,9 @@ const OutflowsAccordion = (props) => {
                             }
                         return (
                             <FlowcategoryAccordion 
-                                fromOutflowsAccordion={{...flowcategoryAccordionProps}}
-                                key={`${20000 + index}`}
-                                {...props} 
+                                fromOutflowsAccordion={{ ...flowcategoryAccordionProps }}
+                                key={ `${20000 + index}` }
+                                { ...props } 
                             />
                         )
                     })}

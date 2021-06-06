@@ -118,7 +118,7 @@ const CashflowDevelopment = (props) => {
                 fromCashflowDevelopment={{...chartProps}}
             />
             <PaginatingContainer 
-                {...props}
+                { ...props }
                 fromCashflowDevelopment={{...paginatingContainerProps}}
             />
         </div>

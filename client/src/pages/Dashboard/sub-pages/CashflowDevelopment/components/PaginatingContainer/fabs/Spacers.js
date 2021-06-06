@@ -8,8 +8,8 @@ const Spacers = () => {
 
     return (
         <>
-            <div {...props}></div>
-            <div {...props}></div>
+            <div { ...props }></div>
+            <div { ...props }></div>
         </>
     )
 }

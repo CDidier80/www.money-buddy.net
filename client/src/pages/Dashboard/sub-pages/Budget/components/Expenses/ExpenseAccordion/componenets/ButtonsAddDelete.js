@@ -32,7 +32,7 @@ const ButtonsAddDelete = (props) => {
             {...deleteButtonProps}
             {...addButtonProps}
             {...otherProps}
-            {...props}
+            { ...props }
         />
     )
 }

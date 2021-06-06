@@ -12,7 +12,7 @@ const LandingNavBar = (props) => {
     return (
         <NavbarWrapper type={"default"}>
             {props.fromApp.authenticated ? 
-                <AuthenticatedLinks {...props} navlinkStyle={navlink}/> 
+                <AuthenticatedLinks { ...props } navlinkStyle={navlink}/> 
                 : 
                 <UnauthenticatedLinks navlinkStyle={navlink} />
             }

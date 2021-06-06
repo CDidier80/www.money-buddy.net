@@ -35,7 +35,7 @@ const InflowsAccordion = (props) => {
             >
                 <AccordionDropdownTab expanded={opened}/>
                 <InflowsTable 
-                    {...props} 
+                    { ...props } 
                     fromInflowsAccordion={{...propsForInflowsTable}}
                 />
             </Accordion>

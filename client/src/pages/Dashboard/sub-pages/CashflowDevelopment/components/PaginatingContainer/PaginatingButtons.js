@@ -14,7 +14,7 @@ const PaginatingButtons = (props) => {
 
     return (
         <div {...iconContainer} >
-            <Fabs {...props} />
+            <Fabs { ...props } />
             <Spacers />
         </div>
     )

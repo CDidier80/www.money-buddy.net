@@ -12,8 +12,8 @@ const DeletePopup = (props) => {
             <div className="popup">
                 <p className="warning">Warning: This action is irreversible.</p>
                 <div className="button-container">
-                    <DeleteAccountButton {...props} />
-                    <ReturnButton {...props} />
+                    <DeleteAccountButton { ...props } />
+                    <ReturnButton { ...props } />
                 </div>
             </div>
         </div>

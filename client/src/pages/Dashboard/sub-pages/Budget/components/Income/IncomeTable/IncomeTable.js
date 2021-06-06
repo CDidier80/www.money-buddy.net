@@ -52,7 +52,7 @@ const IncomeTable = (props) => {
                 >
                     <TableBody>
                         <IncomeHeaders 
-                            {...props}
+                            { ...props }
                             {...propsHeaders}
                         />
                         {newIncomes.map((income, index) => {
@@ -74,7 +74,7 @@ const IncomeTable = (props) => {
                                 <IncomeRow 
                                     fromIncomeTable={{...propsForRows}}
                                     key={index + 100000}
-                                    {...props}
+                                    { ...props }
                                 />
                             )
                         })}

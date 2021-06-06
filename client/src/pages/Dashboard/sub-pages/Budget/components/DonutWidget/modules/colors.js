@@ -1,4 +1,4 @@
-import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
+import { moneyBuddyTheme } from '../../../../../../../modules/themeAndStyles'
 
 /**
  * @param {String} color hex color
@@ -20,30 +20,29 @@ export const lightenOrDarken = (color, percent) => {
         G = ( G < 255 ) ? G:255  
         B = ( B < 255 ) ? B:255
     
-        let RR = ((R.toString(16).length==1) ? "0" + R.toString(16) : R.toString(16) );
-        let GG = ((G.toString(16).length==1) ? "0" + G.toString(16) : G.toString(16) );
-        let BB = ((B.toString(16).length==1) ? "0" + B.toString(16) : B.toString(16) );
+        let RR = ((R.toString(16).length === 1) ? '0' + R.toString(16) : R.toString(16) )
+        let GG = ((G.toString(16).length === 1) ? '0' + G.toString(16) : G.toString(16) )
+        let BB = ((B.toString(16).length === 1) ? '0' + B.toString(16) : B.toString(16) )
     
-        return "#"+RR+GG+BB;
+        return '#'+RR+GG+BB;
         
     } catch (error) {
-        console.log("TRY{}CATCH{} ERROR --> paletteFromTwoColors(): ", error)
+        console.log('TRY{}CATCH{} ERROR --> paletteFromTwoColors(): ', error)
     }
 }
-
 
 /**
  * @param {Array} hex1 array where each element is a 0-255 rgb integer value
  * @param {Array} hex2 array where each element is a 0-255 rgb integer value
  */
 export const paletteFromTwoColors = (hex1, hex2, numOfColors) => {
-    // console.log("function reached")
-    // console.log(lightenOrDarken)
+
     try {
         let palette = [
             hex1, 
-            hex2,
+            hex2
         ]
+
         let colorOneTurn = true
         let light = true
         let lightCounter = 0
@@ -66,40 +65,37 @@ export const paletteFromTwoColors = (hex1, hex2, numOfColors) => {
                 percent += 33
                 percentCounter = 0
             }
-    
+
             colorOneTurn = !colorOneTurn
         }
-        
         return palette
     } catch (error) {
-        console.log("TRY{}CATCH{} ERROR --> paletteFromTwoColors(): ", error)
+        console.log('TRY{}CATCH{} ERROR --> paletteFromTwoColors(): ', error)
     }
 }
 
 const {
-    primary,
     primaryDark,
     secondary,
-    primaryBright,
-    secondaryBright,
-    secondaryDark
+    primaryBright
 } = moneyBuddyTheme.palette
+
 export const backgroundColors = [
     primaryBright.main,
     secondary.main,
     primaryDark.main,
-    "#fdbb2d", 
-    "#c746ce",
-    "#428bff",
-    "#22c1c3",
-    "#48ce46",
-    "#e60067",
-    "#027500",
-    "#ffe342",
-    "#a2de4f",
-    "#6f68fd",
-    "#fd6868",
-    "#b17902",
-    "#69bb85",
-    "#a5b650",
+    '#fdbb2d', 
+    '#c746ce',
+    '#428bff',
+    '#22c1c3',
+    '#48ce46',
+    '#e60067',
+    '#027500',
+    '#ffe342',
+    '#a2de4f',
+    '#6f68fd',
+    '#fd6868',
+    '#b17902',
+    '#69bb85',
+    '#a5b650',
 ]

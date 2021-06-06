@@ -39,7 +39,7 @@ const ExpenseTable = (props) => {
                     aria-label="a dense table"
                     >
                     <TableBody>
-                        <ExpenseHeaders {...props} />
+                        <ExpenseHeaders { ...props } />
                         {expenses.map((expenseObj, index) => {
                             const { expense, amount } = expenseObj
                             const monthly = Math.round(amount/12)
@@ -54,7 +54,7 @@ const ExpenseTable = (props) => {
                             }
                             return (
                                 <ExpenseRow 
-                                    {...props}
+                                    { ...props }
                                     key={`expense-row-${index}`}
                                     fromExpenseTable={{...propsForRows}}
                                 /> 

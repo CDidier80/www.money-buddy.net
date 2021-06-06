@@ -58,19 +58,19 @@ const FlowcategoryAccordion = memo((props) => {
             <div className={classes.categoryWrapper}>
                 <Accordion className={classes.accordion}>
                     <FlowcategoryDropdown 
-                        {...props}
+                        { ...props }
                         fromFlowcategoryAccordion={{...accordionDropdownTabProps}}
                     />
                     <OutflowsTable 
-                        {...props} 
+                        { ...props } 
                         fromFlowcategoryAccordion={{...outflowsTableProps}}
                     />
                 </Accordion>
             </div>
         </AccordionDetails>
     )
-}, ({fromOutflowsAccordion: prev}, {fromOutflowsAccordion: next}) => {
-    if (next.memoTicker == 1) return false
+}, ({ fromOutflowsAccordion: prev }, { fromOutflowsAccordion: next }) => {
+    if (next.memoTicker === 1) return false
     return (prev.memoTicker !== next.memoTicker) 
 })
 

@@ -115,26 +115,26 @@ const Budget = (props) => {
 
         <div className="budget" ref={budgetRef}>
             <TitleAndSaveButton 
-                {...props}
+                { ...props }
                 fromBudget={{...propsTitleAndSave}}
             />
             <div className="top-flex">
                 <Summary
-                    {...props}
+                    { ...props }
                     fromBudget={{...summaryProps}}
                 />
                 <DoughnutChart 
-                    {...props}
+                    { ...props }
                     budgetRef={budgetRef}
                     fromBudget={{...propsDoughnut}}
                 />
             </div>
             <IncomeAccordion 
-                {...props}
+                { ...props }
                 fromBudget={incomeAccordionProps}
             />
             <ExpenseAccordion
-                {...props} 
+                { ...props } 
                 fromBudget={{...expenseAccordionProps}}
             />
         </div>

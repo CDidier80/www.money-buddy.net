@@ -11,7 +11,7 @@ const NewPassword = (props) => {
     return (
         <PasswordField 
             {...passwordFieldProps}
-            {...props}
+            { ...props }
         />
     )
 }
