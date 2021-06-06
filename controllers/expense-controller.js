@@ -1,5 +1,5 @@
-const { Expense } = require('../../models')
-const { ControllerLoggers } = require('../logs')
+const { Expense } = require('../models')
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.ExpenseControllerLog 
 const errorLog = ControllerLoggers.ExpenseControllerErrorLog
 

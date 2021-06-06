@@ -1,5 +1,5 @@
-const { Outflow } = require('../../models')
-const { ControllerLoggers } = require('../logs')
+const { Outflow } = require('../models')
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.OutflowControllerLog 
 const errorLog = ControllerLoggers.OutflowControllerErrorLog
 

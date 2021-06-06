@@ -1,8 +1,7 @@
-const { Income } = require('../../models')
-const { ControllerLoggers } = require('../logs')
+const { Income } = require('../models')
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.IncomeControllerLog 
 const errorLog = ControllerLoggers.IncomeControllerErrorLog
-
 
 const CreateIncome = async (req, res) => {
     log(CreateIncome, req)
@@ -13,7 +12,6 @@ const CreateIncome = async (req, res) => {
         errorLog(CreateIncome, error) 
     }
 }
-
 
 const CreateManyIncomes = async (req, res) => {
     log(CreateManyIncomes, req)
@@ -33,7 +31,6 @@ const CreateManyIncomes = async (req, res) => {
         errorLog(CreateManyIncomes, error)  
     }
 }
-
 
 const GetOneIncome = async (req, res) => {
     log(GetOneIncome, req)
@@ -64,7 +61,6 @@ const ReadBudgetIncomes = async (req, res) => {
         errorLog(ReadBudgetIncomes, error) 
     }
 }
-
 
 module.exports = {
     CreateIncome,

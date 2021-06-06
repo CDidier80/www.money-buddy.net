@@ -1,15 +1,6 @@
-const incomeController = require('./IncomeController')
-const { ControllerLoggers } = require('../logs')
-const { CreateManyIncomes } = incomeController
-const log = ControllerLoggers.BudgetControllerLog 
-const errorLog = ControllerLoggers.BudgetControllerErrorLog
-const { 
-    Budget, 
-    Income, 
-    Category, 
-    Expense 
-} = require('../../models')
-
+const { ControllerLoggers } = require('./logs')
+const { BudgetControllerLog: log, BudgetControllerErrorLog: errorLog } = ControllerLoggers
+const { Budget, Income, Category, Expense } = require('../models')
 
 const CreateBudget = async (req, res) => {
     log(CreateBudget, req)
@@ -20,7 +11,6 @@ const CreateBudget = async (req, res) => {
         errorLog(CreateBudget, error) 
     }
 }
-
 
 const GetOneBudget = async (req, res) => {
     log(GetOneBudget, req)
@@ -36,7 +26,6 @@ const GetOneBudget = async (req, res) => {
         errorLog(GetOneBudget, error) 
     }
 }
-
 
 const ReadEntireBudget = async (req, res) => {
     log(ReadEntireBudget, req)
@@ -83,7 +72,6 @@ const ReadEntireBudget = async (req, res) => {
 }
 
 
-
 class BudgetUpdater {
     constructor({body}){
         this.budgetId = body.budgetId
@@ -103,7 +91,6 @@ class BudgetUpdater {
         }))
         this.updatedBudget = { budgetId: this.budgetId }
     }
-
 
     destroy = () => {
         Income.destroy({
@@ -175,7 +162,6 @@ class BudgetUpdater {
     getUpdatedBudget = () => this.updatedBudget
 }
 
-
 const UpdateEntireBudget = async (req, res) => {
     log(UpdateEntireBudget, req)
     try {
@@ -187,7 +173,6 @@ const UpdateEntireBudget = async (req, res) => {
         errorLog(UpdateEntireBudget, error)
     }
 }
-
 
 module.exports = {
     CreateBudget,

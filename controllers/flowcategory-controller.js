@@ -1,5 +1,5 @@
-const { Flowcategory } = require('../../models')
-const { ControllerLoggers } = require('../logs')
+const { Flowcategory } = require('../models')
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.FlowcategoryControllerLog 
 const errorLog = ControllerLoggers.FlowcategoryControllerErrorLog
 

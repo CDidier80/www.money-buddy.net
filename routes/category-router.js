@@ -5,7 +5,7 @@ const {
     ReadBudgetCategories,
     RestoreDefaultCategories,
     DeleteCategoriesFromBudget
-} = require('../../../controllers/BudgetControllers/CategoryController')
+} = require('../controllers/category-controller')
 
 
 Router.get("/getone", GetOneCategory)
@@ -14,4 +14,4 @@ Router.post('/create', CreateCategory)
 Router.post('/restoredefaults', RestoreDefaultCategories)
 Router.delete('/deletemanyfrombudget', DeleteCategoriesFromBudget)
 
-export default Router
+module.exports = Router

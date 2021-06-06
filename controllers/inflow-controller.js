@@ -1,8 +1,7 @@
-const { Inflow } = require('../../models')
-const { ControllerLoggers } = require('../logs')
+const { Inflow } = require('../models')
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.InflowControllerLog 
 const errorLog = ControllerLoggers.InflowControllerErrorLog
-
 
 const CreateInflow = async (req, res) => {
     log(CreateInflow, req)
@@ -13,7 +12,6 @@ const CreateInflow = async (req, res) => {
         errorLog(CreateInflow, error) 
     }
 }
-
 
 const CreateManyInflows = async (req, res) => {
     log(CreateManyInflows, req)
@@ -34,7 +32,6 @@ const CreateManyInflows = async (req, res) => {
     }
 }
 
-
 const GetOneInflow = async (req, res) => {
     log(GetOneInflow, req)
     try {
@@ -50,7 +47,6 @@ const GetOneInflow = async (req, res) => {
     }
 }
 
-
 const GetAllInflows = async (req, res) => {
     log(ReadmonthInflows, req)
     try {
@@ -65,7 +61,6 @@ const GetAllInflows = async (req, res) => {
         errorLog(GetAllInflows, error) 
     }
 }
-
 
 module.exports = {
     CreateInflow,

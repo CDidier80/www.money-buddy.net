@@ -3,10 +3,10 @@ const {
     CreateExpense, 
     GetOneExpense, 
     ReadBudgetExpenses 
-} = require('../../../controllers/BudgetControllers/ExpenseController')
+} = require('../controllers/expense-controller')
 
 Router.get('/getone', GetOneExpense)
 Router.get('/budgetexpenses', ReadBudgetExpenses)
 Router.post('/create', CreateExpense)
 
-export default Router
+module.exports = Router

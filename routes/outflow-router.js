@@ -4,11 +4,11 @@ const {
     GetOneOutflow,
     GetAllOutflows,
     CreateManyOutflows,
-} = require('../../../controllers/CashflowControllers/OutflowController')
+} = require('../controllers/outflow-controller')
 
 Router.get('/getone', GetOneOutflow)
 Router.get('/getmany', GetAllOutflows)
 Router.post('/create', CreateOutflow)
 Router.post('/createmany', CreateManyOutflows)
 
-export default Router
+module.exports = Router

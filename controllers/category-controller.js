@@ -1,6 +1,6 @@
-const { defaultCategories } = require("../modules/data")
-const { Category, Expense } = require('../../models')
-const { ControllerLoggers } = require('../logs')
+const { defaultCategories } = require("./data")
+const { Category, Expense } = require('../models')
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.CategoryControllerLog 
 const errorLog = ControllerLoggers.CategoryControllerErrorLog
 

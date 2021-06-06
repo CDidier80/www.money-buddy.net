@@ -4,11 +4,11 @@ const {
     ReadEntireBudget,
     CreateBudget,
     GetOneBudget
-} = require('../../../controllers/BudgetControllers/BudgetController')
+} = require('../controllers/budget-controller')
 
 Router.get('/get', GetOneBudget)
 Router.post('/create', CreateBudget)
 Router.post('/entirebudget', ReadEntireBudget)
 Router.put('/update', UpdateEntireBudget)
 
-export default Router
+module.exports = Router

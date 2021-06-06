@@ -1,5 +1,5 @@
-const { defaultCategories, nextCalendarYear } = require("../modules/data")
-const { ControllerLoggers } = require('../logs')
+const { defaultCategories, nextCalendarYear } = require("./data")
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.CashflowControllerLog 
 const errorLog = ControllerLoggers.CashflowControllerErrorLog
 const { 
@@ -8,8 +8,7 @@ const {
     Outflow, 
     Inflow, 
     Month
-} = require('../../models')
-
+} = require('../models')
 
 const CreateCashflow = async (req, res) => {
     log(CreateCashflow, req)
@@ -21,11 +20,9 @@ const CreateCashflow = async (req, res) => {
     }
 }
 
-
 /**
  * @param {Object} req.body - The month object.
  * @param {Integer} req.body.userId - The id of the user.
-- The year of the month
  */
 
 const CreateDefaultCashflow = async (req, res) => {
@@ -94,7 +91,6 @@ const CreateDefaultCashflow = async (req, res) => {
     }
 }
 
-
 const GetOneCashflow = async (req, res) => {
     log(GetOneCashflow, req)
     try {
@@ -109,7 +105,6 @@ const GetOneCashflow = async (req, res) => {
         errorLog(GetOneCashflow, error) 
     }
 }
-
 
 const ReadEntireCashflow = async (req, res) => {
     log(ReadEntireCashflow, req)
@@ -153,7 +148,6 @@ const ReadEntireCashflow = async (req, res) => {
         errorLog(ReadEntireCashflow, error)
     }
 }
-
 
 const UpdateEntireCashflow = async (req, res) => {
     log(UpdateEntireCashflow, req)
@@ -225,7 +219,6 @@ const UpdateEntireCashflow = async (req, res) => {
         errorLog(UpdateEntireCashflow, error)
     }
 }
-
 
 module.exports = {
     CreateCashflow,

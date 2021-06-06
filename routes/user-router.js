@@ -7,7 +7,7 @@ const {
     CreateUser, 
     LogInUser, 
     ReadUser 
-} = require('../../controllers/UserController')
+} = require('../controllers/user-controller')
 
 Router.get('/read/:user_id', ReadUser)
 Router.get('/session', RefreshSession )
@@ -17,6 +17,6 @@ Router.put('/email', UpdateEmail)
 Router.put('/password', UpdatePassword)
 Router.delete('/delete', DeleteUser)
 
-export default Router
+module.exports = Router
 
 

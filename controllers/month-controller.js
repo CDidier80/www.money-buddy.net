@@ -1,5 +1,5 @@
-const { Month } = require('../../models')
-const { ControllerLoggers } = require('../logs')
+const { Month } = require('../models')
+const { ControllerLoggers } = require('./logs')
 const log = ControllerLoggers.MonthControllerLog 
 const errorLog = ControllerLoggers.MonthControllerErrorLog
 

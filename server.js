@@ -1,4 +1,4 @@
-const AppRouter = require('./routes/AppRouter')
+const AppRouter = require('./routes/app-router')
 const bodyParser = require('body-parser')
 const express = require("express")
 const helmet = require('helmet')

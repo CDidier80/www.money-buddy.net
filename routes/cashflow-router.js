@@ -5,7 +5,7 @@ const {
     ReadEntireCashflow, 
     UpdateEntireCashflow,
     CreateDefaultCashflow,
-} = require('../../../controllers/CashflowControllers/CashflowController')
+} = require('../controllers/cashflow-controller')
 
 Router.get('/getone', GetOneCashflow)
 Router.post('/create', CreateCashflow)
@@ -13,4 +13,4 @@ Router.post('/entire', ReadEntireCashflow)
 Router.post('/initaccount', CreateDefaultCashflow)
 Router.put('/update', UpdateEntireCashflow)
 
-export default Router
+module.exports = Router
