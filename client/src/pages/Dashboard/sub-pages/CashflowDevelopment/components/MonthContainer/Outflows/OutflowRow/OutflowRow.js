@@ -4,7 +4,7 @@ import IconCell from "../Cells/IconCell/IconCell"
 import React, {useEffect, useState} from 'react'
 import { TableRow } from '@material-ui/core'
 
-const OutflowRow = (props) => {
+const OutflowRow = props => {
 
     const {
         amount, 

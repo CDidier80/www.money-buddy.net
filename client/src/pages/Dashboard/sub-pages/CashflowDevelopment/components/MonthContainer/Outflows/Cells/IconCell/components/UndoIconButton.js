@@ -8,7 +8,7 @@ import UndoIcon from '@material-ui/icons/Undo';
 
 
 
-const UndoIconButton = (props) => {
+const UndoIconButton = props => {
 
     // const {
     //     newCategories,

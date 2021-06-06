@@ -10,7 +10,7 @@ import useStyles from './styles/useStyles'
 import React, { useState } from 'react'
 import './styles/accountPage.css'
 
-const AccountPage = (props) => {
+const AccountPage = props => {
     
     const { id: user_id } = props
         

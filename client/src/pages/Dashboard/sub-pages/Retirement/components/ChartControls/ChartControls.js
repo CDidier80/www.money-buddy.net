@@ -13,7 +13,7 @@ import React               from  "react"
 import "./styles/chartControls.css"
 
 
-const ChartControls = (props) => {
+const ChartControls = props => {
 
     const {
         /* state */

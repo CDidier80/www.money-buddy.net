@@ -7,7 +7,7 @@ import DeleteOutflowIcon from "./components/DeleteOutlowIcon"
 import UndoIconButton from "./components/UndoIconButton"
 
 
-const IconCell = (props) => {
+const IconCell = props => {
 
     const {
         iconShouldShow, 

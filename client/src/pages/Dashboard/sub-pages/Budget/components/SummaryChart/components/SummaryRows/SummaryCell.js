@@ -1,7 +1,7 @@
 import { TableCell } from '@material-ui/core'
 import React from 'react'
 
-const SummaryCell = (props) => {
+const SummaryCell = props => {
     
     const {
         h5ClassName,

@@ -3,7 +3,7 @@ import { Button, makeStyles } from '@material-ui/core/'
 
 import React from 'react'
 
-const ThemedButton = (props) => {
+const ThemedButton = props => {
 
     const { theme, children, onClick } = props
 

@@ -3,7 +3,7 @@ import { formatToCurrency } from "../../../../modules/cellFunctions"
 import React, {useEffect, useState} from 'react'
 import IconCell from "../Cells/IconCell/IconCell"
 
-const InflowRow = (props) => {
+const InflowRow = props => {
 
     /* -- PROPS -- */
 

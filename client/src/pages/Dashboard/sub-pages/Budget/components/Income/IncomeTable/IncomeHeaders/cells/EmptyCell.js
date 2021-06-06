@@ -2,7 +2,7 @@ import { useEmptyCellStyles } from "../../../styles/useIncomeStyles"
 import { TableCell } from '@material-ui/core'
 import React from 'react'
 
-const EmptyCell = (props) => {
+const EmptyCell = props => {
 
     const { emptyCell } = useEmptyCellStyles(props.theme)
 

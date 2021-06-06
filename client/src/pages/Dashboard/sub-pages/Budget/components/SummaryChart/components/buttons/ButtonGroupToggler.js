@@ -4,7 +4,7 @@ import AnnualButton from "./AnnualButton"
 import React from 'react'
 
 
-const ButtonGroupToggler = (props) => {
+const ButtonGroupToggler = props => {
 
     const useStyles = makeStyles({
         buttonGroup: {

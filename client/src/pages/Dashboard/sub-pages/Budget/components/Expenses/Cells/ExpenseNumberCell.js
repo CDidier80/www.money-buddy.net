@@ -2,7 +2,7 @@ import { TableCell } from '@material-ui/core'
 import React, { useState, useEffect } from 'react'
 import { filterNumbers, formatToCurrency } from './modules/cellFunctions'
 
-const ExpenseNumberCell = (props) => {
+const ExpenseNumberCell = props => {
 
     const { 
         isAnnual, 

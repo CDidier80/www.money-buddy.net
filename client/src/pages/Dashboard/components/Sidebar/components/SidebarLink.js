@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import "./sidebarlink.css"
 import React from 'react'
 
-const SidebarLink = (props) => {
+const SidebarLink = props => {
 
     /* props */
 

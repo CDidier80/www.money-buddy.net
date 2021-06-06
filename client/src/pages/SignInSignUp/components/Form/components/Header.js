@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core/'
 import React from 'react'
 
-const Header = (props) => {
+const Header = props => {
 
     const { classes, isSigningUp } = props
     const correctHeader = isSigningUp ? "Create an Account": "Welcome Back" 

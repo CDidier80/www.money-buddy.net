@@ -11,7 +11,7 @@ import "./styles/hero.css"
 import React from "react"
 
 
-const LandingPage = (props) => {
+const LandingPage = props => {
 
     const classes = useLandingPageStyles(props.theme)
 

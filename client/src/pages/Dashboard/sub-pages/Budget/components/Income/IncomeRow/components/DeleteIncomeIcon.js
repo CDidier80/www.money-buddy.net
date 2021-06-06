@@ -8,7 +8,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 
 
 
-const DeleteIncomeIcon = (props) => {
+const DeleteIncomeIcon = props => {
     
     
     const { 

@@ -38,6 +38,7 @@ export class ApiService {
         showLogs = false,
         useInterceptors = false
     }: ApiOptions ) {
+        console.log('constructor reached')
         this.modelName = modelName
         this.showLogs = showLogs
         this.developmentMode = process.env.NODE_ENV === 'development'
@@ -64,7 +65,7 @@ export class ApiService {
             one: async (body = {}, params = '') => {
                 this.showLogs && this.developmentMode && this.apiRequestLog(body, params)
                 try {
-                    return await (this.apiClient.get(`${this.requestPath}/create`, (body || params)))
+                    return await (this.apiClient.get(`${this.requestPath}/get`, (body || params)))
                 } catch (error) {
                     this.showLogs && this.developmentMode && this.apiErrorLog(error)
                 }
@@ -72,7 +73,7 @@ export class ApiService {
             many: async (body = {}, params = '') => {
                 this.showLogs && this.developmentMode && this.apiRequestLog(body, params)
                 try {
-                    return await (this.apiClient.get(`${this.requestPath}/create_many`, (body || params)))
+                    return await (this.apiClient.get(`${this.requestPath}/get_many`, (body || params)))
                 } catch (error) {
                     this.showLogs && this.developmentMode && this.apiErrorLog(error)
                 }
@@ -148,6 +149,7 @@ export class ApiService {
         const { requestName, controllerPathExtension } = requestOptions
         const extension = this.validatePath(controllerPathExtension)
         this.create[requestName] = async (body = {}, params = '') => {
+            console.log('reached!')
             this.showLogs && this.developmentMode && this.apiRequestLog(body, params)
             try {
                 return await (this.apiClient.post(`${this.requestPath}/create/${extension}`, (body || params)))
@@ -163,7 +165,7 @@ export class ApiService {
         this.get[requestName] = async (body = {}, params = '') => {
             this.showLogs && this.developmentMode && this.apiRequestLog(body, params)
             try {
-                return await (this.apiClient.post(`${this.requestPath}/create/${extension}`, (body || params)))
+                return await (this.apiClient.post(`${this.requestPath}/${extension}`, (body || params)))
             } catch (error) {
                 this.showLogs && this.developmentMode && this.apiErrorLog(error)
             }

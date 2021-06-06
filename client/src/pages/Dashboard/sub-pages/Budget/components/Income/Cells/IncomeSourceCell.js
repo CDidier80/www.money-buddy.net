@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useIncomeSourceCellStyles } from "../styles/useIncomeStyles"
 
 
-const IncomeSourceCell = (props) => {
+const IncomeSourceCell = props => {
 
     /*  PROPS  */
 

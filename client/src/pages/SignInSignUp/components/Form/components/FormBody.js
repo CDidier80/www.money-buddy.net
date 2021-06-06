@@ -2,7 +2,7 @@ import React from 'react'
 import { withTheme, } from '@material-ui/core/'
 import FormWrapper from './FormWrapper.tsx'
 
-const FormBody = (props) => {
+const FormBody = props => {
 
     const {
         child3: FormControl,

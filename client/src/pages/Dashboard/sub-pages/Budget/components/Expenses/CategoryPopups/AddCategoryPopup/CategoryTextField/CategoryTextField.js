@@ -2,7 +2,7 @@ import TextfieldForm from "./TextfieldForm"
 import React from 'react'
 import Text from "./Text"
 
-const CategoryTextfield = (props) => {
+const CategoryTextfield = props => {
     return (
         <TextfieldForm { ...props } >
             <Text { ...props } />

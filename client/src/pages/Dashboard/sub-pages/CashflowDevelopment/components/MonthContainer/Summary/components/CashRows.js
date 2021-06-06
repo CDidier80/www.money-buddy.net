@@ -3,7 +3,7 @@ import { makeCashRowStyles } from "../../styles/styles"
 import React from 'react'
 
 
-const CashRows = (props) => {
+const CashRows = props => {
 
     const {
         endingCash,

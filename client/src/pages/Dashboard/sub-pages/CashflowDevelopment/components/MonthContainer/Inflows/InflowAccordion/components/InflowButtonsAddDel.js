@@ -7,7 +7,7 @@ import { Button, ButtonGroup } from '@material-ui/core'
 import React from 'react'
 
 
-const InflowButtonsAddDel = (props) => {
+const InflowButtonsAddDel = props => {
 
     const {
         showInflowDeleteIcons,

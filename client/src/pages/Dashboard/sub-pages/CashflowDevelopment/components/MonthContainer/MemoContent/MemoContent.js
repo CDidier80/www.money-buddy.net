@@ -3,7 +3,7 @@ import InflowsAccordion from "../Inflows/InflowAccordion/InflowsAccordion"
 import SummaryAccordion from "../Summary/SummaryAccordion"
 import React, { memo } from 'react'
 
-const MemoContent = memo((props) => {
+const MemoContent = memo(props => {
     return (
         <>
             <SummaryAccordion  { ...props } />

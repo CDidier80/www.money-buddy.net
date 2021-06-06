@@ -2,7 +2,7 @@
 import AddDeleteButtonGroup from "../../../../../../../../TopLevelComponents/AddDeleteButtons/AddDelButtonGroup"
 import React from 'react'
 
-const AddDeleteButtons = (props) => {
+const AddDeleteButtons = props => {
 
     const { 
         tick,

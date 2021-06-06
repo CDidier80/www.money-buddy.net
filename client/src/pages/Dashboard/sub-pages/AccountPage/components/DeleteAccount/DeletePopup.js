@@ -2,7 +2,7 @@ import DeleteAccountButton from "./DeleteAccountButton"
 import ReturnButton from "./ReturnButton"
 import React from 'react'
 
-const DeletePopup = (props) => {
+const DeletePopup = props => {
 
     return (
         <div 

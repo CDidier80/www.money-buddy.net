@@ -10,7 +10,7 @@ import React                  from   "react"
 const { signup, signin } = require("../modules/formFunctions") 
 
 
-const FormControl = (props) => {
+const FormControl = props => {
 
     /* Props */
 

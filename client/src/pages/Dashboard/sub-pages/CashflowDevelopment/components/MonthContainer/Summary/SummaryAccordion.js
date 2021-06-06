@@ -7,7 +7,7 @@ import React, { useState } from 'react'
 
 
 
-const SummaryAccordion = (props) => {
+const SummaryAccordion = props => {
 
     const { thisMonth } = props.fromPaginatingContainer
 

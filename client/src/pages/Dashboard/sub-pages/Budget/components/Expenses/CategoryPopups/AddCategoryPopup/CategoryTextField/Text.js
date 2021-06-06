@@ -1,7 +1,7 @@
 import { StyledTextField } from "../../styles"
 import React from 'react'
 
-const Text = (props) => {
+const Text = props => {
 
     const { error, setText, setError } = props
     

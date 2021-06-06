@@ -8,7 +8,7 @@ import UndoIconButton from "./components/UndoIconButton"
 import DeleteInflowIcon from "./components/DeleteInflowIcon"
 
 
-const IconCell = (props) => {
+const IconCell = props => {
 
     const { 
         iconShouldShow, 

@@ -1,7 +1,7 @@
 import ThemedButton from "../../../../../../../../../TopLevelComponents/ThemedButton"
 import React from 'react'
 
-const CancelButton = (props) => {
+const CancelButton = props => {
 
     const { toggleAddCategoryPanel } = props
 

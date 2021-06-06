@@ -6,7 +6,7 @@ import React, { useState } from 'react'
 import Header from "./Header"
 
 
-const PasswordForm = (props) => {
+const PasswordForm = props => {
 
 
     const [newPassword, setNewPassword ] = useState("")

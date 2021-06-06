@@ -4,7 +4,7 @@ import { filterNumbers, formatToCurrency } from "./modules/cellFunctions"
 import { useIncomeNumberCellStyles } from "../styles/useIncomeStyles"
 
 
-const IncomeNumberCell = (props) => {
+const IncomeNumberCell = props => {
 
     /* -------------------- PROPS -------------------- */
 

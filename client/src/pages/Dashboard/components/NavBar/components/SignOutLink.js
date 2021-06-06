@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import React from 'react'
 
 
-const SignOutLink = (props) => {
+const SignOutLink = props => {
 
     const { setAuth, setUserInfo } = props.fromApp
 

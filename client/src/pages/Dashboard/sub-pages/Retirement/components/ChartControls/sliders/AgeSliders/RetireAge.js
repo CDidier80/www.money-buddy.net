@@ -3,7 +3,7 @@ import ThemedSlider from "../ThemedSlider"
 import React, { memo } from 'react'
 
 
-const RetireAge = memo((props) => {
+const RetireAge = memo(props => {
     /* --------- setState hook for this slider --------- */
     const { 
         makeMarks,

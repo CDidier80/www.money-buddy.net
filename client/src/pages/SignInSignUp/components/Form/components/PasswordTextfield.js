@@ -1,7 +1,7 @@
 import React from 'react'
 import CustomTextfield from "./CustomTextfield"
 
-const PasswordTextfield = (props) => {
+const PasswordTextfield = props => {
 
     const {setPassword, isSigningUp, password, classes, submitForm} = props
 

@@ -12,7 +12,7 @@ import CategoryPopup from "../CategoryPopups/AddCategoryPopup/CategoryPopup"
 import GradientWrapper from "../../../../../../../TopLevelComponents/GradientWrapper"
 
 
-const ExpenseAccordion = (props) => {
+const ExpenseAccordion = props => {
 
     /* -------------------------- PROPS ------------------------- */
 

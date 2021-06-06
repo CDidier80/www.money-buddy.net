@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom'
 import React from 'react'
 
 
-const AuthenticatedLinks = (props) => {
+const AuthenticatedLinks = props => {
 
     const { setAuth, setUserInfo } = props.fromApp
 

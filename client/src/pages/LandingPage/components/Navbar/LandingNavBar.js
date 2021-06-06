@@ -4,7 +4,7 @@ import AuthenticatedLinks from "./AuthenticatedLinks"
 import NavbarWrapper from "./NavbarWrapper"
 import React from "react";
 
-const LandingNavBar = (props) => {
+const LandingNavBar = props => {
 
     const {navlink} = makeNavlinkStyles(props.theme)
 

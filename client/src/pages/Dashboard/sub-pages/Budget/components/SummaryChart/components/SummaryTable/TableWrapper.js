@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core'
 import React from 'react'
 
-export const TableWrapper = (props) => {
+export const TableWrapper = props => {
 
     const useStyles = makeStyles({
         tableContainer: {

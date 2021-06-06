@@ -1,30 +1,34 @@
-import CashflowDevRoute        from "./components/MemoRoutes/CashflowDevRoute"
-import RetirementRoute         from "./components/MemoRoutes/RetirementRoute"
-import LoadingScreen           from "./components/LoadingScreen/LoadingScreen"
-import AccountPage             from "./sub-pages/AccountPage/AccountPage"
-import BudgetRoute             from "./components/MemoRoutes/BudgetRoute"
-import { ReadEntireCashflow }  from "../../api_services/cashflow-api-service.ts"
-import { ReadEntireBudget }    from "../../api_services/budget-api-service.ts"
-import SideBar                 from "./components/Sidebar/SideBar"
-import NavBar                  from "./components/NavBar/NavBar"
-import { useDashboardStyles }  from "./sub-pages/styles/styles"
-import { withTheme }           from '@material-ui/core'
-import "./components/NavBar/styles/navbar.css"
-import "./sub-pages/styles/subpage.css"
-import "./dashboard.css"
 import { 
     Route, 
     Switch, 
     withRouter 
 }  from 'react-router-dom'
+
 import React, { 
     useEffect, 
     createRef, 
-    useState, 
+    useState
 } from 'react'
 
+import './components/NavBar/styles/navbar.css'
+import './sub-pages/styles/subpage.css'
+import './dashboard.css'
 
-const Dashboard = (props) => {
+import CashflowDevRoute        from './components/MemoRoutes/CashflowDevRoute'
+import RetirementRoute         from './components/MemoRoutes/RetirementRoute'
+import LoadingScreen           from './components/LoadingScreen/LoadingScreen'
+import AccountPage             from './sub-pages/AccountPage/AccountPage'
+import BudgetRoute             from './components/MemoRoutes/BudgetRoute'
+import { ReadEntireCashflow }  from '../../api_services/cashflow-api-service.ts'
+import { ReadEntireBudget }    from '../../api_services/budget-api-service.ts'
+import { BudgetApiService }    from '../../api_services/budget-api-service.ts'
+import SideBar                 from './components/Sidebar/SideBar'
+import NavBar                  from './components/NavBar/NavBar'
+import { useDashboardStyles }  from './sub-pages/styles/styles'
+import { withTheme }           from '@material-ui/core'
+
+
+const Dashboard = props => {
 
     const smallScreen = window.innerWidth <= 600
 
@@ -35,17 +39,17 @@ const Dashboard = (props) => {
     const [ticker, setTicker] = useState(0)
     const [loaded, setLoaded] = useState(false)
 
-    const [months, setMonths] = useState("")
-    const [incomes, setIncomes] = useState("")
-    const [budgetId, setBudgetId] = useState("")
-    const [cashflowId, setCashflowId] = useState("")
-    const [categories, setCategories] = useState("")
+    const [months, setMonths] = useState('')
+    const [incomes, setIncomes] = useState('')
+    const [budgetId, setBudgetId] = useState('')
+    const [cashflowId, setCashflowId] = useState('')
+    const [categories, setCategories] = useState('')
 
-    const [userPreference, setUserPreference] = useState("")
-    const initSidebarClass = smallScreen ? "sidebar closed" : "sidebar"
+    const [userPreference, setUserPreference] = useState('')
+    const initSidebarClass = smallScreen ? 'sidebar closed' : 'sidebar'
     const [sidebarClasses, setSidebarClasses] = useState(initSidebarClass)
         
-    const initSubpageClass = smallScreen ? "subpage sidebar-open" : "subpage sidebar-closed"
+    const initSubpageClass = smallScreen ? 'subpage sidebar-open' : 'subpage sidebar-closed'
     const [subpageClasses, setSubpageClasses] = useState(initSubpageClass)
     const [coloredLinks, setColoredLinks] = useState(true)
     const [coloredAccountIcon, setColoredAccountIcon] = useState(false)
@@ -54,7 +58,9 @@ const Dashboard = (props) => {
         let componentMounted = true
         const initializeDashboard = async () => {
             const cashflow = await ReadEntireCashflow({ userId: userId}, null)
-            const budget = await ReadEntireBudget({ userId: userId }, null)
+            // const budget = await ReadEntireBudget({ userId: userId }, null)
+            console.log(BudgetApiService.get.entireBudget)
+            const budget = await BudgetApiService.get.entireBudget({ userId: userId }, '')
             if (componentMounted) {
                 const { budgetId: b, incomes: i, categories: c } = budget
                 const { id: cashflowId, months: m } = cashflow
@@ -81,7 +87,7 @@ const Dashboard = (props) => {
         let componentMounted = true
         let childrenShouldRender = true
         renderDependencies.forEach((state) => {
-            if (state == "") {
+            if (state == '') {
                 childrenShouldRender = false
             }
         })
@@ -148,33 +154,33 @@ const Dashboard = (props) => {
 
         <div className={classes.dashboard}>
             <NavBar {...propsNavbar} />
-            <main className="dash-main-flex">
+            <main className='dash-main-flex'>
                 <SideBar {...propsSidebar} /> 
                 <div 
                     ref={subpageRef} 
                     className={subpageClasses}
-                    style={{backgroundColor: "white"}}
+                    style={{backgroundColor: 'white'}}
                 > 
                     <Switch> 
                         <BudgetRoute 
                             budgetHooks={budgetHooks}
-                            exact path="/dashboard/" 
+                            exact path='/dashboard/' 
                             subpageRef={subpageRef}
                             ticker={ticker}
                             { ...props }
                         />
                         <CashflowDevRoute
                             {...cashflowProps}
-                            path="/dashboard/cashflow" 
+                            path='/dashboard/cashflow' 
                         />
                         <RetirementRoute 
-                            path="/dashboard/retirement" 
+                            path='/dashboard/retirement' 
                             ticker={ticker}
                             { ...props }
                         />
                         <Route 
                             { ...props } 
-                            path="/dashboard/account" 
+                            path='/dashboard/account' 
                             component={() => ( 
                                 <AccountPage 
                                     fromDashboard={{...accountProps}} 

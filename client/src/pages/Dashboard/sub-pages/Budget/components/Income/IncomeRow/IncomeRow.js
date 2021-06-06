@@ -12,7 +12,7 @@ import UndoIconButton    from  './components/UndoIconButton'
 import DeleteIncomeIcon  from  './components/DeleteIncomeIcon'
 
 
-const IncomeRow = (props) => {
+const IncomeRow = props => {
     
     const { showIncomeDeleteIcons } = props.fromIncomeAccordion
     

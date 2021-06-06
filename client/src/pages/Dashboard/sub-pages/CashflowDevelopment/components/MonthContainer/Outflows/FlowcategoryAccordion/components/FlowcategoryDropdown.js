@@ -8,7 +8,7 @@ import FlowcategoryDeleteIcon from "./FlowcategoryDeleteIcon"
 import { useFlowcategoryDropdownStyles } from "../../../styles/styles"
 
 
-const FlowcategoryDropdown = (props) => {
+const FlowcategoryDropdown = props => {
 
     const { 
         flowcategory,

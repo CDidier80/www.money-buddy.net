@@ -4,7 +4,7 @@ import EmailButton from "./components/EmailButton"
 import { makeStyles } from '@material-ui/core/'
 import React, { useState } from 'react'
 
-const EmailForm = (props) => {
+const EmailForm = props => {
 
     const [newEmail, setNewEmail ] = useState("")
 

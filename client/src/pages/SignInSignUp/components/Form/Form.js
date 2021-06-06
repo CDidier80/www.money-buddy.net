@@ -7,7 +7,7 @@ import FormBody from "./components/FormBody"
 import Header from "./components/Header"
 
 
-const Form = (props) => {
+const Form = props => {
 
     const { fromApp, history } = props
 

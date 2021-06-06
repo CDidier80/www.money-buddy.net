@@ -5,7 +5,7 @@ import OutflowRows from "../OutflowRow/OutflowRows"
 import OutflowHeaders from "./components/OutflowHeaders"
 
 
-const OutflowTable = (props) => {
+const OutflowTable = props => {
 
     return (
         <TableWrapper>

@@ -1,7 +1,7 @@
 import { TextField, Fade } from "@material-ui/core"
 import React from 'react'
 
-const ReenterPasswordField = (props) => {
+const ReenterPasswordField = props => {
 
     const { setReenterPassword, reenteredPassword, classes, submitForm } = props
 

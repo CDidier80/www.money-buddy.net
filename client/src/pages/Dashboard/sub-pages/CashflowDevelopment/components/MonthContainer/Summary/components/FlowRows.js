@@ -8,7 +8,7 @@ import {
 } from '@material-ui/core';
 
 
-const FlowRows = (props) => {
+const FlowRows = props => {
 
     const {
         netCashflow,

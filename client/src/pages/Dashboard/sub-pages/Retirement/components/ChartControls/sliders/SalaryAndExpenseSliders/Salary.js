@@ -3,7 +3,7 @@ import ThemedSlider from "../ThemedSlider"
 import React, { memo } from 'react'
 
 
-const Salary = memo((props) => {
+const Salary = memo(props => {
     /* --------- setState hook for this slider --------- */
     const { 
         salary, 

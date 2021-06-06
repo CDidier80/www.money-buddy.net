@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect, Route } from 'react-router-dom'
 
-const ProtectedRoute = (props) => {
+const ProtectedRoute = props => {
 
     const { 
         denyAccess, 

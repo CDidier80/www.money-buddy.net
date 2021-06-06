@@ -8,7 +8,7 @@ import { useFlowcategoryAccordionStyles } from "../../styles/styles"
 import FlowcategoryDropdown from "./components/FlowcategoryDropdown"
 
 
-const FlowcategoryAccordion = memo((props) => {
+const FlowcategoryAccordion = memo(props => {
 
     const { memoTicker } = props.fromOutflowsAccordion
 

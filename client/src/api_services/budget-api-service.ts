@@ -54,4 +54,9 @@ const BudgetApiService = new ApiService({
     useInterceptors: true
 })
 
-export default BudgetApiService
+BudgetApiService.addGetRequest = {
+    requestName: 'entireBudget',
+    controllerPathExtension: 'entirebudget'
+}
+
+export { BudgetApiService }

@@ -8,7 +8,7 @@ import AddButton from "./AddButton"
 import { useButtonStyles } from "./buttonStyles"
 
 
-const AddDelButtonGroup = (props) => {
+const AddDelButtonGroup = props => {
 
 
     const classes = useButtonStyles(props.theme, props)

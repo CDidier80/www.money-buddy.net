@@ -3,7 +3,7 @@ import { LogInUser } from '../../../../../api_services/user-api-service.ts'
 import initializeAccount from "./modelFunctions"
 
 
-export const signup = async (props) => {
+export const signup = async props => {
     const {
         reenteredPassword, 
         setUserInfo, 
@@ -31,7 +31,7 @@ export const signup = async (props) => {
 }
 
 
-export const signin = async (props) => {
+export const signin = async props => {
     const { 
         setUserInfo, 
         password, 

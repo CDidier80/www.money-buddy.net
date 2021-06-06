@@ -7,7 +7,7 @@ import Chart from "./components/Chart/Chart"
 import "./styles/CashFlow.css"
 
 
-const CashflowDevelopment = (props) => {
+const CashflowDevelopment = props => {
 
     /* ----------------------- STATE ----------------------- */
     

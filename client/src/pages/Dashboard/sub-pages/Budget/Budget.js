@@ -15,7 +15,7 @@ import React, {
 import "./styles/budget.css"
 
 
-const Budget = (props) => {
+const Budget = props => {
 
     /* ----------------------- PROPS ------------------------ */
 

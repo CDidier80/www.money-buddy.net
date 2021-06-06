@@ -2,7 +2,7 @@ import AddDeleteButtonGroup from "../../../../../../../../TopLevelComponents/Add
 import React from 'react'
 
 
-const ButtonsAddDelete = (props) => {
+const ButtonsAddDelete = props => {
 
     /*  props */
 

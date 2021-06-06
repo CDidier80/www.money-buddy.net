@@ -1,7 +1,7 @@
 import { TextField } from '@material-ui/core/'
 import React from 'react'
 
-const EmailTextfield = (props) => {
+const EmailTextfield = props => {
 
     const { updateField } = props.fromAccountPage
     const { setNewEmail } = props

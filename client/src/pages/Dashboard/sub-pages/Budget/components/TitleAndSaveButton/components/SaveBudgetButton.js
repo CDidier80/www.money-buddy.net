@@ -5,7 +5,7 @@ import ThemedButton from "../../../../../../../TopLevelComponents/ThemedButton"
 import useSnackbars from '../../../../../../../custom_hooks/useSnackbars'
 
 
-const SavePageButton = (props) => {
+const SavePageButton = props => {
 
     /*  PROPS  */
 

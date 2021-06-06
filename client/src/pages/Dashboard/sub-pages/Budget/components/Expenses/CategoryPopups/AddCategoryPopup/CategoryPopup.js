@@ -8,7 +8,7 @@ import Prompt from "./Prompt"
 
 
 
-const CategoryPopup = (props) => {
+const CategoryPopup = props => {
     
     /*  State */
 

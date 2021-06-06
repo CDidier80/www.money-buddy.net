@@ -2,7 +2,7 @@ import { deepPropCheck } from "../../../../../../../../modules/clientFunctions"
 import ThemedSlider from "../ThemedSlider"
 import React, { memo } from 'react'
 
-const LifespanAge = memo((props) => {
+const LifespanAge = memo(props => {
     
     const { 
         makeMarks,

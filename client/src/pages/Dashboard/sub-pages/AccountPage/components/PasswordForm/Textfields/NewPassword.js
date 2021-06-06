@@ -1,7 +1,7 @@
 import PasswordField from "./PasswordField"
 import React from 'react'
 
-const NewPassword = (props) => {
+const NewPassword = props => {
 
     const passwordFieldProps = {
         setHook: props.setNewPassword,

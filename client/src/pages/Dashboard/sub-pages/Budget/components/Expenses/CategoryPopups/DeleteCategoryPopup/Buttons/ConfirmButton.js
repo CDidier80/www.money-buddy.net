@@ -1,7 +1,7 @@
 import ThemedButton from "../../../../../../../../../TopLevelComponents/ThemedButton"
 import React from 'react'
 
-const ConfirmButton = (props) => {
+const ConfirmButton = props => {
 
     const { toggleCategoryDeletePopup } = props.fromCategoryAccordion
 

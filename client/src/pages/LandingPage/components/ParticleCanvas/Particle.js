@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 
-const Particle = (props) => {
+const Particle = props => {
 
     const {
         particleCanvas, 

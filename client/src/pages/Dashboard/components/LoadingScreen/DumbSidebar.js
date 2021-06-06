@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import React from 'react';
 
 
-const DumbSidebar = (props) => {
+const DumbSidebar = props => {
 
     const navItems = [
             { 

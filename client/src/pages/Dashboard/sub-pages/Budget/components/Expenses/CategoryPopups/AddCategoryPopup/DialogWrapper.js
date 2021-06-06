@@ -2,7 +2,7 @@ import { Dialog } from "@material-ui/core"
 import Transition from '../Transition'
 import React from 'react'
 
-const DialogWrapper = (props) => {
+const DialogWrapper = props => {
 
     const { children, onClick, open } = props
     return (

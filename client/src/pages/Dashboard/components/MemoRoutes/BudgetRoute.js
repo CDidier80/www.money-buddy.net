@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Route } from 'react-router-dom'
 import Budget from "../../sub-pages/Budget/Budget"
 
-const BudgetRoute = memo((props) => {
+const BudgetRoute = memo(props => {
     
     return (
         <Route 

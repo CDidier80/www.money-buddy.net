@@ -6,7 +6,7 @@ import React from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import { useInflowsDropdownStyles } from "../../../styles/styles"
 
-const AccordionDropdownTab = (props) => {
+const AccordionDropdownTab = props => {
 
     const {heading, expandMoreIcon} = useInflowsDropdownStyles(props.theme)
     

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from 'react'
 import Particle from "./particleClass"
 
-const Canvas = (props) => {
+const Canvas = props => {
 
     console.log('rerender')
     const canvasRef = useRef(null)

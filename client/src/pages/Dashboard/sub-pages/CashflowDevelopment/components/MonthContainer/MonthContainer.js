@@ -2,7 +2,7 @@ import React, {useState, useEffect, memo} from 'react'
 import MemoContent from './MemoContent/MemoContent'
 import { makeMonthContainerStyles } from "./styles/styles"
 
-const MonthContainer = (props) => {
+const MonthContainer = props => {
 
     /* -------------------------- PROPS ------------------------- */
 

@@ -8,7 +8,7 @@ import React, {
 import "./styles/retirement.css"
 
 
-const Retirement = (props) => {
+const Retirement = props => {
 
     /* --------------------------- STATE --------------------------- */
 

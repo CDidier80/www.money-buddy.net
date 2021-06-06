@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     }
 })
 
-const CategoryDeleteIcon = (props) => {
+const CategoryDeleteIcon = props => {
 
     const {
         toggleCategoryDeletePopup,

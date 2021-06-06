@@ -13,7 +13,7 @@ import { pickColor } from "../../../../../../../modules/themeAndStyles"
 import { useIncomeTableStyles } from "../styles/useIncomeStyles"
 
 
-const IncomeTable = (props) => {
+const IncomeTable = props => {
 
     /* -------------------------- PROPS -------------------------- */
     

@@ -6,7 +6,7 @@ import React from 'react';
 
 
 
-const IncomeHeaders = (props) => {
+const IncomeHeaders = props => {
 
 
     return (

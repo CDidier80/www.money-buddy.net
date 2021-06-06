@@ -3,7 +3,7 @@ import PaginatingButtons from "./PaginatingButtons"
 import React, { useState, memo } from "react"
 import "./styles/paginator.css"
 
-const PaginatingContainer = memo((props) => {
+const PaginatingContainer = memo(props => {
 
     /* Props */
 

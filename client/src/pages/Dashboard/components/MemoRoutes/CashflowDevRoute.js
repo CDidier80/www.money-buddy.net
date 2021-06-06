@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { Route } from 'react-router-dom'
 import CashflowDevelopment from "../../sub-pages/CashflowDevelopment/CashflowDevelopment"
 
-const CashflowDevRoute = memo((props) => {
+const CashflowDevRoute = memo(props => {
     
     return (
         <Route 

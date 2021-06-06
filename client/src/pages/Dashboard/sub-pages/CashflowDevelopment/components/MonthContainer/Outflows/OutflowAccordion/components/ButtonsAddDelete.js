@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import React from 'react'
 
-const ButtonsAddDelete = (props) => {
+const ButtonsAddDelete = props => {
 
     {/*  PROPS */}
 

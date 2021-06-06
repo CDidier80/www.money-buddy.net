@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import "./editableCell.css"
 
 
-const ExpenseTextCell = (props) => {
+const ExpenseTextCell = props => {
     
     /*  PROPS  */
 

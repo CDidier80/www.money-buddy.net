@@ -1,7 +1,7 @@
 import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
 import React from 'react'
 
-const ReturnButton = (props) => {
+const ReturnButton = props => {
 
     const overrides = {
         width: "30%",

@@ -4,7 +4,7 @@ import AuthenticatedLinks from "./AuthenticatedLinks"
 import NavbarWrapper from "./NavbarWrapper"
 import React from "react"
 
-const MobileNavBar = (props) => {
+const MobileNavBar = props => {
 
     const { navlink } = makeMobileNavlinkStyles(props.theme)
 

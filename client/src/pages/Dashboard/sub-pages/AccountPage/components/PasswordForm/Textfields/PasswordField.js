@@ -1,7 +1,7 @@
 import { TextField, } from '@material-ui/core/'
 import React from 'react'
 
-const PasswordField = (props) => {
+const PasswordField = props => {
 
     const {label, setHook} = props
     const {updateField} = props.fromAccountPage

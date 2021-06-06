@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { filterNumbers, formatToCurrency } from "./modules/cellFunctions"
 
 
-const FlowCell = (props) => {
+const FlowCell = props => {
 
     /* -------------------- PROPS -------------------- */
 

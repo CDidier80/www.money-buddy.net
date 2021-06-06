@@ -4,7 +4,7 @@ import { useOutflowsAccordionStyles } from "../../styles/styles"
 import React, { useState, useEffect } from 'react'
 import {  Accordion } from '@material-ui/core'
 
-const OutflowsAccordion = (props) => {
+const OutflowsAccordion = props => {
 
     const { newFlowcategories } = props.fromMonthContainer
 

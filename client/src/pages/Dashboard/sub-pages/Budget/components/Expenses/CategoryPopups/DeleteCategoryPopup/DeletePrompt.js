@@ -2,7 +2,7 @@ import { DialogTitle } from '@material-ui/core'
 import React from 'react'
 
 
-const DeletePrompt = (props) => {
+const DeletePrompt = props => {
 
     const { category } = props.fromExpenseAccordion
     

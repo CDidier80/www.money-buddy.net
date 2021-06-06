@@ -9,7 +9,7 @@ import { useSummaryDropdownStyles } from "../../styles/styles"
 
 
 
-const AccordionDropdownTab = (props) => {
+const AccordionDropdownTab = props => {
 
     const classes = useSummaryDropdownStyles(props.theme)
 

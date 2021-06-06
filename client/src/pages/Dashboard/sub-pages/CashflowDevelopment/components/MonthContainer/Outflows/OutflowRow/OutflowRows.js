@@ -3,7 +3,7 @@ import OutflowRow from "./OutflowRow"
 
 import React from 'react'
 
-const OutflowRows = (props) => {
+const OutflowRows = props => {
 
     const { outflows } = props.fromOutflowsAccordion.flowcategory
 

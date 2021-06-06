@@ -6,7 +6,7 @@ import React from 'react'
 
 
 
-const OutflowsDropdown = (props) => {
+const OutflowsDropdown = props => {
 
     const classes = useOutflowsDropdownStyles(props.theme)
 

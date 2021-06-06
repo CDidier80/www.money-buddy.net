@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 })
 
 
-const UndoIconButton = (props) => {
+const UndoIconButton = props => {
 
     const { 
         tick,

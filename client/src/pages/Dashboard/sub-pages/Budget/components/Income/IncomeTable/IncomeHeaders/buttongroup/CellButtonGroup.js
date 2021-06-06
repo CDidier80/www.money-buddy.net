@@ -7,7 +7,7 @@ import React from 'react'
 import MonthlyButton from "./MonthlyButton"
 import AnnualButton from "./AnnualButton"
 
-const CellButtonGroup = (props) => {
+const CellButtonGroup = props => {
 
     const useStyles = makeStyles({
         buttonGroup: {

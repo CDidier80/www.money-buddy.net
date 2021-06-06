@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GradientWrapper = (props) => {
+const GradientWrapper = props => {
 
     const overrides = props.overrides || {}
     const { boxShadows, palette, gradients } = props.theme

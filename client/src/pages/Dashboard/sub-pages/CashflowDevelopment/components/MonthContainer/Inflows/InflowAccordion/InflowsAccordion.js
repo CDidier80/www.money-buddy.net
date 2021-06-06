@@ -5,7 +5,7 @@ import { Accordion } from '@material-ui/core'
 import React, { useState } from 'react'
 
 
-const InflowsAccordion = (props) => {
+const InflowsAccordion = props => {
 
     /* -------------------------- STATE ------------------------- */
     const [opened, toggleOpened] = useState(true)

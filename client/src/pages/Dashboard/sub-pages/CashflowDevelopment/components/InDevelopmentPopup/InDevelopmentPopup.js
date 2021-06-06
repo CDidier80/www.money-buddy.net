@@ -5,7 +5,7 @@ import Message from "./Message"
 import React from 'react'
 
 
-const InDevelopmentPopup = (props) => {
+const InDevelopmentPopup = props => {
 
     return (
             <DialogWrapper>

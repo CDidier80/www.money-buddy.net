@@ -4,7 +4,7 @@ import CashRows from './CashRows'
 import { makeSummaryTableStyles } from '../../styles/styles'
 import { AccordionDetails, Paper, TableContainer, } from '@material-ui/core'
 
-const SummaryTable = (props) => {
+const SummaryTable = props => {
 
     const { cashReserves } = props.fromCashflowDevelopment
     const { totalInflow, totalOutflow } = props.fromMonthContainer

@@ -1,7 +1,7 @@
 import { Button } from '@material-ui/core/'
 import React from 'react'
 
-const DelButton = (props) => {
+const DelButton = props => {
 
     const { 
         iconsDisplayed,

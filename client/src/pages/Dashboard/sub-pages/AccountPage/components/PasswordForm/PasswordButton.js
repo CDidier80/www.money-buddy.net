@@ -3,7 +3,7 @@ import { UpdatePassword } from "../../../../../../api_services/user-api-service.
 import useSnackbars from "../../../../../../custom_hooks/useSnackbars"
 import React from 'react'
 
-const PasswordButton = (props) => {
+const PasswordButton = props => {
 
     const {id: user_id} = props
 

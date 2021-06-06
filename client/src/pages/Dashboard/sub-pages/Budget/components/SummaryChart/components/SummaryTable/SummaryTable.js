@@ -3,7 +3,7 @@ import TableWrapper from './TableWrapper'
 import React from 'react'
 
 
-const SummaryTable = (props) => {
+const SummaryTable = props => {
 
     return (
         <TableWrapper { ...props } >

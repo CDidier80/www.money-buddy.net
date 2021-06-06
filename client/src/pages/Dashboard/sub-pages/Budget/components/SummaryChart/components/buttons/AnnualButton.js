@@ -2,7 +2,7 @@ import { Button } from '@material-ui/core'
 import { useStyles } from "./buttonStyles"
 import React from 'react'
 
-const AnnualButton = (props) => {
+const AnnualButton = props => {
 
     const {monthly, setMonthly} = props.fromSummary
 

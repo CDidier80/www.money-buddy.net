@@ -4,7 +4,7 @@ import SignOutLink from './components/SignOutLink'
 // import React, { useState, useEffect } from 'react'
 import Burger from './components/Burger'
 
-const NavBar = (props) => {
+const NavBar = props => {
 
     // const [size, setSize] = useState(`X: ${window.innerWidth}  Y: ${window.innerHeight}`)
 

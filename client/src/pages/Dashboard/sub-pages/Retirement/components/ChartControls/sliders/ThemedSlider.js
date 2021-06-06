@@ -8,7 +8,7 @@ import { makeDeepClone } from "../../../../../../../modules/clientFunctions"
 import { moneyBuddyTheme } from "../../../../../../../modules/themeAndStyles"
 
 
-const ThemedSlider = (props) => {
+const ThemedSlider = props => {
 
     const { ariaLabel, hookValue, makeLabel, setHook, marks, step, min, max, } = props.fromSliderParent
     const labelLength = useRef(String(hookValue).length)

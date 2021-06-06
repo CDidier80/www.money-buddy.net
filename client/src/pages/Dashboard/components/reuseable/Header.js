@@ -1,7 +1,7 @@
 import React from 'react'
 import { makeHeaderStyles } from "./styles"
 
-const Header = (props) => {
+const Header = props => {
 
     const overrides = props.overrides || {}
 

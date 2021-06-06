@@ -15,7 +15,7 @@ const useStyles = makeStyles({
     }
 })
 
-const FlowcategoryDeleteIcon = (props) => {
+const FlowcategoryDeleteIcon = props => {
 
     const {
         toggleFlowcategoryDeletePopup,

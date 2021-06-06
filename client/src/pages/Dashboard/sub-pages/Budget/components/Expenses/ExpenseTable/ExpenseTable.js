@@ -13,7 +13,7 @@ import { pickColor } from "../../../../../../../modules/themeAndStyles"
 
 
 
-const ExpenseTable = (props) => {
+const ExpenseTable = props => {
 
     /*  PROPS */
 

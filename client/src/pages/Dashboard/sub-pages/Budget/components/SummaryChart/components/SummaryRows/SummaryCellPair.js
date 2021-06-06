@@ -1,7 +1,7 @@
 import SummaryCell from "./SummaryCell"
 import React from 'react'
 
-const SummaryCellPair = (props) => {
+const SummaryCellPair = props => {
 
     const {
         cellOneClass,

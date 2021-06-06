@@ -13,7 +13,7 @@ import { useInflowsTableStyles } from "../../styles/styles"
 import { pickColor } from "../../../../../../../../modules/themeAndStyles"
 
 
-const InflowsTable = (props) => {
+const InflowsTable = props => {
     
     /* ------------- PROPS ------------ */
     

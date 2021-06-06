@@ -8,10 +8,9 @@ interface LoggerTypes {
     [callback: string] : Callbacks
 } 
 
-
 export const ServiceLoggers: LoggerTypes = {
     UserApiLog : (serviceFunction, body, params) => {
-        console.log(`Request arrived in UserApi.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
+        false && console.log(`Request arrived in UserApi.js => function: ${serviceFunction.name} => carrying body: `, body,  " and params: ", params)
     },
 
     UserApiErrorLog : (serviceFunction, error) => {

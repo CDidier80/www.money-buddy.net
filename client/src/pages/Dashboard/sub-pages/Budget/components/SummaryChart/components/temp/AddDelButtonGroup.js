@@ -7,7 +7,7 @@ import React from 'react'
 import DelButton from "./DelButton"
 import AddButton from "./AddButton"
 
-const AddDelButtonGroup = (props) => {
+const AddDelButtonGroup = props => {
 
     const useStyles = makeStyles( props => {
 

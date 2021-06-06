@@ -76,7 +76,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 
 
-const FlowcategoryPopup = (props) => {
+const FlowcategoryPopup = props => {
     
     {/*  PROPS */}
 

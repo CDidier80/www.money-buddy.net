@@ -4,7 +4,7 @@ import { UpdateEmail } from "../../../../../../../api_services/user-api-service.
 import useSnackbars from "../../../../../../../custom_hooks/useSnackbars"
 import React from 'react'
 
-const EmailButton = (props) => {
+const EmailButton = props => {
 
     const overrides = {width: "20%", marginTop: "20px" }
     const {id: user_id, newEmail} = props

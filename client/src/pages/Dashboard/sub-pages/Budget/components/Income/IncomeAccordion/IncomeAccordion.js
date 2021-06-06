@@ -10,7 +10,7 @@ import AddDeleteButtons from "./components/AddDeleteButtons"
 import IncomeTable from "../IncomeTable/IncomeTable"
 
 
-const IncomeAccordion = (props) => {
+const IncomeAccordion = props => {
 
     /* -------------------------- PROPS ------------------------- */
     

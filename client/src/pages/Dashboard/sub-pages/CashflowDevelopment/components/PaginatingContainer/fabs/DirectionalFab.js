@@ -5,7 +5,7 @@ import Fab from '@material-ui/core/Fab'
 import React from 'react'
 
 
-const DirectionalFab = (props) => {
+const DirectionalFab = props => {
 
     const {
         displayRange, 

@@ -13,7 +13,7 @@ const p4 = `
     simulate a user's experience.`
 
 
-const PTagSpaced = (props) => {
+const PTagSpaced = props => {
     const space = {
         marginBottom: "8px"
     }

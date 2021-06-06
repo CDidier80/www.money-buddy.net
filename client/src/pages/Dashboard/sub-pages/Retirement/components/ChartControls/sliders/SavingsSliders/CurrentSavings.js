@@ -3,7 +3,7 @@ import ThemedSlider from "../ThemedSlider"
 import React, { memo } from 'react'
 
 
-const CurrentSavings = memo((props) => {
+const CurrentSavings = memo(props => {
 
     const { 
         makeMarks,

@@ -8,7 +8,7 @@ import React from 'react'
 
 
 
-const ButtonsAddDel = (props) => {
+const ButtonsAddDel = props => {
 
     /* -------------------------- PROPS ------------------------- */
 

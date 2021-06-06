@@ -3,7 +3,7 @@ import React, { useEffect, useState, memo } from 'react'
 import { Line } from 'react-chartjs-2'
 import "./styles/chart.css"
 
-const Chart = memo((props) => {
+const Chart = memo(props => {
 
     /* -------------------------- PROPS ------------------------- */
 

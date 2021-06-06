@@ -25,7 +25,7 @@ export const currencyChartCallback = {
 export const makeDeepClone = (object) => JSON.parse(JSON.stringify(object))
 
 
-export const stringifyProps = (props) => {
+export const stringifyProps = props => {
     const propsOfTypeNumber = Object.values(props).filter(value => typeof value === "number")
     const numArrayToSingleString = propsOfTypeNumber.toString()
     return numArrayToSingleString

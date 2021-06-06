@@ -6,7 +6,7 @@ import ProtectedRoute     from  "./ProtectedRoute"
 import React              from  "react"
 
 
-const Routes = (props) => {
+const Routes = props => {
 
     return (
         <Switch> 

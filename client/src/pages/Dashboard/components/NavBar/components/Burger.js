@@ -5,7 +5,7 @@ import { IconButton } from '@material-ui/core'
 import React from 'react'
 
 
-const Burger = (props) => {
+const Burger = props => {
 
     const { 
         ticker,

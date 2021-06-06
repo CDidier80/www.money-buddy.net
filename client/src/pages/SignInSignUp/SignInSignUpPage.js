@@ -5,7 +5,7 @@ import Form from "./components/Form/Form"
 import "./styles/signInSignUp.css"
 import React from 'react';
 
-const SignInSignUpPage = (props) => {
+const SignInSignUpPage = props => {
 
     const useLandingStyles = makeLandingStyles(props.theme)
     const classes = useLandingStyles()

@@ -3,7 +3,7 @@ import { IconButton, makeStyles } from '@material-ui/core'
 
 
 
-const UndoIcon = (props) => {
+const UndoIcon = props => {
 
     // const {
     //     newCategories,

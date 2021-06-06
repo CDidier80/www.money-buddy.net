@@ -4,7 +4,7 @@ import DumbSidebar from "./DumbSidebar"
 import DumbNavbar from "./DumbNavbar"
 import React from 'react'
 
-const LoadingScreen = (props) => {
+const LoadingScreen = props => {
 
     const smallScreen = window.innerWidth <= 600
 

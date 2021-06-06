@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core'
 import RowsJsx from "./RowsJsx"
 
 
-const RowLogic = (props) => {
+const RowLogic = props => {
 
     /* ------------------------ PROPS ------------------------*/
 

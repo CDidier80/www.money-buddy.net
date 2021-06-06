@@ -20,7 +20,7 @@ const useStyles = makeStyles({
 })
 
 
-const DeleteInflowIcon = (props) => {
+const DeleteInflowIcon = props => {
 
     
     {/* ------------ Deconstruct Props -----------*/}

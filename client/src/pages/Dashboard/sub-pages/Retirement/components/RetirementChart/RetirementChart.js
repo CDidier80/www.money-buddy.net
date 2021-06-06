@@ -6,7 +6,7 @@ import {generateDataSets} from "./configData/data"
 import { tooltips } from "./configData/tooltips"
 import LineChart from "./components/LineChart"
 
-const ChartLogic = (props) => {
+const ChartLogic = props => {
 
     /* -------------------------------- PROPS -------------------------------- */
 

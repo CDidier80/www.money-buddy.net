@@ -3,7 +3,7 @@ import { RandomizeButton } from './RandomizeButton'
 import "./cashflowHeader.css"
 import React from 'react'
 
-const CashflowHeader = (props) => (
+const CashflowHeader = props => (
 
         <Header text="CASHFLOWS" >
             <RandomizeButton { ...props } />

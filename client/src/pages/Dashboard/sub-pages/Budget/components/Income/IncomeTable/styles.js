@@ -2,7 +2,7 @@ import { makeStyles, useMediaQuery } from '@material-ui/core'
 const nssr = {noSsr: true}
 
 
-export const useIncomeHeaderStyles = (props) => {
+export const useIncomeHeaderStyles = props => {
 
     const { theme, textSize } = props
     

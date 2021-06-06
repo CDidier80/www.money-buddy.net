@@ -7,7 +7,7 @@ import {
 } from '@material-ui/core';
 
 
-const AccordionDropdownTab = (props) => {
+const AccordionDropdownTab = props => {
 
     const { expanded, theme } = props
 

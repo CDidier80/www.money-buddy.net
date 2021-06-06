@@ -1,6 +1,6 @@
 import React from 'react'
 
-const ParticleGroup = (props) => {
+const ParticleGroup = props => {
 
     const { particleGroup } = props
 

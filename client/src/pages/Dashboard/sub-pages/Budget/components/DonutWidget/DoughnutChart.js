@@ -11,7 +11,7 @@ import React, {
 } from 'react'
 
 
-const DoughnutChart = (props) => {
+const DoughnutChart = props => {
 
     /* ---------------------------- PROPS ------------------------------ */
 

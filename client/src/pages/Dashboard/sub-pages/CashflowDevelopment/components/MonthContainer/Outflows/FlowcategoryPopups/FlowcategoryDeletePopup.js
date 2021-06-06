@@ -57,7 +57,7 @@ const Transition = forwardRef(function Transition(props, ref) {
 
 
 
-const FlowcategoryDeletePopup = (props) => {
+const FlowcategoryDeletePopup = props => {
 
     const { 
         toggleChanges, 

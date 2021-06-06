@@ -5,7 +5,7 @@ import React, { useState } from 'react'
 import "./styles/summary.css"
 
 
-const Summary = (props) => {
+const Summary = props => {
 
     const [monthly, setMonthly] = useState(false)
 

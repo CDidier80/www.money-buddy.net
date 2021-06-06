@@ -4,7 +4,7 @@ import React, { useLayoutEffect, useState } from 'react'
 import { navItems } from "./modules/navItems"
 import "./styles/sidebar.css"
 
-const SideBar = (props) => {
+const SideBar = props => {
     
     /* ---------------------- PROPS----------------------- */
 

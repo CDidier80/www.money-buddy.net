@@ -1,7 +1,7 @@
 import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
 import React from 'react'
 
-export const RandomizeButton = (props) => {
+export const RandomizeButton = props => {
 
     const {
         tick,

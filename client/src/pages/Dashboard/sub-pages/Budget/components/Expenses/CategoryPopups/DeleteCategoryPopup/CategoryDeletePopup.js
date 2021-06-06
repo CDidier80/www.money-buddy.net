@@ -6,7 +6,7 @@ import  ButtonWrapper from "./Buttons/ButtonWrapper"
 import { DialogContent } from '@material-ui/core'
 
 
-const CategoryDeletePopup = (props) => {
+const CategoryDeletePopup = props => {
 
     const classes = useModalStyles(props.theme)
 

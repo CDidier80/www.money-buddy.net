@@ -11,7 +11,7 @@ import AccordionDropdownTab from "./components/AccordionDropdownTab"
 import CategoryDeletePopup from "../CategoryPopups/DeleteCategoryPopup/CategoryDeletePopup"
 
 
-const CategoryAccordion = (props) => {
+const CategoryAccordion = props => {
     
     /* ------------------------- STATE -------------------------*/
 

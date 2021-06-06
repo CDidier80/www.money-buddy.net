@@ -1,7 +1,7 @@
 import { DialogContent } from '@material-ui/core'
 import React from 'react'
 
-const TextfieldForm = (props) => {
+const TextfieldForm = props => {
     return (
         <DialogContent>
             <form>

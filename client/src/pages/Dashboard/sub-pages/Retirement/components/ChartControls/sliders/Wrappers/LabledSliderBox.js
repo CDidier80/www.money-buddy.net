@@ -1,6 +1,6 @@
 import React from 'react'
 
-const LabledSliderBox = (props) => {
+const LabledSliderBox = props => {
 
     const {
         sliderComponent: SliderComponent,

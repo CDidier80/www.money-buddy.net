@@ -3,7 +3,7 @@ import useSnackbars from "../../../../../../custom_hooks/useSnackbars"
 import { DeleteUser} from "../../../../../../api_services/user-api-service.ts"
 import React from 'react'
 
-const DeleteAccountButton = (props) => {
+const DeleteAccountButton = props => {
 
     const { userId, history, theme, fromApp } = props
     const { setAuth } = fromApp

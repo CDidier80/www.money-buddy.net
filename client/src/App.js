@@ -10,7 +10,7 @@ import  { Helpers }              from  "./modules/clientFunctions"
 import  Routes                   from  "./TopLevelComponents/Routes"
 import  AppWrapper               from  "./TopLevelComponents/AppWrapper"
 
-const App = (props) => {
+const App = props => {
 
     /* ------------------- STATE ----------------------*/
 

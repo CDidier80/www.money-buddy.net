@@ -2,7 +2,7 @@ import React from 'react'
 import HighlightOffIcon from '@material-ui/icons/HighlightOff'
 import { makeStyles, IconButton, } from '@material-ui/core'
 
-const DeleteOutflowIcon = (props) => {
+const DeleteOutflowIcon = props => {
 
 
     const {

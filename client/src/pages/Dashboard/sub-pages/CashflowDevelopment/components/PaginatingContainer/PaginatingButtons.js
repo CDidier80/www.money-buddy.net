@@ -1,7 +1,7 @@
 import Spacers from "./fabs/Spacers"
 import Fabs from "./fabs/Fabs"
 
-const PaginatingButtons = (props) => {
+const PaginatingButtons = props => {
 
     const iconContainer = {
         style: {

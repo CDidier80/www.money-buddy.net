@@ -23,7 +23,7 @@ const useStyles = makeStyles( ({palette: p}) => {
 )
 
 
-const ExpenseHeaders = (props) => {
+const ExpenseHeaders = props => {
 
     const { emptyCell, columnHeader } = useStyles()
 
