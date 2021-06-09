@@ -1,21 +1,19 @@
 .loading-background {
-    width: 100vw;
-    height: 100vh;
+  width: 100vw;
+  height: 100vh;
 }
 
 .dash-main-flex {
-    display: flex;
+  display: flex;
 }
 
 .list {
-    margin: 0;
-    list-style: none;
-    padding: 18px 0 0 0;
+  margin: 0;
+  list-style: none;
+  padding: 18px 0 0 0;
 }
 
 .sidebar-icon {
-    font-size: 13px;
-    margin-right: 20px;
+  font-size: 13px;
+  margin-right: 20px;
 }
-
-
