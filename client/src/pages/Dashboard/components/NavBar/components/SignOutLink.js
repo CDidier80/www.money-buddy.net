@@ -5,20 +5,19 @@ import React from 'react'
 
 const SignOutLink = props => {
 
-    const { setAuth, setUserInfo } = props.fromApp
+    const { setAuthenticated, setUser } = props
 
     const logOut = (e) => {
-        setAuth(false)
-        setUserInfo(null)
+        setAuthenticated(false)
+        setUser({})
         localStorage.clear()
         props.history.push("/")
     }
 
-
     const { link } = useSignoutLinkStyles(props.theme)
 
     return (
-        <Link 
+        <Link
             onClick={()=>logOut()}
             className={link}
             to="#"

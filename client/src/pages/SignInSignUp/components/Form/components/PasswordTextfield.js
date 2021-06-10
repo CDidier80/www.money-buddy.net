@@ -5,21 +5,18 @@ const PasswordTextfield = props => {
 
     const {setPassword, isSigningUp, password, classes, submitForm} = props
 
-    const [ correctPrompt, autocompleteSetting ] = isSigningUp ? 
-                                        ["Choose Password", "off"] : 
-                                        ["Password", "current-password"]
     return (
-        <form 
+        <form
             onSubmit={(e) => submitForm(e)}
             className={classes.form}
         >
-            <CustomTextfield 
-                onChange={(e)=>setPassword(e.target.value)} 
-                autoComplete={autocompleteSetting}
-                label={correctPrompt}
+            <CustomTextfield
+                onChange={(e)=>setPassword(e.target.value)}
+                autoComplete={isSigningUp ? "off" : "current-password"}
+                label={isSigningUp ? "Choose Password" : "Password"}
                 role={"password"}
                 value={password}
-                required                                 
+                required
             />
         </form>
     )

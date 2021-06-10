@@ -1,8 +1,11 @@
 import { useMediaQuery } from "@material-ui/core"
 import { NavLink } from "react-router-dom"
-import React from "react";
+import React from "react"
+import { makeNavlinkStyles } from "../../styles/navbarStyles"
 
 const UnauthenticatedLinks = props => {
+
+    const navlinkStyle = makeNavlinkStyles(props.theme)
 
     const nssr = { noSsr: true }
     const maxWidth465 = useMediaQuery('(max-width: 465px)', nssr)
@@ -28,31 +31,30 @@ const UnauthenticatedLinks = props => {
         case maxWidth465:
             currentRuleset = responsiveStyles.maxWidth465
             break
-        default: 
+        default:
             // console.log("no matching cases.")
     }
 
     const styles = {
         ...props.hoverColor,
         ...currentRuleset,
-
     }
 
     return (
         <>
-            <NavLink 
-                to={{ pathname: "/login", state: { signingUp: true  } }}  
-                className={props.navlinkStyle} 
+            <NavLink
+                to={{ pathname: "/login", state: { signingUp: true  } }}
+                className={navlinkStyle}
                 style={styles}
-            > 
-                Sign Up 
-            </NavLink> 
-            <NavLink 
-                to={{ pathname: "/login", state: { signingUp: false } }}  
-                className={props.navlinkStyle} 
+            >
+                Sign Up
+            </NavLink>
+            <NavLink
+                to={{ pathname: "/login", state: { signingUp: false } }}
+                className={navlinkStyle}
                 style={styles}
-            > 
-                Sign In 
+            >
+                Sign In
             </NavLink>
         </>
     )

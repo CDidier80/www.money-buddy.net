@@ -10,20 +10,17 @@ import React from 'react'
 const { signup, signin } = require('../modules/formFunctions')
 
 const FormControl = props => {
-  const { toggleSigningUp, setUserInfo, isSigningUp, setAuth, history, classes } = props
+  const { toggleSigningUp, setUser, isSigningUp, setAuthenticated, history, classes } = props
 
-  const [reenteredPassword, setReenterPassword] = useState('')
-  const [password, setPassword] = useState('')
-  const [email, setEmail] = useState('')
 
   const signUp = async e => {
     e.preventDefault()
     if (isSigningUp) {
       const args = {
         reenteredPassword,
-        setUserInfo,
+        setUser,
         password,
-        setAuth,
+        setAuthenticated,
         email
       }
       const signedUp = await signup(args)
@@ -35,9 +32,9 @@ const FormControl = props => {
     e.preventDefault()
     const args = {
       history: history,
-      setUserInfo,
+      setUser,
       password,
-      setAuth,
+      setAuthenticated,
       email
     }
     await signin(args)

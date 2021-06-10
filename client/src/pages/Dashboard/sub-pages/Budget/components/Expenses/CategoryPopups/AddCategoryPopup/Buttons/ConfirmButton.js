@@ -8,16 +8,15 @@ const ConfirmButton = props => {
         fromBudget, 
         setError, 
         classes,
-        text, 
+        text,
     } = props
 
     const { 
         userMadeChanges,
-        setNewCategories, 
-        newCategories, 
+        setNewCategories,
+        newCategories,
         toggleChanges, 
     } = fromBudget
-
 
     const confirm = (e) => {
         e.preventDefault()

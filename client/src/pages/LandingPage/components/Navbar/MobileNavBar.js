@@ -10,7 +10,7 @@ const MobileNavBar = props => {
 
     return (
         <NavbarWrapper type={"mobile"}>
-            {props.fromApp.authenticated ? 
+            {props.authenticated ?
                 <AuthenticatedLinks { ...props } navlinkStyle={navlink} /> 
                 : 
                 <UnauthenticatedLinks navlinkStyle={navlink}/>

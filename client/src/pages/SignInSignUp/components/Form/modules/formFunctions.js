@@ -1,14 +1,14 @@
 import emailValidityCheck from "../../../../../modules/emailValidition/emailValidationFunctions"
-import { LogInUser } from '../../../../../api_services/user-api-service.ts'
+import { LogInUser } from '../../../../../services/api_services/user-api-service.ts'
 import initializeAccount from "./modelFunctions"
 
 
 export const signup = async props => {
     const {
-        reenteredPassword, 
-        setUserInfo, 
-        password, 
-        setAuth, 
+        reenteredPassword,
+        setUser,
+        password,
+        setAuthenticated,
         email
     } = props
 
@@ -21,8 +21,8 @@ export const signup = async props => {
         }
         const [user, status] = await initializeAccount(email, password)
         if (status === 200) {
-            setUserInfo(user)
-            setAuth(true)
+            setUser(user)
+            setAuthenticated(true)
         }
         return true
     } catch (error) {
@@ -32,20 +32,20 @@ export const signup = async props => {
 
 
 export const signin = async props => {
-    const { 
-        setUserInfo, 
-        password, 
-        setAuth, 
-        history, 
-        email, 
+    const {
+        setUser,
+        password,
+        setAuthenticated,
+        history,
+        email,
     } = props
     try {
         const response = await LogInUser({ email, password })
         if (response.status === 200) {
-            setAuth(true)
-            setUserInfo(response.data.user)
+            setAuthenticated(true)
+            setUser(response.data.user)
             history.push('/dashboard')
-        } 
+        }
     } catch (error) {
         console.log(error)
     }

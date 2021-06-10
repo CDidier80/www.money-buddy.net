@@ -16,10 +16,10 @@ const ReenterPasswordField = props => {
                     value={reenteredPassword}
                     label="Reenter Password" 
                     name='reenter password'
+                    id="reenter-password"
                     variant="outlined"
                     type="password"
                     margin="normal" 
-                    id="password"
                     fullWidth 
                 />
             </form>

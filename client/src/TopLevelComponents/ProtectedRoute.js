@@ -7,7 +7,7 @@ const ProtectedRoute = props => {
         denyAccess, 
         authenticated, 
         verifyTokenValid, 
-    } = props.fromApp
+    } = props
 
     const [routeLoaded, setRouteLoaded] = useState(false)
 

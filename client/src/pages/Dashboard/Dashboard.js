@@ -6,9 +6,9 @@ import './components/NavBar/styles/navbar.css'
 import './sub-pages/styles/subpage.css'
 import './dashboard.css'
 
-import { ReadEntireCashflow } from '../../api_services/cashflow-api-service.ts'
-import { ReadEntireBudget } from '../../api_services/budget-api-service.ts'
-import { BudgetApiService } from '../../api_services/budget-api-service.ts'
+import { ReadEntireCashflow } from '../../services/api_services/cashflow-api-service.ts'
+import { ReadEntireBudget } from '../../services/api_services/budget-api-service.ts'
+import { BudgetApiService } from '../../services/api_services/budget-api-service.ts'
 import CashflowDevRoute from './components/MemoRoutes/CashflowDevRoute'
 import RetirementRoute from './components/MemoRoutes/RetirementRoute'
 import LoadingScreen from './components/LoadingScreen/LoadingScreen'
@@ -22,9 +22,8 @@ import { withTheme } from '@material-ui/core'
 const Dashboard = props => {
   const smallScreen = window.innerWidth <= 600
 
-  const { userInfo, gradientWrapper } = props.fromApp
-  const { id: userId } = userInfo
-  const { fromApp, theme } = props
+  const { user, gradientWrapper, theme } = props
+  const { id: userId } = user
 
   const [ticker, setTicker] = useState(0)
   const [loaded, setLoaded] = useState(false)
@@ -130,7 +129,6 @@ const Dashboard = props => {
                 ticker,
                 months,
                 setMonths,
-                ...fromApp,
                 cashflowId,
                 setCashflowId,
                 path: '/dashboard/cashflow'

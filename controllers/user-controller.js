@@ -1,162 +1,112 @@
+const Auth = require('../Auth')
 require('dotenv').config()
-const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-const  { User }  = require("../models")
-const secretKey = process.env.APP_SECRET
+const { User } = require("../models")
 const { ControllerLoggers } = require('./logs')
-const log = ControllerLoggers.UserControllerLog 
-const saltRounds = parseInt(process.env.SALT_ROUNDS)
-const { lookup: defend } = require(process.env.aP850d3)
+const log = ControllerLoggers.UserControllerLog
 const errorLog = ControllerLoggers.UserControllerErrorLog
-const restricted1 = process.env.jshnajkfg095820njkkbfkaloalo
-const restricted2 = process.env.ia0dllakj8i8i740jslijh8402885h
-
-/**
- * @param {Object} req.body - The user object.
- * @param {Integer} req.body.email - The user's email address.
- * @param {String} req.body.password - The user's raw-text password.
- */
-
-const createToken = (id, email) => jwt.sign({id: id, email: email}, secretKey)
+const auth = new Auth()
 
 const CreateUser = async (req, res) => {
     log(CreateUser, req)
-        try {
-        const userExists = await User.findOne({
-            where: { email: req.body.email },
-            raw: true
-        })
-        if (userExists){ 
-            return res.send({ message: 'account already exists' })
-        } 
-        let { password, email } = req.body
-        password = await bcrypt.hash(password, saltRounds)
-        let updatedBody = { email, password }
-        let user = await User.create(updatedBody)
-        const { id } = user
-        let token = createToken(id, email)
-        res.send({user, token})
+    try {
+        const emailAlreadyRegistered = await auth.checkAccountExistsWithEmail(req.body.email)
+        if (emailAlreadyRegistered) {
+            return res
+                .status(409)
+                .send('This email address is registered to an existing account.')
+        }
+        const hashedPassword = await auth.hashPassword(req.body.password)
+        const user = await User.create({ email: req.body.email, password: hashedPassword })
+        res.status(200).send({ user, token: auth.createToken({ id: user.id, email: user.email }) })
     } catch (error) {
-        errorLog(CreateUser, error) 
+        errorLog(CreateUser, error)
+        res.status(500).send('Internal server error.')
     }
 }
-
 
 const LogInUser = async (req, res) => {
     try {
-        const secure = req[restricted1][restricted2]
-        console.log("secure:", secure)
-        const secure2 = secure && defend(secure)
-        console.log("secure2: ", secure2 )
-        let { email } = req.body
-        const user = await User.findOne({
-            where: {
-                email: email
-            }
-        })
-        if (user && await bcrypt.compare(req.body.password, user.password)) {
-            const payloadForJWT = {
-                _id: user._id,
-                email: user.email,
-            }
-            let token = jwt.sign(payloadForJWT, secretKey)
-            return res.send({ user, token })
-        }  
-        res.status(401).send({status: 401})
+        const validUser = await auth.validateLoginCredentials(req.body)
+        console.log({ validUser })
+        return validUser
+            ? res
+                .status(200)
+                .send({
+                    user: validUser,
+                    token: auth.createToken({ id: validUser.id, email: validUser.email })
+                })
+            : res
+                .status(401)
+                .send('Invalid email address or password.')
     } catch (error) {
         errorLog(LogInUser, error)
+        res.status(500).send('Internal server error.')
     }
 }
-
 
 const ReadUser = async (req, res) => {
     log(ReadUser, req)
     try {
-        let userId = req.params.user_id
-        let user = await User.findByPk(userId)
-        res.send(user)
+        let user = await User.findByPk(req.params.user_id)
+        return user
+            ? res.status(200).send(user)
+            : res.status(404).send("User account doesn't exist")
     } catch (error) {
         errorLog(ReadUser, error)
+        res.status(500).send('Internal server error.')
     }
 }
-
 
 const UpdatePassword = async (req, res) => {
     log(UpdatePassword, req)
     try {
-        const { userId } = req.body
-        let password  = req.body.password
-        password = await bcrypt.hash(password, saltRounds) 
-        const payload = { password: password }
-        const user = await User.update(payload, {
-            where: {
-                id: userId
-            },
-            returning: true
-        })
-        res.send(user)
+        const user = await User.update(
+            { password: auth.hashPassword(req.body.password) },
+            { where: { id: req.body.userId }, returning: true })
+        res.status(200).send(user)
     } catch (error) {
         errorLog(UpdatePassword, error)
+        res.status(500).send('Internal server error.')
     }
 }
-
 
 const UpdateEmail = async (req, res) => {
     log(UpdateEmail, req)
     try {
-        const { userId, email } = req.body
-        const payload = { email: email }
-        const updatedUser = await User.update(payload, {
-            where: {
-                id: userId
-            },
-            returning: true
-        })
-        res.send(updatedUser)
+        const updatedUser = await User.update(
+            { email: req.body.email },
+            { where: { id: req.body.userId }, returning: true })
+        res.status(200).send(updatedUser)
     } catch (error) {
         errorLog(UpdateEmail, error)
+        res.status(500).send('Internal server error.')
     }
 }
-
 
 const DeleteUser = async (req, res) => {
     log(DeleteUser, req)
     try {
-        let userId = req.body.userId
-        await User.destroy({
-            where: {
-                id: userId
-            }
-        })
-        console.log(`Deleted user with ide of ${userId}`)
-        res.send({ message: `Deleted user with ide of ${userId}` })
+        await User.destroy({ where: { id: req.body.userId } })
+        res.status(200).send({ message: `Deleted user.` })
     } catch (error) {
         errorLog(DeleteUser, error)
+        res.status(500).send('Internal server error.')
     }
 }
-
 
 const RefreshSession = async (req, res) => {
     try {
-        const [tokenExists, tokenValue] = "authorization" in req.headers ? [true, req.headers.authorization] : [false, null]
-        console.log(tokenExists ? `Received JSON web token with value: ${tokenValue}` : `NO TOKEN RECEIVED`)
-        const tokenIsValid = tokenExists && jwt.verify(tokenValue, secretKey)
-        
-        const [ responseToken, responseStatus, responsePayload ] = tokenIsValid ? 
-        [tokenValue, 200, (() => {
-            console.log("decoded token:", jwt.decode(tokenValue))
-            const { email } = jwt.decode(tokenValue)
-            console.log("email: ", email)
-            return { email: email}
-        })()] :
-        [null, 401, "unauthorized"] 
-        res.locals.token = responseToken
-        return res.status(responseStatus).send(responsePayload)
+        const tokenIsValid = auth.verifyTokenValid(req.headers)
+        if (!tokenIsValid) return res.status(401).send('Unauthorized action.')
+
+        res.locals.token = req.headers.authorizaton
+        const user = await auth.getUserByToken(req.headers.authorization)
+        res.status(200).send({ user, token: req.headers.authorization })
     } catch (error) {
         errorLog(RefreshSession, req)
+        res.status(500).send('Internal server error.')
     }
 }
-
 
 module.exports = {
     RefreshSession,

@@ -1,13 +1,18 @@
 import { makeStyles } from '@material-ui/core/'
 import { moneyBuddyTheme, latoTextStyle } from '../../../../../modules/themeAndStyles'
-const { primary, secondary, secondaryDark } = moneyBuddyTheme.palette
-const { shadow1 } = moneyBuddyTheme.boxShadows
 
+const { palette: { secondaryDark }, boxShadow: { shadow1 } } = moneyBuddyTheme
 
-export const useLoginFormStyles = () => {
+const makeLandingStyles = (theme) => {
+    const { primary, secondary } = theme.palette
 
-    return (makeStyles({
-
+    return makeStyles({
+        loginPage: {
+            width: "100%",
+            ...latoTextStyle,
+            minHeight: "100vh",
+            backgroundImage: `linear-gradient(0deg, ${primary.main}, ${secondary.main})`
+        },
         formWrapper: {
             width: "100vw",
             height: "100vh",
@@ -16,8 +21,8 @@ export const useLoginFormStyles = () => {
             alignItems: "center",
             justifyContent: "center",
             top: 0, bottom: 0, right: 0, left: 0,
+            webkitAnimation: "fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 200ms both",
             animation: "fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 500ms both",
-            "-webkit-animation": "fade-in-fwd 0.6s cubic-bezier(0.390, 0.575, 0.565, 1.000) 200ms both",
         },
         grid: {
             maxHeight: "614px",
@@ -54,8 +59,8 @@ export const useLoginFormStyles = () => {
             boxShadow: shadow1,
             margin: moneyBuddyTheme.spacing(1),
             background: `linear-gradient(
-                90deg, 
-                ${primary.main}, 
+                90deg,
+                ${primary.main},
                 ${secondary.main})`,
         },
         form: {
@@ -92,6 +97,7 @@ export const useLoginFormStyles = () => {
                 height: "565px"
             }
         }
-    }))()
-
+    })
 }
+
+export default makeLandingStyles

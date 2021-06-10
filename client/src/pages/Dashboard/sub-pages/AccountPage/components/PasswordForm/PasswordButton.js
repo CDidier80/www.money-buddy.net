@@ -1,5 +1,5 @@
 import ThemedButton from "../../../../../../TopLevelComponents/ThemedButton"
-import { UpdatePassword } from "../../../../../../api_services/user-api-service.ts"
+import { UpdatePassword } from "../../../../../../services/api_services/user-api-service.ts"
 import useSnackbars from "../../../../../../custom_hooks/useSnackbars"
 import React from 'react'
 
@@ -12,11 +12,11 @@ const PasswordButton = props => {
         reenteredNewPassword
     } = props.fromPasswordForm
 
-    const { 
+    const {
         mismatch,
         errorSnackbar,
         updateSnackbar,
-        disabledForGuestSnackbar,         
+        disabledForGuestSnackbar,
     } = useSnackbars()
 
 

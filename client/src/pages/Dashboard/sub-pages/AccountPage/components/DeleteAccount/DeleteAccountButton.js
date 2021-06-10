@@ -1,12 +1,11 @@
 import ThemedButton from '../../../../../../TopLevelComponents/ThemedButton'
 import useSnackbars from "../../../../../../custom_hooks/useSnackbars"
-import { DeleteUser} from "../../../../../../api_services/user-api-service.ts"
+import { DeleteUser} from "../../../../../../services/api_services/user-api-service.ts"
 import React from 'react'
 
 const DeleteAccountButton = props => {
 
-    const { userId, history, theme, fromApp } = props
-    const { setAuth } = fromApp
+    const { userId, history, theme, setAuthenticated } = props
 
     const { disabledForGuestSnackbar } = useSnackbars()
 
@@ -18,7 +17,7 @@ const DeleteAccountButton = props => {
         e.preventDefault()
         await DeleteUser({userId})
         localStorage.clear()
-        setAuth(false)
+        setAuthenticated(false)
         history.push("/")
     }
 
@@ -28,7 +27,7 @@ const DeleteAccountButton = props => {
     }
 
     return (
-        <ThemedButton 
+        <ThemedButton
             theme={theme}
             onClick={(e)=>deleteAccount(e)}
             overrides={overrides}

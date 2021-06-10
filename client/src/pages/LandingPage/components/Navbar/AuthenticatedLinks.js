@@ -1,17 +1,19 @@
 import { useMediaQuery } from '@material-ui/core'
 import { NavLink, Link } from 'react-router-dom'
 import React from 'react'
-
+import { makeNavlinkStyles } from "../../styles/navbarStyles"
 
 const AuthenticatedLinks = props => {
 
-    const { setAuth, setUserInfo } = props.fromApp
+    const navlinkStyle = makeNavlinkStyles(props.theme)
+
+    const { setAuthenticated, setUser } = props
 
     const logOut = (e) => {
         e.preventDefault()
         localStorage.clear()
-        setAuth(false)
-        setUserInfo(null)
+        setAuthenticated(false)
+        setUser(null)
     }
 
     const nssr = {noSsr: true}
@@ -36,7 +38,7 @@ const AuthenticatedLinks = props => {
         case maxWidth465:
             currentRuleset = responsiveStyles.maxWidth465
             break
-        default: 
+        default:
             // console.log("no matching cases.")
     }
 
@@ -47,15 +49,15 @@ const AuthenticatedLinks = props => {
 
     return (
         <>
-            <NavLink 
-                className={props.navlinkStyle}
-                to={"/dashboard/"}  
+            <NavLink
+                className={navlinkStyle}
+                to={"/dashboard/"}
                 style={styles}
-            > 
-                Dashboard 
-            </NavLink> 
-            <Link 
-                className={props.navlinkStyle} 
+            >
+                Dashboard
+            </NavLink>
+            <Link
+                className={navlinkStyle}
                 onClick={(e)=>logOut(e)}
                 style={styles}
                 to={"#"}
